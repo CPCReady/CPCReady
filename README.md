@@ -101,3 +101,21 @@ def rvm():
         print()
     except:
         show_info("An error occurred while running Retro Virtual Machine.'","red")
+
+
+
+        https://github.com/marketplace/actions/pypi-publish
+
+        https://medium.com/@VersuS_/automate-pypi-releases-with-github-actions-4c5a9cfe947d
+        https://realpython.com/pypi-publish-python-package/#building-your-package
+
+        https://test.pypi.org/
+
+        https://www.caktusgroup.com/blog/2021/02/11/automating-pypi-releases/
+
+        on:
+            push:
+                tags:
+                - '*'
+                
+    https://futurestud.io/tutorials/github-actions-run-a-workflow-when-creating-a-tag
