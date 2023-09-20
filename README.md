@@ -1,7 +1,25 @@
-# pc2cpc
-pc2cpc
 
-python setup.py sdist
+```
+╔═╗╔═╗╔═╗ ┌─────────────┐
+║  ╠═╝║   │ ███ ███ ███ │
+╚═╝╩  ╚═╝ └─────────────┘
+Ready
+█
+```
+## Generar paquete python
+
+Instalar build si no lo tienes
+```
+pip install build
+```
+
+Ejecutar Build
+```
+python3 -m build
+```
+
+
+
 
 
 # GET PLATFORM

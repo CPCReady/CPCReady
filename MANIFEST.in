@@ -1,5 +1,5 @@
-include CPCReady/includes *.ccz80
-include CPCReady/templates *.j2
+include CPCReady/includes/*.ccz80
+include CPCReady/templates/*.j2
 include CPCReady/bin/linux/iDSK
 include CPCReady/bin/linux/martine
 include CPCReady/bin/darwin/iDSK
