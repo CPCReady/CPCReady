@@ -8,7 +8,7 @@
             "name": "BUILD",
             "type": "python",
             "request": "launch",
-            "module": "gotocpc",
+            "module": "CPCReady",
             "cwd": "${workspaceFolder}/test/testing2",
             "justMyCode": true,
             "env": {
@@ -20,7 +20,7 @@
             "name": "CREATE PROJECT",
             "type": "python",
             "request": "launch",
-            "module": "gotocpc",
+            "module": "CPCReady",
             "cwd": "${workspaceFolder}",
             "justMyCode": true,
             "env": {

@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
-from gotocpc import __version__ as version
+from CPCReady import __version__ as version
 
 VERSION = version
 DESCRIPTION = 'Software Developer Kit for programming in Basic for Amstrad CPC'
 
 setup(
-    name='gotocpc',
+    name='CPCReady',
     version=VERSION,
     author="Destroyer",
     author_email="<destroyer.dcf@gmail.com>",
@@ -13,19 +13,19 @@ setup(
     license="GPL",
     packages=find_packages(),
     data_files=[
-        ('gotocpc/bin/linux', ['gotocpc/bin/linux/iDSK', 'gotocpc/bin/linux/martine']),
-        ('gotocpc/bin/darwin',['gotocpc/bin/darwin/iDSK', 'gotocpc/bin/darwin/martine']),
-        ('gotocpc/bin/win',   ['gotocpc/bin/win/iDSK.exe', 'gotocpc/bin/win/martine.exe']),
-        ('gotocpc/bin',       ['gotocpc/bin/ccz80.exe', 'gotocpc/bin/ccz80.exe']),
-        ('gotocpc/bin/win',   ['gotocpc/bin/win/cyggcc_s-1.dll']),
-        ('gotocpc/bin/win',   ['gotocpc/bin/win/cygwin1.dll']),
-        ('gotocpc/templates', ['gotocpc/templates/cpc.j2']),
-        ('gotocpc/includes',  ['gotocpc/includes/cpc464.ccz80']),
-        ('gotocpc/includes',  ['gotocpc/includes/cpc6128.ccz80']),
-        ('gotocpc/includes',  ['gotocpc/includes/CPMPlus.ccz80']),
-        ('gotocpc/includes',  ['gotocpc/includes/SpritesAlive.ccz80']),
-        ('gotocpc/includes',  ['gotocpc/includes/sprUtilCPC.ccz80']),
-        ('gotocpc/includes',  ['gotocpc/includes/standard.ccz80'])
+        ('CPCReady/bin/linux', ['CPCReady/bin/linux/iDSK', 'CPCReady/bin/linux/martine']),
+        ('CPCReady/bin/darwin',['CPCReady/bin/darwin/iDSK', 'CPCReady/bin/darwin/martine']),
+        ('CPCReady/bin/win',   ['CPCReady/bin/win/iDSK.exe', 'CPCReady/bin/win/martine.exe']),
+        ('CPCReady/bin',       ['CPCReady/bin/ccz80.exe', 'CPCReady/bin/ccz80.exe']),
+        ('CPCReady/bin/win',   ['CPCReady/bin/win/cyggcc_s-1.dll']),
+        ('CPCReady/bin/win',   ['CPCReady/bin/win/cygwin1.dll']),
+        ('CPCReady/templates', ['CPCReady/templates/cpc.j2']),
+        ('CPCReady/includes',  ['CPCReady/includes/cpc464.ccz80']),
+        ('CPCReady/includes',  ['CPCReady/includes/cpc6128.ccz80']),
+        ('CPCReady/includes',  ['CPCReady/includes/CPMPlus.ccz80']),
+        ('CPCReady/includes',  ['CPCReady/includes/SpritesAlive.ccz80']),
+        ('CPCReady/includes',  ['CPCReady/includes/sprUtilCPC.ccz80']),
+        ('CPCReady/includes',  ['CPCReady/includes/standard.ccz80'])
     ],
     install_requires=[
         'click',
@@ -47,13 +47,13 @@ setup(
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
         'Operating System :: POSIX :: Linux',
     ],
     entry_points={
         'console_scripts': [
-            'gotocpc=gotocpc.__main__:main',
-            'go2cpc=gotocpc.__main__:main',
-            'cpc=gotocpc.__main__:main'
+            'CPCReady=CPCReady.__main__:main',
+            'cpcready=CPCReady.__main__:main'
         ]
     }
 )
