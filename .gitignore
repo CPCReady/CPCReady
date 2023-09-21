@@ -15,6 +15,7 @@ develop-eggs/
 dist/
 downloads/
 eggs/
+gh.token
 .eggs/
 lib/
 lib64/
