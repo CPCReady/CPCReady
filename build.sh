@@ -29,7 +29,7 @@ echo "==========================================================================
 echo "[*] BORRADO DE TEMPORALES"
 echo "================================================================================================"
 echo ""
-
+    find . -type f -name ".DS_Store" -exec rm -f {} \;
     directorio_a_eliminar="dist"
     if [ -d "$directorio_a_eliminar" ]; then
         rm -r "$directorio_a_eliminar"
