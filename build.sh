@@ -6,10 +6,10 @@ rojo='\033[0;31m'
 reset_color='\033[0m'
 
 generateChanges() {
-    carpeta="VERSIONS"
-    archivo_concatenado="CHANGES.md"
-    if [ -e "CHANGES" ]; then
-        rm CHANGES
+    carpeta="docs/versions"
+    archivo_concatenado="docs/CHANGES.md"
+    if [ -e $archivo_concatenado ]; then
+        rm $archivo_concatenado
     fi
     if [[ "$OSTYPE" == "linux-gnu" ]]; then
         archivos=$(find "$carpeta" -type f -exec ls -t -p "{}" + | awk '{print $NF}')
@@ -51,6 +51,7 @@ echo ""
         echo "El directorio no existe: $directorio_a_eliminar"
     fi
 
+
 echo ""
 echo "================================================================================================"
 echo "[*] INSTALACION DE DEPENDENCIAS"
@@ -66,7 +67,7 @@ echo ""
 if [ -z "$1" ]
 then
     generateChanges
-    CHANGES=`cat CHANGES.md`
+    CHANGES=`cat docs/CHANGES.md`
     echo "$CHANGES"
     echo ""
     archivo="$PROJECT/__init__.py"
@@ -78,7 +79,7 @@ then
     echo ""
 else
     version=$1
-    version_a_verificar="VERSIONS/$version.md"
+    version_a_verificar="docs/versions/$version.md"
     if [ -e "$version_a_verificar" ]; then
         CHANGES=`cat $version_a_verificar`
         echo "$CHANGES"
