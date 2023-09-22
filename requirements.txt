@@ -1,8 +1,0 @@
-click
-configparser
-rich
-PyYAML
-jinja2
-emoji
-jsonschema
-python-dotenv
