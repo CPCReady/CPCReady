@@ -1,5 +1,6 @@
 
 ##
+![Descripción de la imagen](/images/logo.jpg)
 ```bash
 ╔═╗╔═╗╔═╗ ┌─────────────┐
 ║  ╠═╝║   │ ███ ███ ███ │
