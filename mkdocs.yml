@@ -1,8 +1,12 @@
 site_name: CPCReady
 nav:
-  - Inicio: 'index.md'
+  - 'Introduccion': 
+    - Que es CPCReady: 'index.md'
+    - Instalacion: 'install.md'
+    - Licencia: 'license.md'
+    - Historial de Cambios: 'CHANGES.md'
   - 'Guia de usuario':
-    - Sistema de Autenticacion: 'autenticacion.md'
+    - Como Empezar: 'users-guide.md'
   - Acerca de: 'about.md'
   
 theme: readthedocs

@@ -1,27 +1,20 @@
-
-##
-```bash
-╔═╗╔═╗╔═╗ ┌─────────────┐
-║  ╠═╝║   │ ███ ███ ███ │
-╚═╝╩  ╚═╝ └─────────────┘
-Ready
-█
-```
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tempus ut dui eget consectetur. Aenean ornare velit quis leo sollicitudin gravida. Etiam varius ligula id lectus iaculis, et placerat elit bibendum. Sed ultricies velit eu leo sodales, vitae laoreet diam hendrerit. Vestibulum risus nunc, semper sed congue in, dignissim at nisi. Aenean quis viverra ex. Donec consectetur venenatis felis eget finibus. 
-
-
+# Instalacion
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tempus ut dui eget consectetur. Aenean ornare velit quis leo sollicitudin gravida. Etiam varius ligula id lectus iaculis, et placerat elit bibendum. Sed ultricies velit eu leo sodales, vitae laoreet diam hendrerit. Vestibulum risus nunc, semper sed congue in, dignissim at nisi. Aenean quis viverra ex. Donec consectetur venenatis felis eget finibus. 
 
-### Caracteristicas
+## Requerimientos
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tempus ut dui eget consectetur. Aenean ornare velit quis leo sollicitudin gravida. Etiam varius ligula id lectus iaculis, et placerat elit bibendum. Sed ultricies velit eu leo sodales, vitae laoreet diam hendrerit. Vestibulum risus nunc, semper sed congue in, dignissim at nisi. Aenean quis viverra ex. Donec consectetur venenatis felis eget finibus. 
 
-### Herramientas
+### Windows
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tempus ut dui eget consectetur. Aenean ornare velit quis leo sollicitudin gravida. Etiam varius ligula id lectus iaculis, et placerat elit bibendum. Sed ultricies velit eu leo sodales, vitae laoreet diam hendrerit. Vestibulum risus nunc, semper sed congue in, dignissim at nisi. Aenean quis viverra ex. Donec consectetur venenatis felis eget finibus. 
 
-### Redes Sociales
+### Linux
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tempus ut dui eget consectetur. Aenean ornare velit quis leo sollicitudin gravida. Etiam varius ligula id lectus iaculis, et placerat elit bibendum. Sed ultricies velit eu leo sodales, vitae laoreet diam hendrerit. Vestibulum risus nunc, semper sed congue in, dignissim at nisi. Aenean quis viverra ex. Donec consectetur venenatis felis eget finibus. 
+
+### Mac OSX
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tempus ut dui eget consectetur. Aenean ornare velit quis leo sollicitudin gravida. Etiam varius ligula id lectus iaculis, et placerat elit bibendum. Sed ultricies velit eu leo sodales, vitae laoreet diam hendrerit. Vestibulum risus nunc, semper sed congue in, dignissim at nisi. Aenean quis viverra ex. Donec consectetur venenatis felis eget finibus. 
 

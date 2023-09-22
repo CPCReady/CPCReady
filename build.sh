@@ -19,6 +19,7 @@ generateChanges() {
         echo "Sistema operativo no compatible"
         exit 1
     fi
+    echo "## Historial de Cambios" > "$archivo_concatenado"
     for archivo in $archivos; do
         cat "$archivo" >> "$archivo_concatenado"
     done
