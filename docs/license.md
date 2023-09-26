@@ -1,6 +1,11 @@
 GNU General Public License
 ==========================
 
+![GitHub](https://img.shields.io/github/license/amstrad-sdk/cpcready) 
+
+
+
+
 _Version 3, 29 June 2007_  
 _Copyright © 2007 Free Software Foundation, Inc. &lt;<http://fsf.org/>&gt;_
 
