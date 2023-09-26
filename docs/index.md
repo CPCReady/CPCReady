@@ -8,8 +8,12 @@
 Ready
 █
 ``` -->
-![GitHub Latest Release)](https://img.shields.io/github/v/release/amstrad-sdk/cpcready?logo=github)
-![example workflow](https://github.com/github/docs/actions/workflows/python-publish-production.yml/badge.svg)
+![GitHub](https://img.shields.io/github/license/amstrad-sdk/cpcready)  ![GitHub Latest Release)](https://img.shields.io/github/v/release/amstrad-sdk/cpcready?logo=github)     <a href="https://github.com/amstrad-sdk/CPCReady/pulse" alt="Activity"><img src="https://img.shields.io/github/commit-activity/m/amstrad-sdk/CPCReady" /></a> ![example workflow](https://github.com/amstrad-sdk/cpcready/actions/workflows/python-publish-production.yml/badge.svg) ![PyPI - Version](https://img.shields.io/pypi/v/gotocpc) ![GitHub issues](https://img.shields.io/github/issues/amstrad-sdk/cpcready) ![GitHub pull requests](https://img.shields.io/github/issues-pr/amstrad-sdk/cpcready)
+
+
+![X (formerly Twitter) URL](https://img.shields.io/twitter/url?url=shields.io&logo=facebook&logoColor=%23FFFFFF&labelColor=%23FFFFFF)
+
+
 <p align="center">
     <img src="https://raw.githubusercontent.com/badges/shields/master/readme-logo.svg?sanitize=true"
         height="130">
@@ -67,9 +71,16 @@ Las siguientes mejoras a realizar en la aplicación son
 | Github | [https://github.com/amstrad-sdk/CPCReady.git](https://github.com/amstrad-sdk/CPCReady.git)|
 
 <p align="center">
-    <a href="https://twitter.com/intent/follow?screen_name=shields_io"><img src="https://img.shields.io/twitter/follow/shields_io?style=social&logo=twitter"
-            alt="follow on Twitter"></a>
+    <a href="https://twitter.com/intent/follow?screen_name=shields_io"><img src="https://img.shields.io/twitter/follow/shields_io?style=social&logo=X"
+            alt="follow on X"></a>
+    <a href="https://twitter.com/intent/follow?screen_name=shields_io"><img src="https://img.shields.io/twitter/follow/shields_io?style=social&logo=instagram"
+            alt="follow on Instagram"></a>
+    <a href="https://twitter.com/intent/follow?screen_name=shields_io"><img src="https://img.shields.io/twitter/follow/shields_io?style=social&logo=facebook"
+            alt="follow on Facebook"></a>
+    <a href="https://twitter.com/intent/follow?screen_name=shields_io"><img src="https://img.shields.io/github/follow/shields_io?logo=github"
+            alt="follow on Facebook"></a>
 </p>
+
 
 <!-- [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 - ✨Magic ✨
