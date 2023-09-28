@@ -1,5 +1,5 @@
 
-name: Upload Python Package to PYPY.ORG
+name: Upload PYPY.ORG
 
 on:
   pull_request:
