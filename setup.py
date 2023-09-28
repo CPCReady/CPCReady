@@ -19,11 +19,13 @@ setup(
     packages=find_packages(),
     data_files=[
         ('CPCReady/bin/linux', ['CPCReady/bin/linux/iDSK', 'CPCReady/bin/linux/martine']),
+        ('CPCReady/bin/linux', ['CPCReady/bin/linux/ugbc', 'CPCReady/bin/linux/ugbc']),
         ('CPCReady/bin/darwin',['CPCReady/bin/darwin/iDSK', 'CPCReady/bin/darwin/martine']),
         ('CPCReady/bin/win',   ['CPCReady/bin/win/iDSK.exe', 'CPCReady/bin/win/martine.exe']),
         ('CPCReady/bin',       ['CPCReady/bin/ccz80.exe', 'CPCReady/bin/ccz80.exe']),
         ('CPCReady/bin/win',   ['CPCReady/bin/win/cyggcc_s-1.dll']),
         ('CPCReady/bin/win',   ['CPCReady/bin/win/cygwin1.dll']),
+        ('CPCReady/bin/win',   ['CPCReady/bin/win/ugbc.exe','CPCReady/bin/win/ugbc.exe']),
         ('CPCReady/templates', ['CPCReady/templates/cpc.j2']),
         ('CPCReady/includes',  ['CPCReady/includes/cpc464.ccz80']),
         ('CPCReady/includes',  ['CPCReady/includes/cpc6128.ccz80']),

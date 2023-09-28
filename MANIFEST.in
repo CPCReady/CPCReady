@@ -1,6 +1,7 @@
 include CPCReady/includes/*.ccz80
 include CPCReady/templates/*.j2
 include CPCReady/bin/linux/iDSK
+include CPCReady/bin/linux/ugbc
 include CPCReady/bin/linux/martine
 include CPCReady/bin/darwin/iDSK
 include CPCReady/bin/darwin/martine
@@ -8,4 +9,5 @@ include CPCReady/bin/win/iDSK.exe
 include CPCReady/bin/win/martine.exe
 include CPCReady/bin/win/cyggcc_s-1.dll
 include CPCReady/bin/win/cygwin1.dll
+include CPCReady/bin/win/ugbc.exe
 include CPCReady/bin/ccz80.exe
