@@ -42,7 +42,7 @@ Las herramientas externas utilizadas son:
 - [2CDT](https://github.com/ralferoo/cpctools/) : Para la creación de imagenes de cinta
 - [RetroVirtualMachine](https://www.retrovirtualmachine.org/) : Para testear tus proyectos. Tanto con version Web, como desktop.
 - [ugBasic](https://ugbasic.iwashere.eu/install) : Para programar en este lenguaje ademas del Locomotive Basic de toda la vida.
-- [Visual Studio Code](https://code.visualstudio.com/) : Como IDE de desarrollo + Plugin que te ayudaran a programar.
+- [Visual Studio Code](https://code.visualstudio.com/) : Como IDE de desarrollo + Extensiones que te ayudaran a programar.
 - [Martine](https://github.com/jeromelesaux/martine/) : Para la creación de sprites y pantallas de carga.
 - [z88dk](https://z88dk.org/site/download): Como compilador para ugbasic.
 

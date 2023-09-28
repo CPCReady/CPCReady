@@ -55,7 +55,7 @@ Para instalarla ve al Software Market de tu sistema operativo, buscala e instala
 
 ## Extensiones en Visual Studio Code
 
-Sera necesario que en Visual Studio Code, instalemos unas extensiones para mayor comodidad en la programación. Las extensiones a instalar seran:
+Sera necesario que en Visual Studio Code, instalemos las siguientes extensiones para mayor comodidad en la programación. Las extensiones a instalar son:
 
 - sdkcpc-amstrad-basic-language
 - sdkcpc-amstrad-basic-snippet
@@ -63,7 +63,5 @@ Sera necesario que en Visual Studio Code, instalemos unas extensiones para mayor
 
 ### Como instalar extensiones
 
-Haga clic en Inicio > Todos los programas > Accesorios > Abrir Línea de comandos.
-
-Alternativamente, también puede acceder a la línea de comandos seleccionando Inicio > Ejecutar introduciendo "cmd" y confirmando su entrada con la tecla Enter.
+Si no sabes como instalar extensiones, puedes ver el siguiente [video](https://www.youtube.com/watch?app=desktop&v=kY02vXiIkqE/) donde se explica de manera muy sencilla como hacerlo.
 
