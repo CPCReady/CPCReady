@@ -1,6 +1,6 @@
 # Instalacion
 
-La instación de **CPCReady** es muy sencialla, tan solo se necesitan ciertos requisitos para poder instalarlos.
+La instación de **CPCReady** es muy sencilla, tan solo se necesitan ciertos requisitos para poder instalarlos.
 
 ## Requisitos
 
