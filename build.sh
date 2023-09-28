@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 PROJECT="CPCReady"
 FECHA=$(date '+%Y-%m-%d %H:%M:%S')
@@ -11,14 +11,19 @@ generateChanges() {
     if [ -e $archivo_concatenado ]; then
         rm $archivo_concatenado
     fi
-    if [[ "$OSTYPE" == "linux-gnu" ]]; then
-        archivos=$(find "$carpeta" -type f -exec ls -t -p "{}" + | awk '{print $NF}')
-    elif [[ "$OSTYPE" == "darwin"* ]]; then
-        archivos=$(find "$carpeta" -type f -exec ls -t -p "{}" + | awk '{print $NF}')
-    else
-        echo "Sistema operativo no compatible"
-        exit 1
-    fi
+    case "$OSTYPE" in
+        "linux-gnu")
+            archivos=$(find "$carpeta" -type f -exec ls -t -p "{}" + | awk '{print $NF}')
+            ;;
+        "darwin")
+            archivos=$(find "$carpeta" -type f -exec ls -t -p "{}" + | awk '{print $NF}')
+            ;;
+        *)
+            echo "Sistema operativo no compatible"
+            exit 1
+            ;;
+    esac 
+
     echo "## Historial de Cambios" > "$archivo_concatenado"
     for archivo in $archivos; do
         cat "$archivo" >> "$archivo_concatenado"
