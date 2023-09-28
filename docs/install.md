@@ -20,7 +20,7 @@ Y ejecutaremos
 > **NOTA: 
 Dependiendo de los sistemas operativos, el comando puede ser pip o pip3**
 >
-```bash
+```sh
 pip --version
 ```
 Si nos devuelve la versión podremos continuar con la instalacion. Si no consulta [Instalar Pip en tu Sistema Operativo](https://tecnonucleous.com/2018/01/28/como-instalar-pip-para-python-en-windows-mac-y-linux/).
@@ -29,12 +29,12 @@ Si nos devuelve la versión podremos continuar con la instalacion. Si no consult
 
 Para instalar CPCReady en nuestra maquina, desde un terminal ejecutaremos:
 
-```bash
+```sh
 pip install cpcready
 ```
 Esto nos instalara la ultima version del software que este disponible en los repositorios. Podremos comprobar la version instalada ejecutando
 
-```bash
+```sh
 CPCReady --version
 ```
 
@@ -42,42 +42,28 @@ CPCReady --version
 
 Si ya tubieramos una version instalada de **CPCReady** y queremos instalar la ultima ejecutaremos:
 
-```bash
+```sh
 pip install cpcready --upgrade
 ```
 
-### Windows
+## Instalar Visual Studio Code
+
+Aunque ya tendrias instalado **CPCReady** y podrias empezar a crear tus propios proyectos con Basic, te recomendamos que para una mejor experiencia lo hagas a traves de la herramienta de desarrollo Visual Studio Code.
+
+Para instalarla ve al Software Market de tu sistema operativo, buscala e instalala. Si quieres instalarla manualmente puedes descargarla desde [aqui](https://code.visualstudio.com/downloads/).
+
+
+## Extensiones en Visual Studio Code
+
+Sera necesario que en Visual Studio Code, instalemos unas extensiones para mayor comodidad en la programación. Las extensiones a instalar seran:
+
+- sdkcpc-amstrad-basic-language
+- sdkcpc-amstrad-basic-snippet
+- sdkcpc-amstrad-ugbasic-language
+
+### Como instalar extensiones
 
 Haga clic en Inicio > Todos los programas > Accesorios > Abrir Línea de comandos.
 
 Alternativamente, también puede acceder a la línea de comandos seleccionando Inicio > Ejecutar introduciendo "cmd" y confirmando su entrada con la tecla Enter.
 
-
-### Linux
-
-Dependiendo de la interfaz de tu sistema operativo linux (por ejemplo, GNOME, KDE, Xfce), el terminal se llamará de forma diferente. Busca información en google de como abrir terminal en tu distribucion favorita de linux.
-
-### Mac OSX
-
-En Mac OS X, accede al terminal a través de la carpeta Aplicaciones >Utilidades.
-
-
-
-
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
-- ✨Magic ✨
-
-```sh
-cd dillinger
-npm i
-node app
-```
-
-| Plugin | README |
-| ------ | ------ |
-| Dropbox | [plugins/dropbox/README.md][PlDb] |
-| GitHub | [plugins/github/README.md][PlGh] |
-| Google Drive | [plugins/googledrive/README.md][PlGd] |
-| OneDrive | [plugins/onedrive/README.md][PlOd] |
-| Medium | [plugins/medium/README.md][PlMe] |
-| Google Analytics | [plugins/googleanalytics/README.md][PlGa] |
