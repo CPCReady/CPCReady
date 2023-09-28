@@ -8,40 +8,43 @@
 Ready
 █
 ``` -->
-![GitHub](https://img.shields.io/github/license/amstrad-sdk/cpcready)  ![GitHub Latest Release)](https://img.shields.io/github/v/release/amstrad-sdk/cpcready?logo=github)     <a href="https://github.com/amstrad-sdk/CPCReady/pulse" alt="Activity"><img src="https://img.shields.io/github/commit-activity/m/amstrad-sdk/CPCReady" /></a> ![example workflow](https://github.com/amstrad-sdk/cpcready/actions/workflows/main.yml/badge.svg) ![PyPI - Version](https://img.shields.io/pypi/v/gotocpc) ![GitHub issues](https://img.shields.io/github/issues/amstrad-sdk/cpcready) ![GitHub pull requests](https://img.shields.io/github/issues-pr/amstrad-sdk/cpcready)
 
 
-![X (formerly Twitter) URL](https://img.shields.io/twitter/url?url=shields.io&logo=facebook&logoColor=%23FFFFFF&labelColor=%23FFFFFF)
-
-
-<p align="center">
-    <!-- <a href="https://github.com/badges/shields/graphs/contributors" alt="Contributors"><img src="https://img.shields.io/github/contributors/badges/shields" /></a> -->
-    <!-- <a href="#backers" alt="Backers on Open Collective"><img src="https://img.shields.io/opencollective/backers/shields" /></a>
-    <a href="#sponsors" alt="Sponsors on Open Collective"><img src="https://img.shields.io/opencollective/sponsors/shields" /></a> -->
-    <a href="https://github.com/amstrad-sdk/CPCReady/pulse" alt="Activity"><img src="https://img.shields.io/github/commit-activity/m/amstrad-sdk/CPCReady" /></a>
-    <a href="https://circleci.com/gh/badges/shields/tree/master"><img src="https://img.shields.io/circleci/project/github/badges/shields/master" alt="build status"></a>
-    <a href="https://circleci.com/gh/badges/daily-tests"><img src="https://img.shields.io/circleci/project/github/badges/daily-tests?label=service%20tests"
-            alt="service-test status"></a><a href="https://coveralls.io/github/badges/shields"><img src="https://img.shields.io/coveralls/github/badges/shields"
-            alt="coverage"></a>
-    <a href="https://discord.gg/HjJCwm5"><img src="https://img.shields.io/discord/308323056592486420?logo=discord"
-            alt="chat on Discord"></a>
-    <a href="https://twitter.com/intent/follow?screen_name=shields_io"><img src="https://img.shields.io/twitter/follow/shields_io?style=social&logo=facebook"
-            alt="follow on Twitter"></a>
-</p>
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tempus ut dui eget consectetur. Aenean ornare velit quis leo sollicitudin gravida. Etiam varius ligula id lectus iaculis, et placerat elit bibendum. Sed ultricies velit eu leo sodales, vitae laoreet diam hendrerit. Vestibulum risus nunc, semper sed congue in, dignissim at nisi. Aenean quis viverra ex. Donec consectetur venenatis felis eget finibus. 
+![GitHub](https://img.shields.io/github/license/amstrad-sdk/cpcready?color=green)  ![GitHub Latest Release)](https://img.shields.io/github/v/release/amstrad-sdk/cpcready?logo=github&color=green)     <a href="https://github.com/amstrad-sdk/CPCReady/pulse" alt="Activity"><img src="https://img.shields.io/github/commit-activity/m/amstrad-sdk/CPCReady?color=blue" /></a> ![example workflow](https://github.com/amstrad-sdk/cpcready/actions/workflows/main.yml/badge.svg?color=green) ![PyPI - Version](https://img.shields.io/pypi/v/gotocpc?color=green) ![GitHub issues](https://img.shields.io/github/issues/amstrad-sdk/cpcready) ![GitHub pull requests](https://img.shields.io/github/issues-pr/amstrad-sdk/cpcready)
 
 
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tempus ut dui eget consectetur. Aenean ornare velit quis leo sollicitudin gravida. Etiam varius ligula id lectus iaculis, et placerat elit bibendum. Sed ultricies velit eu leo sodales, vitae laoreet diam hendrerit. Vestibulum risus nunc, semper sed congue in, dignissim at nisi. Aenean quis viverra ex. Donec consectetur venenatis felis eget finibus. 
+
+**CPCReady** es un conjunto de herramientas que ayudan y facilitan el desarrollo en lenguaje de programación Basic para Amstrad CPC desde PC's modernos. 
+El core de **CPCReady** esta desarrollado en Python =>3.6 Incluye herramientas externas que facilitan la ejecucion de tareas. Es una aplicación multiplataforma para sistemas operativos Windows, Linux y mac, y se utiliza desde la linea de comando.
+
 
 ### Caracteristicas
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tempus ut dui eget consectetur. Aenean ornare velit quis leo sollicitudin gravida. Etiam varius ligula id lectus iaculis, et placerat elit bibendum. Sed ultricies velit eu leo sodales, vitae laoreet diam hendrerit. Vestibulum risus nunc, semper sed congue in, dignissim at nisi. Aenean quis viverra ex. Donec consectetur venenatis felis eget finibus. 
+Algunas de las caracteristicas incluidas en **CPCReady** son:
+
+- Creación de proyectos.
+- Programación en Basic por objetos (scripts independientes).
+- Generacion de imagenes DSK y CDT de tu proyecto.
+- Creación de Pantallas de carga y sprites.
+- test y pruebas sobre RetrovirtualMachine Desktop y Web.
+- Integración con 8BP y ugBASIC.
+- Y mucho mas....
+
+
 
 ### Herramientas
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tempus ut dui eget consectetur. Aenean ornare velit quis leo sollicitudin gravida. Etiam varius ligula id lectus iaculis, et placerat elit bibendum. Sed ultricies velit eu leo sodales, vitae laoreet diam hendrerit. Vestibulum risus nunc, semper sed congue in, dignissim at nisi. Aenean quis viverra ex. Donec consectetur venenatis felis eget finibus. 
+Las herramientas externas utilizadas son:
+
+
+- [iDSK](https://github.com/ralferoo/cpctools/) : Para la creación de imagenes de disco
+- [2CDT](https://github.com/ralferoo/cpctools/) : Para la creación de imagenes de cinta
+- [RetroVirtualMachine](https://www.retrovirtualmachine.org/) : Para testear tus proyectos. Tanto con version Web, como desktop.
+- [ugBasic](https://ugbasic.iwashere.eu/install) : Para programar en este lenguaje ademas del Locomotive Basic de toda la vida.
+- [Visual Studio Code](https://code.visualstudio.com/) : Como IDE de desarrollo + Plugin que te ayudaran a programar.
+- [Martine](https://github.com/jeromelesaux/martine/) : Para la creación de sprites y pantallas de carga.
+- [z88dk](https://z88dk.org/site/download): Como compilador para ugbasic.
 
 ### Próximas Mejoras
 
@@ -50,39 +53,20 @@ Las siguientes mejoras a realizar en la aplicación son
 | Mejora |  Fecha|Incluido en Version|
 | ------ | ------ | ------ |
 | Soporte para archivos de cassette CDT | --- | ---|
-<!-- | Soporte para archivos de cassette CDT | --- | ---|
-| Soporte para archivos de cassette CDT | --- | ---| -->
-
-
+| Pruebas de desarrollo sobre M4 Board | --- | ---|
+| Programacion en ugBasic | --- | ---|
 
 
 ### Contacto
 
-| Plugin | README |
-| ------ | ------ |
-| Mail | [CPCReady@gmail.com](mailto:CPCReady@gmail.com) |
-| Twitter | [@CPCReady](@CPCReady) |
-| Instagram| [@CPCReady](@CPCReady) |
-| Facebook ||
-| Github | [https://github.com/amstrad-sdk/CPCReady.git](https://github.com/amstrad-sdk/CPCReady.git)|
-
-<p align="center">
-    <a href="https://twitter.com/intent/follow?screen_name=shields_io"><img src="https://img.shields.io/twitter/follow/shields_io?style=social&logo=X"
+<p align="center">»
+    <a href="https://twitter.com/intent/follow?screen_name=CPC_Ready"><img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white"
             alt="follow on X"></a>
-    <a href="https://twitter.com/intent/follow?screen_name=shields_io"><img src="https://img.shields.io/twitter/follow/shields_io?style=social&logo=instagram"
+    <a href="https://instagram/CPCReady"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"
             alt="follow on Instagram"></a>
-    <a href="https://twitter.com/intent/follow?screen_name=shields_io"><img src="https://img.shields.io/twitter/follow/shields_io?style=social&logo=facebook"
+    <a href="https://twitter.com/intent/follow?screen_name=shields_io"><img src="https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white"
             alt="follow on Facebook"></a>
-    <a href="https://twitter.com/intent/follow?screen_name=shields_io"><img src="https://img.shields.io/github/follow/shields_io?logo=github"
+    <a href="mailto:cpcready@gmail.com"><img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white"
             alt="follow on Facebook"></a>
 </p>
 
-
-<!-- [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
-- ✨Magic ✨
-
-```sh
-cd dillinger
-npm i
-node app
-``` -->

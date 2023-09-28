@@ -1,5 +1,5 @@
 
-name: Upload Python Package to TEST.PYPY.ORG
+name: Upload TEST.PYPY.ORG
 
 on:
   push:
