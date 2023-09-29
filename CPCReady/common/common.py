@@ -2,11 +2,15 @@ import os
 import sys
 import datetime
 import time
-from rich.console import Console
 import logging
+from rich.console import Console
 from rich.logging import RichHandler
 from rich.text import Text
-import subprocess
+from rich.console import Console
+from rich import inspect
+from rich.table import Table
+from rich import print
+from rich.columns import Columns
 
 console = Console()
 
@@ -17,6 +21,38 @@ logging.basicConfig(
 
 
 log = logging.getLogger("rich")
+
+
+CPC464= """
+[grey]█▀▀█ █▀▄▀█ █▀▀▀█ ▀▀█▀▀ █▀▀█ █▀▀█ █▀▀▄                                     ╔═╗╔═╗╔═╗ ┏┓┏┓┏┓ ┌─────────────┐  ON 🟢
+[grey]█▄▄█ █ █ █ ▀▀▀▄▄   █   █▄▄▀ █▄▄█ █  █                                     ║  ╠═╝║   ┃┃┣┓┃┃ │[red] ███ [green]███ [blue]███ [white]│
+[grey]█  █ █   █ █▄▄▄█   █   █  █ █  █ █▄▄▀     64K COLOUR PERSONAL COMPUTER[white]    ╚═╝╩  ╚═╝ ┗╋┗┛┗╋ └─────────────┘ COLOR
+"""
+CPC6128 = """[grey]█▀▀█ █▀▄▀█ █▀▀▀█ ▀▀█▀▀ █▀▀█ █▀▀█ █▀▀▄                                                      ┌─────────────┐  ENC.
+[grey]█▄▄█ █ █ █ ▀▀▀▄▄   █   █▄▄▀ █▄▄█ █  █                                                      │[red] ███ [green]███ [blue]███ [white]│  [green]▄▄▄[/green]
+[grey]█  █ █   █ █▄▄▄█   █   █  █ █  █ █▄▄▀     128K ORDENADOR PERSONAL[white]                          └─────────────┘"""
+CPC664 = """
+[grey]█▀▀█ █▀▄▀█ █▀▀▀█ ▀▀█▀▀ █▀▀█ █▀▀█ █▀▀▄                                     ╔═╗╔═╗╔═╗ ┏┓┏┓┏┓ ┌─────────────┐  ON 🟡
+[grey]█▄▄█ █ █ █ ▀▀▀▄▄   █   █▄▄▀ █▄▄█ █  █                                     ║  ╠═╝║   ┣┓┣┓┃┃ │[red] ███ [green]███ [blue]███ [white]│
+[grey]█  █ █   █ █▄▄▄█   █   █  █ █  █ █▄▄▀     64K COLOUR PERSONAL COMPUTER[white]    ╚═╝╩  ╚═╝ ┗┛┗┛┗╋ └─────────────┘ COLOR
+"""
+
+def banner(cpc):
+    
+    BANNER = Table(show_header=False)
+
+    if cpc == 6128:
+        BANNER.add_row(CPC6128)
+    elif cpc == 464:
+        BANNER.add_row(CPC6128)
+    elif cpc == 665:
+        BANNER.add_row(CPC6128)
+    else:
+        msgError("Model CPC not supported")
+        sys.exit (1)
+    
+    console.print(BANNER)
+
 
 ##
 # Print message warning

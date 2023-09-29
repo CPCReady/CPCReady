@@ -1,8 +1,11 @@
 import sys
 import os
+import datetime
+from common import *
 
 
-def create(project):
+def create(project, model):
+
     if sys.platform == "win64" or sys.platform == "win32":
         user = os.getenv('USERNAME')
     else:
@@ -12,23 +15,23 @@ def create(project):
     subfolders = ["assets", "out", "dsk", "src"]
     current_datetime = datetime.datetime.now()
 
-    createProject(f"{project}")
+    banner(6128)
 
-    if os.path.exists(folder_project) and os.path.isdir(folder_project):
-        messageError(f"The {folder_project} folder exist")
-        endCreteProject("ERROR")
-    else:
-        os.makedirs(f"{folder_project}")
-        messageInfo(f"{folder_project}")
+    # if os.path.exists(folder_project) and os.path.isdir(folder_project):
+    #     msgError(f"The {folder_project} folder exist")
+    #     endCreteProject("ERROR")
+    # else:
+    #     os.makedirs(f"{folder_project}")
+    #     msgInfo(f"{folder_project}")
 
-    for folders in subfolders:
-        os.makedirs(f"{folder_project}/{folders}")
-        messageInfo(f"{folder_project}/{folders}")
+    # for folders in subfolders:
+    #     os.makedirs(f"{folder_project}/{folders}")
+    #     msgInfo(f"{folder_project}/{folders}")
 
-    cretateTemplateProject(folder_project, folder_project, user)
-    cretateTemplateBas(folder_project, folder_project, user, current_datetime)
+    # cretateTemplateProject(folder_project, folder_project, user)
+    # cretateTemplateBas(folder_project, folder_project, user, current_datetime)
 
-    endCreteProject("OK")
+    # endCreteProject("OK")
 
 
 def cretateTemplateProject(project_folder, name, user):
@@ -45,7 +48,7 @@ def cretateTemplateProject(project_folder, name, user):
     with open(project_folder + "/CPC.YAML", 'w') as file:
         file.write(rendered_template)
 
-    messageInfo(f"{project_folder}/CPC.YAML")
+    msgInfo(f"{project_folder}/CPC.YAML")
 
 
 def cretateTemplateBas(project_folder, name, user, fecha):
@@ -63,4 +66,4 @@ def cretateTemplateBas(project_folder, name, user, fecha):
     with open(project_folder + "/src/MAIN.BAS", 'w') as file:
         file.write(rendered_template)
 
-    messageInfo(f"{project_folder}/src/MAIN.BAS")
+    msgInfo(f"{project_folder}/src/MAIN.BAS")
