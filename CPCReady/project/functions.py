@@ -1,10 +1,10 @@
 import sys
 import os
 import datetime
-from common import *
+import CPCReady.common as common
 
 
-def create(project, model):
+def create(project,model):
 
     if sys.platform == "win64" or sys.platform == "win32":
         user = os.getenv('USERNAME')
@@ -15,7 +15,7 @@ def create(project, model):
     subfolders = ["assets", "out", "dsk", "src"]
     current_datetime = datetime.datetime.now()
 
-    banner(6128)
+    common.banner(model)
 
     # if os.path.exists(folder_project) and os.path.isdir(folder_project):
     #     msgError(f"The {folder_project} folder exist")
