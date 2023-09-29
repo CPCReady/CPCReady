@@ -8,7 +8,7 @@ def main():
 
     parser = argparse.ArgumentParser(description=description)
     parser.add_argument('--project', '-p', help='Project name')
-    parser.add_argument('--cpc', '-c', type=int, default=664, choices=[464, 664, 6128], help='CPC Model (464, 664, 6128)')
+    parser.add_argument('--cpc', '-c', type=int, default=6128, choices=[464, 664, 6128], help='CPC Model (464, 664, 6128)')
 
     args = parser.parse_args()
 

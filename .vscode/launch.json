@@ -11,7 +11,7 @@
             "env": {
                 "PYTHONPATH": "${workspaceFolder}",
             },
-            "args": ["--project", "dsfasdf", "--cpc", "664"] 
+            "args": ["--project", "dsfasdf"] 
         }
     ]
 }
