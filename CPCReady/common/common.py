@@ -1,12 +1,25 @@
 import os
 import sys
-from rich.console import Console
-from rich.text import Text
-import subprocess
 import datetime
 import time
+from rich.console import Console
+import logging
+from rich.logging import RichHandler
+from rich.text import Text
+import subprocess
+
 console = Console()
 
+FORMAT = "%(message)s"
+logging.basicConfig(
+    level="NOTSET", format=FORMAT, datefmt="[%X]", handlers=[RichHandler()]
+)
+
+
+#log = logging.getLogger("rich")
+#log.warning("Hello, World!")
+#log.debug("Hello, World!")
+#log.warning("Hello, World!")
 
 class ConsoleColor:
     GREEN = '\033[92m'
