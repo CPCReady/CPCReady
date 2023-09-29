@@ -11,11 +11,12 @@ generateChanges() {
     if [ -e $archivo_concatenado ]; then
         rm $archivo_concatenado
     fi
-    case "$OSTYPE" in
-        "linux-gnu")
+    unamestr=$(uname)                  
+    case "$unamestr" in
+        "Linux")
             archivos=$(find "$carpeta" -type f -exec ls -t -p "{}" + | awk '{print $NF}')
             ;;
-        "darwin")
+        "Darwin")
             archivos=$(find "$carpeta" -type f -exec ls -t -p "{}" + | awk '{print $NF}')
             ;;
         *)
