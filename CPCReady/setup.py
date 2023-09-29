@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
-from CPCReady import __version__ as version
+# from CPCReady import __version__ as version
 from pathlib import Path
 this_directory = Path(__file__).parent
 long_description = (this_directory / "../README.md").read_text()
 
-VERSION = version
-DESCRIPTION = 'Software Developer Kit for programming in Basic for Amstrad CPC'
+VERSION = "0.0.1"
+DESCRIPTION = 'CPCReady Software Developer Kit for programming in Basic for Amstrad CPC'
 
 setup(
     name='CPCReady',

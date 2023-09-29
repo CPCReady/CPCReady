@@ -16,18 +16,7 @@ logging.basicConfig(
 )
 
 
-#log = logging.getLogger("rich")
-#log.warning("Hello, World!")
-#log.debug("Hello, World!")
-#log.warning("Hello, World!")
-
-class ConsoleColor:
-    GREEN = '\033[92m'
-    YELLOW = '\033[93m'
-    RED = '\033[91m'
-    BLUE = '\033[94m'
-    WHITE = '\033[97m'
-    RESET = '\033[0m'
+log = logging.getLogger("rich")
 
 ##
 # Print message warning
@@ -35,8 +24,8 @@ class ConsoleColor:
 # @param file: File to which the message refers
 # @param message: message to display
 ##
-def messageWarning(message):
-    console.print("[yellow]\[🟡] ==> [white]" + message)
+def msgWarning(message):
+    log.warning(message)
 
 ##
 # Print message eror
@@ -44,8 +33,8 @@ def messageWarning(message):
 # @param file: File to which the message refers
 # @param message: message to display
 ##
-def messageError(message):
-    console.print("[bold red]\[💥] ==> [bold white]" + message)
+def msgError(message):
+    log.error(message)
 
 ##
 # Print message info
@@ -53,25 +42,18 @@ def messageError(message):
 # @param file: File to which the message refers
 # @param message: message to display
 ##
-def messageInfo(message):
-    console.print("[green]\[👍] ==> [bold white]" + message)
-
-
-# def checkProjectValue(text, value):
-#     if value is None or value == "":
-#         messageError(value, "The " + str(text) + " key does not exist or has no value.")
-#         sys.exit(1)
-
+def msgInfo(message):
+    log.info(message)
 
 ##
-# Print message color
+# Print message debug
 #
-# @param text: text to print
-# @param color: Color with which the text will be painted
+# @param file: File to which the message refers
+# @param message: message to display
 ##
-def consoleMessage(text, color):
-    colored_text = f"{color}{text}{ConsoleColor.RESET}"
-    return colored_text
+def msgInfo(message):
+    log.debug(message)
+
 
 ##
 # Get Get file without extension
@@ -113,7 +95,7 @@ def getFileExtension(source):
 def removeComments(source, output):
     global file
     if not os.path.exists(source):
-        messageError(f"The " + getFileExt(source) +" file does not exist")
+        msgError(f"The " + getFileExt(source) +" file does not exist")
         return False
 
     with open(source, 'r') as file:
@@ -124,37 +106,13 @@ def removeComments(source, output):
     with open(output, 'w') as file:
         file.writelines(filtered_lines)
     file = getFileExt(source)
-    messageInfo(file +"[green] ==> [/green]File Comments Removed")
+    msgInfo(file +"[green] ==> [/green]File Comments Removed")
     return True
 
-
-##
-# Conver unix2dos files
-#
-# @param source: source filename
-# @param output: output filename
-##
-# def convert2Dos2(source):
-#     if not os.path.exists(source):
-#         messageError(f"The " + getFileExt(source) +" file does not exist")
-#         endCompilation("ERROR")
-#         sys.exit(1)
-#     SDK4BASIC_PATH = os.environ.get('SDK4BASIC_PATH')
-
-#     cmd = ['unix2dos', source]
-#     try:
-#         output = subprocess.check_output(cmd)
-#         messageInfo(getFileExt(file) + f" unix to dos.")
-#     except subprocess.CalledProcessError as e:
-#         messageError(getFileExt(source) + f' ==> Error executing command: {e.output.decode()}')
-#         sys.exit(1)
-
-#     files = getFileExt(source)
-#     messageInfo(files +"[green] ==> [/green]Convert unix to dosdddddd")
     
 def convert2Dos(source, output):
     if not os.path.exists(source):
-        messageError(f"The " + getFileExt(source) +" file does not exist")
+        msgError(f"The " + getFileExt(source) +" file does not exist")
         return False
     with open(source, 'r') as file:
         unix_lines = file.readlines()
@@ -165,7 +123,7 @@ def convert2Dos(source, output):
         file.writelines(dos_lines)
 
     files = getFileExt(source)
-    messageInfo(files +"[green] ==> [/green]Convert unix to dos")
+    msgInfo(files +"[green] ==> [/green]Convert unix to dos")
     return True
 
 ##
@@ -181,7 +139,7 @@ def concatFile(source, output):
         destino_file.write(contenido_origen)
     os.remove(source)
     # messageInfo(getFileExt(source), f"Concatenate in {getFileExt(output)}.")
-    messageInfo(getFileExt(source) + f" ==> {getFileExt(output)}")
+    msgInfo(getFileExt(source) + f" ==> {getFileExt(output)}")
     return True
 
 ##
@@ -191,7 +149,7 @@ def concatFile(source, output):
 ##
 def fileExist(source):
     if not os.path.isfile(source):
-        messageError(getFileExt(source) +"[red] ==> FILE DOES NOT EXIST")
+        msgError(getFileExt(source) +"[red] ==> FILE DOES NOT EXIST")
         return False
     return True
 
@@ -215,12 +173,12 @@ def concatBasFiles(files, output, folder):
                         contenido = archivo.read()
                         salida.write(contenido)
                     os.remove(folder + nombre_fichero)
-                    messageInfo(nombre_fichero + f" ==> {getFileExt(output)}")
+                    msgInfo(nombre_fichero + f" ==> {getFileExt(output)}")
                 else:
-                    messageError(f"The " + getFileExt(nombre_fichero) +" file does not exist")
+                    msgError(f"The " + getFileExt(nombre_fichero) +" file does not exist")
                     return False
     else:
-        messageWarning("Warning Not concat files.")
+        msgWarning("Warning Not concat files.")
         return True
     return True
 
