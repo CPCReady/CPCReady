@@ -1,28 +1,19 @@
-import os
-import json
-import subprocess
-import shutil
-import os
 import sys
-import datetime
-from jinja2 import Template
-from .common import messageError, messageInfo, endCreteProject,getFileExt
-from .common import createProject
+import os
 
-def create_project(project):
-    
-    if  sys.platform == "win64" or sys.platform == "win32":
+
+def create(project):
+    if sys.platform == "win64" or sys.platform == "win32":
         user = os.getenv('USERNAME')
     else:
         user = os.getenv('USER') or os.getenv('LOGNAME')
-    
-    
+
     folder_project = f"{project}"
-    subfolders = ["assets","out","dsk","src"]
+    subfolders = ["assets", "out", "dsk", "src"]
     current_datetime = datetime.datetime.now()
-    
+
     createProject(f"{project}")
-    
+
     if os.path.exists(folder_project) and os.path.isdir(folder_project):
         messageError(f"The {folder_project} folder exist")
         endCreteProject("ERROR")
@@ -34,22 +25,20 @@ def create_project(project):
         os.makedirs(f"{folder_project}/{folders}")
         messageInfo(f"{folder_project}/{folders}")
 
-    cretateTemplateProject(folder_project,folder_project,user)
-    cretateTemplateBas(folder_project,folder_project, user, current_datetime)
-    
-    endCreteProject("OK")
-    
-    
-    
+    cretateTemplateProject(folder_project, folder_project, user)
+    cretateTemplateBas(folder_project, folder_project, user, current_datetime)
 
-def cretateTemplateProject(project_folder,name, user):
+    endCreteProject("OK")
+
+
+def cretateTemplateProject(project_folder, name, user):
     APP_PATH = os.path.dirname(os.path.abspath(__file__))
     context = {
         'name': name,
         'user': user
     }
 
-    with open(APP_PATH +"/templates/cpc_yaml.j2", 'r') as file:
+    with open(APP_PATH + "/templates/cpc_yaml.j2", 'r') as file:
         template_string = file.read()
     template = Template(template_string)
     rendered_template = template.render(context)
@@ -58,7 +47,8 @@ def cretateTemplateProject(project_folder,name, user):
 
     messageInfo(f"{project_folder}/CPC.YAML")
 
-def cretateTemplateBas(project_folder,name, user, fecha):
+
+def cretateTemplateBas(project_folder, name, user, fecha):
     APP_PATH = os.path.dirname(os.path.abspath(__file__))
     context = {
         'name': name,
@@ -66,7 +56,7 @@ def cretateTemplateBas(project_folder,name, user, fecha):
         'fecha': fecha
     }
 
-    with open(APP_PATH +"/templates/MAIN.BAS.j2", 'r') as file:
+    with open(APP_PATH + "/templates/MAIN.BAS.j2", 'r') as file:
         template_string = file.read()
     template = Template(template_string)
     rendered_template = template.render(context)
