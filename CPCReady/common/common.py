@@ -34,6 +34,13 @@ CPC664 = """[grey]█▀▀█ █▀▄▀█ █▀▀▀█ ▀▀█▀▀ �
 [grey]█  █ █   █ █▄▄▄█   █   █  █ █  █ █▄▄▀     64K COLOUR PERSONAL COMPUTER[white]    ╚═╝╩  ╚═╝ ┗┛┗┛┗╋ └─────────────┘ COLOR"""
 
 
+## Common Variables
+#
+##
+
+subfolders  = ["assets", "out", "dsk", "src","cfg"]
+CFG_PROJECT = "/cfg/cpcready.cfg"
+
 ##
 # Show banner dependencie model cpc
 #
@@ -90,7 +97,7 @@ def msgInfo(message):
 # @param message: message to display
 ##
 def msgInfo(message):
-    log.debug(message)
+    log.info(message)
 
 
 ##
@@ -123,6 +130,36 @@ def getFileExtension(source):
     file_extension = os.path.splitext(source)[1]
     return file_extension
 
+
+##
+# Show head data proyect
+#
+# @param project: project name
+##
+
+def showHeadDataProject(project):
+    description = f"*** {project} ***"
+    center_text = description.center(80)
+    console.print("[bold yellow]==================================================================================== [/bold yellow]")
+    console.print("[bold yellow]" + center_text.upper() + "[/bold yellow]")
+    console.print("[bold yellow]====================================================================================\n [/bold yellow]")
+
+##
+# Show food data proyect
+#
+# @param description: description to show
+# @param out: 1 is error, 0 is ok
+##
+
+def showFoodDataProject(description, out):
+    description = f"*** {description} ***"
+    center_text = description.center(80)
+    console.print("[bold yellow]\n==================================================================================== [/bold yellow]")
+    if out == 0:
+        console.print("[bold green]" + center_text.upper() + "[/bold green]")
+    if out == 1:
+        console.print("[bold red]" + center_text.upper() + "[/bold red]")
+    console.print("[bold yellow]====================================================================================\n [/bold yellow]")
 
 ##
 # Remove comment lines
