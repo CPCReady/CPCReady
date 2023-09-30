@@ -13,3 +13,5 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.TOKEN_SDK_REPO }}"
           OUTPUT_FOLDER: temp_release_notes
+          USE_MILESTONE_TITLE: "true"
+      
