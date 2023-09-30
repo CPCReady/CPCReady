@@ -2,21 +2,66 @@ import os
 import sys
 import datetime
 import time
-from rich.console import Console
 import logging
+from rich.console import Console
 from rich.logging import RichHandler
 from rich.text import Text
-import subprocess
+from rich.console import Console
+from rich import inspect
+from rich.table import Table
+from rich import print
+from rich.columns import Columns
 
 console = Console()
+log = logging.getLogger("rich")
 
 FORMAT = "%(message)s"
 logging.basicConfig(
     level="NOTSET", format=FORMAT, datefmt="[%X]", handlers=[RichHandler()]
 )
 
+CPC464= """[grey]█▀▀█ █▀▄▀█ █▀▀▀█ ▀▀█▀▀ █▀▀█ █▀▀█ █▀▀▄                                     ╔═╗╔═╗╔═╗ ┏┓┏┓┏┓ ┌─────────────┐  ON 🟢
+[grey]█▄▄█ █ █ █ ▀▀▀▄▄   █   █▄▄▀ █▄▄█ █  █                                     ║  ╠═╝║   ┃┃┣┓┃┃ │[red] ███ [green]███ [blue]███ [white]│
+[grey]█  █ █   █ █▄▄▄█   █   █  █ █  █ █▄▄▀     64K COLOUR PERSONAL COMPUTER[white]    ╚═╝╩  ╚═╝ ┗╋┗┛┗╋ └─────────────┘ COLOR"""
 
-log = logging.getLogger("rich")
+CPC6128 = """[grey]█▀▀█ █▀▄▀█ █▀▀▀█ ▀▀█▀▀ █▀▀█ █▀▀█ █▀▀▄                                                      ┌─────────────┐  ENC.
+[grey]█▄▄█ █ █ █ ▀▀▀▄▄   █   █▄▄▀ █▄▄█ █  █                                                      │[red] ███ [green]███ [blue]███ [white]│  [green]▄▄▄[/green]
+[grey]█  █ █   █ █▄▄▄█   █   █  █ █  █ █▄▄▀     128K ORDENADOR PERSONAL[white]                          └─────────────┘"""
+
+
+CPC664 = """[grey]█▀▀█ █▀▄▀█ █▀▀▀█ ▀▀█▀▀ █▀▀█ █▀▀█ █▀▀▄                                     ╔═╗╔═╗╔═╗ ┏┓┏┓┏┓ ┌─────────────┐  ON 🟢
+[grey]█▄▄█ █ █ █ ▀▀▀▄▄   █   █▄▄▀ █▄▄█ █  █                                     ║  ╠═╝║   ┣┓┣┓┃┃ │[red] ███ [green]███ [blue]███ [white]│
+[grey]█  █ █   █ █▄▄▄█   █   █  █ █  █ █▄▄▀     64K COLOUR PERSONAL COMPUTER[white]    ╚═╝╩  ╚═╝ ┗┛┗┛┗╋ └─────────────┘ COLOR"""
+
+
+## Common Variables
+#
+##
+
+subfolders  = ["assets", "out", "dsk", "src","cfg"]
+CFG_PROJECT = "/cfg/cpcready.cfg"
+
+##
+# Show banner dependencie model cpc
+#
+# @param cpc: Model CPC
+##
+def banner(cpc):
+    
+    BANNER = Table(show_header=False)
+
+    if cpc == 6128:
+        BANNER.add_row(CPC6128)
+    elif cpc == 464:
+        BANNER.add_row(CPC464)
+    elif cpc == 664:
+        BANNER.add_row(CPC664)
+    else:
+        msgError("Model CPC not supported")
+        sys.exit (1)
+    
+    console.print(BANNER)
+
 
 ##
 # Print message warning
@@ -52,7 +97,7 @@ def msgInfo(message):
 # @param message: message to display
 ##
 def msgInfo(message):
-    log.debug(message)
+    log.info(message)
 
 
 ##
@@ -85,6 +130,36 @@ def getFileExtension(source):
     file_extension = os.path.splitext(source)[1]
     return file_extension
 
+
+##
+# Show head data proyect
+#
+# @param project: project name
+##
+
+def showHeadDataProject(project):
+    description = f"*** {project} ***"
+    center_text = description.center(80)
+    console.print("[bold yellow]==================================================================================== [/bold yellow]")
+    console.print("[bold yellow]" + center_text.upper() + "[/bold yellow]")
+    console.print("[bold yellow]====================================================================================\n [/bold yellow]")
+
+##
+# Show food data proyect
+#
+# @param description: description to show
+# @param out: 1 is error, 0 is ok
+##
+
+def showFoodDataProject(description, out):
+    description = f"*** {description} ***"
+    center_text = description.center(80)
+    console.print("[bold yellow]\n==================================================================================== [/bold yellow]")
+    if out == 0:
+        console.print("[bold green]" + center_text.upper() + "[/bold green]")
+    if out == 1:
+        console.print("[bold red]" + center_text.upper() + "[/bold red]")
+    console.print("[bold yellow]====================================================================================\n [/bold yellow]")
 
 ##
 # Remove comment lines

@@ -1,39 +1,25 @@
 import argparse
-from .build import build
-from CPCReady.project.main import create_project
-from .img2dsk import img2dsk
+from .functions import *
 
 
 def main():
-    description = 'Ejemplo de argumentos de línea de comandos.'
+
+    description = 'CPCReady Create a new Project.'
 
     parser = argparse.ArgumentParser(description=description)
-    group = parser.add_mutually_exclusive_group()
-    group.add_argument('--project', '-p', help='Nombre del proyecto')
-    group.add_argument('--build', '-b', action='store_true', help='Realizar una construcción')
-
-    parser.add_argument('--image', '-i', help='Imagen')
-    parser.add_argument('--mode', '-m', type=int, choices=[0, 1, 2], help='Selecciona el modo imagen en CPC (0, 1, 2)')
-    parser.add_argument('--cpc', '-c', type=int, choices=[464, 664, 6128],
-                        help='Selecciona el modelo CPC (464, 664, 6128)')
-    parser.add_argument('--rvm', '-r', type=str, choices=["web", "desktop"],
-                        help='Selecciona RVM para probar (web, desktop)')
-
+    parser.add_argument('--project', '-p', help='Project name')
+    parser.add_argument('--cpc', '-c', type=int, default=6128, choices=[464, 664, 6128], help='CPC Model (464, 664, 6128)')
+    parser.add_argument('--testing', '-t', type=str, default="web", choices=["web", "desktop"], help='Retrovirtual Machine Testing (Web, Desktop)')
+    
     args = parser.parse_args()
 
-    if args.build:
-        build()
-    elif args.project:
-        create_project(args.project)
+    if args.project:
+        create(args.project,args.cpc,args.testing)
     else:
         handle_image_mode(args, parser)
 
-
 def handle_image_mode(args, parser):
-    if args.image is not None and args.mode is not None and args.cpc is not None and args.rvm is not None:
-        img2dsk(args.cpc, args.image, args.mode, args.rvm)
-    else:
-        parser.print_help()
+    parser.print_help()
 
 
 if __name__ == '__main__':

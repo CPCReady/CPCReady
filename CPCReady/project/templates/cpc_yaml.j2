@@ -5,10 +5,10 @@ project:
     name: {{ name }}
     author: {{ user }}
   rvm:
-    system: web
+    system: {{ testing }}
     model: 6128
     run: run"MAIN.BAS"
-    rvm_path: ""
+    rvm_path: "{{ rvm_path }}"
   concatenate:
     out: CONCAT.BAS
   m4board:
