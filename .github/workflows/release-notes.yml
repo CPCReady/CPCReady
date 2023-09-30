@@ -1,5 +1,5 @@
-# Trigger the workflow on milestone events
-on:
+           # Trigger the workflow on milestone events
+on: 
     milestone:
       types: [closed]
 name: Milestone Closure
@@ -7,19 +7,9 @@ jobs:
     create-release-notes:
       runs-on: ubuntu-latest
       steps:
-        - uses: actions/checkout@master
-        - name: Create Release Notes
-          uses: docker://decathlon/release-notes-generator-action:2.0.1
-          env:
-            GITHUB_TOKEN: "${{ secrets.TOKEN_SDK_REPO }}"
-            OUTPUT_FOLDER: temp_release_notes
-            USE_MILESTONE_TITLE: "true"
-            
-        - name: Upload Release Notes to Wiki
-          uses: docker://decathlon/wiki-page-creator-action:latest
-          env:
-            GH_PAT: ${{ secrets.TOKEN_SDK_REPO }}
-            ACTION_MAIL: cpcready@mail.com
-            ACTION_NAME: destroyer
-            OWNER: CPCReady
-            REPO_NAME: sdk
+      - uses: actions/checkout@master
+      - name: Create Release Notes
+        uses: Cossey/release-notes-generator-action@v2.1.4
+        env:
+          GITHUB_TOKEN: "${{ secrets.TOKEN_SDK_REPO }}"
+          OUTPUT_FOLDER: temp_release_notes
