@@ -60,6 +60,7 @@ Sera necesario que en Visual Studio Code, instalemos las siguientes extensiones 
 - sdkcpc-amstrad-basic-language
 - sdkcpc-amstrad-basic-snippet
 - sdkcpc-amstrad-ugbasic-language
+- ms-vscode.live-server
 
 ### Como instalar extensiones
 
