@@ -5,13 +5,49 @@
             "name": "CREATE NEW PROJECT",
             "type": "python",
             "request": "launch",
-            "module": "CPCReady.project.main",
+            "module": "CPCReady.project",
             "cwd": "${workspaceFolder}",
             "justMyCode": true,
             "env": {
                 "PYTHONPATH": "${workspaceFolder}",
             },
             "args": ["--project", "testing basic"] 
+        },
+        {
+            "name": "CREATE SCREEN",
+            "type": "python",
+            "request": "launch",
+            "module": "CPCReady.screen",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+            },
+            "args": ["--image", "/Users/david/Downloads/logole.png","--mode", "0","--out","testing basic"] 
+        },
+        {
+            "name": "CREATE SCREEN DSK",
+            "type": "python",
+            "request": "launch",
+            "module": "CPCReady.screen",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+            },
+            "args": ["--image", "/Users/david/Downloads/logole.png","--mode", "0","--out","testing basic","--dsk"] 
+        },
+        {
+            "name": "CREATE SPRITE",
+            "type": "python",
+            "request": "launch",
+            "module": "CPCReady.sprite",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+            },
+            "args": ["--image", "/Users/david/Downloads/logole.png","--mode", "0","--out","testing basic","--height","12", "--width","12"] 
         }
     ]
 }
