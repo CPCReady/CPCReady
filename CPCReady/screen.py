@@ -1,5 +1,5 @@
 import argparse
-from .functions import *
+from func_screen import create as screen
 
 
 def main():
@@ -14,7 +14,7 @@ def main():
     args = parser.parse_args()
 
     if args.image and args.out:
-        create(args.image, args.mode, args.out, args.dsk)
+        screen.create(args.image, args.mode, args.out, args.dsk)
     else:
         handle_image_mode(args, parser)
 

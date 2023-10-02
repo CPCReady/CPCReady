@@ -19,7 +19,7 @@ setup(
     author_email="<cpcready@gmail.com>",
     description=DESCRIPTION,
     license="GPL",
-    packages=find_packages(),
+    packages=['CPCReady'],
     # data_files=[
     #     ('common/tools/linux', ['common/tools/linux/iDSK', 'common/tools/linux/martine']),
     #     ('common/tools/darwin',['common/tools/darwin/iDSK', 'common/tools/darwin/martine']),

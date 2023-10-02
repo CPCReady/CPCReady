@@ -2,7 +2,7 @@ import os
 import subprocess
 import shutil
 import json
-import CPCReady.common as cm
+from CPCReady import common as cm
 
 
 ##

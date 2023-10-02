@@ -1,5 +1,5 @@
 import argparse
-from .functions import *
+from func_project import create as project
 
 
 def main():
@@ -15,7 +15,7 @@ def main():
     args = parser.parse_args()
 
     if args.project:
-        create(args.project, args.cpc, args.testing)
+        project.create(args.project, args.cpc, args.testing)
     else:
         handle_image_mode(args, parser)
 

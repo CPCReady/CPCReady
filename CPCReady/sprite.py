@@ -1,5 +1,5 @@
 import argparse
-from .functions import *
+from func_sprite import create as sprite
 
 
 def main():
@@ -15,7 +15,7 @@ def main():
     args = parser.parse_args()
 
     if args.image != "" and args.mode != "" and args.out != "" and args.height != "" and args.width != "":
-        create(args.image, args.mode, args.out, args.height, args.width)
+        sprite.create(args.image, args.mode, args.out, args.height, args.width)
     else:
         handle_image_mode(args, parser)
 

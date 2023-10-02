@@ -3,7 +3,7 @@ import os
 import datetime
 import shutil
 from jinja2 import Template
-from CPCReady.common import *
+from CPCReady import common as cm
 
 ##
 # Create project
@@ -23,8 +23,8 @@ def create(project, model, testing):
     current_datetime = datetime.datetime.now()
     APP_PATH = os.path.dirname(os.path.abspath(__file__))
 
-    banner(model)
-    showHeadDataProject(project)
+    cm.banner(model)
+    cm.showHeadDataProject(project)
 
     if os.path.exists(folder_project) and os.path.isdir(folder_project):
         cm.msgError(f"The {folder_project} project name exists on this path.")
