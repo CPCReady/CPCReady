@@ -1,6 +1,5 @@
 import argparse
-from func_sprite import create as sprite
-
+from CPCReady import func_sprite as sprite
 
 def main():
     description = 'CPCReady Create sprite.'

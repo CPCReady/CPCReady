@@ -5,7 +5,7 @@
             "name": "CREATE NEW PROJECT",
             "type": "python",
             "request": "launch",
-            "module": "CPCReady.project.main",
+            "module": "CPCReady.project",
             "cwd": "${workspaceFolder}",
             "justMyCode": true,
             "env": {
@@ -17,7 +17,7 @@
             "name": "CREATE SCREEN",
             "type": "python",
             "request": "launch",
-            "module": "CPCReady.screen.main",
+            "module": "CPCReady.screen",
             "cwd": "${workspaceFolder}",
             "justMyCode": true,
             "env": {
@@ -29,7 +29,7 @@
             "name": "CREATE SCREEN DSK",
             "type": "python",
             "request": "launch",
-            "module": "CPCReady.screen.main",
+            "module": "CPCReady.screen",
             "cwd": "${workspaceFolder}",
             "justMyCode": true,
             "env": {
@@ -41,7 +41,7 @@
             "name": "CREATE SPRITE",
             "type": "python",
             "request": "launch",
-            "module": "CPCReady.sprite.main",
+            "module": "CPCReady.sprite",
             "cwd": "${workspaceFolder}",
             "justMyCode": true,
             "env": {

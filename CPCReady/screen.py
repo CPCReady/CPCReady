@@ -1,6 +1,5 @@
 import argparse
-from func_screen import create as screen
-
+from CPCReady import func_screen as screen
 
 def main():
     description = 'CPCReady Create SCR image.'

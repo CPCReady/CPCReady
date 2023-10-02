@@ -1,6 +1,5 @@
 import argparse
-from func_project import create as project
-
+from CPCReady import func_project as project
 
 def main():
     description = 'CPCReady Create a new Project.'
