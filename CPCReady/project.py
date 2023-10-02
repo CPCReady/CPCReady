@@ -1,5 +1,5 @@
 import argparse
-from CPCReady import func_project as project
+from CPCReady import func_project as projects
 
 def main():
     description = 'CPCReady Create a new Project.'
@@ -14,7 +14,7 @@ def main():
     args = parser.parse_args()
 
     if args.project:
-        project.create(args.project, args.cpc, args.testing)
+        projects.create(args.project, args.cpc, args.testing)
     else:
         handle_image_mode(args, parser)
 

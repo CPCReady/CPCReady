@@ -1,5 +1,5 @@
 import argparse
-from CPCReady import func_screen as screen
+from CPCReady import func_screen as screens
 
 def main():
     description = 'CPCReady Create SCR image.'
@@ -13,7 +13,7 @@ def main():
     args = parser.parse_args()
 
     if args.image and args.out:
-        screen.create(args.image, args.mode, args.out, args.dsk)
+        screens.create(args.image, args.mode, args.out, args.dsk)
     else:
         handle_image_mode(args, parser)
 

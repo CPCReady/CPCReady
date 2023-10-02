@@ -1,5 +1,5 @@
-import sys
 import os
+import sys
 import datetime
 import shutil
 from jinja2 import Template

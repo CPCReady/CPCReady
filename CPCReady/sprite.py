@@ -1,5 +1,5 @@
 import argparse
-from CPCReady import func_sprite as sprite
+from CPCReady import func_sprite as sprites
 
 def main():
     description = 'CPCReady Create sprite.'
@@ -14,7 +14,7 @@ def main():
     args = parser.parse_args()
 
     if args.image != "" and args.mode != "" and args.out != "" and args.height != "" and args.width != "":
-        sprite.create(args.image, args.mode, args.out, args.height, args.width)
+        sprites.create(args.image, args.mode, args.out, args.height, args.width)
     else:
         handle_image_mode(args, parser)
 

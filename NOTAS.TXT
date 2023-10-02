@@ -1,0 +1,3 @@
+pip uninstall dist/CPCReady-0.0.1-py3-none-any.whl     
+pip install dist/CPCReady-0.0.1-py3-none-any.whl
+python -m build
