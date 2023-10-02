@@ -102,7 +102,7 @@ else
    
 fi
 
-python3 -m build --sdist $PROJECT --outdir dist -w
+python3 -m build
 
 echo ""
 echo "================================================================================================"
