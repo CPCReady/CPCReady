@@ -20,17 +20,12 @@ setup(
     description=DESCRIPTION,
     license="GPL",
     packages=['CPCReady'],
-    # data_files=[
-    #     ('common/tools/linux', ['common/tools/linux/iDSK', 'common/tools/linux/martine']),
-    #     ('common/tools/darwin',['common/tools/darwin/iDSK', 'common/tools/darwin/martine']),
-    #     ('common/tools/win64',   ['common/tools/win64/iDSK.exe', 'common/tools/win64/martine.exe']),
-    #     ('common/tools/win64',   ['common/tools/win64/cyggcc_s-1.dll']),
-    #     ('common/tools/win64',   ['common/tools/win64/cygwin1.dll']),
-    #     ('project/templates', ['project/templates/cpc.j2']),
-    #     ('project/templates', ['project/templates/cpc_yaml.j2']),
-    #     ('project/templates', ['project/templates/MAIN.BAS.j2']),
-    #     ('project/templates', ['project/templates/Makefile'])
-    #  ],
+    data_files=[
+        ('CPCReady/tools/linux', ['CPCReady/tools/linux/iDSK', 'CPCReady/tools/linux/martine']),
+        ('CPCReady/tools/darwin',['CPCReady/tools/darwin/iDSK', 'CPCReady/tools/darwin/martine']),
+        ('CPCReady/tools/win64', ['CPCReady/tools/win64/iDSK.exe', 'CPCReady/tools/win64/martine.exe','CPCReady/tools/win/cygwin1.dll','CPCReady/tools/win/cygwin1.dll']),
+        ('CPCReady/templates',   ['CPCReady/templates/cpc.j2','CPCReady/templates/MAIN.BAS.j2','CPCReady/templates/Makefile','CPCReady/templates/cpc_yaml.j2']),
+    ],
     install_requires=[
         'click',
         'configparser',
