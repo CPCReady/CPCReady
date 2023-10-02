@@ -12,6 +12,30 @@
                 "PYTHONPATH": "${workspaceFolder}",
             },
             "args": ["--project", "testing basic"] 
+        },
+        {
+            "name": "CREATE SCREEN",
+            "type": "python",
+            "request": "launch",
+            "module": "CPCReady.screen.main",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+            },
+            "args": ["--image", "/Users/david/Downloads/logole.png","--mode", "0","--out","testing basic"] 
+        },
+        {
+            "name": "CREATE SCREEN DSK",
+            "type": "python",
+            "request": "launch",
+            "module": "CPCReady.screen.main",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+            },
+            "args": ["--image", "/Users/david/Downloads/logole.png","--mode", "0","--out","testing basic","--dsk"] 
         }
     ]
 }

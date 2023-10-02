@@ -41,6 +41,18 @@ CPC664 = """[grey]█▀▀█ █▀▄▀█ █▀▀▀█ ▀▀█▀▀ �
 subfolders  = ["assets", "out", "dsk", "src","cfg"]
 CFG_PROJECT = "/cfg/cpcready.cfg"
 
+if sys.platform == "win32" or sys.platform == "win64":
+    TEMP_PATH = os.getenv('TEM')
+    MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/tools/win/martine.exe"
+if sys.platform == 'darwin':
+    TEMP_PATH = os.getenv('TMPDIR')
+    MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/tools/" + sys.platform + "/martine"
+if sys.platform.startswith('linux'):
+    TEMP_PATH = os.getenv('TMP')
+    MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/tools/" + sys.platform + "/martine"
+        
+PWD = os.getcwd() + "/"
+
 ##
 # Show banner dependencie model cpc
 #
