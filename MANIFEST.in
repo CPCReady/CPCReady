@@ -1,13 +1,11 @@
-include CPCReady/includes/*.ccz80
-include CPCReady/templates/*.j2
-include CPCReady/bin/linux/iDSK
-include CPCReady/bin/linux/ugbc
-include CPCReady/bin/linux/martine
-include CPCReady/bin/darwin/iDSK
-include CPCReady/bin/darwin/martine
-include CPCReady/bin/win/iDSK.exe
-include CPCReady/bin/win/martine.exe
-include CPCReady/bin/win/cyggcc_s-1.dll
-include CPCReady/bin/win/cygwin1.dll
-include CPCReady/bin/win/ugbc.exe
-include CPCReady/bin/ccz80.exe
+
+include CPCReady/common/templates/*.j2
+include CPCReady/common/tools/linux/iDSK
+include CPCReady/common/tools/linux/martine
+include CPCReady/common/tools/darwin/iDSK
+include CPCReady/common/tools/darwin/martine
+include CPCReady/common/tools/win64/iDSK.exe
+include CPCReady/common/tools/win64/martine.exe
+include CPCReady/common/tools/win64/cyggcc_s-1.dll
+include CPCReady/common/tools/win64/cygwin1.dll
+

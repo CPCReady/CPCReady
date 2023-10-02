@@ -2,11 +2,11 @@ import os
 from setuptools import setup, find_packages
 
 from pathlib import Path
-this_directory = Path(__file__).parent.parent
+this_directory = Path(__file__).parent
 long_description = (this_directory / "README.md").read_text()
-version = (this_directory / "VERSION").read_text()
+# version = (this_directory / "VERSION").read_text()
 
-VERSION =  version
+VERSION =  "0.0.1"
 
 DESCRIPTION = 'Software Developer Kit for programming in Basic for Amstrad CPC'
 
@@ -20,17 +20,17 @@ setup(
     description=DESCRIPTION,
     license="GPL",
     packages=find_packages(),
-    data_files=[
-        ('common/tools/linux', ['common/tools/linux/iDSK', 'common/tools/linux/martine']),
-        ('common/tools/darwin',['common/tools/darwin/iDSK', 'common/tools/darwin/martine']),
-        ('common/tools/win64',   ['common/tools/win64/iDSK.exe', 'common/tools/win64/martine.exe']),
-        ('common/tools/win64',   ['common/tools/win64/cyggcc_s-1.dll']),
-        ('common/tools/win64',   ['common/tools/win64/cygwin1.dll']),
-        ('project/templates', ['project/templates/cpc.j2']),
-        ('project/templates', ['project/templates/cpc_yaml.j2']),
-        ('project/templates', ['project/templates/MAIN.BAS.j2']),
-        ('project/templates', ['project/templates/Makefile'])
-     ],
+    # data_files=[
+    #     ('common/tools/linux', ['common/tools/linux/iDSK', 'common/tools/linux/martine']),
+    #     ('common/tools/darwin',['common/tools/darwin/iDSK', 'common/tools/darwin/martine']),
+    #     ('common/tools/win64',   ['common/tools/win64/iDSK.exe', 'common/tools/win64/martine.exe']),
+    #     ('common/tools/win64',   ['common/tools/win64/cyggcc_s-1.dll']),
+    #     ('common/tools/win64',   ['common/tools/win64/cygwin1.dll']),
+    #     ('project/templates', ['project/templates/cpc.j2']),
+    #     ('project/templates', ['project/templates/cpc_yaml.j2']),
+    #     ('project/templates', ['project/templates/MAIN.BAS.j2']),
+    #     ('project/templates', ['project/templates/Makefile'])
+    #  ],
     install_requires=[
         'click',
         'configparser',
@@ -55,9 +55,9 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'cpcr_project=project:main',
-            'cpcr_screen=screen:main',
-            'cpcr_sprite=sprite:main',
+            'cpcr_project=CPCReady.project:main',
+            'cpcr_screen=CPCReady.screen:main',
+            'cpcr_sprite=CPCReady.sprite:main',
         ]
     }
 )

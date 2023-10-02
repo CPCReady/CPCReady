@@ -3,7 +3,7 @@ import os
 import datetime
 import shutil
 from jinja2 import Template
-import CPCReady.common as common
+from CPCReady.common import *
 
 ##
 # Create project
@@ -12,31 +12,30 @@ import CPCReady.common as common
 # @param model: CPC model
 ##
 
-def create(project,model,testing):
-
+def create(project, model, testing):
     if sys.platform == "win64" or sys.platform == "win32":
         user = os.getenv('USERNAME')
     else:
         user = os.getenv('USER') or os.getenv('LOGNAME')
 
     folder_project = f"{project}"
-    
+
     current_datetime = datetime.datetime.now()
     APP_PATH = os.path.dirname(os.path.abspath(__file__))
 
-    common.banner(model)
-    common.showHeadDataProject(project)
+    banner(model)
+    showHeadDataProject(project)
 
     if os.path.exists(folder_project) and os.path.isdir(folder_project):
-        common.msgError(f"The {folder_project} project name exists on this path.")
-        common.showFoodDataProject("The project could not be created.",1)
+        cm.msgError(f"The {folder_project} project name exists on this path.")
+        cm.showFoodDataProject("The project could not be created.", 1)
         sys.exit(1)
-        # common.endCreteProject("ERROR")
+        # cm.endCreteProject("ERROR")
     else:
         os.makedirs(f"{folder_project}")
-        common.msgInfo(f"Create Project: {folder_project}")
+        cm.msgInfo(f"Create Project: {folder_project}")
 
-    common.msgInfo("CPC Model: " + str(model))
+    cm.msgInfo("CPC Model: " + str(model))
 
     ########################################
     # CREATE TEMPLATE TESTING RVM WEB
@@ -56,17 +55,17 @@ def create(project,model,testing):
         with open(folder_project + "/cpc.html", 'w') as file:
             file.write(rendered_template)
 
-        common.msgInfo(f"Testing Project: Retro Virtual Machine Web")
+        cm.msgInfo(f"Testing Project: Retro Virtual Machine Web")
 
     ########################################
     # CREATE PROJECT FOLDERS
     ########################################
-    for folders in common.subfolders:
+    for folders in cm.subfolders:
         os.makedirs(f"{folder_project}/{folders}")
-        common.msgInfo(f"Create folder: {folder_project}/{folders}")
+        cm.msgInfo(f"Create folder: {folder_project}/{folders}")
 
     current_datetime = datetime.datetime.now()
-    
+
     ########################################
     # CREATE TEMPLATE PROJECT CONFIGURATIONS
     ########################################
@@ -81,10 +80,10 @@ def create(project,model,testing):
         template_string = file.read()
     template = Template(template_string)
     rendered_template = template.render(context_CFG)
-    with open(folder_project + common.CFG_PROJECT, 'w') as file:
+    with open(folder_project + cm.CFG_PROJECT, 'w') as file:
         file.write(rendered_template)
 
-    common.msgInfo(f"Configuration Project: {folder_project}" + common.CFG_PROJECT)
+    cm.msgInfo(f"Configuration Project: {folder_project}" + cm.CFG_PROJECT)
 
     context = {
         'name': project,
@@ -99,14 +98,14 @@ def create(project,model,testing):
     with open(folder_project + "/src/MAIN.BAS", 'w') as file:
         file.write(rendered_template)
 
-    common.msgInfo(f"Create BASIC template: {folder_project}/src/MAIN.BAS")
+    cm.msgInfo(f"Create BASIC template: {folder_project}/src/MAIN.BAS")
 
     shutil.copyfile(f"{folder_project}/src/MAIN.BAS", f"{folder_project}/src/MAIN.ugbasic")
 
-    common.msgInfo(f"Create ugBASIC template: {folder_project}/src/MAIN.ugbasic")
+    cm.msgInfo(f"Create ugBASIC template: {folder_project}/src/MAIN.ugbasic")
 
     if sys.platform != "win64" or sys.platform != "win32":
         shutil.copyfile(APP_PATH + "/templates/Makefile", f"{folder_project}/Makefile")
-        common.msgInfo(f"Create Makefile: {folder_project}/Makefile")
+        cm.msgInfo(f"Create Makefile: {folder_project}/Makefile")
 
-    common.showFoodDataProject(f"{project} PROJECT SUCCESSFULLY CREATED.",0)
+    cm.showFoodDataProject(f"{project} PROJECT SUCCESSFULLY CREATED.", 0)

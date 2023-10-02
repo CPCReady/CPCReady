@@ -1,2 +1,2 @@
+from CPCReady.common import *
 
-from .common import *
