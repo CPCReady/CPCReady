@@ -36,6 +36,18 @@
                 "PYTHONPATH": "${workspaceFolder}",
             },
             "args": ["--image", "/Users/david/Downloads/logole.png","--mode", "0","--out","testing basic","--dsk"] 
+        },
+        {
+            "name": "CREATE SPRITE",
+            "type": "python",
+            "request": "launch",
+            "module": "CPCReady.sprite.main",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+            },
+            "args": ["--image", "/Users/david/Downloads/logole.png","--mode", "0","--out","testing basic","--height","12", "--width","12"] 
         }
     ]
 }

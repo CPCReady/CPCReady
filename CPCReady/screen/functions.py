@@ -41,7 +41,7 @@ def create(filename, mode, fileout, dsk, api=False):
    # EXECUTE MARTINE
    ########################################
     if api == False:
-        common.showHeadDataProject(filename)
+        common.showHeadDataProject(common.getFileExt(filename))
    
     try:
         if fileout:
