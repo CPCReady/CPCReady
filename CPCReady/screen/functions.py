@@ -1,20 +1,21 @@
 import sys
 import os
-import datetime
 import subprocess
 import shutil
 import json
-from jinja2 import Template
 import CPCReady.common as common
 
 ##
 # Create SCR image
 #
-# @param project: Project name
-# @param model: CPC model
+# @param project: image filename
+# @param mode: CPC mode (0, 1, 2)
+# @param fileout: folder out
+# @param dsk: if create dsk
+# @param api: function in code o out
 ##
 
-def create(filename, mode, fileout, dsk):
+def create(filename, mode, fileout, dsk, api=False):
     
    ########################################
    # VARIABLES
@@ -39,8 +40,8 @@ def create(filename, mode, fileout, dsk):
    ########################################
    # EXECUTE MARTINE
    ########################################
-    
-    common.showHeadDataProject(filename)
+    if api == False:
+        common.showHeadDataProject(filename)
    
     try:
         if fileout:
@@ -55,7 +56,13 @@ def create(filename, mode, fileout, dsk):
             subprocess.check_output(cmd, stderr=subprocess.DEVNULL)
     except subprocess.CalledProcessError as e:
         common.msgError(f'Error ' + common.getFileExt(filename) + f' executing command: {e.output.decode()}')
-        return False
+        if dsk:
+            if api == False:
+                common.showFoodDataProject(IMAGE_TMP_FILE.upper() + ".DSK NOT CREATED.",1)
+        else:
+            if api == False:
+                common.showFoodDataProject(f"{fileout}/{IMAGE_TMP_FILE.upper()}.SCR NOT CREATED.",1)
+            return False
 
    ########################################
    # READ JSON PALETTE
@@ -85,8 +92,17 @@ def create(filename, mode, fileout, dsk):
    ########################################
    
     shutil.rmtree(IMAGE_TEMP_PATH)
+    
+   ########################################
+   # SHOW FOOTER
+   ########################################
+   
     if dsk:
-        common.showFoodDataProject(IMAGE_TMP_FILE.upper() + ".DSK SUCCESSFULLY CREATED.",0)
+        if api == False:
+            common.showFoodDataProject(IMAGE_TMP_FILE.upper() + ".DSK SUCCESSFULLY CREATED.",0)
     else:
-        common.showFoodDataProject(f"{fileout}/{IMAGE_TMP_FILE.upper()}.SCR SUCCESSFULLY CREATED.",0)
+        if api == False:
+            common.showFoodDataProject(f"{fileout}/{IMAGE_TMP_FILE.upper()}.SCR SUCCESSFULLY CREATED.",0)
+    
+    
     return True
