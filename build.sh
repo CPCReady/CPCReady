@@ -77,9 +77,7 @@ then
     CHANGES=`cat docs/CHANGES.md`
     echo "$CHANGES"
     echo ""
-    archivo="$PROJECT/__init__.py"
-    version=$(grep -o "__version__ = '[0-9]\+\.[0-9]\+\.[0-9]\+'" "$archivo")
-    version=$(echo "$version" | sed "s/__version__ = '//;s/'//")
+    version=$(cat version)
     echo "================================================================================================"
     echo  "[*] NO PASAMOS VERSION. COMPILAMOS CON LA ACTUAL $version"
     echo "================================================================================================"
@@ -96,7 +94,7 @@ else
         echo "${rojo}ERROR: El archivo $version_a_verificar no existe.${reset_color}"
         exit
     fi
-    echo "__version__ = '$version'" > "$PROJECT/__init__.py"
+    echo $version > VERSION
     echo "================================================================================================"
     echo "[*] COMPILAMOS SOFTWARE CON NUEVA VERSION $version"
     echo "================================================================================================"

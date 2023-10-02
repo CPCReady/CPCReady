@@ -1,0 +1,36 @@
+pip uninstall dist/CPCReady-0.0.1-py3-none-any.whl     
+pip install dist/CPCReady-0.0.1-py3-none-any.whl
+python -m build
+
+Teniendo esta estructura de un modulo python
+
+├── CPCReady
+│   ├── common.py
+│   ├── func_project.py
+│   ├── func_screen.py
+│   ├── func_sprite.py
+│   ├── __init__.py
+│   ├── project.py
+│   ├── screen.py
+│   ├── sprite.py
+│   ├── templates
+│   │   ├── cpc.j2
+│   │   ├── cpc_yaml.j2
+│   │   ├── MAIN.BAS.j2
+│   │   └── Makefile
+│   └── tools
+│       ├── darwin
+│       │   ├── iDSK
+│       │   └── martine
+│       ├── linux
+│       │   ├── iDSK
+│       │   └── martine
+│       └── win64
+│           ├── cyggcc_s-1.dll
+│           ├── cygwin1.dll
+│           ├── iDSK.exe
+│           └── martine.exe
+├── MANIFEST.in
+├── setup.py
+
+que tengo que poner tanto en el archivo manifest como setup.py para incluir tanto la carpeta templates como la tools con todos sus archivos en el modulo empaquetado y que cuando se instale lo haga dentro del raiz CPCReady
