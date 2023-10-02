@@ -55,9 +55,9 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'cpcr_project=CPCReady.project:main',
-            'cpcr_screen=CPCReady.screen:main',
-            'cpcr_sprite=CPCReady.sprite:main',
+            'cpcr_project=CPCReady:project',
+            'cpcr_screen=CPCReady:screen',
+            'cpcr_sprite=CPCReady:sprite',
         ]
     }
 )
