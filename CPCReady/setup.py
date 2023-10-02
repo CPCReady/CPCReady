@@ -1,10 +1,13 @@
+import os
 from setuptools import setup, find_packages
-# from gotocpc import __version__ as version
-from pathlib import Path
-this_directory = Path(__file__).parent
-long_description = (this_directory / "README.md").read_text()
 
-VERSION = "1.0.0"
+from pathlib import Path
+this_directory = Path(__file__).parent.parent
+long_description = (this_directory / "README.md").read_text()
+version = (this_directory / "VERSION").read_text()
+
+VERSION =  version
+
 DESCRIPTION = 'Software Developer Kit for programming in Basic for Amstrad CPC'
 
 setup(
@@ -20,7 +23,7 @@ setup(
     data_files=[
         ('common/tools/linux', ['common/tools/linux/iDSK', 'common/tools/linux/martine']),
         ('common/tools/darwin',['common/tools/darwin/iDSK', 'common/tools/darwin/martine']),
-        ('common/tools/win64',   ['common/tools/win64/win/iDSK.exe', 'common/tools/win64/martine.exe']),
+        ('common/tools/win64',   ['common/tools/win64/iDSK.exe', 'common/tools/win64/martine.exe']),
         ('common/tools/win64',   ['common/tools/win64/cyggcc_s-1.dll']),
         ('common/tools/win64',   ['common/tools/win64/cygwin1.dll']),
         ('project/templates', ['project/templates/cpc.j2']),
