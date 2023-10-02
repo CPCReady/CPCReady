@@ -19,13 +19,15 @@ setup(
     author_email="<cpcready@gmail.com>",
     description=DESCRIPTION,
     license="GPL",
-    packages=['CPCReady'],
-    data_files=[
-        ('CPCReady/tools/linux', ['CPCReady/tools/linux/iDSK', 'CPCReady/tools/linux/martine']),
-        ('CPCReady/tools/darwin',['CPCReady/tools/darwin/iDSK', 'CPCReady/tools/darwin/martine']),
-        ('CPCReady/tools/win64', ['CPCReady/tools/win64/iDSK.exe', 'CPCReady/tools/win64/martine.exe','CPCReady/tools/win/cygwin1.dll','CPCReady/tools/win/cygwin1.dll']),
-        ('CPCReady/templates',   ['CPCReady/templates/cpc.j2','CPCReady/templates/MAIN.BAS.j2','CPCReady/templates/Makefile','CPCReady/templates/cpc_yaml.j2']),
-    ],
+    packages=find_packages(),
+    package_data={
+        'CPCReady': [
+            'templates/*',
+            'tools/darwin/*',
+            'tools/linux/*',
+            'tools/win64/*'
+        ],
+    },
     install_requires=[
         'click',
         'configparser',

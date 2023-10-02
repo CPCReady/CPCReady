@@ -1,11 +1,5 @@
-
-include CPCReady/templates/*.j2
-include CPCReady/tools/linux/iDSK
-include CPCReady/tools/linux/martine
-include CPCReady/tools/darwin/iDSK
-include CPCReady/tools/darwin/martine
-include CPCReady/tools/win64/iDSK.exe
-include CPCReady/tools/win64/martine.exe
-include CPCReady/tools/win64/cyggcc_s-1.dll
-include CPCReady/tools/win64/cygwin1.dll
+include CPCReady/templates/*
+include CPCReady/tools/darwin/*
+include CPCReady/tools/linux/*
+include CPCReady/tools/win64/*
 
