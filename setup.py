@@ -1,13 +1,11 @@
 import os
 from setuptools import setup, find_packages
-
+from CPCReady import __version__ as version
 from pathlib import Path
 this_directory = Path(__file__).parent
 long_description = (this_directory / "README.md").read_text()
-# version = (this_directory / "VERSION").read_text()
 
-VERSION =  "0.0.1"
-
+VERSION =  version
 DESCRIPTION = 'Software Developer Kit for programming in Basic for Amstrad CPC'
 
 setup(
@@ -53,8 +51,8 @@ setup(
     entry_points={
         'console_scripts': [
             'cpcr_project = CPCReady.project:main',
-            'cpcr_sprite = CPCReady.sprite:main',
-            'cpcr_screen = CPCReady.screen:main',
+            'cpcr_sprite  = CPCReady.sprite:main',
+            'cpcr_screen  = CPCReady.screen:main',
         ]
     }
 )
