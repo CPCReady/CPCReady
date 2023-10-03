@@ -35,7 +35,7 @@
             "env": {
                 "PYTHONPATH": "${workspaceFolder}",
             },
-            "args": ["--image", "/Users/david/Downloads/logole.png","--mode", "0","--out","testing basic"] 
+            "args": ["--image", "/Users/david/Downloads/logole222222.png","--mode", "0","--out","testing basic"] 
         },
         {
             "name": "CREATE SCREEN DSK",

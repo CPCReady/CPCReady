@@ -28,8 +28,16 @@ def create(filename, mode, fileout, dsk, api=False):
         IMAGE_TEMP_PATH = cm.PWD + "." + os.path.basename(filename)
 
     IMAGE_TMP_FILE = os.path.basename(os.path.splitext(filename)[0])
+
+    ########################################
+    # WE CHECK IF WE COMPLY WITH RULE 6:3
+    ########################################
+
     IMAGE_TMP_JSON = IMAGE_TEMP_PATH + "/" + IMAGE_TMP_FILE + ".json"
 
+    if len(IMAGE_TMP_FILE) > 6:
+        IMAGE_TMP_FILE =  IMAGE_TMP_FILE[:6]
+        
     if os.path.exists(IMAGE_TEMP_PATH) and os.path.isdir(IMAGE_TEMP_PATH):
         shutil.rmtree(IMAGE_TEMP_PATH)
 

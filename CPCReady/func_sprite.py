@@ -20,6 +20,7 @@ from CPCReady import common as cm
 ##
 
 def create(filename, mode, fileout, height, width, api=False):
+    
     ########################################
     # VARIABLES
     ########################################
@@ -28,11 +29,21 @@ def create(filename, mode, fileout, height, width, api=False):
         IMAGE_TEMP_PATH = cm.TEMP_PATH + "." + os.path.basename(filename)
     else:
         IMAGE_TEMP_PATH = cm.PWD + "." + os.path.basename(filename)
-
+    
     IMAGE_TMP_FILE = os.path.basename(os.path.splitext(filename)[0])
+
+    ########################################
+    # WE CHECK IF WE COMPLY WITH RULE 6:3
+    ########################################
+
+    if len(IMAGE_TMP_FILE) > 6:
+        IMAGE_TMP_TXT = IMAGE_TEMP_PATH + "/" + IMAGE_TMP_FILE[:6] + ".TXT"
+        IMAGE_TMP_CTXT = IMAGE_TEMP_PATH + "/" + IMAGE_TMP_FILE[:6] + "C.TXT"
+    else:
+        IMAGE_TMP_TXT = IMAGE_TEMP_PATH + "/" + IMAGE_TMP_FILE + ".TXT"
+        IMAGE_TMP_CTXT = IMAGE_TEMP_PATH + "/" + IMAGE_TMP_FILE + "C.TXT"
+        
     IMAGE_TMP_JSON = IMAGE_TEMP_PATH + "/" + IMAGE_TMP_FILE + ".json"
-    IMAGE_TMP_TXT = IMAGE_TEMP_PATH + "/" + IMAGE_TMP_FILE + ".TXT"
-    IMAGE_TMP_CTXT = IMAGE_TEMP_PATH + "/" + IMAGE_TMP_FILE + "C.TXT"
 
     if os.path.exists(IMAGE_TEMP_PATH) and os.path.isdir(IMAGE_TEMP_PATH):
         shutil.rmtree(IMAGE_TEMP_PATH)
