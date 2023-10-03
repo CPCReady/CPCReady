@@ -1,4 +1,5 @@
 import argparse
+from CPCReady import __version__
 from CPCReady import func_project as projects
 
 def main():
@@ -10,7 +11,8 @@ def main():
                         help='CPC Model (464, 664, 6128)')
     parser.add_argument('--testing', '-t', type=str, default="web", choices=["web", "desktop"],
                         help='Retrovirtual Machine Testing (Web, Desktop)')
-
+    parser.add_argument('-v', '--version', action='version', version='\nCPCReady - Project ' + __version__)
+    
     args = parser.parse_args()
 
     if args.project:

@@ -2,6 +2,18 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "VERSION",
+            "type": "python",
+            "request": "launch",
+            "module": "CPCReady.screen",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+            },
+            "args": ["--version"] 
+        },
+        {
             "name": "CREATE NEW PROJECT",
             "type": "python",
             "request": "launch",
