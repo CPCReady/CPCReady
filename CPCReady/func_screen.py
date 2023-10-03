@@ -38,8 +38,11 @@ def create(filename, mode, fileout, dsk, api=False):
     if len(IMAGE_TMP_FILE) > 6:
         IMAGE_TMP_FILE =  IMAGE_TMP_FILE[:6]
         
-    if os.path.exists(IMAGE_TEMP_PATH) and os.path.isdir(IMAGE_TEMP_PATH):
-        shutil.rmtree(IMAGE_TEMP_PATH)
+    ########################################
+    # DELETE TEMPORAL FILES
+    ########################################
+
+    cm.rmFolder(IMAGE_TEMP_PATH)
 
     if dsk:
         cmd = [cm.MARTINE, '-in', filename, '-mode', str(mode), '-out', IMAGE_TEMP_PATH, '-json', '-dsk']
@@ -65,6 +68,12 @@ def create(filename, mode, fileout, dsk, api=False):
             subprocess.check_output(cmd, stderr=subprocess.DEVNULL)
     except subprocess.CalledProcessError as e:
         cm.msgError(f'Error ' + cm.getFileExt(filename) + f' executing command: {e.output.decode()}')
+        ########################################
+        # DELETE TEMPORAL FILES
+        ########################################
+
+        cm.rmFolder(IMAGE_TEMP_PATH)
+        
         if dsk:
             if api == False:
                 cm.showFoodDataProject(IMAGE_TMP_FILE.upper() + ".DSK NOT CREATED.", 1)
@@ -101,7 +110,7 @@ def create(filename, mode, fileout, dsk, api=False):
     # DELETE TEMPORAL FILES
     ########################################
 
-    shutil.rmtree(IMAGE_TEMP_PATH)
+    cm.rmFolder(IMAGE_TEMP_PATH)
 
     ########################################
     # SHOW FOOTER
@@ -113,5 +122,7 @@ def create(filename, mode, fileout, dsk, api=False):
     else:
         if api == False:
             cm.showFoodDataProject(f"{fileout}/{IMAGE_TMP_FILE.upper()}.SCR SUCCESSFULLY CREATED.", 0)
-
+    
     return True
+
+

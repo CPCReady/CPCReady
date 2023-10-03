@@ -3,6 +3,7 @@ import sys
 import datetime
 import time
 import logging
+import shutil
 from rich.console import Console
 from rich.logging import RichHandler
 from rich.text import Text
@@ -50,6 +51,16 @@ if sys.platform.startswith('linux'):
     MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/tools/" + sys.platform + "/martine"
 
 PWD = os.getcwd() + "/"
+
+##
+# Delete folder
+#
+# @param directory: directory to remove
+##
+
+def rmFolder(directory):
+    if os.path.exists(directory) and os.path.isdir(directory):
+        shutil.rmtree(directory)
 
 
 ##
