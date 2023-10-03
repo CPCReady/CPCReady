@@ -37,19 +37,27 @@ CPC664 = """[grey]█▀▀█ █▀▄▀█ █▀▀▀█ ▀▀█▀▀ �
 #
 ##
 
-subfolders = ["assets", "out", "dsk", "src", "cfg"]
-CFG_PROJECT = "/cfg/cpcready.cfg"
+subfolders = ["assets", "out", "dsk", "src", "cfg","dsfasd", "sadfasd"]
 
-if sys.platform == "win32" or sys.platform == "win64":
+CFG_PROJECT = "cfg/cpcready.cfg"
+
+if sys.platform == "win32":
+    cm.msgError(f"WIN32 Platform not supported")
+    sys.exit(1)   
+
+if sys.platform == "win64":
     TEMP_PATH = os.getenv('TEM')
     MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/tools/win/martine.exe"
+    DSK = os.path.dirname(os.path.abspath(__file__)) + "/bin/win64/iDSK.exe"
 if sys.platform == 'darwin':
     TEMP_PATH = os.getenv('TMPDIR')
     MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/tools/" + sys.platform + "/martine"
+    IDSK = os.path.dirname(os.path.abspath(__file__)) + "/tools/darwin/iDSK"
 if sys.platform.startswith('linux'):
     TEMP_PATH = os.getenv('TMP')
     MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/tools/" + sys.platform + "/martine"
-
+    IDSK = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/iDSK"
+    
 PWD = os.getcwd() + "/"
 
 ##
@@ -191,45 +199,9 @@ def showFoodDataProject(description, out):
         "[bold yellow]====================================================================================\n [/bold yellow]")
 
 
-##
-# Remove comment lines
-#
-# @param source: source filename
-# @param output: output filename
-##
-def removeComments(source, output):
-    global file
-    if not os.path.exists(source):
-        msgError(f"The " + getFileExt(source) + " file does not exist")
-        return False
-
-    with open(source, 'r') as file:
-        lines = file.readlines()
-
-    filtered_lines = [line for line in lines if not line.startswith("1'") and not line.startswith("1 '")]
-
-    with open(output, 'w') as file:
-        file.writelines(filtered_lines)
-    file = getFileExt(source)
-    msgInfo(file + "[green] ==> [/green]File Comments Removed")
-    return True
 
 
-def convert2Dos(source, output):
-    if not os.path.exists(source):
-        msgError(f"The " + getFileExt(source) + " file does not exist")
-        return False
-    with open(source, 'r') as file:
-        unix_lines = file.readlines()
 
-    dos_lines = [line.rstrip('\n') + '\r\n' for line in unix_lines]
-
-    with open(output, 'w') as file:
-        file.writelines(dos_lines)
-
-    files = getFileExt(source)
-    msgInfo(files + "[green] ==> [/green]Convert unix to dos")
-    return True
 
 
 ##
@@ -256,7 +228,7 @@ def concatFile(source, output):
 ##
 def fileExist(source):
     if not os.path.isfile(source):
-        msgError(getFileExt(source) + "[red] ==> FILE DOES NOT EXIST")
+        msgError(f"File {source} does not exist.")
         return False
     return True
 
