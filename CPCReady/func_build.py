@@ -38,6 +38,8 @@ def create():
 
     cm.showHeadDataProject("BUILD " + PROJECT_NAME)
     
+    cm.removeContentDirectory(PATH_DISC)
+    
     for folder in cm.subfolders:
         if not os.path.exists(folder):
             os.makedirs(folder)
@@ -47,6 +49,7 @@ def create():
     createImageDisc(PROJECT_DSK_FILE)
 
     for file_data in data['spec']['files']:
+        
         if file_data['kind'].upper() == 'BAS':
             COUNT = COUNT + 1
             if not cm.fileExist(f"{PATH_SRC}/{file_data['name']}"):
@@ -57,20 +60,24 @@ def create():
                 
             if not convert2Dos(f"{PATH_DISC}/{file_data['name']}", f"{PATH_DISC}/{file_data['name']}"): 
                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-        #         #convert2Dos2(f"{PATH_DISC}/{file_data['name']}")
-        #    if file_data['concat'] == True:
-        #             if not concatFile(f"{PATH_DISC}/{file_data['name']}", PROJECT_CONCAT_OUT): endCompilation("ERROR",start_time)
-        #             if COUNT == NUMBER_CONCAT_FILES:
-        #                 if not convert2Dos(PROJECT_CONCAT_OUT, PROJECT_CONCAT_OUT): endCompilation("ERROR",start_time)
-        #                 if not addBasFileDsk(PROJECT_DSK_FILE, f"{PATH_DISC}/{file_data['name']}") : endCompilation("ERROR",start_time)
-        #         else:
-        #             if not addBasFileDsk(PROJECT_DSK_FILE, f"{PATH_DISC}/{file_data['name']}"): endCompilation("ERROR",start_time)
-        #     ##
-        #     # Processing ascii files
-        #     ## 
-        #     elif file_data['kind'].upper() == 'ASCII':
-        #         if not fileExist(f"{PATH_SRC}/{file_data['name']}"): endCompilation("ERROR",start_time)
-        #         if not addBasFileDsk(PROJECT_DSK_FILE, f"{PATH_SRC}/{file_data['name']}"): endCompilation("ERROR",start_time)
+
+            if file_data['concat'] == True:
+                if not concatFile(f"{PATH_DISC}/{file_data['name']}", PROJECT_CONCAT_OUT):
+                    cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
+                    if COUNT == NUMBER_CONCAT_FILES:
+                       if not convert2Dos(PROJECT_CONCAT_OUT, PROJECT_CONCAT_OUT):
+                           cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
+                       if not addBas2ImageDisc(PROJECT_DSK_FILE, f"{PATH_DISC}/{file_data['name']}"):
+                           cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
+                    else:
+                        if not addBas2ImageDisc(PROJECT_DSK_FILE, f"{PATH_DISC}/{file_data['name']}"): 
+                            cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
+                            
+        elif file_data['kind'].upper() == 'ASCII':
+            if not cm.fileExist(f"{PATH_SRC}/{file_data['name']}"):
+                cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
+            if not addBas2ImageDisc(PROJECT_DSK_FILE, f"{PATH_SRC}/{file_data['name']}"):
+                cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
         #     ##
         #     # Processing C files
         #     ## 
@@ -116,6 +123,21 @@ def create():
         # endCompilation("OK",start_time)
 
 
+##
+# Concatenate Bas file
+#
+# @param source: source file name
+# @param output: output file name
+##
+def concatFile(source, output):
+    with open(source, 'r') as origen_file:
+        contenido_origen = origen_file.read()
+    with open(output, 'a') as destino_file:
+        destino_file.write(contenido_origen)
+    os.remove(source)
+    cm.msgInfo(f"Concat file {cm.getFileExt(source)} ==> {cm.getFileExt(output)}")
+    return True
+
 def convert2Dos(source, output):
     if not os.path.exists(source):
         cm.msgError(f"File {source} does not exist.")
@@ -129,7 +151,7 @@ def convert2Dos(source, output):
         file.writelines(dos_lines)
 
     files = cm.getFileExt(source)
-    cm.msgInfo("Convert unix to dos: {file}")
+    cm.msgInfo(f"Convert unix to dos: {source}")
     return True
 
 ##
@@ -152,7 +174,7 @@ def removeComments(source, output):
     with open(output, 'w') as file:
         file.writelines(filtered_lines)
     file = cm.getFileExt(source)
-    cm.msgInfo("Comments Removed: {file}")
+    cm.msgInfo(f"Comments Removed: {file}")
     return True
 
 def createImageDisc(imagefile):

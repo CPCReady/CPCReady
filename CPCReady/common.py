@@ -37,7 +37,7 @@ CPC664 = """[grey]█▀▀█ █▀▄▀█ █▀▀▀█ ▀▀█▀▀ �
 #
 ##
 
-subfolders = ["assets", "out", "dsk", "src", "cfg","dsfasd", "sadfasd"]
+subfolders = ["assets", "out", "dsk", "src", "cfg"]
 
 CFG_PROJECT = "cfg/cpcready.cfg"
 
@@ -195,31 +195,9 @@ def showFoodDataProject(description, out):
         console.print("[bold green]" + center_text.upper() + "[/bold green]")
     if out == 1:
         console.print("[bold red]" + center_text.upper() + "[/bold red]")
+        sys.exit(1)
     console.print(
         "[bold yellow]====================================================================================\n [/bold yellow]")
-
-
-
-
-
-
-
-##
-# Concatenate Bas file
-#
-# @param source: source file name
-# @param output: output file name
-##
-def concatFile(source, output):
-    with open(source, 'r') as origen_file:
-        contenido_origen = origen_file.read()
-    with open(output, 'a') as destino_file:
-        destino_file.write(contenido_origen)
-    os.remove(source)
-    # messageInfo(getFileExt(source), f"Concatenate in {getFileExt(output)}.")
-    msgInfo(getFileExt(source) + f" ==> {getFileExt(output)}")
-    return True
-
 
 ##
 # verify file exist
@@ -234,79 +212,20 @@ def fileExist(source):
 
 
 ##
-# Concatenate Bas files
+# Remove directory
 #
-# @param files: list files separate with ","
-# @param output: output filename
+# @param directory: directory name
 ##
-def concatBasFiles(files, output, folder):
-    if files != "":
-        ficheros = files.split(',')
-        folder = folder + "/"
-        if os.path.exists(folder + output):
-            os.remove(folder + output)
-        with open(folder + output, 'a') as salida:
-            for fichero in ficheros:
-                nombre_fichero = fichero.strip()
-                if os.path.exists(folder + nombre_fichero):
-                    with open(folder + nombre_fichero, 'r') as archivo:
-                        contenido = archivo.read()
-                        salida.write(contenido)
-                    os.remove(folder + nombre_fichero)
-                    msgInfo(nombre_fichero + f" ==> {getFileExt(output)}")
-                else:
-                    msgError(f"The " + getFileExt(nombre_fichero) + " file does not exist")
-                    return False
-    else:
-        msgWarning("Warning Not concat files.")
-        return True
-    return True
+def removeContentDirectory (directory):
 
-
-##
-# end compilation
-#
-# @param type: show final compilation values OK or ERROR
-##
-def endCompilation(type, start_time):
-    end_time = time.time()  # Registrar el tiempo de finalización
-    execution_time = end_time - start_time
-    current_datetime = datetime.datetime.now()
-    formatted_datetime = current_datetime.strftime('%Y-%m-%d %H:%M:%S')
-    console.print(
-        "\n[bold white]------------------------------------------------------------------------------------- [/bold white]")
-    if type == "OK":
-        console.print("[bold green]BUILD SUCCESSFULLY [/bold green]")
-    if type == "ERROR":
-        console.print("[bold red]BUILD FAILURE [/bold red]")
-    console.print(
-        "[bold white]------------------------------------------------------------------------------------- [/bold white]")
-    console.print(f"[white]Total time: {execution_time:.2f} seg [/white]")
-    console.print(f"[white]Finished at: {formatted_datetime}[/white]")
-    console.print(
-        "[bold white]------------------------------------------------------------------------------------- [/bold white]")
-    if type == "ERROR": sys.exit(1)
-    if type == "OK": sys.exit(0)
-
-
-##
-# begin compilation
-#
-# @param project: show project name in initial compilation
-##
-def beginCompilation(project, author, model):
-    # console.print("\n[bold white]------------------------------------------------------------------------------------- [/bold white]")
-    # console.print("[bold blue] PROJECT: [/bold blue][bold white]" + project + "[/bold white]")
-    # console.print("[bold white]------------------------------------------------------------------------------------- [/bold white]\n")
-    console.print(
-        "\n[bold white]------------------------------------------------------------------------------------- [/bold white]")
-    console.print("[bold blue] PROJECT: [/bold blue][bold white]" + project + "[/bold white]")
-    console.print("[bold blue] AUTHOR : [/bold blue][bold white]" + author + "[/bold white]")
-    console.print("[bold blue] MODEL  : [/bold blue][bold white]CPC " + str(model) + "[/bold white]")
-    console.print(
-        "[bold white]------------------------------------------------------------------------------------- [/bold white]\n")
-
-
+    if os.path.exists(directory) and os.path.isdir(directory):
+        archivos = os.listdir(directory)
+        for archivo in archivos:
+            ruta_completa = os.path.join(directory, archivo)
+            if os.path.isfile(ruta_completa):
+                os.remove(ruta_completa)
+    msgInfo(f"Clean temporal directory.")            
+                
 ##
 # compilation image
 #
@@ -318,34 +237,3 @@ def imageCompilation(image):
     console.print("[bold blue] IMAGE: [/bold blue][bold white]" + image + "[/bold white]")
     console.print(
         "[bold white]------------------------------------------------------------------------------------- [/bold white]\n")
-
-
-##
-# create project
-#
-# @param project: image name
-##
-def createProject(project):
-    console.print(
-        "\n[bold white]------------------------------------------------------------------------------------- [/bold white]")
-    console.print("[bold blue]CREATE PROJECT: [/bold blue][bold white]" + project + "[/bold white]")
-    console.print(
-        "[bold white]------------------------------------------------------------------------------------- [/bold white]\n")
-
-
-##
-# end create project
-#
-# @param type: show final compilation values OK or ERROR
-##
-def endCreteProject(type):
-    console.print(
-        "\n[bold white]------------------------------------------------------------------------------------- [/bold white]")
-    if type == "OK":
-        console.print("[bold green]CREATE PROJECT SUCCESSFULLY [/bold green]")
-    if type == "ERROR":
-        console.print("[bold red]CREATE PROJECT FAILURE [/bold red]")
-    console.print(
-        "[bold white]------------------------------------------------------------------------------------- [/bold white]")
-    if type == "ERROR": sys.exit(1)
-    if type == "OK": sys.exit(0)
