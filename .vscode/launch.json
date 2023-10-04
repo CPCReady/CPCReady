@@ -2,6 +2,18 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "EMULACION",
+            "type": "python",
+            "request": "launch",
+            "module": "CPCReady.run",
+            "cwd": "${workspaceFolder}/testing basic",
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+            },
+            "args": ["--emulator", "rvm-web"] 
+        },
+        {
             "name": "VERSION",
             "type": "python",
             "request": "launch",
@@ -35,7 +47,7 @@
             "env": {
                 "PYTHONPATH": "${workspaceFolder}",
             },
-            "args": ["--project", "testing basic"] 
+            "args": ["--project", "testing2basic"] 
         },
         {
             "name": "CREATE SCREEN",

@@ -12,7 +12,7 @@ from CPCReady import common as cm
 # @param model: CPC model
 ##
 
-def create(project, model, testing):
+def create(project, model):
     if sys.platform == "win64" or sys.platform == "win32":
         user = os.getenv('USERNAME')
     else:
@@ -37,25 +37,25 @@ def create(project, model, testing):
 
     cm.msgInfo("CPC Model: " + str(model))
 
-    ########################################
-    # CREATE TEMPLATE TESTING RVM WEB
-    ########################################
-    if testing == "web":
-        context = {
-            'name': project,
-            'cpc': model,
-            'dsk': f"dsk/{project}.dsk",
-            'run': 'run"MAIN.BAS"'
-        }
+    # ########################################
+    # # CREATE TEMPLATE TESTING RVM WEB
+    # ########################################
+    # if testing == "rvm-web":
+    #     context = {
+    #         'name': project,
+    #         'cpc': model,
+    #         'dsk': f"dsk/{project}.dsk",
+    #         'run': 'run"MAIN.BAS"'
+    #     }
 
-        with open(APP_PATH + "/templates/cpc.j2", 'r') as file:
-            template_string = file.read()
-        template = Template(template_string)
-        rendered_template = template.render(context)
-        with open(folder_project + "/cpc.html", 'w') as file:
-            file.write(rendered_template)
+    #     with open(APP_PATH + "/templates/cpc.j2", 'r') as file:
+    #         template_string = file.read()
+    #     template = Template(template_string)
+    #     rendered_template = template.render(context)
+    #     with open(folder_project + "/cpc.html", 'w') as file:
+    #         file.write(rendered_template)
 
-        cm.msgInfo(f"Testing Project: Retro Virtual Machine Web")
+    #     cm.msgInfo(f"Testing Project: Retro Virtual Machine Web")
 
     ########################################
     # CREATE PROJECT FOLDERS
@@ -72,7 +72,6 @@ def create(project, model, testing):
     context_CFG = {
         'name': project,
         'user': user,
-        'testing': testing,
         'rvm_path': ""
     }
 

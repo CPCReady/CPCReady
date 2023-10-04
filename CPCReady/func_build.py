@@ -23,11 +23,6 @@ def create():
 
     NUMBER_CONCAT_FILES  = sum(1 for item in data['spec']['files'] if item.get('kind') == 'bas' and item.get('concat') == True)
     COUNT                = 0
-    PATH_DISC            = "out"
-    PATH_OBJ             = "obj"
-    PATH_SRC             = "src"
-    PATH_DSK             = "dsk"
-    PATH_ASSETS          = "assets"
     PROJECT_NOT_SECTIONS = ["PROJECT", "CONCATENATE", "RVM"]
     PROJECT_NAME         = data['project']['data'].get('name', 'No project mame')
     PROJECT_AUTHOR       = data['project']['data'].get('author', 'No author mame')
@@ -35,13 +30,13 @@ def create():
     PROJECT_RVM_DESKTOP  = data['project']['rvm'].get('rvm_path')
     PROJECT_RVM_MODEL    = data['project']['rvm'].get('model')
     PROJECT_RVM_RUN      = data['project']['rvm'].get('run')
-    PROJECT_CONCAT_OUT   = PATH_DISC + "/" + data['project']['concatenate'].get('out', 'PROJECT.BAS')
-    PROJECT_DSK_FILE     = f"{PATH_DSK}/{PROJECT_NAME}.DSK"
+    PROJECT_CONCAT_OUT   = cm.PATH_DISC + "/" + data['project']['concatenate'].get('out', 'PROJECT.BAS')
+    PROJECT_DSK_FILE     = f"{cm.PATH_DSK}/{PROJECT_NAME}.DSK"
     RVM_WEB              = "RVM.HTML"
 
     cm.showHeadDataProject("BUILD " + PROJECT_NAME)
     
-    cm.removeContentDirectory(PATH_DISC)
+    cm.removeContentDirectory(cm.PATH_DISC)
     
     for folder in cm.subfolders:
         if not os.path.exists(folder):
@@ -57,46 +52,46 @@ def create():
         ########################################
         if file_data['kind'].upper() == 'BAS':
             COUNT = COUNT + 1
-            if not cm.fileExist(f"{PATH_SRC}/{file_data['name']}"):
+            if not cm.fileExist(f"{cm.PATH_SRC}/{file_data['name']}"):
                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
             
-            if not removeComments(f"{PATH_SRC}/{file_data['name']}", f"{PATH_DISC}/{file_data['name']}"):
+            if not removeComments(f"{cm.PATH_SRC}/{file_data['name']}", f"{cm.PATH_DISC}/{file_data['name']}"):
                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
                 
-            if not convert2Dos(f"{PATH_DISC}/{file_data['name']}", f"{PATH_DISC}/{file_data['name']}"): 
+            if not convert2Dos(f"{cm.PATH_DISC}/{file_data['name']}", f"{cm.PATH_DISC}/{file_data['name']}"): 
                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
         ########################################
         # CONCAT FILES
         ########################################
             if file_data['concat'] == True:
-                if not concatFile(f"{PATH_DISC}/{file_data['name']}", PROJECT_CONCAT_OUT):
+                if not concatFile(f"{cm.PATH_DISC}/{file_data['name']}", PROJECT_CONCAT_OUT):
                     cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
                     if COUNT == NUMBER_CONCAT_FILES:
                        if not convert2Dos(PROJECT_CONCAT_OUT, PROJECT_CONCAT_OUT):
                            cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-                       if not addBas2ImageDisc(PROJECT_DSK_FILE, f"{PATH_DISC}/{file_data['name']}"):
+                       if not addBas2ImageDisc(PROJECT_DSK_FILE, f"{cm.PATH_DISC}/{file_data['name']}"):
                            cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
                     else:
-                        if not addBas2ImageDisc(PROJECT_DSK_FILE, f"{PATH_DISC}/{file_data['name']}"): 
+                        if not addBas2ImageDisc(PROJECT_DSK_FILE, f"{cm.PATH_DISC}/{file_data['name']}"): 
                             cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
         ########################################
         # PROCESING ASCII FILES
         ########################################                            
         elif file_data['kind'].upper() == 'ASCII':
-            if not cm.fileExist(f"{PATH_SRC}/{file_data['name']}"):
+            if not cm.fileExist(f"{cm.PATH_SRC}/{file_data['name']}"):
                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-            if not addBas2ImageDisc(PROJECT_DSK_FILE, f"{PATH_SRC}/{file_data['name']}"):
+            if not addBas2ImageDisc(PROJECT_DSK_FILE, f"{cm.PATH_SRC}/{file_data['name']}"):
                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
         ########################################
         # PROCESING UGBASIC FILES
         ########################################
         elif file_data['kind'].upper() == 'UGBASIC':
             if sys.platform != 'darwin':
-                if not cm.fileExist(f"{PATH_SRC}/{file_data['name']}"):
+                if not cm.fileExist(f"{cm.PATH_SRC}/{file_data['name']}"):
                     cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-                if not compile(f"{PATH_SRC}/{file_data['name']}", f"{PATH_DISC}/", f"{file_data['address']}",f"{file_data['include']}"):
+                if not compile(f"{cm.PATH_SRC}/{file_data['name']}", f"{cm.PATH_DISC}/", f"{file_data['address']}",f"{file_data['include']}"):
                     cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-                if not cm.addBin2ImageDisc(f"{PROJECT_DSK_FILE}", f"{PATH_DISC}/" + cm.getFile(f"{PATH_DISC}/{file_data['name']}") + ".bin"): 
+                if not cm.addBin2ImageDisc(f"{PROJECT_DSK_FILE}", f"{cm.PATH_DISC}/" + cm.getFile(f"{cm.PATH_DISC}/{file_data['name']}") + ".bin"): 
                     cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
             else:
                 cm.msgWarning("Mac OSX operating system does not support ugBasic")
@@ -104,39 +99,25 @@ def create():
         # PROCESING IMAGES FILES
         ########################################
         elif file_data['kind'].upper() == 'IMAGE':
-            if not cm.fileExist(f"{PATH_ASSETS}/{file_data['name']}"):
+            if not cm.fileExist(f"{cm.PATH_ASSETS}/{file_data['name']}"):
                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-            if not screens.create (f"{PATH_ASSETS}/{file_data['name']}", f"{file_data['mode']}", PATH_DISC, False, True): 
+            if not screens.create (f"{cm.PATH_ASSETS}/{file_data['name']}", f"{file_data['mode']}", cm.PATH_DISC, False, True):
                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-            NEW_FILE = cm.getFile(f"{PATH_ASSETS}/{file_data['name']}").upper()
-            if not addBin2ImageDisc(f"{PROJECT_DSK_FILE}", f"{PATH_DISC}/{NEW_FILE}.SCR"):
+            NEW_FILE = cm.getFile(f"{cm.PATH_ASSETS}/{file_data['name']}").upper()
+            if not addBin2ImageDisc(f"{PROJECT_DSK_FILE}", f"{cm.PATH_DISC}/{NEW_FILE}.SCR"):
                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
             if not file_data['pal']:
-                    os.remove(f"{PATH_DISC}/{NEW_FILE}.PAL")
+                    os.remove(f"{cm.PATH_DISC}/{NEW_FILE}.PAL")
         ########################################
         # PROCESING SPRITE FILES
         ########################################
         elif file_data['kind'].upper() == 'SPRITE':
-                if not cm.fileExist(f"{PATH_ASSETS}/{file_data['name']}"):
+                if not cm.fileExist(f"{cm.PATH_ASSETS}/{file_data['name']}"):
                     cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-                if not sprites.create(f"{PATH_ASSETS}/{file_data['name']}",f"{file_data['mode']}",PATH_DISC,f"{file_data['width']}",f"{file_data['height']}",True):
+                if not sprites.create(f"{cm.PATH_ASSETS}/{file_data['name']}",f"{file_data['mode']}",cm.PATH_DISC,f"{file_data['width']}",f"{file_data['height']}",True):
                     cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-        # if PROJECT_RVM_SYSTEM == "web":
-        #     rvm_web(PROJECT_RVM_MODEL,f"dsk/{PROJECT_NAME}.DSK",PROJECT_RVM_RUN,PROJECT_NAME,RVM_WEB)
-        # elif PROJECT_RVM_SYSTEM == "desktop":
-        #     if PROJECT_RVM_DESKTOP == "":
-        #         messageError("There is no path to Retro virtual machine")
-        #         endCompilation("ERROR",start_time)
-        #     if not os.path.isfile(PROJECT_RVM_DESKTOP):
-        #         messageError(PROJECT_RVM_DESKTOP +"[red] ==> FILE DOES NOT EXIST")
-        #         endCompilation("ERROR",start_time)
-        #     if not rvm_desktop(PROJECT_RVM_MODEL,f"{PWD}/dsk/{PROJECT_NAME}.DSK",PROJECT_RVM_RUN,PROJECT_NAME,PROJECT_RVM_DESKTOP):endCompilation("ERROR",start_time)
-
-        # ##
-        # # Show end compilation
-        # ##  
-
-        cm.showFoodDataProject("CREATE DISC IMAGE SUCCESSFULLY", 1)
+                    
+        cm.showFoodDataProject("CREATE DISC IMAGE SUCCESSFULLY", 0)
 
 ##
 # Compile ugbasic

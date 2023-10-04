@@ -39,7 +39,13 @@ CPC664 = """[grey]█▀▀█ █▀▄▀█ █▀▀▀█ ▀▀█▀▀ �
 
 subfolders = ["assets", "out", "dsk", "src", "cfg"]
 
-CFG_PROJECT = "cfg/cpcready.cfg"
+CFG_PROJECT      = "cfg/cpcready.cfg"
+TEMPLATE_RVM_WEB = "rvm-web.html"
+PATH_DISC        = "out"
+PATH_OBJ         = "obj"
+PATH_SRC         = "src"
+PATH_DSK         = "dsk"
+PATH_ASSETS      = "assets"
 
 if sys.platform == "win32":
     cm.msgError(f"WIN32 Platform not supported")
@@ -175,7 +181,7 @@ def showHeadDataProject(project):
     description = f"*** {project} ***"
     center_text = description.center(80)
     console.print(
-        "[bold yellow]==================================================================================== [/bold yellow]")
+        "[bold yellow]\n==================================================================================== [/bold yellow]")
     console.print("[bold yellow]" + center_text.upper() + "[/bold yellow]")
     console.print(
         "[bold yellow]====================================================================================\n [/bold yellow]")
