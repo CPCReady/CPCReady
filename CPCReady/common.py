@@ -49,6 +49,7 @@ if sys.platform == "win64":
     TEMP_PATH = os.getenv('TEM')
     MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/tools/win/martine.exe"
     DSK = os.path.dirname(os.path.abspath(__file__)) + "/bin/win64/iDSK.exe"
+    UGBASIC = os.path.dirname(os.path.abspath(__file__)) + "/bin/win64/ugb.exe"
 if sys.platform == 'darwin':
     TEMP_PATH = os.getenv('TMPDIR')
     MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/tools/" + sys.platform + "/martine"
@@ -57,6 +58,7 @@ if sys.platform.startswith('linux'):
     TEMP_PATH = os.getenv('TMP')
     MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/tools/" + sys.platform + "/martine"
     IDSK = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/iDSK"
+    UGBASIC = os.path.dirname(os.path.abspath(__file__)) + "/bin/linux/ugb"
     
 PWD = os.getcwd() + "/"
 
@@ -193,11 +195,12 @@ def showFoodDataProject(description, out):
         "[bold yellow]\n==================================================================================== [/bold yellow]")
     if out == 0:
         console.print("[bold green]" + center_text.upper() + "[/bold green]")
+        console.print("[bold yellow]====================================================================================\n [/bold yellow]")
     if out == 1:
         console.print("[bold red]" + center_text.upper() + "[/bold red]")
+        console.print("[bold yellow]====================================================================================\n [/bold yellow]")
         sys.exit(1)
-    console.print(
-        "[bold yellow]====================================================================================\n [/bold yellow]")
+
 
 ##
 # verify file exist
