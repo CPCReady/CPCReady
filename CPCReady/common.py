@@ -170,7 +170,6 @@ def getFileExtension(source):
     file_extension = os.path.splitext(source)[1]
     return file_extension
 
-
 ##
 # Show head data proyect
 #
