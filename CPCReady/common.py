@@ -41,7 +41,7 @@ CPC664 = """[grey]█▀▀█ █▀▄▀█ █▀▀▀█ ▀▀█▀▀ �
 #
 ##
 
-subfolders = ["assets", "out", "dsk", "src", "cfg"]
+subfolders = ["assets", "out", "dsk", "src", "cfg","lib"]
 
 
 # CFG_PROJECT      = "cfg/cpcready.cfg"
@@ -51,11 +51,12 @@ PATH_DISC        = "out"
 PATH_OBJ         = "obj"
 PATH_SRC         = "src"
 PATH_DSK         = "dsk"
+PATH_LIB         = "lib"
 PATH_ASSETS      = "assets"
 CFG_PROJECT      = f"{PATH_CFG}/project.cfg"
 CFG_EMULATORS    = f"{PATH_CFG}/emulators.cfg"
-CFG_IMAGES       = f"{PATH_CFG}/emulators.cfg"
-CFG_SPRITES      = f"{PATH_CFG}/emulators.cfg"
+CFG_IMAGES       = f"{PATH_CFG}/images.cfg"
+CFG_SPRITES      = f"{PATH_CFG}/sprites.cfg"
 APP_PATH         = os.path.dirname(os.path.abspath(__file__))
 
 if sys.platform == "win32":

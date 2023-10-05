@@ -63,7 +63,7 @@ def create(filename, mode, fileout, dsk, api=False):
             if not dsk:
                 shutil.copy2(os.path.join(IMAGE_TEMP_PATH, IMAGE_TMP_FILE.upper() + '.PAL'), fileout)
                 shutil.copy2(os.path.join(IMAGE_TEMP_PATH, IMAGE_TMP_FILE.upper() + '.SCR'), fileout)
-                cm.msgInfo(f"Create SCREEN File: {fileout}/{IMAGE_TMP_FILE.upper()}.SCR")
+                cm.msgInfo(f"Create SCREEN File  ==> " + cm.getFileExt(fileout + "/" + IMAGE_TMP_FILE.upper() + ".SCR"))
         else:
             subprocess.check_output(cmd, stderr=subprocess.DEVNULL)
     except subprocess.CalledProcessError as e:
