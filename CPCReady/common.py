@@ -4,6 +4,7 @@ import datetime
 import time
 import logging
 import shutil
+import configparser
 from rich.console import Console
 from rich.logging import RichHandler
 from rich.text import Text
@@ -12,6 +13,9 @@ from rich import inspect
 from rich.table import Table
 from rich import print
 from rich.columns import Columns
+from configparser import ConfigParser
+import configparser as cfg
+from jinja2 import Template
 
 console = Console()
 log = logging.getLogger("rich")
@@ -39,13 +43,20 @@ CPC664 = """[grey]█▀▀█ █▀▄▀█ █▀▀▀█ ▀▀█▀▀ �
 
 subfolders = ["assets", "out", "dsk", "src", "cfg"]
 
-CFG_PROJECT      = "cfg/cpcready.cfg"
+
+# CFG_PROJECT      = "cfg/cpcready.cfg"
 TEMPLATE_RVM_WEB = "rvm-web.html"
+PATH_CFG         = "cfg"
 PATH_DISC        = "out"
 PATH_OBJ         = "obj"
 PATH_SRC         = "src"
 PATH_DSK         = "dsk"
 PATH_ASSETS      = "assets"
+CFG_PROJECT      = f"{PATH_CFG}/project.cfg"
+CFG_EMULATORS    = f"{PATH_CFG}/emulators.cfg"
+CFG_IMAGES       = f"{PATH_CFG}/emulators.cfg"
+CFG_SPRITES      = f"{PATH_CFG}/emulators.cfg"
+APP_PATH         = os.path.dirname(os.path.abspath(__file__))
 
 if sys.platform == "win32":
     cm.msgError(f"WIN32 Platform not supported")
@@ -69,15 +80,41 @@ if sys.platform.startswith('linux'):
 PWD = os.getcwd() + "/"
 
 ##
+# create template file
+#
+# @param tempaletename: template name
+# @param templatedata: template data
+# @param out: generate template directory
+##
+def createTemplate(templateName, templateData, out):
+    
+    APP_PATH = os.path.dirname(os.path.abspath(__file__))
+    with open(APP_PATH + f"/templates/{templateName}.j2", 'r') as file:
+        template_string = file.read()
+    template = Template(template_string)
+    rendered_template = template.render(templateData)
+    with open(out + "/" + templateName, 'w') as file:
+        file.write(rendered_template)
+
+
+##
 # Delete folder
 #
 # @param directory: directory to remove
 ##
-
 def rmFolder(directory):
     if os.path.exists(directory) and os.path.isdir(directory):
         shutil.rmtree(directory)
 
+##
+# get data ini/cfg file
+#
+# @param cfgfile: path filename
+##
+def getData(cfgFile):
+    config = configparser.ConfigParser()
+    config.read(cfgFile)
+    return config
 
 ##
 # Show banner dependencie model cpc
@@ -245,3 +282,43 @@ def imageCompilation(image):
     console.print("[bold blue] IMAGE: [/bold blue][bold white]" + image + "[/bold white]")
     console.print(
         "[bold white]------------------------------------------------------------------------------------- [/bold white]\n")
+
+def readProjectIni(file):
+    config = configparser.ConfigParser()
+    config.read(file)
+    diccionario = {}
+    for seccion in config.sections():
+        diccionario[seccion] = {}
+        for clave, valor in config.items(seccion):
+            diccionario[seccion][clave] = valor
+    return diccionario
+
+def crear_entrada_ini(ruta_archivo, seccion, clave, valor):
+
+    config = configparser.ConfigParser()
+    config.read(ruta_archivo)
+    if seccion not in config.sections():
+        config.add_section(seccion)
+
+    config.set(seccion, clave, valor)
+    with open(ruta_archivo, 'w') as archivo:
+        config.write(archivo)
+
+
+def recorrer_claves_y_valores_ini(ruta_archivo):
+    # Crear un objeto ConfigParser
+    config = configparser.ConfigParser()
+    
+    # Leer el archivo INI
+    config.read(ruta_archivo)
+    
+    # Recorrer las secciones del archivo INI
+    for seccion in config.sections():
+        # Imprimir el nombre de la sección
+        print(f"[{seccion}]")
+        
+        # Recorrer las claves y valores de cada sección
+        for clave, valor in config.items(seccion):
+            print(f"{clave} = {valor}")
+        
+        print()  # Imprimir una línea en blanco entre secciones

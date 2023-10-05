@@ -6,52 +6,43 @@ from jinja2 import Template
 import subprocess
 import yaml
 from CPCReady import common as cm
-from CPCReady import func_screen as screens
-from CPCReady import func_sprite as sprites
+import io
+
 
 def execute(project,emulator):
 
-    if not cm.fileExist(cm.CFG_PROJECT):
-        cm.msgError(f"The project configuration file does not exist ({cm.CFG_PROJECT})")
+    if not cm.fileExist(cm.CFG_EMULATORS):
         sys.exit(1)
 
-    with open(cm.CFG_PROJECT, 'r') as file:
-        data = yaml.safe_load(file)
+    DATA_PROJECT   = cm.getData(cm.CFG_PROJECT)
+    DATA_EMULATORS = cm.getData(cm.CFG_EMULATORS)
 
-    PROJECT_NAME         = data['project']['data'].get('name', 'No project mame')
-    PROJECT_AUTHOR       = data['project']['data'].get('author', 'No author mame')
-    PROJECT_DSK_FILE     = f"{cm.PATH_DSK}/{PROJECT_NAME}.DSK"
-
-    APP_PATH = os.path.dirname(os.path.abspath(__file__))
+    PROJECT_NAME         = DATA_PROJECT.get('project','name')
+    PROJECT_AUTHOR       = DATA_PROJECT.get('project','author')
+    PROJECT_DSK_FILE     = f"{cm.PATH_DSK}/{DATA_PROJECT.get('project','dsk')}"
     
     cm.showHeadDataProject(cm.getFileExt(PROJECT_DSK_FILE))
     
     if emulator == "rvm-web":   
-        PROJECT_RVM_MODEL    = data['project']['emulators'][emulator].get('model')
-        PROJECT_RVM_RUN      = data['project']['emulators'][emulator].get('run')
+        PROJECT_RVM_MODEL    = DATA_EMULATORS.get(emulator,'model')
+        PROJECT_RVM_RUN      = DATA_EMULATORS.get(emulator,'run')
         EMULATOR             = f"Retro Virtual Machine WEB ({cm.TEMPLATE_RVM_WEB})"
         context = {
             'name': PROJECT_NAME,
-            'cpc': PROJECT_RVM_MODEL,
+            'model': PROJECT_RVM_MODEL,
             'dsk': f"{PROJECT_DSK_FILE}",
             'run': f'{PROJECT_RVM_RUN}'
         }
-
-        with open(APP_PATH + "/templates/cpc.j2", 'r') as file:
-            template_string = file.read()
-        template = Template(template_string)
-        rendered_template = template.render(context)
-        with open(cm.TEMPLATE_RVM_WEB, 'w') as file:
-            file.write(rendered_template)
-            
+        
+        cm.createTemplate("rvm-web.html", context, cm.PATH_CFG)
         cm.msgInfo(f"CPC Model: {PROJECT_RVM_MODEL}")
         cm.msgInfo(f"RUN Command: {PROJECT_RVM_RUN}")
         cm.msgInfo(f"Emulator: RVM Web ({cm.TEMPLATE_RVM_WEB})") 
            
     elif emulator == "rvm-desktop":   
-        PROJECT_RVM_MODEL    = data['project']['emulators'][emulator].get('model')
-        PROJECT_RVM_RUN      = data['project']['emulators'][emulator].get('run')
-        PROJECT_RVM_PATH     = data['project']['emulators'][emulator].get('path')
+        PROJECT_RVM_MODEL    = DATA_EMULATORS.get(emulator,'model')
+        PROJECT_RVM_RUN      = DATA_EMULATORS.get(emulator,'run')
+        PROJECT_RVM_PATH     = DATA_EMULATORS.get(emulator,'path')
         
         if PROJECT_RVM_PATH != "":
             if cm.fileExist(PROJECT_RVM_PATH):
@@ -72,8 +63,8 @@ def execute(project,emulator):
             cm.showFoodDataProject("DISC IMAGE RELEASED WITH ERROR", 1)
         
     elif emulator == "m4board":   
-        PROJECT_RVM_RUN      = data['project']['emulators'][emulator].get('run')
-        PROJECT_M4BOARD_IP   = data['project']['emulators'][emulator].get('ip')
+        PROJECT_RVM_RUN      = DATA_EMULATORS.get(emulator,'run')
+        PROJECT_M4BOARD_IP   = DATA_EMULATORS.get(emulator,'ip')
         EMULATOR             = "M4 Board"
         cm.msgInfo(f"CPC Model: {PROJECT_RVM_MODEL}")
         cm.msgInfo(f"RUN Command: {PROJECT_RVM_RUN}")

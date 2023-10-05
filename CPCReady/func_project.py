@@ -2,8 +2,10 @@ import os
 import sys
 import datetime
 import shutil
-from jinja2 import Template
+
 from CPCReady import common as cm
+
+
 
 ##
 # Create project
@@ -21,7 +23,7 @@ def create(project, model):
     folder_project = f"{project}"
 
     current_datetime = datetime.datetime.now()
-    APP_PATH = os.path.dirname(os.path.abspath(__file__))
+   
 
     cm.banner(model)
     cm.showHeadDataProject(project)
@@ -37,26 +39,6 @@ def create(project, model):
 
     cm.msgInfo("CPC Model: " + str(model))
 
-    # ########################################
-    # # CREATE TEMPLATE TESTING RVM WEB
-    # ########################################
-    # if testing == "rvm-web":
-    #     context = {
-    #         'name': project,
-    #         'cpc': model,
-    #         'dsk': f"dsk/{project}.dsk",
-    #         'run': 'run"MAIN.BAS"'
-    #     }
-
-    #     with open(APP_PATH + "/templates/cpc.j2", 'r') as file:
-    #         template_string = file.read()
-    #     template = Template(template_string)
-    #     rendered_template = template.render(context)
-    #     with open(folder_project + "/cpc.html", 'w') as file:
-    #         file.write(rendered_template)
-
-    #     cm.msgInfo(f"Testing Project: Retro Virtual Machine Web")
-
     ########################################
     # CREATE PROJECT FOLDERS
     ########################################
@@ -64,47 +46,23 @@ def create(project, model):
         os.makedirs(f"{folder_project}/{folders}")
         cm.msgInfo(f"Create folder: {folder_project}/{folders}")
 
-    current_datetime = datetime.datetime.now()
-
     ########################################
-    # CREATE TEMPLATE PROJECT CONFIGURATIONS
+    # CREATE TEMPLATES PROJECT
     ########################################
-    context_CFG = {
-        'name': project,
-        'user': user,
-        'rvm_path': ""
-    }
+    
+    ## PROJECT
+    DATA = {'name': project,'user': user,'rvm_path': "",'date':current_datetime, "model": model}
+    cm.createTemplate("project.cfg",  DATA, f"{folder_project}/{cm.PATH_CFG}")
+    cm.createTemplate("emulators.cfg", DATA, f"{folder_project}/{cm.PATH_CFG}")
+    cm.createTemplate("images.cfg",   DATA, f"{folder_project}/{cm.PATH_CFG}")
+    cm.createTemplate("sprites.cfg",  DATA, f"{folder_project}/{cm.PATH_CFG}")
+    cm.createTemplate("MAIN.BAS",     DATA, f"{folder_project}/{cm.PATH_SRC}")
+    cm.createTemplate("MAIN.UGB",     DATA, f"{folder_project}/{cm.PATH_SRC}")
 
-    with open(APP_PATH + "/templates/cpc_yaml.j2", 'r') as file:
-        template_string = file.read()
-    template = Template(template_string)
-    rendered_template = template.render(context_CFG)
-    with open(folder_project + cm.CFG_PROJECT, 'w') as file:
-        file.write(rendered_template)
-
-    cm.msgInfo(f"Configuration Project: {folder_project}" + cm.CFG_PROJECT)
-
-    context = {
-        'name': project,
-        'user': user,
-        'fecha': current_datetime
-    }
-
-    with open(APP_PATH + "/templates/MAIN.BAS.j2", 'r') as file:
-        template_string = file.read()
-    template = Template(template_string)
-    rendered_template = template.render(context)
-    with open(folder_project + "/src/MAIN.BAS", 'w') as file:
-        file.write(rendered_template)
-
-    cm.msgInfo(f"Create BASIC template: {folder_project}/src/MAIN.BAS")
-
-    shutil.copyfile(f"{folder_project}/src/MAIN.BAS", f"{folder_project}/src/MAIN.ugbasic")
-
-    cm.msgInfo(f"Create ugBASIC template: {folder_project}/src/MAIN.ugbasic")
+    cm.msgInfo(f"Create Template Files project")
 
     if sys.platform != "win64" or sys.platform != "win32":
-        shutil.copyfile(APP_PATH + "/templates/Makefile", f"{folder_project}/Makefile")
+        cm.createTemplate("Makefile", DATA, folder_project)
         cm.msgInfo(f"Create Makefile: {folder_project}/Makefile")
 
     cm.showFoodDataProject(f"{project} PROJECT SUCCESSFULLY CREATED.", 0)

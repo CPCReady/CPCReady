@@ -1,6 +1,6 @@
 <html>
   <head>
-    <script src='https://cdn.rvmplayer.org/rvmplayer.cpc{{ cpc }}.0.1.0.min.js'></script>
+    <script src='https://cdn.rvmplayer.org/rvmplayer.cpc{{ model }}.0.1.0.min.js'></script>
     <style>
       body {
         background-color: rgb(7, 7, 7);
@@ -26,10 +26,10 @@
     <div class='container'></div>
     <script>
       const c=document.querySelector('.container')
-      rvmPlayer_cpc{{ cpc }}(c,{
+      rvmPlayer_cpc{{ model }}(c,{
         disk: {
           type: 'dsk',
-          url: '{{ dsk }}',
+          url: './{{ dsk }}',
         },
         command: '{{ run }}\n',
         warpFrames: 20*50
