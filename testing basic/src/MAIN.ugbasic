@@ -1,2 +1,0 @@
-1 ' Version 1.0.0 - 2023-09-30 12:12:33.842006 - destroyer
-10 PRINT "BIENVENIDO A CPCReady for BASIC"
