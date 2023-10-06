@@ -14,15 +14,10 @@ def create():
     # Check is cfg project exist
     if not cm.fileExist(cm.CFG_PROJECT):
         sys.exit(1)
-
-    # load data cfg project
-    # with open(cm.CFG_PROJECT, 'r') as file:
-    #     data = yaml.safe_load(file)
         
     DATA_PROJECT   = cm.getData(cm.CFG_PROJECT)
     DATA_EMULATORS = cm.getData(cm.CFG_EMULATORS)
 
-    # NUMBER_CONCAT_FILES  = sum(1 for item in data['spec']['files'] if item.get('kind') == 'bas' and item.get('concat') == True)
     COUNT                = 0
     PROJECT_NAME         = DATA_PROJECT.get('project','name')
     CPC_MODEL            = DATA_PROJECT.get('project','model')

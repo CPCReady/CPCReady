@@ -47,7 +47,7 @@
             "env": {
                 "PYTHONPATH": "${workspaceFolder}",
             },
-            "args": ["--project", "testing2basic"] 
+            "args": ["--project", "testing2basic22"] 
         },
         {
             "name": "CREATE SCREEN",
