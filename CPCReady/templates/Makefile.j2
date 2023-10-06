@@ -1,23 +1,30 @@
-######################################################
-# CPCReady MAkefile version: 1.0
-######################################################
+PROJECT_CFG = cfg/project.cfg
+EMULATORS_CFG = cfg/emulators.cfg
+EMULATOR = rvm-web
 
-CPCREADY_CFG := cfg/cpcready.cfg
+all: build run
 
-# Verificar la existencia del archivo cfg/cpcready.cfg
-check_cfg:
-    @if [ -f $(CPCREADY_CFG) ]; then \
-        echo "El archivo $(CPCREADY_CFG) existe."; \
+.PHONY: read-project-config
+read-project-config:
+	@if [ -f $(PROJECT_CFG) ]; then \
+		MODEL=$$(awk -F'=' '/model/{print $$2}' $(PROJECT_CFG)); \
+		NAME=$$(awk -F'=' '/name/{print $$2}' $(PROJECT_CFG)); \
     else \
-        echo "El archivo $(CPCREADY_CFG) no existe en la ruta actual."; \
-        exit 1; \
+		echo "El archivo $(PROJECT_CFG) no existe."; \
+		exit 1; \
     fi
 
-# Regla build dependiente de check_cfg
-build: check_cfg
-    @echo "Ejecutando cpcr_build..."
-    ./cpcr_build build
+.PHONY: build
+build: read-project-config
+	@cpcr_build --build
 
-clean:
-    @echo "Borrando el contenido de la carpeta 'out'..."
-    rm -rf out/*
+.PHONY: check-emulators-config
+check-emulators-config:
+	@if [ ! -f $(EMULATORS_CFG) ]; then \
+		echo "El archivo $(EMULATORS_CFG) no existe."; \
+        exit 1; \
+ 	fi
+
+.PHONY: run
+run: check-emulators-config
+	@cpcr_run --emulator $(EMULATOR)

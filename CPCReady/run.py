@@ -9,7 +9,7 @@ def main():
     parser = argparse.ArgumentParser(description=description)
     parser.add_argument('--project', '-p', help='Project name', default=cm.PWD)
     parser.add_argument('-v', '--version', action='version', version='\nCPCReady - Project ' + __version__)
-    parser.add_argument('--emulator', '-e', type=str, default="rvm-web", choices=["rvm-web", "rvm-desktop", "m4board"],
+    parser.add_argument('--emulator', '-e', type=str, required=True, choices=["rvm-web", "rvm-desktop", "m4board"],
                         help='Emulador for testing softwqre')
     args = parser.parse_args()
 

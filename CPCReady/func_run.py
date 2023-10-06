@@ -60,8 +60,12 @@ def execute(project,emulator):
                     cm.msgError(f'{cm.getFileExt(PROJECT_DSK_FILE)} RELEASED WITH ERROR: {e.output.decode()}')
                     return False
             else:
+                cm.banner(PROJECT_RVM_MODEL)
+                cm.showHeadDataProject(cm.getFileExt(PROJECT_DSK_FILE))
                 cm.showFoodDataProject("DISC IMAGE RELEASED WITH ERROR", 1)
         else:
+            cm.banner(PROJECT_RVM_MODEL)
+            cm.showHeadDataProject(cm.getFileExt(PROJECT_DSK_FILE))
             cm.msgError(f"RVM Desktop path does not exist in {cm.CFG_PROJECT}")
             cm.showFoodDataProject("DISC IMAGE RELEASED WITH ERROR", 1)
         
