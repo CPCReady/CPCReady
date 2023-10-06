@@ -62,17 +62,7 @@ def create():
             if not convert2Dos(outputbasfile, outputbasfile): 
                     cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
             if not addBas2ImageDisc(PROJECT_DSK_FILE, outputbasfile):
-                cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)   
-                                             
-    ########################################
-    # PROCESING BIN FILES
-    ########################################
-    
-    for binfile in glob.glob(os.path.join(cm.PATH_LIB, '*.[bB][iI][nN]')):
-        outputbinfile = f"{cm.PATH_DISC}/{cm.getFileExt(binfile)}"
-        shutil.copy2(binfile,outputbinfile)
-        if not addBin2ImageDisc(PROJECT_DSK_FILE, outputbinfile):
-            cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)    
+                cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)    
       
     ########################################
     # PROCESING IMAGES FILES
@@ -132,14 +122,37 @@ def create():
     if sys.platform != 'darwin':
         for ugbfile in glob.glob(os.path.join(cm.PATH_SPR, '*.[uU][gG][bB]')):
             UGBASIC_NAME   = cm.getFileExt(ugbfile)
-            if not compile(UGBASIC_NAME, cm.PATH_DISC):
+            if not compileUGBasic(UGBASIC_NAME, cm.PATH_DISC + "/UGBTEMP.DSK"):
                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-            if not cm.addBin2ImageDisc(PROJECT_DSK_FILE, f"{cm.PATH_DISC}/" + UGBASIC_NAME + ".bin"): 
+            if not cm.addBin2ImageDisc(PROJECT_DSK_FILE, f"{cm.PATH_DISC}/" + UGBASIC_NAME + ".BIN"): 
                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
     else:
         cm.msgWarning("Mac OSX operating system does not support ugBasic")
-                    
+    
+    ########################################
+    # PROCESING DSK FILES (LIB)
+    ########################################
+    
+    for dskfile in glob.glob(os.path.join(cm.PATH_LIB, '*.[dD][sS][kK]')):
+        if not extract2ImageDisc(dskfile,cm.PATH_DISC + "/" + cm.getFile(dskfile) + ".bin"):
+            cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1) 
+        # shutil.copyfile(dskfile,cm.PATH_DISC + "/" + cm.getFile(dskfile) + ".bin")
+        # os.remove(cm.PATH_DISC + "/" + cm.getFile(dskfile) + ".bin")
+        if not addBin2ImageDisc(PROJECT_DSK_FILE, cm.PATH_DISC + "/" + cm.getFile(dskfile) + ".bin"):
+            cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)   
+
+    ########################################
+    # PROCESING BIN FILES (LIB)
+    ########################################
+    
+    for binfile in glob.glob(os.path.join(cm.PATH_LIB, '*.[bB][iI][nN]')):
+        outputbinfile = f"{cm.PATH_DISC}/{cm.getFileExt(binfile)}"
+        shutil.copy2(binfile,outputbinfile)
+        if not addBin2ImageDisc(PROJECT_DSK_FILE, outputbinfile):
+            cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)   
+
     cm.showFoodDataProject("CREATE DISC IMAGE SUCCESSFULLY", 0)
+
 
 ##
 # Compile ugbasic
@@ -148,15 +161,16 @@ def create():
 # @param out: output file name
 ##
 def compileUGBasic(source, out):
-
     try:
         cmd = [cm.UGBASIC, source, "-o", out]
         output = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
         name = cm.getFile(source)
-        extract2ImageDisc(name,out)
-        shutil.move("src/" + name, name+".bin")
-        cm.msgInfo(f"Compile: {source} ==> + {name}.bin")
-        os.remove(out)
+        if extractUGBC2ImageDisc(out):
+            shutil.move(cm.PATH_DISC + "/MAIN", name.upper() + ".BIN")
+            cm.msgInfo(f"Compile: {source} ==> " + name.upper() + ".BIN")
+            os.remove(out)
+        else:
+            cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1) 
         return True
     except subprocess.CalledProcessError as e:
         cm.msgError(cm.getFileExt(source) + f' ==> Error executing command: {e.output.decode()}')
@@ -253,7 +267,18 @@ def addBin2ImageDisc(imagefile, file):
 
 def extract2ImageDisc(imagefile, file):
     FNULL = open(os.devnull, 'w')
-    cmd = [cm.IDSK, imagefile, "-g", file]
+    cmd = [cm.IDSK, imagefile, "-g", file.upper()]
+    try:
+        output = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
+        cm.msgInfo("Extract lib " + cm.getFileExt(imagefile) + " ==> " + cm.getFile(imagefile) + ".bin")
+        return True
+    except subprocess.CalledProcessError as e:
+        cm.msgError(f'Error ' + cm.getFileExt(imagefile) + f' executing command: {e.output.decode()}')
+        return False
+
+def extractUGBC2ImageDisc(imagefile):
+    FNULL = open(os.devnull, 'w')
+    cmd = [cm.IDSK, imagefile, "-g", cm.PATH_LIB + "/MAIN"]
     try:
         output = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
         return True
