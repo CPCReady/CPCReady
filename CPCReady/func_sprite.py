@@ -20,6 +20,7 @@ from CPCReady import common as cm
 ##
 
 def create(filename, mode, fileout, height, width, api=False):
+    
     ########################################
     # VARIABLES
     ########################################
@@ -28,14 +29,23 @@ def create(filename, mode, fileout, height, width, api=False):
         IMAGE_TEMP_PATH = cm.TEMP_PATH + "." + os.path.basename(filename)
     else:
         IMAGE_TEMP_PATH = cm.PWD + "." + os.path.basename(filename)
-
+    
     IMAGE_TMP_FILE = os.path.basename(os.path.splitext(filename)[0])
-    IMAGE_TMP_JSON = IMAGE_TEMP_PATH + "/" + IMAGE_TMP_FILE + ".json"
-    IMAGE_TMP_TXT = IMAGE_TEMP_PATH + "/" + IMAGE_TMP_FILE + ".TXT"
-    IMAGE_TMP_CTXT = IMAGE_TEMP_PATH + "/" + IMAGE_TMP_FILE + "C.TXT"
 
-    if os.path.exists(IMAGE_TEMP_PATH) and os.path.isdir(IMAGE_TEMP_PATH):
-        shutil.rmtree(IMAGE_TEMP_PATH)
+    ########################################
+    # WE CHECK IF WE COMPLY WITH RULE 6:3
+    ########################################
+
+    if len(IMAGE_TMP_FILE) > 6:
+        IMAGE_TMP_TXT = IMAGE_TEMP_PATH + "/" + IMAGE_TMP_FILE[:6] + ".TXT"
+        IMAGE_TMP_CTXT = IMAGE_TEMP_PATH + "/" + IMAGE_TMP_FILE[:6] + "C.TXT"
+    else:
+        IMAGE_TMP_TXT = IMAGE_TEMP_PATH + "/" + IMAGE_TMP_FILE + ".TXT"
+        IMAGE_TMP_CTXT = IMAGE_TEMP_PATH + "/" + IMAGE_TMP_FILE + "C.TXT"
+        
+    IMAGE_TMP_JSON = IMAGE_TEMP_PATH + "/" + IMAGE_TMP_FILE + ".json"
+
+    cm.rmFolder(IMAGE_TEMP_PATH)
 
     cmd = [cm.MARTINE, '-in', filename, '-width', str(width), '-height', str(height), '-mode', str(mode), '-out',
            IMAGE_TEMP_PATH, '-json', '-noheader']
@@ -55,6 +65,7 @@ def create(filename, mode, fileout, height, width, api=False):
             subprocess.check_output(cmd, stderr=subprocess.DEVNULL)
     except subprocess.CalledProcessError as e:
         cm.msgError(f'Error ' + cm.getFileExt(filename) + f' executing command: {e.output.decode()}')
+        cm.rmFolder(IMAGE_TEMP_PATH)
         if api == False:
             cm.showFoodDataProject(IMAGE_TMP_FILE.upper() + ".DSK NOT CREATED.", 1)
         else:
@@ -93,8 +104,8 @@ def create(filename, mode, fileout, height, width, api=False):
                     output_file.write(line.replace("db ", "   "))
             output_file.write("};\n")
 
-    cm.msgInfo(f"Create C File  : {fileout}/" + IMAGE_TMP_FILE.upper() + ".C")
-
+    cm.msgInfo(f"Create C   File ==> " + IMAGE_TMP_FILE.upper() + ".C")
+    
     ########################################
     # GENERATE ASM FILE
     ########################################
@@ -119,11 +130,13 @@ def create(filename, mode, fileout, height, width, api=False):
                     output_file.write(line)
             output_file.write("\n;------ END SPRITE --------\n")
 
-    cm.msgInfo(f"Create ASM File: {fileout}/" + IMAGE_TMP_FILE.upper() + ".ASM")
+    cm.msgInfo(f"Create ASM File ==> " + IMAGE_TMP_FILE.upper() + ".ASM")
     cm.msgInfo(f"       SW PALETTE : {sw_palette}")
     cm.msgInfo(f"       HW PALETTE : {hw_palette}")
 
     if api == False:
         cm.showFoodDataProject("SPRITE FILES SUCCESSFULLY CREATED.", 0)
 
+    cm.rmFolder(IMAGE_TEMP_PATH)
+    
     return True

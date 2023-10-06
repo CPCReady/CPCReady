@@ -2,6 +2,18 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "EMULACION",
+            "type": "python",
+            "request": "launch",
+            "module": "CPCReady.run",
+            "cwd": "${workspaceFolder}/testing2basic",
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+            },
+            "args": ["--emulator", "rvm-web"] 
+        },
+        {
             "name": "VERSION",
             "type": "python",
             "request": "launch",
@@ -14,6 +26,18 @@
             "args": ["--version"] 
         },
         {
+            "name": "BUILD PROJECT",
+            "type": "python",
+            "request": "launch",
+            "module": "CPCReady.build",
+            "cwd": "${workspaceFolder}/testing2basic",
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+            },
+            "args": ["--build"] 
+        },
+        {
             "name": "CREATE NEW PROJECT",
             "type": "python",
             "request": "launch",
@@ -23,7 +47,7 @@
             "env": {
                 "PYTHONPATH": "${workspaceFolder}",
             },
-            "args": ["--project", "testing basic"] 
+            "args": ["--project", "testing2basic22"] 
         },
         {
             "name": "CREATE SCREEN",
@@ -35,7 +59,7 @@
             "env": {
                 "PYTHONPATH": "${workspaceFolder}",
             },
-            "args": ["--image", "/Users/david/Downloads/logole.png","--mode", "0","--out","testing basic"] 
+            "args": ["--image", "/Users/david/Downloads/logole222222.png","--mode", "0","--out","testing2basic"] 
         },
         {
             "name": "CREATE SCREEN DSK",
@@ -47,7 +71,7 @@
             "env": {
                 "PYTHONPATH": "${workspaceFolder}",
             },
-            "args": ["--image", "/Users/david/Downloads/logole.png","--mode", "0","--out","testing basic","--dsk"] 
+            "args": ["--image", "/Users/david/Downloads/logole222222.png","--mode", "0","--out","testing2basic","--dsk"] 
         },
         {
             "name": "CREATE SPRITE",
@@ -59,7 +83,7 @@
             "env": {
                 "PYTHONPATH": "${workspaceFolder}",
             },
-            "args": ["--image", "/Users/david/Downloads/logole.png","--mode", "0","--out","testing basic","--height","12", "--width","12"] 
+            "args": ["--image", "/Users/david/Downloads/logole222222.png","--mode", "0","--out","testing2basic","--height","12", "--width","12"] 
         }
     ]
 }

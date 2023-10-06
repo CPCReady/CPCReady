@@ -13,8 +13,8 @@ def main():
     parser.add_argument('-v', '--version', action='version', version='\nCPCReady - Screen ' + __version__)
 
     args = parser.parse_args()
-
-    if args.image and args.out:
+    
+    if args.image != "" and args.mode != "" and args.out != "":
         screens.create(args.image, args.mode, args.out, args.dsk)
     else:
         handle_image_mode(args, parser)

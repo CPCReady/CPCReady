@@ -3,6 +3,8 @@ import sys
 import datetime
 import time
 import logging
+import shutil
+import configparser
 from rich.console import Console
 from rich.logging import RichHandler
 from rich.text import Text
@@ -11,6 +13,9 @@ from rich import inspect
 from rich.table import Table
 from rich import print
 from rich.columns import Columns
+from configparser import ConfigParser
+import configparser as cfg
+from jinja2 import Template
 
 console = Console()
 log = logging.getLogger("rich")
@@ -36,21 +41,82 @@ CPC664 = """[grey]█▀▀█ █▀▄▀█ █▀▀▀█ ▀▀█▀▀ �
 #
 ##
 
-subfolders = ["assets", "out", "dsk", "src", "cfg"]
-CFG_PROJECT = "/cfg/cpcready.cfg"
+subfolders = ["out", "dsk", "src", "cfg","lib","img","spr","doc"]
 
-if sys.platform == "win32" or sys.platform == "win64":
+
+# CFG_PROJECT      = "cfg/cpcready.cfg"
+TEMPLATE_RVM_WEB = "rvm-web.html"
+PATH_CFG         = "cfg"
+PATH_DISC        = "out"
+PATH_OBJ         = "obj"
+PATH_SRC         = "src"
+PATH_DSK         = "dsk"
+PATH_LIB         = "lib"
+PATH_SPR         = "spr"
+PATH_ASSETS      = "img"
+CFG_PROJECT      = f"{PATH_CFG}/project.cfg"
+CFG_EMULATORS    = f"{PATH_CFG}/emulators.cfg"
+CFG_IMAGES       = f"{PATH_CFG}/images.cfg"
+CFG_SPRITES      = f"{PATH_CFG}/sprites.cfg"
+APP_PATH         = os.path.dirname(os.path.abspath(__file__))
+
+if sys.platform == "win32":
+    cm.msgError(f"WIN32 Platform not supported")
+    sys.exit(1)   
+
+if sys.platform == "win64":
     TEMP_PATH = os.getenv('TEM')
     MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/tools/win/martine.exe"
+    DSK = os.path.dirname(os.path.abspath(__file__)) + "/bin/win64/iDSK.exe"
+    UGBASIC = os.path.dirname(os.path.abspath(__file__)) + "/bin/win64/ugbc.exe"
 if sys.platform == 'darwin':
     TEMP_PATH = os.getenv('TMPDIR')
     MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/tools/" + sys.platform + "/martine"
+    IDSK = os.path.dirname(os.path.abspath(__file__)) + "/tools/darwin/iDSK"
 if sys.platform.startswith('linux'):
     TEMP_PATH = os.getenv('TMP')
     MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/tools/" + sys.platform + "/martine"
-
+    IDSK = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/iDSK"
+    UGBASIC = os.path.dirname(os.path.abspath(__file__)) + "/bin/linux/ugbc"
+    
 PWD = os.getcwd() + "/"
 
+##
+# create template file
+#
+# @param tempaletename: template name
+# @param templatedata: template data
+# @param out: generate template directory
+##
+def createTemplate(templateName, templateData, out):
+    
+    APP_PATH = os.path.dirname(os.path.abspath(__file__))
+    with open(APP_PATH + f"/templates/{templateName}.j2", 'r') as file:
+        template_string = file.read()
+    template = Template(template_string)
+    rendered_template = template.render(templateData)
+    with open(out + "/" + templateName, 'w') as file:
+        file.write(rendered_template)
+
+
+##
+# Delete folder
+#
+# @param directory: directory to remove
+##
+def rmFolder(directory):
+    if os.path.exists(directory) and os.path.isdir(directory):
+        shutil.rmtree(directory)
+
+##
+# get data ini/cfg file
+#
+# @param cfgfile: path filename
+##
+def getData(cfgFile):
+    config = configparser.ConfigParser()
+    config.read(cfgFile)
+    return config
 
 ##
 # Show banner dependencie model cpc
@@ -60,11 +126,11 @@ PWD = os.getcwd() + "/"
 def banner(cpc):
     BANNER = Table(show_header=False)
 
-    if cpc == 6128:
+    if cpc == "6128":
         BANNER.add_row(CPC6128)
-    elif cpc == 464:
+    elif cpc == "464":
         BANNER.add_row(CPC464)
-    elif cpc == 664:
+    elif cpc == "664":
         BANNER.add_row(CPC664)
     else:
         msgError("Model CPC not supported")
@@ -143,7 +209,6 @@ def getFileExtension(source):
     file_extension = os.path.splitext(source)[1]
     return file_extension
 
-
 ##
 # Show head data proyect
 #
@@ -154,7 +219,7 @@ def showHeadDataProject(project):
     description = f"*** {project} ***"
     center_text = description.center(80)
     console.print(
-        "[bold yellow]==================================================================================== [/bold yellow]")
+        "[bold yellow]\n==================================================================================== [/bold yellow]")
     console.print("[bold yellow]" + center_text.upper() + "[/bold yellow]")
     console.print(
         "[bold yellow]====================================================================================\n [/bold yellow]")
@@ -174,68 +239,11 @@ def showFoodDataProject(description, out):
         "[bold yellow]\n==================================================================================== [/bold yellow]")
     if out == 0:
         console.print("[bold green]" + center_text.upper() + "[/bold green]")
+        console.print("[bold yellow]====================================================================================\n [/bold yellow]")
     if out == 1:
         console.print("[bold red]" + center_text.upper() + "[/bold red]")
-    console.print(
-        "[bold yellow]====================================================================================\n [/bold yellow]")
-
-
-##
-# Remove comment lines
-#
-# @param source: source filename
-# @param output: output filename
-##
-def removeComments(source, output):
-    global file
-    if not os.path.exists(source):
-        msgError(f"The " + getFileExt(source) + " file does not exist")
-        return False
-
-    with open(source, 'r') as file:
-        lines = file.readlines()
-
-    filtered_lines = [line for line in lines if not line.startswith("1'") and not line.startswith("1 '")]
-
-    with open(output, 'w') as file:
-        file.writelines(filtered_lines)
-    file = getFileExt(source)
-    msgInfo(file + "[green] ==> [/green]File Comments Removed")
-    return True
-
-
-def convert2Dos(source, output):
-    if not os.path.exists(source):
-        msgError(f"The " + getFileExt(source) + " file does not exist")
-        return False
-    with open(source, 'r') as file:
-        unix_lines = file.readlines()
-
-    dos_lines = [line.rstrip('\n') + '\r\n' for line in unix_lines]
-
-    with open(output, 'w') as file:
-        file.writelines(dos_lines)
-
-    files = getFileExt(source)
-    msgInfo(files + "[green] ==> [/green]Convert unix to dos")
-    return True
-
-
-##
-# Concatenate Bas file
-#
-# @param source: source file name
-# @param output: output file name
-##
-def concatFile(source, output):
-    with open(source, 'r') as origen_file:
-        contenido_origen = origen_file.read()
-    with open(output, 'a') as destino_file:
-        destino_file.write(contenido_origen)
-    os.remove(source)
-    # messageInfo(getFileExt(source), f"Concatenate in {getFileExt(output)}.")
-    msgInfo(getFileExt(source) + f" ==> {getFileExt(output)}")
-    return True
+        console.print("[bold yellow]====================================================================================\n [/bold yellow]")
+        sys.exit(1)
 
 
 ##
@@ -245,85 +253,26 @@ def concatFile(source, output):
 ##
 def fileExist(source):
     if not os.path.isfile(source):
-        msgError(getFileExt(source) + "[red] ==> FILE DOES NOT EXIST")
+        msgError(f"File {source} does not exist.")
         return False
     return True
 
 
 ##
-# Concatenate Bas files
+# Remove directory
 #
-# @param files: list files separate with ","
-# @param output: output filename
+# @param directory: directory name
 ##
-def concatBasFiles(files, output, folder):
-    if files != "":
-        ficheros = files.split(',')
-        folder = folder + "/"
-        if os.path.exists(folder + output):
-            os.remove(folder + output)
-        with open(folder + output, 'a') as salida:
-            for fichero in ficheros:
-                nombre_fichero = fichero.strip()
-                if os.path.exists(folder + nombre_fichero):
-                    with open(folder + nombre_fichero, 'r') as archivo:
-                        contenido = archivo.read()
-                        salida.write(contenido)
-                    os.remove(folder + nombre_fichero)
-                    msgInfo(nombre_fichero + f" ==> {getFileExt(output)}")
-                else:
-                    msgError(f"The " + getFileExt(nombre_fichero) + " file does not exist")
-                    return False
-    else:
-        msgWarning("Warning Not concat files.")
-        return True
-    return True
+def removeContentDirectory (directory):
 
-
-##
-# end compilation
-#
-# @param type: show final compilation values OK or ERROR
-##
-def endCompilation(type, start_time):
-    end_time = time.time()  # Registrar el tiempo de finalización
-    execution_time = end_time - start_time
-    current_datetime = datetime.datetime.now()
-    formatted_datetime = current_datetime.strftime('%Y-%m-%d %H:%M:%S')
-    console.print(
-        "\n[bold white]------------------------------------------------------------------------------------- [/bold white]")
-    if type == "OK":
-        console.print("[bold green]BUILD SUCCESSFULLY [/bold green]")
-    if type == "ERROR":
-        console.print("[bold red]BUILD FAILURE [/bold red]")
-    console.print(
-        "[bold white]------------------------------------------------------------------------------------- [/bold white]")
-    console.print(f"[white]Total time: {execution_time:.2f} seg [/white]")
-    console.print(f"[white]Finished at: {formatted_datetime}[/white]")
-    console.print(
-        "[bold white]------------------------------------------------------------------------------------- [/bold white]")
-    if type == "ERROR": sys.exit(1)
-    if type == "OK": sys.exit(0)
-
-
-##
-# begin compilation
-#
-# @param project: show project name in initial compilation
-##
-def beginCompilation(project, author, model):
-    # console.print("\n[bold white]------------------------------------------------------------------------------------- [/bold white]")
-    # console.print("[bold blue] PROJECT: [/bold blue][bold white]" + project + "[/bold white]")
-    # console.print("[bold white]------------------------------------------------------------------------------------- [/bold white]\n")
-    console.print(
-        "\n[bold white]------------------------------------------------------------------------------------- [/bold white]")
-    console.print("[bold blue] PROJECT: [/bold blue][bold white]" + project + "[/bold white]")
-    console.print("[bold blue] AUTHOR : [/bold blue][bold white]" + author + "[/bold white]")
-    console.print("[bold blue] MODEL  : [/bold blue][bold white]CPC " + str(model) + "[/bold white]")
-    console.print(
-        "[bold white]------------------------------------------------------------------------------------- [/bold white]\n")
-
-
+    if os.path.exists(directory) and os.path.isdir(directory):
+        archivos = os.listdir(directory)
+        for archivo in archivos:
+            ruta_completa = os.path.join(directory, archivo)
+            if os.path.isfile(ruta_completa):
+                os.remove(ruta_completa)
+    msgInfo(f"Clean temporal directory.")            
+                
 ##
 # compilation image
 #
@@ -336,33 +285,42 @@ def imageCompilation(image):
     console.print(
         "[bold white]------------------------------------------------------------------------------------- [/bold white]\n")
 
+def readProjectIni(file):
+    config = configparser.ConfigParser()
+    config.read(file)
+    diccionario = {}
+    for seccion in config.sections():
+        diccionario[seccion] = {}
+        for clave, valor in config.items(seccion):
+            diccionario[seccion][clave] = valor
+    return diccionario
 
-##
-# create project
-#
-# @param project: image name
-##
-def createProject(project):
-    console.print(
-        "\n[bold white]------------------------------------------------------------------------------------- [/bold white]")
-    console.print("[bold blue]CREATE PROJECT: [/bold blue][bold white]" + project + "[/bold white]")
-    console.print(
-        "[bold white]------------------------------------------------------------------------------------- [/bold white]\n")
+def crear_entrada_ini(ruta_archivo, seccion, clave, valor):
+
+    config = configparser.ConfigParser()
+    config.read(ruta_archivo)
+    if seccion not in config.sections():
+        config.add_section(seccion)
+
+    config.set(seccion, clave, valor)
+    with open(ruta_archivo, 'w') as archivo:
+        config.write(archivo)
 
 
-##
-# end create project
-#
-# @param type: show final compilation values OK or ERROR
-##
-def endCreteProject(type):
-    console.print(
-        "\n[bold white]------------------------------------------------------------------------------------- [/bold white]")
-    if type == "OK":
-        console.print("[bold green]CREATE PROJECT SUCCESSFULLY [/bold green]")
-    if type == "ERROR":
-        console.print("[bold red]CREATE PROJECT FAILURE [/bold red]")
-    console.print(
-        "[bold white]------------------------------------------------------------------------------------- [/bold white]")
-    if type == "ERROR": sys.exit(1)
-    if type == "OK": sys.exit(0)
+def recorrer_claves_y_valores_ini(ruta_archivo):
+    # Crear un objeto ConfigParser
+    config = configparser.ConfigParser()
+    
+    # Leer el archivo INI
+    config.read(ruta_archivo)
+    
+    # Recorrer las secciones del archivo INI
+    for seccion in config.sections():
+        # Imprimir el nombre de la sección
+        print(f"[{seccion}]")
+        
+        # Recorrer las claves y valores de cada sección
+        for clave, valor in config.items(seccion):
+            print(f"{clave} = {valor}")
+        
+        print()  # Imprimir una línea en blanco entre secciones

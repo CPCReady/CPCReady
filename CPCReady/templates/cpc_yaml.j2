@@ -4,16 +4,19 @@ project:
   data:
     name: {{ name }}
     author: {{ user }}
-  rvm:
-    system: {{ testing }}
-    model: 6128
-    run: run"MAIN.BAS"
-    rvm_path: "{{ rvm_path }}"
   concatenate:
     out: CONCAT.BAS
-  m4board:
-    publish: False
-    folder: ""
+  emulators:
+    rvm-web:
+      model:{{ model }}
+      run: run"MAIN.BAS"
+    rvm-desktop:
+      model:{{ model }}
+      path: "{{ rvm_path }}"
+      run: run"MAIN.BAS"
+    m4board:
+      ip: 192.168.1.2
+      run: run"MAIN.BAS"
 spec:
   files:
   - kind: bas

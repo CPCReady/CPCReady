@@ -28,10 +28,21 @@ def create(filename, mode, fileout, dsk, api=False):
         IMAGE_TEMP_PATH = cm.PWD + "." + os.path.basename(filename)
 
     IMAGE_TMP_FILE = os.path.basename(os.path.splitext(filename)[0])
+
+    ########################################
+    # WE CHECK IF WE COMPLY WITH RULE 6:3
+    ########################################
+
     IMAGE_TMP_JSON = IMAGE_TEMP_PATH + "/" + IMAGE_TMP_FILE + ".json"
 
-    if os.path.exists(IMAGE_TEMP_PATH) and os.path.isdir(IMAGE_TEMP_PATH):
-        shutil.rmtree(IMAGE_TEMP_PATH)
+    if len(IMAGE_TMP_FILE) > 6:
+        IMAGE_TMP_FILE =  IMAGE_TMP_FILE[:6]
+        
+    ########################################
+    # DELETE TEMPORAL FILES
+    ########################################
+
+    cm.rmFolder(IMAGE_TEMP_PATH)
 
     if dsk:
         cmd = [cm.MARTINE, '-in', filename, '-mode', str(mode), '-out', IMAGE_TEMP_PATH, '-json', '-dsk']
@@ -52,11 +63,17 @@ def create(filename, mode, fileout, dsk, api=False):
             if not dsk:
                 shutil.copy2(os.path.join(IMAGE_TEMP_PATH, IMAGE_TMP_FILE.upper() + '.PAL'), fileout)
                 shutil.copy2(os.path.join(IMAGE_TEMP_PATH, IMAGE_TMP_FILE.upper() + '.SCR'), fileout)
-                cm.msgInfo(f"Create SCREEN File: {fileout}/{IMAGE_TMP_FILE.upper()}.SCR")
+                cm.msgInfo(f"Create SCREEN File  ==> " + cm.getFileExt(fileout + "/" + IMAGE_TMP_FILE.upper() + ".SCR"))
         else:
             subprocess.check_output(cmd, stderr=subprocess.DEVNULL)
     except subprocess.CalledProcessError as e:
         cm.msgError(f'Error ' + cm.getFileExt(filename) + f' executing command: {e.output.decode()}')
+        ########################################
+        # DELETE TEMPORAL FILES
+        ########################################
+
+        cm.rmFolder(IMAGE_TEMP_PATH)
+        
         if dsk:
             if api == False:
                 cm.showFoodDataProject(IMAGE_TMP_FILE.upper() + ".DSK NOT CREATED.", 1)
@@ -93,7 +110,7 @@ def create(filename, mode, fileout, dsk, api=False):
     # DELETE TEMPORAL FILES
     ########################################
 
-    shutil.rmtree(IMAGE_TEMP_PATH)
+    cm.rmFolder(IMAGE_TEMP_PATH)
 
     ########################################
     # SHOW FOOTER
@@ -105,5 +122,7 @@ def create(filename, mode, fileout, dsk, api=False):
     else:
         if api == False:
             cm.showFoodDataProject(f"{fileout}/{IMAGE_TMP_FILE.upper()}.SCR SUCCESSFULLY CREATED.", 0)
-
+    
     return True
+
+
