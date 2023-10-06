@@ -9,39 +9,6 @@ from CPCReady import common as cm
 from CPCReady import func_screen as screens
 from CPCReady import func_sprite as sprites
 
-
-def getBasFiles(path):
-    archivos_bas = []
-    for ruta, directorios, archivos in os.walk(path):
-        for archivo in archivos:
-            if archivo.lower().endswith((".bas", ".bAs", ".baS","BAS", "Bas")):
-                archivos_bas.append(os.path.join(ruta, archivo))
-    return archivos_bas
-
-def getBinFiles(path):
-    archivos_bin = []
-    for ruta, directorios, archivos in os.walk(path):
-        for archivo in archivos:
-            if archivo.lower().endswith((".bin", ".bIn", ".biS","BIN", "Bin")):
-                archivos_bin.append(os.path.join(ruta, archivo))
-    return archivos_bin
-
-def getAsciiFiles(path):
-    archivos_ascii = []
-    for ruta, directorios, archivos in os.walk(path):
-        for archivo in archivos:
-            if archivo.lower().endswith((".txt", ".tXt", ".txT","TXT", "Txt")):
-                archivos_ascii.append(os.path.join(ruta, archivo))
-    return archivos_ascii
-
-def getImgFiles(path):
-    archivos_ascii = []
-    for ruta, directorios, archivos in os.walk(path):
-        for archivo in archivos:
-            if archivo.lower().endswith((".jpg", ".JPG", ".Jpg",".png", ".PNG", ".Png")):
-                archivos_ascii.append(os.path.join(ruta, archivo))
-    return archivos_ascii
-
 def create():
 
     # Check is cfg project exist
@@ -58,10 +25,12 @@ def create():
     # NUMBER_CONCAT_FILES  = sum(1 for item in data['spec']['files'] if item.get('kind') == 'bas' and item.get('concat') == True)
     COUNT                = 0
     PROJECT_NAME         = DATA_PROJECT.get('project','name')
+    CPC_MODEL            = DATA_PROJECT.get('project','model')
     PROJECT_AUTHOR       = DATA_PROJECT.get('project','author')
     PROJECT_CONCAT_OUT   = DATA_PROJECT.get('project','concatenate')        
     PROJECT_DSK_FILE     = f"{cm.PATH_DSK}/{DATA_PROJECT.get('project','dsk')}"
 
+    cm.banner(CPC_MODEL)
     cm.showHeadDataProject("BUILD " + PROJECT_NAME)
     
     cm.removeContentDirectory(cm.PATH_DISC)
@@ -108,108 +77,69 @@ def create():
     ########################################
     # PROCESING IMAGES FILES
     ########################################
+    
     DATA_IMAGES = cm.getData(cm.CFG_IMAGES)
     for image in glob.glob(os.path.join(cm.PATH_ASSETS, '*.[pP][nN][gG]')):
         IMAGE_NAME  = cm.getFileExt(image)
-        CONFIG_IMAGE = DATA_IMAGES.get('images',IMAGE_NAME,fallback="NULL")
+        IMAGE_MODE = DATA_IMAGES.get(IMAGE_NAME,"mode",fallback="NULL")
         outputbinfile = f"{cm.PATH_DISC}/{cm.getFileExt(image)}"
-        if CONFIG_IMAGE == "NULL":
+        if IMAGE_MODE == "NULL":
             cm.msgWarning(f"No configuration {IMAGE_NAME} in images.cfg, not process files")
         else:
-            CONFIG = CONFIG_IMAGE.split(',')
-            MODE = CONFIG[0].strip()
-            PAL  = CONFIG[1].strip()
-            if not screens.create(image, MODE, cm.PATH_DISC, False, True):
+            IMAGE_PAL = DATA_IMAGES.get(IMAGE_NAME,"include_pal",fallback="FALSE")
+            if not screens.create(image, IMAGE_MODE, cm.PATH_DISC, False, True):
                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
             NEW_FILE = cm.getFile(image).upper()
             if not addBin2ImageDisc(f"{PROJECT_DSK_FILE}", f"{cm.PATH_DISC}/{NEW_FILE}.SCR"):
                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)            
-            if PAL.upper() != "TRUE":
+            if IMAGE_PAL.upper() == "FALSE":
                 os.remove(f"{cm.PATH_DISC}/{NEW_FILE}.PAL")
             else:
                 if not addBin2ImageDisc(f"{PROJECT_DSK_FILE}", f"{cm.PATH_DISC}/{NEW_FILE}.PAL"):
-                    cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)                   
+                    cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)    
+                                   
     ########################################
     # PROCESING ASCII FILES
     ########################################                            
 
-            if not cm.fileExist(f"{cm.PATH_SRC}/{file_data['name']}"):
+    for ascii in glob.glob(os.path.join(cm.PATH_SRC, '*.[tT][xX][tT]')):
+        shutil.copyfile(ascii,f"{cm.PATH_DISC}/{cm.getFileExt(ascii)}")
+        if not addBas2ImageDisc(PROJECT_DSK_FILE, f"{cm.PATH_DISC}/{cm.getFileExt(ascii)}"):
+            cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
+
+    ########################################
+    # PROCESING SPRITES FILES
+    ########################################
+                             
+    DATA_SPRITES = cm.getData(cm.CFG_SPRITES)
+    
+    for sprite in glob.glob(os.path.join(cm.PATH_SPR, '*.[pP][nN][gG]')):
+        SPRITE_NAME   = cm.getFileExt(sprite)
+        SPRITE_MODE   = DATA_SPRITES.get(SPRITE_NAME,"mode",fallback="NULL")
+        SPRITE_HEIGHT = DATA_SPRITES.get(SPRITE_NAME,"height",fallback="NULL")
+        SPRITE_WIDTH  = DATA_SPRITES.get(SPRITE_NAME,"width",fallback="NULL")
+        if SPRITE_MODE == "NULL":
+            cm.msgWarning(f"No configuration {SPRITE_NAME} in sprites.cfg, not process file.")
+        else:
+            if not sprites.create(sprite,SPRITE_MODE,cm.PATH_DISC,SPRITE_WIDTH,SPRITE_HEIGHT,True):
                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-            if not addBas2ImageDisc(PROJECT_DSK_FILE, f"{cm.PATH_SRC}/{file_data['name']}"):
+
+    ########################################
+    # PROCESING UGBASIC FILES
+    ########################################
+                             
+    DATA_UGBASIC = cm.getData(cm.PATH_SRC)
+    if sys.platform != 'darwin':
+        for ugbfile in glob.glob(os.path.join(cm.PATH_SPR, '*.[uU][gG][bB]')):
+            UGBASIC_NAME   = cm.getFileExt(ugbfile)
+            if not compile(UGBASIC_NAME, cm.PATH_DISC):
                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-            
-    # for file_data in data['spec']['files']:
-    #     ########################################
-    #     # PROCESING BAS FILES
-    #     ########################################
-    #     if file_data['kind'].upper() == 'BAS':
-    #         COUNT = COUNT + 1
-    #         if not cm.fileExist(f"{cm.PATH_SRC}/{file_data['name']}"):
-    #             cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-            
-    #         if not removeComments(f"{cm.PATH_SRC}/{file_data['name']}", f"{cm.PATH_DISC}/{file_data['name']}"):
-    #             cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-                
-    #         if not convert2Dos(f"{cm.PATH_DISC}/{file_data['name']}", f"{cm.PATH_DISC}/{file_data['name']}"): 
-    #             cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-    #     ########################################
-    #     # CONCAT FILES
-    #     ########################################
-    #         if file_data['concat'] == True:
-    #             if not concatFile(f"{cm.PATH_DISC}/{file_data['name']}", PROJECT_CONCAT_OUT):
-    #                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-    #                 if COUNT == NUMBER_CONCAT_FILES:
-    #                    if not convert2Dos(PROJECT_CONCAT_OUT, PROJECT_CONCAT_OUT):
-    #                        cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-    #                    if not addBas2ImageDisc(PROJECT_DSK_FILE, f"{cm.PATH_DISC}/{file_data['name']}"):
-    #                        cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-    #                 else:
-    #                     if not addBas2ImageDisc(PROJECT_DSK_FILE, f"{cm.PATH_DISC}/{file_data['name']}"): 
-    #                         cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-    #     ########################################
-    #     # PROCESING ASCII FILES
-    #     ########################################                            
-    #     elif file_data['kind'].upper() == 'ASCII':
-    #         if not cm.fileExist(f"{cm.PATH_SRC}/{file_data['name']}"):
-    #             cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-    #         if not addBas2ImageDisc(PROJECT_DSK_FILE, f"{cm.PATH_SRC}/{file_data['name']}"):
-    #             cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-    #     ########################################
-    #     # PROCESING UGBASIC FILES
-    #     ########################################
-    #     elif file_data['kind'].upper() == 'UGBASIC':
-    #         if sys.platform != 'darwin':
-    #             if not cm.fileExist(f"{cm.PATH_SRC}/{file_data['name']}"):
-    #                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-    #             if not compile(f"{cm.PATH_SRC}/{file_data['name']}", f"{cm.PATH_DISC}/", f"{file_data['address']}",f"{file_data['include']}"):
-    #                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-    #             if not cm.addBin2ImageDisc(f"{PROJECT_DSK_FILE}", f"{cm.PATH_DISC}/" + cm.getFile(f"{cm.PATH_DISC}/{file_data['name']}") + ".bin"): 
-    #                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-    #         else:
-    #             cm.msgWarning("Mac OSX operating system does not support ugBasic")
-    #     ########################################
-    #     # PROCESING IMAGES FILES
-    #     ########################################
-    #     elif file_data['kind'].upper() == 'IMAGE':
-    #         if not cm.fileExist(f"{cm.PATH_ASSETS}/{file_data['name']}"):
-    #             cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-    #         if not screens.create (f"{cm.PATH_ASSETS}/{file_data['name']}", f"{file_data['mode']}", cm.PATH_DISC, False, True):
-    #             cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-    #         NEW_FILE = cm.getFile(f"{cm.PATH_ASSETS}/{file_data['name']}").upper()
-    #         if not addBin2ImageDisc(f"{PROJECT_DSK_FILE}", f"{cm.PATH_DISC}/{NEW_FILE}.SCR"):
-    #             cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-    #         if not file_data['pal']:
-    #                 os.remove(f"{cm.PATH_DISC}/{NEW_FILE}.PAL")
-    #     ########################################
-    #     # PROCESING SPRITE FILES
-    #     ########################################
-    #     elif file_data['kind'].upper() == 'SPRITE':
-    #             if not cm.fileExist(f"{cm.PATH_ASSETS}/{file_data['name']}"):
-    #                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-    #             if not sprites.create(f"{cm.PATH_ASSETS}/{file_data['name']}",f"{file_data['mode']}",cm.PATH_DISC,f"{file_data['width']}",f"{file_data['height']}",True):
-    #                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
+            if not cm.addBin2ImageDisc(PROJECT_DSK_FILE, f"{cm.PATH_DISC}/" + UGBASIC_NAME + ".bin"): 
+                cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
+    else:
+        cm.msgWarning("Mac OSX operating system does not support ugBasic")
                     
-    #     cm.showFoodDataProject("CREATE DISC IMAGE SUCCESSFULLY", 0)
+    cm.showFoodDataProject("CREATE DISC IMAGE SUCCESSFULLY", 0)
 
 ##
 # Compile ugbasic

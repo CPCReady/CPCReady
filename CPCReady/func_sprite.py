@@ -104,7 +104,7 @@ def create(filename, mode, fileout, height, width, api=False):
                     output_file.write(line.replace("db ", "   "))
             output_file.write("};\n")
 
-    cm.msgInfo(f"Create C File  : {fileout}/" + IMAGE_TMP_FILE.upper() + ".C")
+    cm.msgInfo(f"Create C   File ==> " + IMAGE_TMP_FILE.upper() + ".C")
     
     ########################################
     # GENERATE ASM FILE
@@ -130,7 +130,7 @@ def create(filename, mode, fileout, height, width, api=False):
                     output_file.write(line)
             output_file.write("\n;------ END SPRITE --------\n")
 
-    cm.msgInfo(f"Create ASM File: {fileout}/" + IMAGE_TMP_FILE.upper() + ".ASM")
+    cm.msgInfo(f"Create ASM File ==> " + IMAGE_TMP_FILE.upper() + ".ASM")
     cm.msgInfo(f"       SW PALETTE : {sw_palette}")
     cm.msgInfo(f"       HW PALETTE : {hw_palette}")
 

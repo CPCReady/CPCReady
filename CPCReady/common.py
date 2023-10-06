@@ -41,7 +41,7 @@ CPC664 = """[grey]█▀▀█ █▀▄▀█ █▀▀▀█ ▀▀█▀▀ �
 #
 ##
 
-subfolders = ["assets", "out", "dsk", "src", "cfg","lib"]
+subfolders = ["out", "dsk", "src", "cfg","lib","img","spr","doc"]
 
 
 # CFG_PROJECT      = "cfg/cpcready.cfg"
@@ -52,7 +52,8 @@ PATH_OBJ         = "obj"
 PATH_SRC         = "src"
 PATH_DSK         = "dsk"
 PATH_LIB         = "lib"
-PATH_ASSETS      = "assets"
+PATH_SPR         = "spr"
+PATH_ASSETS      = "img"
 CFG_PROJECT      = f"{PATH_CFG}/project.cfg"
 CFG_EMULATORS    = f"{PATH_CFG}/emulators.cfg"
 CFG_IMAGES       = f"{PATH_CFG}/images.cfg"
@@ -125,11 +126,11 @@ def getData(cfgFile):
 def banner(cpc):
     BANNER = Table(show_header=False)
 
-    if cpc == 6128:
+    if cpc == "6128":
         BANNER.add_row(CPC6128)
-    elif cpc == 464:
+    elif cpc == "464":
         BANNER.add_row(CPC464)
-    elif cpc == 664:
+    elif cpc == "664":
         BANNER.add_row(CPC664)
     else:
         msgError("Model CPC not supported")
