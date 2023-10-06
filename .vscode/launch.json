@@ -30,7 +30,7 @@
             "type": "python",
             "request": "launch",
             "module": "CPCReady.build",
-            "cwd": "${workspaceFolder}/testing2basic",
+            "cwd": "${workspaceFolder}/testing333",
             "justMyCode": true,
             "env": {
                 "PYTHONPATH": "${workspaceFolder}",
