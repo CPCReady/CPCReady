@@ -69,15 +69,18 @@ if sys.platform == "win64":
     MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/tools/win/martine.exe"
     DSK = os.path.dirname(os.path.abspath(__file__)) + "/bin/win64/iDSK.exe"
     UGBASIC = os.path.dirname(os.path.abspath(__file__)) + "/tools/win64/ugbc.exe"
+    AMSDOS = os.path.dirname(os.path.abspath(__file__)) + "/tools/win64/amsdos.exe"
 if sys.platform == 'darwin':
     TEMP_PATH = os.getenv('HOME') + "/tmp"
     MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/tools/" + sys.platform + "/martine"
     IDSK = os.path.dirname(os.path.abspath(__file__)) + "/tools/darwin/iDSK"
+    AMSDOS = os.path.dirname(os.path.abspath(__file__)) + "/tools/darwin/amsdos"
 if sys.platform.startswith('linux'):
     TEMP_PATH = os.getenv('HOME') + "/tmp"
     MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/tools/" + sys.platform + "/martine"
     IDSK = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/iDSK"
     UGBASIC = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/ugbc"
+    AMSDOS = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/amsdos"
     
 PWD = os.getcwd() + "/"
 

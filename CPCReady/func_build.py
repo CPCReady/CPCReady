@@ -131,8 +131,6 @@ def create():
     for dskfile in glob.glob(os.path.join(cm.PATH_LIB, '*.[dD][sS][kK]')):
         if not extract2ImageDisc(dskfile,cm.PATH_DISC + "/" + cm.getFile(dskfile) + ".bin"):
             cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1) 
-        # shutil.copyfile(dskfile,cm.PATH_DISC + "/" + cm.getFile(dskfile) + ".bin")
-        # os.remove(cm.PATH_DISC + "/" + cm.getFile(dskfile) + ".bin")
         if not addBin2ImageDisc(PROJECT_DSK_FILE, cm.PATH_DISC + "/" + cm.getFile(dskfile) + ".bin"):
             cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)   
 
