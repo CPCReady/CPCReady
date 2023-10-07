@@ -53,7 +53,6 @@ def execute(project,emulator):
                 FNULL = open(os.devnull, 'w')
                 try:
                     retcode = subprocess.Popen([PROJECT_RVM_PATH,"-i", PROJECT_DSK_FILE,"-b=cpc"+str(PROJECT_RVM_MODEL),"-c="+PROJECT_RVM_RUN + "\n"], stdout=FNULL, stderr=subprocess.STDOUT)
-                    return True
                 except subprocess.CalledProcessError as e:
                     cm.msgError(f'{cm.getFileExt(PROJECT_DSK_FILE)} RELEASED WITH ERROR: {e.output.decode()}')
                     return False
