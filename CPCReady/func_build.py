@@ -115,11 +115,11 @@ def create():
                              
     DATA_UGBASIC = cm.getData(cm.PATH_SRC)
     if sys.platform != 'darwin':
-        for ugbfile in glob.glob(os.path.join(cm.PATH_SPR, '*.[uU][gG][bB]')):
+        for ugbfile in glob.glob(os.path.join(cm.PATH_SRC, '*.[uU][gG][bB]')):
             UGBASIC_NAME   = cm.getFileExt(ugbfile)
-            if not compileUGBasic(UGBASIC_NAME, cm.PATH_DISC + "/UGBTEMP.DSK"):
+            if not compileUGBasic(ugbfile, cm.PATH_DISC + "/UGBTEMP.DSK"):
                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-            if not cm.addBin2ImageDisc(PROJECT_DSK_FILE, f"{cm.PATH_DISC}/" + UGBASIC_NAME + ".BIN"): 
+            if not addBin2ImageDisc(PROJECT_DSK_FILE, f"{cm.PATH_DISC}/" + cm.getFile(UGBASIC_NAME) + ".BIN"): 
                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
     else:
         cm.msgWarning("Mac OSX operating system does not support ugBasic")
@@ -161,7 +161,7 @@ def compileUGBasic(source, out):
         output = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
         name = cm.getFile(source)
         if extractUGBC2ImageDisc(out):
-            shutil.move(cm.PATH_DISC + "/MAIN", name.upper() + ".BIN")
+            shutil.move(cm.PATH_LIB + "/MAIN.BIN", cm.PATH_DISC + "/" + name.upper() + ".BIN")
             cm.msgInfo(f"Compile: {source} ==> " + name.upper() + ".BIN")
             os.remove(out)
         else:
@@ -276,6 +276,7 @@ def extractUGBC2ImageDisc(imagefile):
     cmd = [cm.IDSK, imagefile, "-g", cm.PATH_LIB + "/MAIN"]
     try:
         output = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
+        shutil.move(cm.PATH_LIB + "/MAIN", cm.PATH_LIB + "/MAIN.BIN")
         return True
     except subprocess.CalledProcessError as e:
         cm.msgError(f'Error ' + cm.getFileExt(imagefile) + f' executing command: {e.output.decode()}')

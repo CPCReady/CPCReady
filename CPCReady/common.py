@@ -65,19 +65,19 @@ if sys.platform == "win32":
     sys.exit(1)   
 
 if sys.platform == "win64":
-    TEMP_PATH = os.getenv('TEM')
+    TEMP_PATH = os.getenv('USERPROFILE') + "/tmp"
     MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/tools/win/martine.exe"
     DSK = os.path.dirname(os.path.abspath(__file__)) + "/bin/win64/iDSK.exe"
-    UGBASIC = os.path.dirname(os.path.abspath(__file__)) + "/bin/win64/ugbc.exe"
+    UGBASIC = os.path.dirname(os.path.abspath(__file__)) + "/tools/win64/ugbc.exe"
 if sys.platform == 'darwin':
-    TEMP_PATH = os.getenv('TMPDIR')
+    TEMP_PATH = os.getenv('HOME') + "/tmp"
     MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/tools/" + sys.platform + "/martine"
     IDSK = os.path.dirname(os.path.abspath(__file__)) + "/tools/darwin/iDSK"
 if sys.platform.startswith('linux'):
-    TEMP_PATH = "/tmp/"
+    TEMP_PATH = os.getenv('HOME') + "/tmp"
     MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/tools/" + sys.platform + "/martine"
     IDSK = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/iDSK"
-    UGBASIC = os.path.dirname(os.path.abspath(__file__)) + "/bin/linux/ugbc"
+    UGBASIC = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/ugbc"
     
 PWD = os.getcwd() + "/"
 
