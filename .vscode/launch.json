@@ -6,12 +6,12 @@
             "type": "python",
             "request": "launch",
             "module": "CPCReady.run",
-            "cwd": "${workspaceFolder}/testing2basic",
+            "cwd": "${workspaceFolder}/testing333",
             "justMyCode": true,
             "env": {
                 "PYTHONPATH": "${workspaceFolder}",
             },
-            "args": ["--emulator", "rvm-web"] 
+            "args": ["--emulator", "rvm-desktop"] 
         },
         {
             "name": "VERSION",

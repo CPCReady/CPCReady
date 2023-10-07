@@ -25,7 +25,7 @@ def create():
     PROJECT_CONCAT_OUT   = DATA_PROJECT.get('project','concatenate')        
     PROJECT_DSK_FILE     = f"{cm.PATH_DSK}/{DATA_PROJECT.get('project','dsk')}"
 
-    cm.banner(CPC_MODEL)
+    # cm.banner(CPC_MODEL)
     cm.showHeadDataProject("BUILD " + PROJECT_NAME)
     
     cm.removeContentDirectory(cm.PATH_DISC)

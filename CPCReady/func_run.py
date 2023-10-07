@@ -20,8 +20,8 @@ def execute(project,emulator):
     PROJECT_NAME         = DATA_PROJECT.get('project','name')
     PROJECT_AUTHOR       = DATA_PROJECT.get('project','author')
     PROJECT_DSK_FILE     = f"{cm.PATH_DSK}/{DATA_PROJECT.get('project','dsk')}"
-    
 
+    cm.showHeadDataProject(cm.getFileExt(PROJECT_DSK_FILE))
     
     if emulator == "rvm-web":   
         PROJECT_RVM_MODEL    = DATA_EMULATORS.get(emulator,'model')
@@ -33,8 +33,7 @@ def execute(project,emulator):
             'dsk': f"{PROJECT_DSK_FILE}",
             'run': f'{PROJECT_RVM_RUN}'
         }
-        cm.banner(PROJECT_RVM_MODEL)
-        cm.showHeadDataProject(cm.getFileExt(PROJECT_DSK_FILE))
+        # cm.banner(PROJECT_RVM_MODEL)
         cm.createTemplate("rvm-web.html", context, cm.PATH_CFG)
         cm.msgInfo(f"CPC Model: {PROJECT_RVM_MODEL}")
         cm.msgInfo(f"RUN Command: {PROJECT_RVM_RUN}")
@@ -47,8 +46,7 @@ def execute(project,emulator):
         
         if PROJECT_RVM_PATH != "":
             if cm.fileExist(PROJECT_RVM_PATH):
-                cm.banner(PROJECT_RVM_MODEL)
-                cm.showHeadDataProject(cm.getFileExt(PROJECT_DSK_FILE))
+                # cm.banner(PROJECT_RVM_MODEL)
                 cm.msgInfo(f"CPC Model: {PROJECT_RVM_MODEL}")
                 cm.msgInfo(f"RUN Command: {PROJECT_RVM_RUN}")
                 cm.msgInfo(f"Emulator: RVM Desktop ({PROJECT_RVM_PATH})")
@@ -60,12 +58,10 @@ def execute(project,emulator):
                     cm.msgError(f'{cm.getFileExt(PROJECT_DSK_FILE)} RELEASED WITH ERROR: {e.output.decode()}')
                     return False
             else:
-                cm.banner(PROJECT_RVM_MODEL)
-                cm.showHeadDataProject(cm.getFileExt(PROJECT_DSK_FILE))
+                # cm.banner(PROJECT_RVM_MODEL)
                 cm.showFoodDataProject("DISC IMAGE RELEASED WITH ERROR", 1)
         else:
-            cm.banner(PROJECT_RVM_MODEL)
-            cm.showHeadDataProject(cm.getFileExt(PROJECT_DSK_FILE))
+            # cm.banner(PROJECT_RVM_MODEL)
             cm.msgError(f"RVM Desktop path does not exist in {cm.CFG_PROJECT}")
             cm.showFoodDataProject("DISC IMAGE RELEASED WITH ERROR", 1)
         
@@ -73,7 +69,6 @@ def execute(project,emulator):
         PROJECT_RVM_RUN      = DATA_EMULATORS.get(emulator,'run')
         PROJECT_M4BOARD_IP   = DATA_EMULATORS.get(emulator,'ip')
         EMULATOR             = "M4 Board"
-        cm.showHeadDataProject(cm.getFileExt(PROJECT_DSK_FILE))
         cm.msgInfo(f"CPC Model: {PROJECT_RVM_MODEL}")
         cm.msgInfo(f"RUN Command: {PROJECT_RVM_RUN}")
         cm.msgInfo(f"Emulator: {EMULATOR}")
