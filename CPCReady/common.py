@@ -74,7 +74,7 @@ if sys.platform == 'darwin':
     MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/tools/" + sys.platform + "/martine"
     IDSK = os.path.dirname(os.path.abspath(__file__)) + "/tools/darwin/iDSK"
 if sys.platform.startswith('linux'):
-    TEMP_PATH = os.getenv('TMP')
+    TEMP_PATH = "/tmp/"
     MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/tools/" + sys.platform + "/martine"
     IDSK = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/iDSK"
     UGBASIC = os.path.dirname(os.path.abspath(__file__)) + "/bin/linux/ugbc"

@@ -83,7 +83,7 @@
             "env": {
                 "PYTHONPATH": "${workspaceFolder}",
             },
-            "args": ["--image", "/Users/david/Downloads/logole222222.png","--mode", "0","--out","testing2basic","--height","12", "--width","12"] 
+            "args": ["--image", "/home/destroyer/Github/CPCReady/sdk/testing333/img/avatar.png","--mode", "0","--out","testing333","--height","12", "--width","12"] 
         }
     ]
 }
