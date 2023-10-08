@@ -153,35 +153,27 @@ def create():
     # ADD FILES TO CDT
     ########################################
     cdtfiles = PROJECT_CDT_FILES.split(',')
+    count = 0
     for cdtfile in cdtfiles:
         if not cm.fileExist(cm.PATH_DISC + "/" + cdtfile.strip()):
             cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
             sys.exit(1)
-        # CDTImage(cm.PATH_DISC + "/" + cdtfile.strip(),PROJECT_CDT_NAME)
-    
-    extension = cm.getFileExtension(file)
-    if extension.upper() == ".BAS":
-        typefile = "cpctxt"
-    else:
-        typefile = "cpc"
-    name = cm.getFile(file)
-    FNULL = open(os.devnull, 'w')
-    # 2cdt -s 0 -n -r MYGAME loader.bas master.cdt
-    # cmd = [cm.CDT,"-t","-n","-b","2000","-m",typefile, "-r", name.upper(), file,cdtimg]
-    if orden == 0:
-        cmd = [cm.CDT,"-s","2000","-n","-r", name.upper(), file,cdtimg]
-    else:
-        cmd = [cm.CDT,"-s","2000","-F","-r", name.upper(), file,cdtimg]
-    try:
-        output = subprocess.check_output(cmd)
-        cm.msgInfo("Add file " + cm.getFileExt(file) + " ==> " + cdtimg)
-        return True
-    except subprocess.CalledProcessError as e:
-        cm.msgError(f'Error ' + cm.getFileExt(file) + f' executing command: {e.output.decode()}')
-        return False
-    
 
+        name = cm.getFile(cdtfile)
+        FNULL = open(os.devnull, 'w')
 
+        if count == 0:
+            cmd = [cm.CDT,"-s","2000","-n","-r", name.upper(), cm.PATH_DISC + "/" + cdtfile.strip(),PROJECT_CDT_NAME]
+        else:
+            cmd = [cm.CDT,"-s","2000","-r", name.upper(), cm.PATH_DISC + "/" + cdtfile.strip(),PROJECT_CDT_NAME]
+        try:
+            output = subprocess.check_output(cmd)
+            cm.msgInfo("Add file " + cm.getFileExt(name) + " ==> " + cm.getFileExt(PROJECT_CDT_NAME))
+        except subprocess.CalledProcessError as e:
+            cm.msgError(f'Error ' + cm.getFileExt(name) + f' executing command: {e.output.decode()}')
+            cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
+            sys.exit(1)
+    
     cm.showFoodDataProject("CREATE DISC IMAGE SUCCESSFULLY", 0)
 
 
