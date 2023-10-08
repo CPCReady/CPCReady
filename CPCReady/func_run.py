@@ -19,9 +19,10 @@ def execute(project,emulator):
 
     PROJECT_NAME         = DATA_PROJECT.get('project','name')
     PROJECT_AUTHOR       = DATA_PROJECT.get('project','author')
-    PROJECT_DSK_FILE     = f"{cm.PATH_DSK}/{DATA_PROJECT.get('project','dsk')}"
+    PROJECT_DSK_NAME     = f"{cm.PATH_DSK}/{DATA_PROJECT.get('DSK','name')}"
+    PROJECT_DSK_NAME     = f"{cm.PATH_DSK}/{DATA_PROJECT.get('CDT','name')}"
 
-    cm.showHeadDataProject(cm.getFileExt(PROJECT_DSK_FILE))
+    cm.showHeadDataProject(cm.getFileExt(PROJECT_DSK_NAME))
     
     if emulator == "rvm-web":   
         PROJECT_RVM_MODEL    = DATA_EMULATORS.get(emulator,'model')
@@ -30,7 +31,7 @@ def execute(project,emulator):
         context = {
             'name': PROJECT_NAME,
             'model': PROJECT_RVM_MODEL,
-            'dsk': f"{PROJECT_DSK_FILE}",
+            'dsk': f"{PROJECT_DSK_NAME}",
             'run': f'{PROJECT_RVM_RUN}'
         }
         # cm.banner(PROJECT_RVM_MODEL)
@@ -52,9 +53,9 @@ def execute(project,emulator):
                 cm.msgInfo(f"Emulator: RVM Desktop ({PROJECT_RVM_PATH})")
                 FNULL = open(os.devnull, 'w')
                 try:
-                    retcode = subprocess.Popen([PROJECT_RVM_PATH,"-i", PROJECT_DSK_FILE,"-b=cpc"+str(PROJECT_RVM_MODEL),"-c="+PROJECT_RVM_RUN + "\n"], stdout=FNULL, stderr=subprocess.STDOUT)
+                    retcode = subprocess.Popen([PROJECT_RVM_PATH,"-i", PROJECT_DSK_NAME,"-b=cpc"+str(PROJECT_RVM_MODEL),"-c="+PROJECT_RVM_RUN + "\n"], stdout=FNULL, stderr=subprocess.STDOUT)
                 except subprocess.CalledProcessError as e:
-                    cm.msgError(f'{cm.getFileExt(PROJECT_DSK_FILE)} RELEASED WITH ERROR: {e.output.decode()}')
+                    cm.msgError(f'{cm.getFileExt(PROJECT_DSK_NAME)} RELEASED WITH ERROR: {e.output.decode()}')
                     return False
             else:
                 # cm.banner(PROJECT_RVM_MODEL)

@@ -22,7 +22,7 @@ log = logging.getLogger("rich")
 
 FORMAT = "%(message)s"
 logging.basicConfig(
-    level="NOTSET", format=FORMAT, datefmt="[%X]", handlers=[RichHandler()]
+    level="NOTSET",format=FORMAT, datefmt="[%X]", handlers=[RichHandler(rich_tracebacks=False, show_path=False,omit_repeated_times=True)]
 )
 
 CPC464 = """[grey]█▀▀█ █▀▄▀█ █▀▀▀█ ▀▀█▀▀ █▀▀█ █▀▀█ █▀▀▄                                     ╔═╗╔═╗╔═╗ ┏┓┏┓┏┓ ┌─────────────┐  ON 🟢
@@ -70,17 +70,20 @@ if sys.platform == "win64":
     DSK = os.path.dirname(os.path.abspath(__file__)) + "/bin/win64/iDSK.exe"
     UGBASIC = os.path.dirname(os.path.abspath(__file__)) + "/tools/win64/ugbc.exe"
     AMSDOS = os.path.dirname(os.path.abspath(__file__)) + "/tools/win64/amsdos.exe"
+    CDT = os.path.dirname(os.path.abspath(__file__)) + "/tools/win64/2cdt.exe"
 if sys.platform == 'darwin':
     TEMP_PATH = os.getenv('HOME') + "/tmp"
     MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/tools/" + sys.platform + "/martine"
     IDSK = os.path.dirname(os.path.abspath(__file__)) + "/tools/darwin/iDSK"
     AMSDOS = os.path.dirname(os.path.abspath(__file__)) + "/tools/darwin/amsdos"
+    CDT = os.path.dirname(os.path.abspath(__file__)) + "/tools/darwin/2cdt"
 if sys.platform.startswith('linux'):
     TEMP_PATH = os.getenv('HOME') + "/tmp"
     MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/tools/" + sys.platform + "/martine"
     IDSK = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/iDSK"
     UGBASIC = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/ugbc"
     AMSDOS = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/amsdos"
+    CDT = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/2cdt"
     
 PWD = os.getcwd() + "/"
 
@@ -169,7 +172,7 @@ def msgError(message):
 # @param message: message to display
 ##
 def msgInfo(message):
-    log.info(message)
+    log.info(message, extra={"highlighter": None})
 
 
 ##

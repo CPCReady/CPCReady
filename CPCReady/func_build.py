@@ -20,10 +20,13 @@ def create():
 
     COUNT                = 0
     PROJECT_NAME         = DATA_PROJECT.get('project','name')
-    CPC_MODEL            = DATA_PROJECT.get('project','model')
+    # CPC_MODEL            = DATA_PROJECT.get('project','model')
     PROJECT_AUTHOR       = DATA_PROJECT.get('project','author')
+    PROJECT_CDT_NAME     = f"{cm.PATH_DSK}/{DATA_PROJECT.get('CDT','name')}"
+    PROJECT_DSK_NAME     = f"{cm.PATH_DSK}/{DATA_PROJECT.get('DSK','name')}"
+    PROJECT_CDT_FILES    = DATA_PROJECT.get('CDT','files').strip()
     PROJECT_CONCAT_OUT   = DATA_PROJECT.get('project','concatenate')        
-    PROJECT_DSK_FILE     = f"{cm.PATH_DSK}/{DATA_PROJECT.get('project','dsk')}"
+
 
     # cm.banner(CPC_MODEL)
     cm.showHeadDataProject("BUILD " + PROJECT_NAME)
@@ -36,7 +39,7 @@ def create():
     
     cm.msgInfo("Check folders project OK")
     
-    createImageDisc(PROJECT_DSK_FILE)
+    createImageDisc(PROJECT_DSK_NAME)
  
     ########################################
     # PROCESING BAS FILES
@@ -47,7 +50,7 @@ def create():
         concatAllFiles(cm.PATH_SRC,PROJECT_CONCAT_OUT)
         if not convert2Dos(PROJECT_CONCAT_OUT, PROJECT_CONCAT_OUT):
             cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-        if not addBas2ImageDisc(PROJECT_DSK_FILE, PROJECT_CONCAT_OUT):
+        if not addBas2ImageDisc(PROJECT_DSK_NAME, PROJECT_CONCAT_OUT):
             cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
         addamsdos(PROJECT_CONCAT_OUT)
     else:          
@@ -57,7 +60,7 @@ def create():
                     cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
             if not convert2Dos(outputbasfile, outputbasfile): 
                     cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-            if not addBas2ImageDisc(PROJECT_DSK_FILE, outputbasfile):
+            if not addBas2ImageDisc(PROJECT_DSK_NAME, outputbasfile):
                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
             addamsdos(outputbasfile)  
       
@@ -77,12 +80,12 @@ def create():
             if not screens.create(image, IMAGE_MODE, cm.PATH_DISC, False, True):
                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
             NEW_FILE = cm.getFile(image).upper()
-            if not addBin2ImageDisc(f"{PROJECT_DSK_FILE}", f"{cm.PATH_DISC}/{NEW_FILE}.SCR"):
+            if not addBin2ImageDisc(f"{PROJECT_DSK_NAME}", f"{cm.PATH_DISC}/{NEW_FILE}.SCR"):
                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)            
             if IMAGE_PAL.upper() == "FALSE":
                 os.remove(f"{cm.PATH_DISC}/{NEW_FILE}.PAL")
             else:
-                if not addBin2ImageDisc(f"{PROJECT_DSK_FILE}", f"{cm.PATH_DISC}/{NEW_FILE}.PAL"):
+                if not addBin2ImageDisc(f"{PROJECT_DSK_NAME}", f"{cm.PATH_DISC}/{NEW_FILE}.PAL"):
                     cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)    
                                    
     ########################################
@@ -91,7 +94,7 @@ def create():
 
     for ascii in glob.glob(os.path.join(cm.PATH_SRC, '*.[tT][xX][tT]')):
         shutil.copyfile(ascii,f"{cm.PATH_DISC}/{cm.getFileExt(ascii)}")
-        if not addBas2ImageDisc(PROJECT_DSK_FILE, f"{cm.PATH_DISC}/{cm.getFileExt(ascii)}"):
+        if not addBas2ImageDisc(PROJECT_DSK_NAME, f"{cm.PATH_DISC}/{cm.getFileExt(ascii)}"):
             cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
 
     ########################################
@@ -121,7 +124,7 @@ def create():
             UGBASIC_NAME   = cm.getFileExt(ugbfile)
             if not compileUGBasic(ugbfile, cm.PATH_DISC + "/UGBTEMP.DSK"):
                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-            if not addBin2ImageDisc(PROJECT_DSK_FILE, f"{cm.PATH_DISC}/" + cm.getFile(UGBASIC_NAME) + ".BIN"): 
+            if not addBin2ImageDisc(PROJECT_DSK_NAME, f"{cm.PATH_DISC}/" + cm.getFile(UGBASIC_NAME) + ".BIN"): 
                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
     else:
         cm.msgWarning("Mac OSX operating system does not support ugBasic")
@@ -133,7 +136,7 @@ def create():
     for dskfile in glob.glob(os.path.join(cm.PATH_LIB, '*.[dD][sS][kK]')):
         if not extract2ImageDisc(dskfile,cm.PATH_DISC + "/" + cm.getFile(dskfile) + ".bin"):
             cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1) 
-        if not addBin2ImageDisc(PROJECT_DSK_FILE, cm.PATH_DISC + "/" + cm.getFile(dskfile) + ".bin"):
+        if not addBin2ImageDisc(PROJECT_DSK_NAME, cm.PATH_DISC + "/" + cm.getFile(dskfile) + ".bin"):
             cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)   
 
     ########################################
@@ -143,8 +146,41 @@ def create():
     for binfile in glob.glob(os.path.join(cm.PATH_LIB, '*.[bB][iI][nN]')):
         outputbinfile = f"{cm.PATH_DISC}/{cm.getFileExt(binfile)}"
         shutil.copy2(binfile,outputbinfile)
-        if not addBin2ImageDisc(PROJECT_DSK_FILE, outputbinfile):
-            cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)   
+        if not addBin2ImageDisc(PROJECT_DSK_NAME, outputbinfile):
+            cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
+            
+    ########################################
+    # ADD FILES TO CDT
+    ########################################
+    cdtfiles = PROJECT_CDT_FILES.split(',')
+    for cdtfile in cdtfiles:
+        if not cm.fileExist(cm.PATH_DISC + "/" + cdtfile.strip()):
+            cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
+            sys.exit(1)
+        # CDTImage(cm.PATH_DISC + "/" + cdtfile.strip(),PROJECT_CDT_NAME)
+    
+    extension = cm.getFileExtension(file)
+    if extension.upper() == ".BAS":
+        typefile = "cpctxt"
+    else:
+        typefile = "cpc"
+    name = cm.getFile(file)
+    FNULL = open(os.devnull, 'w')
+    # 2cdt -s 0 -n -r MYGAME loader.bas master.cdt
+    # cmd = [cm.CDT,"-t","-n","-b","2000","-m",typefile, "-r", name.upper(), file,cdtimg]
+    if orden == 0:
+        cmd = [cm.CDT,"-s","2000","-n","-r", name.upper(), file,cdtimg]
+    else:
+        cmd = [cm.CDT,"-s","2000","-F","-r", name.upper(), file,cdtimg]
+    try:
+        output = subprocess.check_output(cmd)
+        cm.msgInfo("Add file " + cm.getFileExt(file) + " ==> " + cdtimg)
+        return True
+    except subprocess.CalledProcessError as e:
+        cm.msgError(f'Error ' + cm.getFileExt(file) + f' executing command: {e.output.decode()}')
+        return False
+    
+
 
     cm.showFoodDataProject("CREATE DISC IMAGE SUCCESSFULLY", 0)
 
@@ -292,3 +328,31 @@ def addamsdos(file):
     except subprocess.CalledProcessError as e:
         cm.msgError(f'Error ' + cm.getFileExt(file) + f' executing command: {e.output.decode()}')
         return False
+
+def CDTImage(file,cdtimg,orden):
+    extension = cm.getFileExtension(file)
+    if extension.upper() == ".BAS":
+        typefile = "cpctxt"
+    else:
+        typefile = "cpc"
+    name = cm.getFile(file)
+    FNULL = open(os.devnull, 'w')
+    # 2cdt -s 0 -n -r MYGAME loader.bas master.cdt
+    # cmd = [cm.CDT,"-t","-n","-b","2000","-m",typefile, "-r", name.upper(), file,cdtimg]
+    if orden == 0:
+        cmd = [cm.CDT,"-s","2000","-n","-r", name.upper(), file,cdtimg]
+    else:
+        cmd = [cm.CDT,"-s","2000","-F","-r", name.upper(), file,cdtimg]
+    try:
+        output = subprocess.check_output(cmd)
+        cm.msgInfo("Add file " + cm.getFileExt(file) + " ==> " + cdtimg)
+        return True
+    except subprocess.CalledProcessError as e:
+        cm.msgError(f'Error ' + cm.getFileExt(file) + f' executing command: {e.output.decode()}')
+        return False
+    
+    # $CPC2CDT -t -b 2000 -m "$TYPE" -r "$TAPENAME" "$FILENAME" "$TARGET_CDT"
+
+#     2cdt.exe -n -s 1 -r "LOADER.bas" "loader.BAS" tucinta.cdt
+# 2cdt.exe -b 2000 -r "tujuego.bin" "tujuego.bin" tucinta.cdt
+# 2cdt.exe -b 2000 -r "tujuego.bas" "tujuego.bas" tucinta.cdt

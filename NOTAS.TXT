@@ -1,3 +1,50 @@
+function convertAllImages () {
+   # CREATE BIN FOLDER IF IT DOES NOT EXIST
+   mkdir -p ./${BIN}/
+
+   # IMAGE CONVERSIONS
+   cpct_img2tileset -tw 160 -th 200 -scr -of bin -nt assets/screen01.png 
+   cpct_img2tileset -tw 160 -th 200 -scr -of bin -nt assets/screen02.png 
+   cpct_img2tileset -tw 160 -th 200 -scr -of bin -nt assets/screen03.png 
+   cpct_img2tileset -tw 160 -th 200 -scr -of bin -nt assets/screen04.png 
+   mv ./assets/*.bin ./${BIN}/
+   rm ./assets/*.h
+   rm ./assets/*.h.s
+}
+
+
+#--------------------------------------------------------------------------
+# Creates the CDT File adding required files in order
+#
+function createCDT() {
+   # Creates the CDT from scratch (removing previous one)
+   # and adds all files in their required order
+   rm -f ./${TARGET_CDT}
+   add2CDT cpctxt "DUNGEON CASTLES" ${OBJ}/dcastles.bas     
+   add2CDT cpc    "SCREEN01.BIN"    ${BIN}/screen01.bin
+   add2CDT cpc    "SCREEN02.BIN"    ${BIN}/screen02.bin
+   add2CDT cpc    "SCREEN03.BIN"    ${BIN}/screen03.bin
+   add2CDT cpc    "SCREEN04.BIN"    ${BIN}/screen04.bin
+   add2CDT cpctxt "GLOADER.BAS"     ${OBJ}/gloader.bas
+   add2CDT cpc    "LEVELS.BIN"      ${BIN}/levels.bin
+   add2CDT cpctxt "GAME.BAS"        ${OBJ}/game.bas
+}
+    
+# Adds a single file to the ${TARGET_CDT}
+# $1: Type of the file (cpctxt, cpc...)
+# $2: Long filename (Up to 16 chars, it will be shown on tape loading)
+# $3: Filename      (File that is to be added)
+#
+function add2CDT() {
+   local TYPE="$1"
+   local TAPENAME="$2"
+   local FILENAME="$3"
+
+   $CPC2CDT -t -b 2000 -m "$TYPE" -r "$TAPENAME" "$FILENAME" "$TARGET_CDT"
+}
+
+#---    
+    
     IMAGE_TMP_FILE = os.path.basename(os.path.splitext(filename)[0])
 
     ########################################
