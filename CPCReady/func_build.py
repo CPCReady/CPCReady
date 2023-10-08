@@ -49,6 +49,7 @@ def create():
             cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
         if not addBas2ImageDisc(PROJECT_DSK_FILE, PROJECT_CONCAT_OUT):
             cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
+        addamsdos(PROJECT_CONCAT_OUT)
     else:          
         for basfile in glob.glob(os.path.join(cm.PATH_SRC, '*.[bB][aA][sS]')):
             outputbasfile = f"{cm.PATH_DISC}/{cm.getFileExt(basfile)}"
@@ -57,7 +58,8 @@ def create():
             if not convert2Dos(outputbasfile, outputbasfile): 
                     cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
             if not addBas2ImageDisc(PROJECT_DSK_FILE, outputbasfile):
-                cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)    
+                cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
+            addamsdos(outputbasfile)  
       
     ########################################
     # PROCESING IMAGES FILES
@@ -278,4 +280,15 @@ def extractUGBC2ImageDisc(imagefile):
         return True
     except subprocess.CalledProcessError as e:
         cm.msgError(f'Error ' + cm.getFileExt(imagefile) + f' executing command: {e.output.decode()}')
+        return False
+
+def addamsdos(file):
+    FNULL = open(os.devnull, 'w')
+    cmd = [cm.AMSDOS, file]
+    try:
+        output = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
+        cm.msgInfo("Add amsdos header ==> " + cm.getFileExt(file))
+        return True
+    except subprocess.CalledProcessError as e:
+        cm.msgError(f'Error ' + cm.getFileExt(file) + f' executing command: {e.output.decode()}')
         return False
