@@ -53,7 +53,6 @@ def execute(project,emulator):
             'dsk': f"{PROJECT_DSK_NAME}",
             'run': f'{PROJECT_RVM_RUN}'
         }
-        # cm.banner(PROJECT_RVM_MODEL)
         cm.createTemplate("rvm-web.html", context, cm.PATH_CFG)
         cm.msgInfo(f"CPC Model: {PROJECT_RVM_MODEL}")
         cm.msgInfo(f"RUN Command: {PROJECT_RVM_RUN}")
@@ -72,7 +71,6 @@ def execute(project,emulator):
         
         if PROJECT_RVM_PATH != "":
             if cm.fileExist(PROJECT_RVM_PATH):
-                # cm.banner(PROJECT_RVM_MODEL)
                 cm.msgInfo(f"CPC Model: {PROJECT_RVM_MODEL}")
                 cm.msgInfo(f"RUN Command: {PROJECT_RVM_RUN}")
                 cm.msgInfo(f"Emulator: RVM Desktop ({PROJECT_RVM_PATH})")
@@ -83,10 +81,8 @@ def execute(project,emulator):
                     cm.msgError(f'{cm.getFileExt(PROJECT_DSK_NAME)} RELEASED WITH ERROR: {e.output.decode()}')
                     return False
             else:
-                # cm.banner(PROJECT_RVM_MODEL)
                 cm.showFoodDataProject("DISC IMAGE RELEASED WITH ERROR", 1)
         else:
-            # cm.banner(PROJECT_RVM_MODEL)
             cm.msgError(f"RVM Desktop path does not exist in {cm.CFG_PROJECT}")
             cm.showFoodDataProject("DISC IMAGE RELEASED WITH ERROR", 1)
         
