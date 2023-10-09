@@ -66,7 +66,7 @@ def create():
             cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
         if not addBas2ImageDisc(PROJECT_DSK_NAME, PROJECT_CONCAT_OUT):
             cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-        addamsdos(PROJECT_CONCAT_OUT)
+        # addamsdos(PROJECT_CONCAT_OUT)
     else:          
         for basfile in glob.glob(os.path.join(cm.PATH_SRC, '*.[bB][aA][sS]')):
             outputbasfile = f"{cm.PATH_DISC}/{cm.getFileExt(basfile)}"
@@ -76,7 +76,7 @@ def create():
                     cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
             if not addBas2ImageDisc(PROJECT_DSK_NAME, outputbasfile):
                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-            addamsdos(outputbasfile)  
+            # addamsdos(outputbasfile)  
       
     ########################################
     # PROCESING IMAGES FILES
@@ -166,6 +166,7 @@ def create():
     ########################################
     # ADD FILES TO CDT
     ########################################
+
     if sys.platform != 'darwin':
         cdtfiles = PROJECT_CDT_FILES.split(',')
         count = 0
@@ -178,12 +179,12 @@ def create():
             FNULL = open(os.devnull, 'w')
 
             if count == 0:
-                cmd = [cm.CDT,"-s","2000","-n","-r", name.upper(), cm.PATH_DISC + "/" + cdtfile.strip(),PROJECT_CDT_NAME]
+                cmd = [cm.CDT,"-s","1000","-n","-r", name.upper(), cm.PATH_DISC + "/" + cdtfile.strip(),PROJECT_CDT_NAME]
             else:
-                cmd = [cm.CDT,"-s","2000","-r", name.upper(), cm.PATH_DISC + "/" + cdtfile.strip(),PROJECT_CDT_NAME]
+                cmd = [cm.CDT,"-s","1000","-r", name.upper(), cm.PATH_DISC + "/" + cdtfile.strip(),PROJECT_CDT_NAME]
             try:
                 output = subprocess.check_output(cmd)
-                cm.msgInfo("Add file " + cm.getFileExt(name) + " ==> " + cm.getFileExt(PROJECT_CDT_NAME))
+                cm.msgInfo("Add file " + cdtfile.strip() + " ==> " + cm.getFileExt(PROJECT_CDT_NAME))
             except subprocess.CalledProcessError as e:
                 cm.msgError(f'Error ' + cm.getFileExt(name) + f' executing command: {e.output.decode()}')
                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
@@ -193,6 +194,8 @@ def create():
         cm.msgWarning("Mac OSX operating system does not support 2cdt. No image create CDT")
         
     cm.showFoodDataProject("CREATE DISC IMAGE SUCCESSFULLY", 0)
+
+    # -t -b 2000 -m "$TYPE" -r "$TAPENAME" "$FILENAME" "$TARGET_CDT"
 
 
 ##
@@ -205,10 +208,12 @@ def compileUGBasic(source, out):
     try:
         cmd = [cm.UGBASIC, source, "-o", out]
         output = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
+        if cm.fileExist(cm.PWD + "/main.bin"):
+            os.remove(cm.PWD + "/main.bin")
         name = cm.getFile(source)
         if extractUGBC2ImageDisc(out):
             shutil.move(cm.PATH_LIB + "/MAIN.BIN", cm.PATH_DISC + "/" + name.upper() + ".BIN")
-            cm.msgInfo(f"Compile: {source} ==> " + name.upper() + ".BIN")
+            cm.msgInfo(f"Compile: {cm.getFileExt(source)} ==> " + name.upper() + ".BIN")
             os.remove(out)
         else:
             cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1) 
