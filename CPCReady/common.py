@@ -16,6 +16,10 @@ from rich.columns import Columns
 from configparser import ConfigParser
 import configparser as cfg
 from jinja2 import Template
+import ipaddress as ip
+import platform
+import subprocess
+from ping3 import ping, verbose_ping
 
 console = Console()
 log = logging.getLogger("rich")
@@ -339,10 +343,32 @@ def validateCPCModel(model):
     return False
     
 
-    # config = configparser.ConfigParser()
-    # config.read(cfg)
-    # for seccion in config.sections():
-    #     print(f"{seccion}")
-    #     for clave, valor in config.items(seccion):
-    #         print(f"{clave} = {valor}")
-    #     print()
+def validateIP(ip_string):
+   try:
+       ip_object = ip.ip_address(ip_string)
+       msgInfo(f"IP address ==> {ip_string}") 
+       return True
+   except ValueError:
+       msgError("The IP address '{ip_string}' is not valid")
+       return False       
+
+
+# def ping(host):
+#     param = '-n' if platform.system().lower()=='windows' else '-c'
+#     command = ['ping', param, '1', host]
+#     return subprocess.call(command) == 0
+
+
+# r = pyping.ping('google.com')
+
+# if r.ret_code == 0:
+#     print("Success")
+# else:
+#     print("Failed with {}".format(r.ret_code))
+#     # config = configparser.ConfigParser()
+#     # config.read(cfg)
+#     # for seccion in config.sections():
+#     #     print(f"{seccion}")
+#     #     for clave, valor in config.items(seccion):
+#     #         print(f"{clave} = {valor}")
+#     #     print()

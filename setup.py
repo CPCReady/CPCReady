@@ -34,7 +34,8 @@ setup(
         'jinja2',
         'emoji',
         'jsonschema',
-        'python-dotenv'
+        'python-dotenv',
+        'ping3'
     ],
     python_requires='>=3.6',
     classifiers=[

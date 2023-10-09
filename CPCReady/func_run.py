@@ -7,7 +7,7 @@ import subprocess
 import yaml
 from CPCReady import common as cm
 import io
-
+from ping3 import ping, verbose_ping
 
 def execute(project,emulator):
 
@@ -93,6 +93,11 @@ def execute(project,emulator):
     elif emulator == "m4board":   
         PROJECT_RVM_RUN      = DATA_EMULATORS.get(emulator,'run',fallback="")
         PROJECT_M4BOARD_IP   = DATA_EMULATORS.get(emulator,'ip')
+        if not cm.validateIP(PROJECT_M4BOARD_IP):
+            cm.showFoodDataProject("DISC IMAGE RELEASED WITH ERROR", 1)
+        if not ping(PROJECT_M4BOARD_IP):
+            cm.msgError(f"No connect with {PROJECT_M4BOARD_IP}")
+            cm.showFoodDataProject("DISC IMAGE RELEASED WITH ERROR", 1)            
         EMULATOR             = "M4 Board"
         cm.msgInfo(f"RUN Command: {PROJECT_RVM_RUN}")
         cm.msgInfo(f"Emulator: {EMULATOR}")
