@@ -1,6 +1,11 @@
 [project]
 name        = {{ name }}
 author      = {{ user}}
-dsk         = {{ name }}.DSK
-cdt         = {{ name }}.CDT
 concatenate = 
+
+[CDT]
+name        = {{ name }}.CDT
+files       = MAIN.BAS
+
+[DSK]
+name        = {{ name }}.DSK
