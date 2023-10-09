@@ -24,10 +24,12 @@ def execute(project,emulator):
     
     if PROJECT_NAME == "NONE":
         cm.msgError(f"project name in {cm.CFG_PROJECT} does not exist or is empty")
-        sys.exit(1)    
+        sys.exit(1)
+            
     if PROJECT_CDT == "NONE":
         cm.msgError(f"CDT name in {cm.CFG_PROJECT} does not exist or is empty")
-        sys.exit(1)    
+        sys.exit(1)  
+  
     if PROJECT_DSK == "NONE":
         cm.msgError(f"DSK name in {cm.CFG_PROJECT} does not exist or is empty")
         sys.exit(1)
