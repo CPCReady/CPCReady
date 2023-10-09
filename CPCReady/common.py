@@ -48,16 +48,14 @@ CPC664 = """[grey]█▀▀█ █▀▄▀█ █▀▀▀█ ▀▀█▀▀ �
 #
 ##
 
-subfolders = ["out", "dsk", "src", "cfg","lib","img","spr","doc"]
-
-
-# CFG_PROJECT      = "cfg/cpcready.cfg"
+subfolders        = ["out", "out/disc", "src", "cfg","lib","img","spr","doc"]
+PWD               = os.getcwd() + "/"
 TEMPLATE_RVM_WEB  = "rvm-web.html"
 PATH_CFG          = "cfg"
-PATH_DISC         = "out"
+PATH_DISC         = "out/disc"
 PATH_OBJ          = "obj"
 PATH_SRC          = "src"
-PATH_DSK          = "dsk"
+PATH_DSK          = "out"
 PATH_LIB          = "lib"
 PATH_SPR          = "spr"
 PATH_ASSETS       = "img"
@@ -97,8 +95,6 @@ if sys.platform.startswith('linux'):
     AMSDOS = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/amsdos"
     CDT = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/2cdt"
     M4BOARD = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/xfer"
-PWD = os.getcwd() + "/"
-
 
 ##
 # create template file
