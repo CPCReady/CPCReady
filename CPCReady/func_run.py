@@ -11,22 +11,41 @@ import io
 
 def execute(project,emulator):
 
-    if not cm.fileExist(cm.CFG_EMULATORS):
-        sys.exit(1)
-
+    cm.validate_cfg(cm.CFG_PROJECT,cm.SECTIONS_PROJECT)
+    cm.validate_cfg(cm.CFG_EMULATORS,cm.SECTIONS_EMULATOR)
+    
     DATA_PROJECT   = cm.getData(cm.CFG_PROJECT)
     DATA_EMULATORS = cm.getData(cm.CFG_EMULATORS)
 
-    PROJECT_NAME         = DATA_PROJECT.get('project','name')
-    PROJECT_AUTHOR       = DATA_PROJECT.get('project','author')
-    PROJECT_DSK_NAME     = f"{cm.PATH_DSK}/{DATA_PROJECT.get('DSK','name')}"
-    PROJECT_DSK_NAME     = f"{cm.PATH_DSK}/{DATA_PROJECT.get('CDT','name')}"
+    PROJECT_NAME         = DATA_PROJECT.get('general','name',fallback="NONE")
+    PROJECT_AUTHOR       = DATA_PROJECT.get('general','author',fallback="NONE")
+    PROJECT_CDT          = DATA_PROJECT.get('CDT','name',fallback="NONE")
+    PROJECT_DSK          = DATA_PROJECT.get('DSK','name',fallback="NONE")
+    
+    if PROJECT_NAME == "NONE":
+        cm.msgError(f"project name in {cm.CFG_PROJECT} does not exist or is empty")
+        sys.exit(1)    
+    if PROJECT_CDT == "NONE":
+        cm.msgError(f"CDT name in {cm.CFG_PROJECT} does not exist or is empty")
+        sys.exit(1)    
+    if PROJECT_DSK == "NONE":
+        cm.msgError(f"DSK name in {cm.CFG_PROJECT} does not exist or is empty")
+        sys.exit(1)
+    
+    PROJECT_CDT_NAME     = f"{cm.PATH_DSK}/{PROJECT_CDT}"
+    PROJECT_DSK_NAME     = f"{cm.PATH_DSK}/{PROJECT_DSK}"
 
     cm.showHeadDataProject(cm.getFileExt(PROJECT_DSK_NAME))
     
     if emulator == "rvm-web":   
-        PROJECT_RVM_MODEL    = DATA_EMULATORS.get(emulator,'model')
-        PROJECT_RVM_RUN      = DATA_EMULATORS.get(emulator,'run')
+        PROJECT_RVM_MODEL    = DATA_EMULATORS.get(emulator,'model',fallback="NONE")
+        if PROJECT_RVM_MODEL == "NONE":
+            cm.msgError(f"CPC model has not been selected in rvm-web from the {cm.CFG_EMULATORS} file")
+            cm.showFoodDataProject("DISC IMAGE RELEASED WITH ERROR", 1)
+        if not cm.validateCPCModel(PROJECT_RVM_MODEL):
+            cm.msgError(f"CPC model {PROJECT_RVM_MODEL} not supported")
+            cm.showFoodDataProject("DISC IMAGE RELEASED WITH ERROR", 1)         
+        PROJECT_RVM_RUN      = DATA_EMULATORS.get(emulator,'run',fallback="")
         EMULATOR             = f"Retro Virtual Machine WEB ({cm.TEMPLATE_RVM_WEB})"
         context = {
             'name': PROJECT_NAME,
@@ -41,9 +60,15 @@ def execute(project,emulator):
         cm.msgInfo(f"Emulator: RVM Web ({cm.TEMPLATE_RVM_WEB})") 
            
     elif emulator == "rvm-desktop":   
-        PROJECT_RVM_MODEL    = DATA_EMULATORS.get(emulator,'model')
-        PROJECT_RVM_RUN      = DATA_EMULATORS.get(emulator,'run')
-        PROJECT_RVM_PATH     = DATA_EMULATORS.get(emulator,'path')
+        PROJECT_RVM_MODEL    = DATA_EMULATORS.get(emulator,'model',fallback="NONE")
+        if PROJECT_RVM_MODEL == "NONE":
+            cm.msgError(f"CPC model has not been selected in rvm-web from the {cm.CFG_EMULATORS} file")
+            cm.showFoodDataProject("DISC IMAGE RELEASED WITH ERROR", 1)
+        if not cm.validateCPCModel(PROJECT_RVM_MODEL):
+            cm.msgError(f"CPC model {PROJECT_RVM_MODEL} not supported")
+            cm.showFoodDataProject("DISC IMAGE RELEASED WITH ERROR", 1)                
+        PROJECT_RVM_RUN      = DATA_EMULATORS.get(emulator,'run',fallback="")
+        PROJECT_RVM_PATH     = DATA_EMULATORS.get(emulator,'path',fallback="")
         
         if PROJECT_RVM_PATH != "":
             if cm.fileExist(PROJECT_RVM_PATH):
@@ -66,10 +91,9 @@ def execute(project,emulator):
             cm.showFoodDataProject("DISC IMAGE RELEASED WITH ERROR", 1)
         
     elif emulator == "m4board":   
-        PROJECT_RVM_RUN      = DATA_EMULATORS.get(emulator,'run')
+        PROJECT_RVM_RUN      = DATA_EMULATORS.get(emulator,'run',fallback="")
         PROJECT_M4BOARD_IP   = DATA_EMULATORS.get(emulator,'ip')
         EMULATOR             = "M4 Board"
-        cm.msgInfo(f"CPC Model: {PROJECT_RVM_MODEL}")
         cm.msgInfo(f"RUN Command: {PROJECT_RVM_RUN}")
         cm.msgInfo(f"Emulator: {EMULATOR}")
 

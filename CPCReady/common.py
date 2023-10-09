@@ -45,20 +45,23 @@ subfolders = ["out", "dsk", "src", "cfg","lib","img","spr","doc"]
 
 
 # CFG_PROJECT      = "cfg/cpcready.cfg"
-TEMPLATE_RVM_WEB = "rvm-web.html"
-PATH_CFG         = "cfg"
-PATH_DISC        = "out"
-PATH_OBJ         = "obj"
-PATH_SRC         = "src"
-PATH_DSK         = "dsk"
-PATH_LIB         = "lib"
-PATH_SPR         = "spr"
-PATH_ASSETS      = "img"
-CFG_PROJECT      = f"{PATH_CFG}/project.cfg"
-CFG_EMULATORS    = f"{PATH_CFG}/emulators.cfg"
-CFG_IMAGES       = f"{PATH_CFG}/images.cfg"
-CFG_SPRITES      = f"{PATH_CFG}/sprites.cfg"
-APP_PATH         = os.path.dirname(os.path.abspath(__file__))
+TEMPLATE_RVM_WEB  = "rvm-web.html"
+PATH_CFG          = "cfg"
+PATH_DISC         = "out"
+PATH_OBJ          = "obj"
+PATH_SRC          = "src"
+PATH_DSK          = "dsk"
+PATH_LIB          = "lib"
+PATH_SPR          = "spr"
+PATH_ASSETS       = "img"
+CFG_PROJECT       = f"{PATH_CFG}/project.cfg"
+CFG_EMULATORS     = f"{PATH_CFG}/emulators.cfg"
+CFG_IMAGES        = f"{PATH_CFG}/images.cfg"
+CFG_SPRITES       = f"{PATH_CFG}/sprites.cfg"
+APP_PATH          = os.path.dirname(os.path.abspath(__file__))
+SECTIONS_PROJECT  = ["general", "configurations", "CDT", "DSK"]
+SECTIONS_EMULATOR = ["rvm-web", "rvm-desktop","m4board"]
+CPC_MODELS        = ["6128","464","664"]
 
 if sys.platform == "win32":
     cm.msgError(f"WIN32 Platform not supported")
@@ -313,20 +316,33 @@ def crear_entrada_ini(ruta_archivo, seccion, clave, valor):
         config.write(archivo)
 
 
-def recorrer_claves_y_valores_ini(ruta_archivo):
-    # Crear un objeto ConfigParser
+def validateSection(file, sectionfile):
     config = configparser.ConfigParser()
-    
-    # Leer el archivo INI
-    config.read(ruta_archivo)
-    
-    # Recorrer las secciones del archivo INI
+    config.read(file)
     for seccion in config.sections():
-        # Imprimir el nombre de la sección
-        print(f"[{seccion}]")
-        
-        # Recorrer las claves y valores de cada sección
-        for clave, valor in config.items(seccion):
-            print(f"{clave} = {valor}")
-        
-        print()  # Imprimir una línea en blanco entre secciones
+        if seccion == sectionfile:
+            return True
+    return False
+
+def validate_cfg(cfg,datos):
+    if not fileExist(cfg):
+        sys.exit(1)    
+    for section in datos:
+        if not validateSection(cfg,section):
+            msgError(f"{section} section does not exist in the {cfg} file") 
+            sys.exit(1)
+
+def validateCPCModel(model): 
+    for modelos in CPC_MODELS:
+        if str(modelos) == str(model):
+            return True
+    return False
+    
+
+    # config = configparser.ConfigParser()
+    # config.read(cfg)
+    # for seccion in config.sections():
+    #     print(f"{seccion}")
+    #     for clave, valor in config.items(seccion):
+    #         print(f"{clave} = {valor}")
+    #     print()

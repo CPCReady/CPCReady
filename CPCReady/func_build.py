@@ -11,6 +11,8 @@ from CPCReady import func_sprite as sprites
 
 def create():
 
+    cm.validate_cfg(cm.CFG_PROJECT,cm.SECTIONS_PROJECT)
+
     # Check is cfg project exist
     if not cm.fileExist(cm.CFG_PROJECT):
         sys.exit(1)
@@ -19,13 +21,25 @@ def create():
     DATA_EMULATORS = cm.getData(cm.CFG_EMULATORS)
 
     COUNT                = 0
-    PROJECT_NAME         = DATA_PROJECT.get('project','name')
-    # CPC_MODEL            = DATA_PROJECT.get('project','model')
-    PROJECT_AUTHOR       = DATA_PROJECT.get('project','author')
-    PROJECT_CDT_NAME     = f"{cm.PATH_DSK}/{DATA_PROJECT.get('CDT','name')}"
-    PROJECT_DSK_NAME     = f"{cm.PATH_DSK}/{DATA_PROJECT.get('DSK','name')}"
-    PROJECT_CDT_FILES    = DATA_PROJECT.get('CDT','files').strip()
-    PROJECT_CONCAT_OUT   = DATA_PROJECT.get('project','concatenate')        
+    PROJECT_NAME         = DATA_PROJECT.get('general','name',fallback="NONE")
+    PROJECT_AUTHOR       = DATA_PROJECT.get('general','author',fallback="NONE")
+    PROJECT_CDT          = DATA_PROJECT.get('CDT','name',fallback="NONE")
+    PROJECT_DSK          = DATA_PROJECT.get('DSK','name',fallback="NONE")
+    
+    if PROJECT_NAME == "NONE":
+        cm.msgError(f"project name in {cm.CFG_PROJECT} does not exist or is empty")
+        sys.exit(1)    
+    if PROJECT_CDT == "NONE":
+        cm.msgError(f"CDT name in {cm.CFG_PROJECT} does not exist or is empty")
+        sys.exit(1)    
+    if PROJECT_DSK == "NONE":
+        cm.msgError(f"DSK name in {cm.CFG_PROJECT} does not exist or is empty")
+        sys.exit(1)
+    
+    PROJECT_CDT_NAME     = f"{cm.PATH_DSK}/{PROJECT_CDT}"
+    PROJECT_DSK_NAME     = f"{cm.PATH_DSK}/{PROJECT_DSK}"
+    PROJECT_CDT_FILES    = DATA_PROJECT.get('CDT','files',fallback="NONE").strip()
+    PROJECT_CONCAT_OUT   = DATA_PROJECT.get('configurations','concatenate',fallback="")        
 
 
     # cm.banner(CPC_MODEL)
@@ -174,6 +188,7 @@ def create():
                 cm.msgError(f'Error ' + cm.getFileExt(name) + f' executing command: {e.output.decode()}')
                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
                 sys.exit(1)
+            count = count + 1
     else:
         cm.msgWarning("Mac OSX operating system does not support 2cdt. No image create CDT")
         
