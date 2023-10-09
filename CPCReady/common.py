@@ -76,7 +76,6 @@ if sys.platform == 'darwin':
     MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/tools/" + sys.platform + "/martine"
     IDSK = os.path.dirname(os.path.abspath(__file__)) + "/tools/darwin/iDSK"
     AMSDOS = os.path.dirname(os.path.abspath(__file__)) + "/tools/darwin/amsdos"
-    CDT = os.path.dirname(os.path.abspath(__file__)) + "/tools/darwin/2cdt"
 if sys.platform.startswith('linux'):
     TEMP_PATH = os.getenv('HOME') + "/tmp"
     MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/tools/" + sys.platform + "/martine"

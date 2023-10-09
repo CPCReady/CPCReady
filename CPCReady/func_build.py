@@ -152,28 +152,31 @@ def create():
     ########################################
     # ADD FILES TO CDT
     ########################################
-    cdtfiles = PROJECT_CDT_FILES.split(',')
-    count = 0
-    for cdtfile in cdtfiles:
-        if not cm.fileExist(cm.PATH_DISC + "/" + cdtfile.strip()):
-            cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-            sys.exit(1)
+    if sys.platform != 'darwin':
+        cdtfiles = PROJECT_CDT_FILES.split(',')
+        count = 0
+        for cdtfile in cdtfiles:
+            if not cm.fileExist(cm.PATH_DISC + "/" + cdtfile.strip()):
+                cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
+                sys.exit(1)
 
-        name = cm.getFile(cdtfile)
-        FNULL = open(os.devnull, 'w')
+            name = cm.getFile(cdtfile)
+            FNULL = open(os.devnull, 'w')
 
-        if count == 0:
-            cmd = [cm.CDT,"-s","2000","-n","-r", name.upper(), cm.PATH_DISC + "/" + cdtfile.strip(),PROJECT_CDT_NAME]
-        else:
-            cmd = [cm.CDT,"-s","2000","-r", name.upper(), cm.PATH_DISC + "/" + cdtfile.strip(),PROJECT_CDT_NAME]
-        try:
-            output = subprocess.check_output(cmd)
-            cm.msgInfo("Add file " + cm.getFileExt(name) + " ==> " + cm.getFileExt(PROJECT_CDT_NAME))
-        except subprocess.CalledProcessError as e:
-            cm.msgError(f'Error ' + cm.getFileExt(name) + f' executing command: {e.output.decode()}')
-            cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-            sys.exit(1)
-    
+            if count == 0:
+                cmd = [cm.CDT,"-s","2000","-n","-r", name.upper(), cm.PATH_DISC + "/" + cdtfile.strip(),PROJECT_CDT_NAME]
+            else:
+                cmd = [cm.CDT,"-s","2000","-r", name.upper(), cm.PATH_DISC + "/" + cdtfile.strip(),PROJECT_CDT_NAME]
+            try:
+                output = subprocess.check_output(cmd)
+                cm.msgInfo("Add file " + cm.getFileExt(name) + " ==> " + cm.getFileExt(PROJECT_CDT_NAME))
+            except subprocess.CalledProcessError as e:
+                cm.msgError(f'Error ' + cm.getFileExt(name) + f' executing command: {e.output.decode()}')
+                cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
+                sys.exit(1)
+    else:
+        cm.msgWarning("Mac OSX operating system does not support 2cdt. No image create CDT")
+        
     cm.showFoodDataProject("CREATE DISC IMAGE SUCCESSFULLY", 0)
 
 
