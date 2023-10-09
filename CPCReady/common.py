@@ -349,7 +349,7 @@ def validateIP(ip_string):
        msgInfo(f"IP address ==> {ip_string}") 
        return True
    except ValueError:
-       msgError("The IP address '{ip_string}' is not valid")
+       msgError("IP address ==> '{ip_string}' is not valid")
        return False       
 
 

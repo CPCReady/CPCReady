@@ -96,8 +96,10 @@ def execute(project,emulator):
         if not cm.validateIP(PROJECT_M4BOARD_IP):
             cm.showFoodDataProject("DISC IMAGE RELEASED WITH ERROR", 1)
         if not ping(PROJECT_M4BOARD_IP):
-            cm.msgError(f"No connect with {PROJECT_M4BOARD_IP}")
-            cm.showFoodDataProject("DISC IMAGE RELEASED WITH ERROR", 1)            
+            cm.msgError(f"No connect ==> {PROJECT_M4BOARD_IP}")
+            cm.showFoodDataProject("DISC IMAGE RELEASED WITH ERROR", 1)
+        else:
+             cm.msgInfo(f"Connect OK ==> {PROJECT_M4BOARD_IP}")          
         EMULATOR             = "M4 Board"
         cm.msgInfo(f"RUN Command: {PROJECT_RVM_RUN}")
         cm.msgInfo(f"Emulator: {EMULATOR}")
