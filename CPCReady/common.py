@@ -20,6 +20,9 @@ import ipaddress as ip
 import platform
 import subprocess
 from ping3 import ping, verbose_ping
+import requests
+import os
+from docopt import docopt
 
 console = Console()
 log = logging.getLogger("rich")
@@ -78,12 +81,14 @@ if sys.platform == "win64":
     UGBASIC = os.path.dirname(os.path.abspath(__file__)) + "/tools/win64/ugbc.exe"
     AMSDOS = os.path.dirname(os.path.abspath(__file__)) + "/tools/win64/amsdos.exe"
     CDT = os.path.dirname(os.path.abspath(__file__)) + "/tools/win64/2cdt.exe"
+    M4BOARD = os.path.dirname(os.path.abspath(__file__)) + "/tools/win64/xfer.exe"
 if sys.platform == 'darwin':
     TEMP_PATH = os.getenv('HOME') + "/tmp"
     MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/tools/" + sys.platform + "/martine"
     IDSK = os.path.dirname(os.path.abspath(__file__)) + "/tools/darwin/iDSK"
     AMSDOS = os.path.dirname(os.path.abspath(__file__)) + "/tools/darwin/amsdos"
     CDT = os.path.dirname(os.path.abspath(__file__)) + "/tools/darwin/2cdt"
+    M4BOARD = os.path.dirname(os.path.abspath(__file__)) + "/tools/darwin/xfer"
 if sys.platform.startswith('linux'):
     TEMP_PATH = os.getenv('HOME') + "/tmp"
     MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/tools/" + sys.platform + "/martine"
@@ -91,8 +96,9 @@ if sys.platform.startswith('linux'):
     UGBASIC = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/ugbc"
     AMSDOS = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/amsdos"
     CDT = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/2cdt"
-    
+    M4BOARD = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/xfer"
 PWD = os.getcwd() + "/"
+
 
 ##
 # create template file

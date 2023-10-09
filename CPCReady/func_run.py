@@ -87,8 +87,13 @@ def execute(project,emulator):
             cm.showFoodDataProject("DISC IMAGE RELEASED WITH ERROR", 1)
         
     elif emulator == "m4board":   
-        PROJECT_RVM_RUN      = DATA_EMULATORS.get(emulator,'run',fallback="")
-        PROJECT_M4BOARD_IP   = DATA_EMULATORS.get(emulator,'ip')
+        PROJECT_M4_RUN     = DATA_EMULATORS.get(emulator,'run',fallback="")
+        PROJECT_M4_FOLDER  = DATA_EMULATORS.get(emulator,'folder',fallback="CPCReady")
+        PROJECT_M4BOARD_IP = DATA_EMULATORS.get(emulator,'ip',fallback="NONE")
+        
+        if PROJECT_M4BOARD_IP == "NONE":
+            cm.msgError(f"No ip found in {cm.CFG_EMULATORS} for M4 Board")
+            cm.showFoodDataProject("DISC IMAGE RELEASED WITH ERROR", 1)
         if not cm.validateIP(PROJECT_M4BOARD_IP):
             cm.showFoodDataProject("DISC IMAGE RELEASED WITH ERROR", 1)
         if not ping(PROJECT_M4BOARD_IP):
@@ -97,7 +102,7 @@ def execute(project,emulator):
         else:
              cm.msgInfo(f"Connect OK ==> {PROJECT_M4BOARD_IP}")          
         EMULATOR             = "M4 Board"
-        cm.msgInfo(f"RUN Command: {PROJECT_RVM_RUN}")
+        cm.msgInfo(f"RUN Command: {PROJECT_M4_RUN}")
         cm.msgInfo(f"Emulator: {EMULATOR}")
 
     cm.showFoodDataProject("DISC IMAGE SUCCESSFULLY RELEASED", 0)

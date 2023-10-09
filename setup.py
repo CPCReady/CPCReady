@@ -35,7 +35,9 @@ setup(
         'emoji',
         'jsonschema',
         'python-dotenv',
-        'ping3'
+        'ping3',
+        'docopt',
+        'requests'
     ],
     python_requires='>=3.6',
     classifiers=[
