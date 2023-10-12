@@ -78,19 +78,19 @@ function prepareAllBasSourceFiles() {
 #--------------------------------------------------------------------------
 # Converts all images in assets folder as required
 #
-function convertAllImages () {
-   # CREATE BIN FOLDER IF IT DOES NOT EXIST
-   mkdir -p ./${BIN}/
+# function convertAllImages () {
+#    # CREATE BIN FOLDER IF IT DOES NOT EXIST
+#    mkdir -p ./${BIN}/
 
-   # IMAGE CONVERSIONS
-   cpct_img2tileset -tw 160 -th 200 -scr -of bin -nt assets/screen01.png 
-   cpct_img2tileset -tw 160 -th 200 -scr -of bin -nt assets/screen02.png 
-   cpct_img2tileset -tw 160 -th 200 -scr -of bin -nt assets/screen03.png 
-   cpct_img2tileset -tw 160 -th 200 -scr -of bin -nt assets/screen04.png 
-   mv ./assets/*.bin ./${BIN}/
-   rm ./assets/*.h
-   rm ./assets/*.h.s
-}
+#    # IMAGE CONVERSIONS
+#    cpct_img2tileset -tw 160 -th 200 -scr -of bin -nt assets/screen01.png 
+#    cpct_img2tileset -tw 160 -th 200 -scr -of bin -nt assets/screen02.png 
+#    cpct_img2tileset -tw 160 -th 200 -scr -of bin -nt assets/screen03.png 
+#    cpct_img2tileset -tw 160 -th 200 -scr -of bin -nt assets/screen04.png 
+#    mv ./assets/*.bin ./${BIN}/
+#    rm ./assets/*.h
+#    rm ./assets/*.h.s
+# }
 
 #--------------------------------------------------------------------------
 # Adds a single file to the ${TARGET_CDT}
@@ -111,12 +111,12 @@ function add2CDT() {
 # $1: Type of the file  (0, 1)
 # $2: Filename          (File that is to be added)
 #
-function add2DSK() {
-   local TYPE="$1"
-   local FILENAME="$2"
+# function add2DSK() {
+#    local TYPE="$1"
+#    local FILENAME="$2"
 
-   $IDSK "$TARGET_DSK" -i "$FILENAME" -t "$TYPE"
-}
+#    $IDSK "$TARGET_DSK" -i "$FILENAME" -t "$TYPE"
+# }
 
 #--------------------------------------------------------------------------
 # Creates the CDT File adding required files in order
@@ -138,49 +138,49 @@ function createCDT() {
 #--------------------------------------------------------------------------
 # Converts all tilemaps in assets/levels into binary as required
 #
-function convertAllMaps () {
-   # CREATE BIN FOLDER IF IT DOES NOT EXIST
-   mkdir -p ./${BIN}/levels/
+# function convertAllMaps () {
+#    # CREATE BIN FOLDER IF IT DOES NOT EXIST
+#    mkdir -p ./${BIN}/levels/
 
-   # IMAGE CONVERSIONS
-   for TMX in assets/levels/*tmx; do
-      cpct_tmx2data "${TMX}" -gb -ba 1 -of ./${BIN}/levels/
-   done
+#    # IMAGE CONVERSIONS
+#    for TMX in assets/levels/*tmx; do
+#       cpct_tmx2data "${TMX}" -gb -ba 1 -of ./${BIN}/levels/
+#    done
 
-   # CONCAT LEVELS
-   cat ./${BIN}/levels/*.bin > ./${BIN}/levels.bin
-   rm ./${BIN}/levels/*.bin
-}
+#    # CONCAT LEVELS
+#    cat ./${BIN}/levels/*.bin > ./${BIN}/levels.bin
+#    rm ./${BIN}/levels/*.bin
+# }
 
 #--------------------------------------------------------------------------
 # Creates the DSK file adding required files
 #
-function createDSK() {
-   # Local variables
-   local OBJFILES
-   local FILE
+# function createDSK() {
+#    # Local variables
+#    local OBJFILES
+#    local FILE
 
-   # create a new DSK
-   $IDSK "${TARGET_DSK}" -n 
+#    # create a new DSK
+#    $IDSK "${TARGET_DSK}" -n 
 
-   # List all BAS files in OBJECT folder
-   # And add them to the DSK one by one 
-   # As type 0 (BASIC/Text)
-   IFS=$'\n'
-   OBJFILES=$(find "./${OBJ}" -iname *.bas -type f)
-   for FILE in ${OBJFILES[*]}; do
-      add2DSK 0 "$FILE"
-   done
+#    # List all BAS files in OBJECT folder
+#    # And add them to the DSK one by one 
+#    # As type 0 (BASIC/Text)
+#    IFS=$'\n'
+#    OBJFILES=$(find "./${OBJ}" -iname *.bas -type f)
+#    for FILE in ${OBJFILES[*]}; do
+#       add2DSK 0 "$FILE"
+#    done
    
-   # List all BINARY files in OBJECT folder
-   # And add them to the DSK one by one 
-   # As type 1 (Binary)
-   IFS=$'\n'
-   OBJFILES=$(find "./${BIN}" -iname *.bin -type f)
-   for FILE in ${OBJFILES[*]}; do
-      add2DSK 1 "$FILE"
-   done
-}
+#    # List all BINARY files in OBJECT folder
+#    # And add them to the DSK one by one 
+#    # As type 1 (Binary)
+#    IFS=$'\n'
+#    OBJFILES=$(find "./${BIN}" -iname *.bin -type f)
+#    for FILE in ${OBJFILES[*]}; do
+#       add2DSK 1 "$FILE"
+#    done
+# }
 
 #--------------------------------------------------------------------------
 # Removes all generated compilation objects
@@ -208,15 +208,9 @@ fi
 case "$1" in
    "CDT") 
       prepareAllBasSourceFiles
-      convertAllImages
-      convertAllMaps
+      # convertAllImages
+      # convertAllMaps
       createCDT
-   ;;
-   "DSK") 
-      prepareAllBasSourceFiles
-      convertAllImages
-      convertAllMaps
-      createDSK
    ;;
    "CLEAN")
       cleanObjects
