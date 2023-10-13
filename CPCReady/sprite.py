@@ -15,7 +15,7 @@ def main():
     
     args = parser.parse_args()
 
-    if args.image != "" and args.mode != "" and args.out != "" and args.height != "" and args.width != "":
+    if args.image and args.mode and args.out and args.height and args.width:
         sprites.create(args.image, args.mode, args.out, args.height, args.width)
     else:
         handle_image_mode(args, parser)

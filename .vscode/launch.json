@@ -50,6 +50,18 @@
             "args": ["--project", "testing2basic22"] 
         },
         {
+            "name": "PALETTE",
+            "type": "python",
+            "request": "launch",
+            "module": "CPCReady.palette",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+            },
+            "args": ["--image", "/Users/david/Downloads/logole222222.png","--mode", "0"] 
+        },
+        {
             "name": "CREATE SCREEN",
             "type": "python",
             "request": "launch",

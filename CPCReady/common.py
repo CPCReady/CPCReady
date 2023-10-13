@@ -98,7 +98,7 @@ if sys.platform.startswith('linux'):
     M4BOARD = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/xfer"
 
 
-ugBasicPalette: {
+CONVERSION_PALETTE = {
     "COLOR_0":"RGB(0,0,0)",
     "COLOR_1":"RGB(0,0,128)",
     "COLOR_2":"RGB(0,0,255)",
@@ -109,6 +109,16 @@ ugBasicPalette: {
     "COLOR_7":"RGB(255,0,128)",
     "COLOR_8":"RGB(255,0,255)",
     "COLOR_9":"RGB(0,128,0)",
+    "COLOR_00":"RGB(0,0,0)",
+    "COLOR_01":"RGB(0,0,128)",
+    "COLOR_02":"RGB(0,0,255)",
+    "COLOR_03":"RGB(128,0,0)",
+    "COLOR_04":"RGB(128,0,128)",
+    "COLOR_05":"RGB(128,0,255)",
+    "COLOR_06":"RGB(255,0,0)",
+    "COLOR_07":"RGB(255,0,128)",
+    "COLOR_08":"RGB(255,0,255)",
+    "COLOR_09":"RGB(0,128,0)",
     "COLOR_10":"RGB(0,128,128)",
     "COLOR_11":"RGB(0,128,255)",
     "COLOR_12":"RGB(128,128,0)",

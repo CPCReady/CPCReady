@@ -58,6 +58,7 @@ setup(
             'cpcr_screen  = CPCReady.screen:main',
             'cpcr_build   = CPCReady.build:main',
             'cpcr_run     = CPCReady.run:main',
+            'cpcr_palette = CPCReady.palette:main',
         ]
     }
 )
