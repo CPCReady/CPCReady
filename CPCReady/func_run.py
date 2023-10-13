@@ -83,6 +83,7 @@ def execute(project,emulator):
         cm.msgInfo(f"CPC Model  : {PROJECT_RVM_MODEL}")
         cm.msgInfo(f"RUN Command: {PROJECT_RVM_RUN}")
         cm.msgInfo(f"Emulator   : RVM Web ({cm.TEMPLATE_RVM_WEB})") 
+        cm.showFoodDataProject("SUCCCESSFULLY LAUNCHED IMAGE", 0)
            
     elif emulator == "rvm-desktop":   
         
@@ -112,6 +113,8 @@ def execute(project,emulator):
         else:
             cm.msgError(f"RVM Desktop path does not exist in {cm.CFG_PROJECT}")
             cm.showFoodDataProject("DISC IMAGE RELEASED WITH ERROR", 1)
+
+        cm.showFoodDataProject("SUCCCESSFULLY LAUNCHED IMAGE", 0)
         
     elif emulator == "m4board":   
         
