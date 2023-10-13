@@ -1,3 +1,6 @@
+ ./cpc2cdt -t -r DAVID -m cpctxt david.bas P9.CDT 
+
+
 "COLOR_0":"RGB(0,0,0)",
 "COLOR_1":"RGB(0,0,128)",
 "COLOR_2":"RGB(0,0,255)",
