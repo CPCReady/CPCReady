@@ -1,3 +1,4 @@
+from ctypes.wintypes import RGB
 import os
 import sys
 import datetime
@@ -95,6 +96,39 @@ if sys.platform.startswith('linux'):
     AMSDOS = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/amsdos"
     CDT = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/2cdt"
     M4BOARD = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/xfer"
+
+
+ugBasicPalette: {
+    "COLOR_0":"RGB(0,0,0)",
+    "COLOR_1":"RGB(0,0,128)",
+    "COLOR_2":"RGB(0,0,255)",
+    "COLOR_3":"RGB(128,0,0)",
+    "COLOR_4":"RGB(128,0,128)",
+    "COLOR_5":"RGB(128,0,255)",
+    "COLOR_6":"RGB(255,0,0)",
+    "COLOR_7":"RGB(255,0,128)",
+    "COLOR_8":"RGB(255,0,255)",
+    "COLOR_9":"RGB(0,128,0)",
+    "COLOR_10":"RGB(0,128,128)",
+    "COLOR_11":"RGB(0,128,255)",
+    "COLOR_12":"RGB(128,128,0)",
+    "COLOR_13":"RGB(128,128,128)",
+    "COLOR_14":"RGB(128,128,255)",
+    "COLOR_15":"RGB(255,128,0)",
+    "COLOR_16":"RGB(255,128,128)",
+    "COLOR_17":"RGB(255,128,255)",
+    "COLOR_18":"RGB(0,255,0)",
+    "COLOR_19":"RGB(0,255,128)",
+    "COLOR_20":"RGB(0,255,255)",
+    "COLOR_21":"RGB(128,255,0)",
+    "COLOR_22":"RGB(128,255,128)",
+    "COLOR_23":"RGB(128,255,255)",
+    "COLOR_24":"RGB(255,255,0)",
+    "COLOR_25":"RGB(255,255,128)",
+    "COLOR_26":"RGB(255,255,255)"
+}
+
+
 
 ##
 # create template file
