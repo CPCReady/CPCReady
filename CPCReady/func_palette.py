@@ -62,13 +62,6 @@ def getData(filename, mode,api=False):
 
         cm.rmFolder(IMAGE_TEMP_PATH)
         
-        if dsk:
-            if api == False:
-                cm.showFoodDataProject(IMAGE_TMP_FILE.upper() + ".DSK NOT CREATED.", 1)
-        else:
-            if api == False:
-                cm.showFoodDataProject(f"{fileout}/{IMAGE_TMP_FILE.upper()}.SCR NOT CREATED.", 1)
-            return False
 
     ########################################
     # READ JSON PALETTE
