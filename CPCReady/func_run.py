@@ -9,6 +9,29 @@ from CPCReady import common as cm
 import io
 from ping3 import ping, verbose_ping
 
+
+def executeFileM4BOARD(ip,file):
+    FNULL = open(os.devnull, 'w')
+    cmd = [cm.M4BOARD, "-x",ip,file]
+    try:
+        output = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
+        cm.msgInfo("Execute " + cm.getFileExt(file) + " ==> M4 Board")
+        return True
+    except subprocess.CalledProcessError as e:
+        cm.msgError(f'Error ' + cm.getFileExt(file) + f' executing command: {e.output.decode()}')
+        return False
+
+def uploadFileM4BOARD(ip,file,folder):
+    FNULL = open(os.devnull, 'w')
+    cmd = [cm.M4BOARD, "-u",ip,file, folder, 0]
+    try:
+        output = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
+        cm.msgInfo("Upload " + cm.getFileExt(file) + " ==> M4 Board")
+        return True
+    except subprocess.CalledProcessError as e:
+        cm.msgError(f'Error ' + cm.getFileExt(file) + f' executing command: {e.output.decode()}')
+        return False
+
 def execute(project,emulator):
 
     cm.validate_cfg(cm.CFG_PROJECT,cm.SECTIONS_PROJECT)
@@ -92,7 +115,7 @@ def execute(project,emulator):
         
     elif emulator == "m4board":   
         
-        PROJECT_M4_RUN     = DATA_EMULATORS.get(emulator,'run',fallback="")
+        PROJECT_M4_EXECUTE = DATA_EMULATORS.get(emulator,'execute',fallback="")
         PROJECT_M4_FOLDER  = DATA_EMULATORS.get(emulator,'folder',fallback="CPCReady")
         PROJECT_M4BOARD_IP = DATA_EMULATORS.get(emulator,'ip',fallback="NONE")
         
@@ -107,7 +130,27 @@ def execute(project,emulator):
         else:
              cm.msgInfo(f"Connect OK ==> {PROJECT_M4BOARD_IP}")          
         EMULATOR             = "M4 Board"
-        cm.msgInfo(f"RUN Command: {PROJECT_M4_RUN}")
-        cm.msgInfo(f"Emulator   : {EMULATOR}")
+        
+        count = 0
 
-    cm.showFoodDataProject("DISC IMAGE SUCCESSFULLY RELEASED", 0)
+        archivos = os.listdir(cm.PATH_DISC)
+        for archivo in archivos:
+            if os.path.isfile(os.path.join(cm.PATH_DISC, archivo)):
+                cm.msgInfo("Upload " + cm.getFileExt(archivo) + " ==> M4 Board")  
+                if not uploadFileM4BOARD(PROJECT_M4BOARD_IP,cm.PATH_DISC + "/" + archivo,PROJECT_M4_FOLDER):
+                    cm.showFoodDataProject("NO FILES UPLOAD M4 BOARD", 1)
+            count = count + 1     
+        
+        if count > 0:
+            if cm.fileExist(cm.PATH_DISC + "/" + PROJECT_M4_EXECUTE):
+                if not executeFileM4BOARD(PROJECT_M4BOARD_IP,):
+                    cm.showFoodDataProject("NO FILES UPLOAD M4 BOARD", 1)
+                cm.msgInfo(f"Execute file: {PROJECT_M4_EXECUTE}")
+                cm.msgInfo(f"Emulator    : {EMULATOR}")
+                cm.showFoodDataProject("FILES UPLOAD AND EXECUTE M4 BOARD", 0)
+        else:
+            cm.msgWarning("No upload files in " + cm.PATH_DISC)    
+            cm.showFoodDataProject("NO FILE EXECUTED M4 BOARD", 1)
+                  
+
+        
