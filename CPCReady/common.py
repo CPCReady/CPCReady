@@ -49,7 +49,7 @@ CPC664 = """[grey]█▀▀█ █▀▄▀█ █▀▀▀█ ▀▀█▀▀ �
 #
 ##
 
-subfolders        = ["out", "out/disc", "src", "cfg","lib","img","spr","doc"]
+subfolders        = ["out", "out/disc", "src", "cfg","lib","img","spr","docs"]
 PWD               = os.getcwd() + "/"
 TEMPLATE_RVM_WEB  = "rvm-web.html"
 PATH_CFG          = "cfg"

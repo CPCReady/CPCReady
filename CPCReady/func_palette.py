@@ -91,9 +91,9 @@ def getData(filename, mode,api=False):
     # IF PARAM DSK IS TRUE
     ########################################
 
-    cm.msgInfo(f"SW PALETTE      : {sw_palette}")
-    cm.msgInfo(f"HW PALETTE      : {hw_palette}")
-    cm.msgInfo(f"UGBASIC PALETTE : {ug_palette}")
+    cm.msgInfo(f"Software : {sw_palette}")
+    cm.msgInfo(f"Hardware : {hw_palette}")
+    cm.msgInfo(f"UgBasic  : {ug_palette}")
 
     ########################################
     # DELETE TEMPORAL FILES

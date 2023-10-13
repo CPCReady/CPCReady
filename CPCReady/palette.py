@@ -1,26 +1,21 @@
-import argparse
+
 from CPCReady import func_palette as palette
 from CPCReady import __version__
+import click
 
-def main():
-    description = 'CPCReady Get palette image.'
-
-    parser = argparse.ArgumentParser(description=description)
-    parser.add_argument('--image', '-i', help='Image Path')
-    parser.add_argument('--mode', '-m', type=int, default=0, choices=[0, 1, 2], help='Image Mode (0, 1, 2)')
-    parser.add_argument('-v', '--version', action='version', version='\nCPCReady - Palette ' + __version__)
-
-    args = parser.parse_args()
-    
-    if args.image and args.mode:
-        palette.getData(args.image, args.mode)
+@click.command(name="cpcr_palette",help="Extract the color palette of an image")
+@click.option("-i", "--image", "image", type=click.STRING, help="Input file name",required=True)
+@click.option("-m", "--mode", "mode", type=click.Choice(["0","1","2"]), help="Image Mode (0, 1, 2)",required=True)
+@click.version_option(version=__version__)
+def main(image, mode):
+    if image is None or mode is None:
+        show_help()
     else:
-        handle_image_mode(args, parser)
+        palette.getData(image, mode)
 
+def show_help():
+    with click.Context(main) as ctx:
+        click.echo(main.get_help(ctx))
 
-def handle_image_mode(args, parser):
-    parser.print_help()
-
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
