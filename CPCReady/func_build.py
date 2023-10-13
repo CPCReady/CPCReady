@@ -344,20 +344,18 @@ def addamsdos(file):
         cm.msgError(f'Error ' + cm.getFileExt(file) + f' executing command: {e.output.decode()}')
         return False
 
-def CDTImage(file,cdtimg,orden):
+def addFile2CDTImage(file,cdtimg):
     extension = cm.getFileExtension(file)
-    if extension.upper() == ".BAS":
-        typefile = "cpctxt"
-    else:
+    if extension.upper() != ".BIN"or extension.upper() != ".SRC":
         typefile = "cpc"
+    else:
+        typefile = "cpctxt"
     name = cm.getFile(file)
     FNULL = open(os.devnull, 'w')
     # 2cdt -s 0 -n -r MYGAME loader.bas master.cdt
     # cmd = [cm.CDT,"-t","-n","-b","2000","-m",typefile, "-r", name.upper(), file,cdtimg]
-    if orden == 0:
-        cmd = [cm.CDT,"-s","2000","-n","-r", name.upper(), file,cdtimg]
-    else:
-        cmd = [cm.CDT,"-s","2000","-F","-r", name.upper(), file,cdtimg]
+
+    cmd = [cm.CDT,"-s","2000","-F","-r", name.upper(), file,cdtimg]
     try:
         output = subprocess.check_output(cmd)
         cm.msgInfo("Add file " + cm.getFileExt(file) + " ==> " + cdtimg)
@@ -371,3 +369,16 @@ def CDTImage(file,cdtimg,orden):
 #     2cdt.exe -n -s 1 -r "LOADER.bas" "loader.BAS" tucinta.cdt
 # 2cdt.exe -b 2000 -r "tujuego.bin" "tujuego.bin" tucinta.cdt
 # 2cdt.exe -b 2000 -r "tujuego.bas" "tujuego.bas" tucinta.cdt
+
+def createImageCDT(imagefile):
+    cm.rmFolder(imagefile)
+    cmd = [cm.CDT, "-n", ".", imagefile]
+    try:
+        output = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
+        if not os.path.isfile(imagefile):
+            cm.msgError('Error generating CDT image ' + cm.getFileExt(imagefile))
+            cm.showFoodDataProject("BUILD FAILURE CDT IMAGE", 1)
+        return True
+    except subprocess.CalledProcessError as e:
+        cm.msgError(f'Error ' + cm.getFileExt(imagefile) + f' executing command: {e.output.decode()}')
+        cm.showFoodDataProject("BUILD FAILURE CDT IMAGE", 1)
