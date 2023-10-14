@@ -7,8 +7,19 @@ import subprocess
 import yaml
 from CPCReady import common as cm
 import io
-from ping3 import ping, verbose_ping
+from ping3 import ping as ping34
+import platform
 
+
+def ping_ok(sHost) -> bool:
+    try:
+        subprocess.check_output(
+            "ping -{} 1 {}".format("n" if platform.system().lower() == "windows" else "c", sHost), shell=True
+        )
+    except Exception:
+        return False
+
+    return True
 
 def executeFileM4BOARD(ip,file):
     FNULL = open(os.devnull, 'w')
@@ -23,7 +34,7 @@ def executeFileM4BOARD(ip,file):
 
 def uploadFileM4BOARD(ip,file,folder):
     FNULL = open(os.devnull, 'w')
-    cmd = [cm.M4BOARD, "-u",ip,file, folder, 0]
+    cmd = [cm.M4BOARD, "-u",str(ip),str(file), str(folder), "0"]
     try:
         output = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
         cm.msgInfo("Upload " + cm.getFileExt(file) + " ==> M4 Board")
@@ -121,35 +132,34 @@ def execute(project,emulator):
         PROJECT_M4_EXECUTE = DATA_EMULATORS.get(emulator,'execute',fallback="")
         PROJECT_M4_FOLDER  = DATA_EMULATORS.get(emulator,'folder',fallback="CPCReady")
         PROJECT_M4BOARD_IP = DATA_EMULATORS.get(emulator,'ip',fallback="NONE")
-        
+        EMULATOR             = "M4 Board"
+        cm.msgInfo(f"Emulator    : {EMULATOR}")
         if PROJECT_M4BOARD_IP == "NONE":
             cm.msgError(f"No ip found in {cm.CFG_EMULATORS} for M4 Board")
-            cm.showFoodDataProject("DISC IMAGE RELEASED WITH ERROR", 1)
+            cm.showFoodDataProject("NO FILES UPLOAD M4 BOARD", 1)
         if not cm.validateIP(PROJECT_M4BOARD_IP):
-            cm.showFoodDataProject("DISC IMAGE RELEASED WITH ERROR", 1)
-        if not ping(PROJECT_M4BOARD_IP):
+            cm.showFoodDataProject("NO FILES UPLOAD M4 BOARD", 1)
+        if not ping_ok(PROJECT_M4BOARD_IP):
             cm.msgError(f"No connect ==> {PROJECT_M4BOARD_IP}")
-            cm.showFoodDataProject("DISC IMAGE RELEASED WITH ERROR", 1)
+            cm.showFoodDataProject("NO FILES UPLOAD M4 BOARD", 1)
         else:
-             cm.msgInfo(f"Connect OK ==> {PROJECT_M4BOARD_IP}")          
-        EMULATOR             = "M4 Board"
+            cm.msgInfo(f"Connect OK ==> {PROJECT_M4BOARD_IP}")          
+        
         
         count = 0
 
         archivos = os.listdir(cm.PATH_DISC)
         for archivo in archivos:
             if os.path.isfile(os.path.join(cm.PATH_DISC, archivo)):
-                cm.msgInfo("Upload " + cm.getFileExt(archivo) + " ==> M4 Board")  
                 if not uploadFileM4BOARD(PROJECT_M4BOARD_IP,cm.PATH_DISC + "/" + archivo,PROJECT_M4_FOLDER):
                     cm.showFoodDataProject("NO FILES UPLOAD M4 BOARD", 1)
             count = count + 1     
         
         if count > 0:
             if cm.fileExist(cm.PATH_DISC + "/" + PROJECT_M4_EXECUTE):
-                if not executeFileM4BOARD(PROJECT_M4BOARD_IP,):
+                if not executeFileM4BOARD(PROJECT_M4BOARD_IP,PROJECT_M4_FOLDER + "/" + PROJECT_M4_EXECUTE):
                     cm.showFoodDataProject("NO FILES UPLOAD M4 BOARD", 1)
-                cm.msgInfo(f"Execute file: {PROJECT_M4_EXECUTE}")
-                cm.msgInfo(f"Emulator    : {EMULATOR}")
+                
                 cm.showFoodDataProject("FILES UPLOAD AND EXECUTE M4 BOARD", 0)
         else:
             cm.msgWarning("No upload files in " + cm.PATH_DISC)    

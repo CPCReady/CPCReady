@@ -6,7 +6,7 @@
             "type": "python",
             "request": "launch",
             "module": "CPCReady.run",
-            "cwd": "${workspaceFolder}/testing1",
+            "cwd": "${workspaceFolder}/testing0",
             "justMyCode": true,
             "env": {
                 "PYTHONPATH": "${workspaceFolder}",
