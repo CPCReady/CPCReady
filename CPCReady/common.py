@@ -20,10 +20,9 @@ from jinja2 import Template
 import ipaddress as ip
 import platform
 import subprocess
-from ping3 import ping, verbose_ping
 import requests
 import os
-from docopt import docopt
+
 
 console = Console()
 log = logging.getLogger("rich")

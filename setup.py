@@ -30,12 +30,8 @@ setup(
         'click',
         'configparser',
         'rich',
-        'PyYAML',
         'jinja2',
         'emoji',
-        'jsonschema',
-        'python-dotenv',
-        'docopt',
         'requests'
     ],
     python_requires='>=3.6',
