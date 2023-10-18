@@ -1,0 +1,4 @@
+#!/bin/sh
+export PATH=${PATH}
+cd $1
+./ugbc -O dsk -o $2 $3

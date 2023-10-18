@@ -168,6 +168,7 @@ def create():
 
     if cm.fileExist(PROJECT_CDT_NAME):
         os.remove(PROJECT_CDT_NAME)
+    createImageCDT(PROJECT_CDT_NAME)
     cdtfiles = PROJECT_CDT_FILES.split(',')
     count = 0
     for cdtfile in cdtfiles:
@@ -188,22 +189,43 @@ def create():
 # @param out: output file name
 ##
 def compileUGBasic(source, out):
+    # try:
+        # ugbc -O dsk -o source.dsk source.bas
+        # /home/destroyer/Github/CPCReady/sdk/CPCReady/tools/linux/ugb
+    comando = f"{cm.UGBASICSH} {cm.UGBASIC2} {cm.PWD}/{out} {cm.PWD}/{source}"  # Ejemplo de un comando que generará un error
     try:
-        cmd = [cm.UGBASIC, source, "-o", out]
-        output = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
-        if cm.fileExist(cm.PWD + "/main.bin"):
-            os.remove(cm.PWD + "/main.bin")
-        name = cm.getFile(source)
-        if extractUGBC2ImageDisc(out):
-            shutil.move(cm.PATH_LIB + "/MAIN.BIN", cm.PATH_DISC + "/" + name.upper() + ".BIN")
-            cm.msgInfo(f"Compile: {cm.getFileExt(source)} ==> " + name.upper() + ".BIN")
-            os.remove(out)
-        else:
-            cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1) 
-        return True
+        resultado = subprocess.check_output(comando, shell=True, env={'PATH': cm.PWD}, universal_newlines=True)
+        # El comando se ejecutó con éxito, resultado contiene la salida
+        print("La ejecución fue exitosa:")
+        print(resultado)
     except subprocess.CalledProcessError as e:
-        cm.msgError(cm.getFileExt(source) + f' ==> Error executing command: {e.output.decode()}')
-        return False
+        # Se generó un error al ejecutar el comando
+        print(f"Error al ejecutar el comando. Código de salida: {e.returncode}")
+        print(e.output)  # La salida del comando (puede contener mensajes de error)
+    except Exception as e:
+        # Otra excepción ocurrió
+        print(f"Ocurrió una excepción: {str(e)}")        
+    #     variables_entorno = os.environ.copy()
+    #     variables_entorno["PATH"] = cm.PWD + ":" + variables_entorno["PATH"]
+    #     # cmd = ["." + cm.UGBASICSH, out,source]
+    #     cmd = [cm.UGBASIC, "-O","dsk","-o", out,source ]
+    #     print(cmd)
+    #     output = subprocess.check_output(cmd, shell=True, env=variables_entorno, universal_newlines=True)
+
+    #     if cm.fileExist(cm.PWD + "/main.bin"):
+    #         os.remove(cm.PWD + "/main.bin")
+    #     name = cm.getFile(source)
+    #     if extractUGBC2ImageDisc(out):
+    #         shutil.move(cm.PATH_LIB + "/MAIN.BIN", cm.PATH_DISC + "/" + name.upper() + ".BIN")
+    #         cm.msgInfo(f"Compile: {cm.getFileExt(source)} ==> " + name.upper() + ".BIN")
+    #         os.remove(out)
+    #     else:
+    #         cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1) 
+    #     return True
+    # except subprocess.CalledProcessError as e:
+    #     cm.msgError(cm.getFileExt(source) + f' ==> Error executing command: {e.output.decode()}')
+    #     return False
+    print("")
 
 def concatAllFiles(path, inFile):
     allBasFiles = glob.glob(os.path.join(path, '*.[bB][aA][sS]'))
