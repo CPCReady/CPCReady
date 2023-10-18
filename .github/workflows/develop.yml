@@ -1,16 +1,16 @@
 
 name: Upload TEST PYPY.ORG
 
-on:
-  push:
-    branches:
-      - 28-añadir-crear-cabecera-amsdos-para-ficheros-basic
 # on:
-#   pull_request:
+#   push:
 #     branches:
-#       - develop
-#     types:
-#       - closed
+#       - 28-añadir-crear-cabecera-amsdos-para-ficheros-basic
+on:
+  pull_request:
+    branches:
+      - develop
+    types:
+      - closed
 
 permissions:
   contents: read
