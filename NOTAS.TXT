@@ -1,3 +1,119 @@
+ ./cpc2cdt -t -r DAVID -m cpctxt david.bas P9.CDT 
+
+
+"COLOR_0":"RGB(0,0,0)",
+"COLOR_1":"RGB(0,0,128)",
+"COLOR_2":"RGB(0,0,255)",
+"COLOR_3":"RGB(128,0,0)",
+"COLOR_4":"RGB(128,0,128)",
+"COLOR_5":"RGB(128,0,255)",
+"COLOR_6":"RGB(255,0,0)",
+"COLOR_7":"RGB(255,0,128)",
+"COLOR_8":"RGB(255,0,255)",
+"COLOR_9":"RGB(0,128,0)",
+"COLOR_10":"RGB(0,128,128)",
+"COLOR_11":"RGB(0,128,255)",
+"COLOR_12":"RGB(128,128,0)",
+"COLOR_13":"RGB(128,128,128)",
+"COLOR_14":"RGB(128,128,255)",
+"COLOR_15":"RGB(255,128,0)",
+"COLOR_16":"RGB(255,128,128)",
+"COLOR_17":"RGB(255,128,255)",
+"COLOR_18":"RGB(0,255,0))",
+"COLOR_19":"RGB(0,255,128))",
+"COLOR_20":"RGB(0,255,255))",
+"COLOR_21":"RGB(128,255,0))",
+"COLOR_22":"RGB(128,255,128))",
+"COLOR_23":"RGB(128,255,255))",
+"COLOR_24":"RGB(255,255,0))",
+"COLOR_25":"RGB(255,255,128))",
+"COLOR_26":"RGB(255,255,255"
+
+ugBasicPalette: {
+    "COLOR_0":"RGB(0,0,0)",
+    "COLOR_1":"RGB(0,0,128)",
+    "COLOR_2":"RGB(0,0,255)",
+    "COLOR_3":"RGB(128,0,0)",
+    "COLOR_4":"RGB(128,0,128)",
+    "COLOR_5":"RGB(128,0,255)",
+    "COLOR_6":"RGB(255,0,0)",
+    "COLOR_7":"RGB(255,0,128)",
+    "COLOR_8":"RGB(255,0,255)",
+    "COLOR_9":"RGB(0,128,0)",
+    "COLOR_10":"RGB(0,128,128)",
+    "COLOR_11":"RGB(0,128,255)",
+    "COLOR_12":"RGB(128,128,0)",
+    "COLOR_13":"RGB(128,128,128)",
+    "COLOR_14":"RGB(128,128,255)",
+    "COLOR_15":"RGB(255,128,0)",
+    "COLOR_16":"RGB(255,128,128)",
+    "COLOR_17":"RGB(255,128,255)",
+    "COLOR_18":"RGB(0,255,0)",
+    "COLOR_19":"RGB(0,255,128)",
+    "COLOR_20":"RGB(0,255,255)",
+    "COLOR_21":"RGB(128,255,0)",
+    "COLOR_22":"RGB(128,255,128)",
+    "COLOR_23":"RGB(128,255,255)",
+    "COLOR_24":"RGB(255,255,0)",
+    "COLOR_25":"RGB(255,255,128)",
+    "COLOR_26":"RGB(255,255,255)"
+}
+
+
+./2cdt.linux -n . PEPE33.CDT  > /dev/null 
+
+./2cdt -t 1 -s 2 -m 0 -r "HOLA COMO ESTAS" "MAIN.BAS" "COLOR_EPE33.CDT"  
+
+
+
+
+function convertAllImages () {
+   # CREATE BIN FOLDER IF IT DOES NOT EXIST
+   mkdir -p ./${BIN}/
+
+   # IMAGE CONVERSIONS
+   cpct_img2tileset -tw 160 -th 200 -scr -of bin -nt assets/screen01.png 
+   cpct_img2tileset -tw 160 -th 200 -scr -of bin -nt assets/screen02.png 
+   cpct_img2tileset -tw 160 -th 200 -scr -of bin -nt assets/screen03.png 
+   cpct_img2tileset -tw 160 -th 200 -scr -of bin -nt assets/screen04.png 
+   mv ./assets/*.bin ./${BIN}/
+   rm ./assets/*.h
+   rm ./assets/*.h.s
+}
+
+
+#--------------------------------------------------------------------------
+# Creates the CDT File adding required files in order
+#
+function createCDT() {
+   # Creates the CDT from scratch (removing previous one)
+   # and adds all files in their required order
+   rm -f ./${TARGET_CDT}
+   add2CDT cpctxt "DUNGEON CASTLES" ${OBJ}/dcastles.bas     
+   add2CDT cpc    "SCREEN01.BIN"    ${BIN}/screen01.bin
+   add2CDT cpc    "SCREEN02.BIN"    ${BIN}/screen02.bin
+   add2CDT cpc    "SCREEN03.BIN"    ${BIN}/screen03.bin
+   add2CDT cpc    "SCREEN04.BIN"    ${BIN}/screen04.bin
+   add2CDT cpctxt "GLOADER.BAS"     ${OBJ}/gloader.bas
+   add2CDT cpc    "LEVELS.BIN"      ${BIN}/levels.bin
+   add2CDT cpctxt "GAME.BAS"        ${OBJ}/game.bas
+}
+    
+# Adds a single file to the ${TARGET_CDT}
+# $1: Type of the file (cpctxt, cpc...)
+# $2: Long filename (Up to 16 chars, it will be shown on tape loading)
+# $3: Filename      (File that is to be added)
+#
+function add2CDT() {
+   local TYPE="$1"
+   local TAPENAME="$2"
+   local FILENAME="$3"
+
+   $CPC2CDT -t -b 2000 -m "$TYPE" -r "$TAPENAME" "$FILENAME" "$TARGET_CDT"
+}
+
+#---    
+    
     IMAGE_TMP_FILE = os.path.basename(os.path.splitext(filename)[0])
 
     ########################################

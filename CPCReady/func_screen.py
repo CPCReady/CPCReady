@@ -18,16 +18,16 @@ from CPCReady import common as cm
 ##
 
 def create(filename, mode, fileout, dsk, api=False):
+    
     ########################################
     # VARIABLES
     ########################################
 
-    if cm.TEMP_PATH is not None:
-        IMAGE_TEMP_PATH = cm.TEMP_PATH + "." + os.path.basename(filename)
-    else:
-        IMAGE_TEMP_PATH = cm.PWD + "." + os.path.basename(filename)
-
+    IMAGE_TEMP_PATH = cm.TEMP_PATH + "/." + os.path.basename(filename)
     IMAGE_TMP_FILE = os.path.basename(os.path.splitext(filename)[0])
+
+    if not os.path.exists(cm.TEMP_PATH):
+        os.mkdir(cm.TEMP_PATH)
 
     ########################################
     # WE CHECK IF WE COMPLY WITH RULE 6:3
@@ -91,6 +91,13 @@ def create(filename, mode, fileout, dsk, api=False):
 
     sw_palette = str(data['palette'])
     hw_palette = str(data['hardwarepalette'])
+    ugBasic_palette = []
+    
+    for color in data['palette']:
+        palette_amstrad = cm.CONVERSION_PALETTE.get("COLOR_" + color)
+        ugBasic_palette.append(palette_amstrad)
+    
+    ug_palette = str(ugBasic_palette)
 
     ########################################
     # IF PARAM DSK IS TRUE
@@ -103,8 +110,9 @@ def create(filename, mode, fileout, dsk, api=False):
                      fileout + '/' + IMAGE_TMP_FILE.upper() + '.DSK')
         cm.msgInfo(f"Create IMAGE File: {fileout}/{IMAGE_TMP_FILE.upper()}.DSK")
 
-    cm.msgInfo(f"       SW PALETTE : {sw_palette}")
-    cm.msgInfo(f"       HW PALETTE : {hw_palette}")
+    cm.msgInfo(f"       SW PALETTE      : {sw_palette}")
+    cm.msgInfo(f"       HW PALETTE      : {hw_palette}")
+    cm.msgInfo(f"       UGBASIC PALETTE : {ug_palette}")
 
     ########################################
     # DELETE TEMPORAL FILES
