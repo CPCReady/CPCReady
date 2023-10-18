@@ -4,7 +4,6 @@ import datetime
 import shutil
 from jinja2 import Template
 import subprocess
-import yaml
 from CPCReady import common as cm
 import io
 import platform
