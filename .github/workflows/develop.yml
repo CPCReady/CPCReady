@@ -1,9 +1,6 @@
 
 name: Upload TEST PYPY.ORG
 
-# on:
-#   pull_request:
-#     types: [closed]
 on:
   push:
     branches:
