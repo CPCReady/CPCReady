@@ -4,11 +4,17 @@ name: Upload TEST PYPY.ORG
 # on:
 #   pull_request:
 #     types: [closed]
+# on:
+#   push:
+#     branches:
+#       - perico
 on:
-  push:
+  pull_request:
     branches:
-      - perico
-
+      - develop
+    types:
+      - closed
+      
 permissions:
   contents: read
 
