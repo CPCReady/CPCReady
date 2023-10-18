@@ -11,6 +11,8 @@ from CPCReady import func_sprite as sprites
 
 def create():
 
+    cm.validate_cfg(cm.CFG_PROJECT,cm.SECTIONS_PROJECT)
+
     # Check is cfg project exist
     if not cm.fileExist(cm.CFG_PROJECT):
         sys.exit(1)
@@ -19,13 +21,28 @@ def create():
     DATA_EMULATORS = cm.getData(cm.CFG_EMULATORS)
 
     COUNT                = 0
-    PROJECT_NAME         = DATA_PROJECT.get('project','name')
-    CPC_MODEL            = DATA_PROJECT.get('project','model')
-    PROJECT_AUTHOR       = DATA_PROJECT.get('project','author')
-    PROJECT_CONCAT_OUT   = DATA_PROJECT.get('project','concatenate')        
-    PROJECT_DSK_FILE     = f"{cm.PATH_DSK}/{DATA_PROJECT.get('project','dsk')}"
+    PROJECT_NAME         = DATA_PROJECT.get('general','name',fallback="NONE")
+    PROJECT_AUTHOR       = DATA_PROJECT.get('general','author',fallback="NONE")
+    PROJECT_CDT          = DATA_PROJECT.get('CDT','name',fallback="NONE")
+    PROJECT_DSK          = DATA_PROJECT.get('DSK','name',fallback="NONE")
+    
+    if PROJECT_NAME == "NONE":
+        cm.msgError(f"project name in {cm.CFG_PROJECT} does not exist or is empty")
+        sys.exit(1)    
+    if PROJECT_CDT == "NONE":
+        cm.msgError(f"CDT name in {cm.CFG_PROJECT} does not exist or is empty")
+        sys.exit(1)    
+    if PROJECT_DSK == "NONE":
+        cm.msgError(f"DSK name in {cm.CFG_PROJECT} does not exist or is empty")
+        sys.exit(1)
+    
+    PROJECT_CDT_NAME     = f"{cm.PATH_DSK}/{PROJECT_CDT}"
+    PROJECT_DSK_NAME     = f"{cm.PATH_DSK}/{PROJECT_DSK}"
+    PROJECT_CDT_FILES    = DATA_PROJECT.get('CDT','files',fallback="NONE").strip()
+    PROJECT_CONCAT_OUT   = DATA_PROJECT.get('configurations','concatenate',fallback="")        
 
-    cm.banner(CPC_MODEL)
+
+    # cm.banner(CPC_MODEL)
     cm.showHeadDataProject("BUILD " + PROJECT_NAME)
     
     cm.removeContentDirectory(cm.PATH_DISC)
@@ -36,7 +53,7 @@ def create():
     
     cm.msgInfo("Check folders project OK")
     
-    createImageDisc(PROJECT_DSK_FILE)
+    createImageDisc(PROJECT_DSK_NAME)
  
     ########################################
     # PROCESING BAS FILES
@@ -47,8 +64,9 @@ def create():
         concatAllFiles(cm.PATH_SRC,PROJECT_CONCAT_OUT)
         if not convert2Dos(PROJECT_CONCAT_OUT, PROJECT_CONCAT_OUT):
             cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-        if not addBas2ImageDisc(PROJECT_DSK_FILE, PROJECT_CONCAT_OUT):
+        if not addBas2ImageDisc(PROJECT_DSK_NAME, PROJECT_CONCAT_OUT):
             cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
+        # addamsdos(PROJECT_CONCAT_OUT)
     else:          
         for basfile in glob.glob(os.path.join(cm.PATH_SRC, '*.[bB][aA][sS]')):
             outputbasfile = f"{cm.PATH_DISC}/{cm.getFileExt(basfile)}"
@@ -56,8 +74,9 @@ def create():
                     cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
             if not convert2Dos(outputbasfile, outputbasfile): 
                     cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-            if not addBas2ImageDisc(PROJECT_DSK_FILE, outputbasfile):
-                cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)    
+            if not addBas2ImageDisc(PROJECT_DSK_NAME, outputbasfile):
+                cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
+            # addamsdos(outputbasfile)  
       
     ########################################
     # PROCESING IMAGES FILES
@@ -75,12 +94,12 @@ def create():
             if not screens.create(image, IMAGE_MODE, cm.PATH_DISC, False, True):
                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
             NEW_FILE = cm.getFile(image).upper()
-            if not addBin2ImageDisc(f"{PROJECT_DSK_FILE}", f"{cm.PATH_DISC}/{NEW_FILE}.SCR"):
+            if not addBin2ImageDisc(f"{PROJECT_DSK_NAME}", f"{cm.PATH_DISC}/{NEW_FILE}.SCR"):
                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)            
             if IMAGE_PAL.upper() == "FALSE":
                 os.remove(f"{cm.PATH_DISC}/{NEW_FILE}.PAL")
             else:
-                if not addBin2ImageDisc(f"{PROJECT_DSK_FILE}", f"{cm.PATH_DISC}/{NEW_FILE}.PAL"):
+                if not addBin2ImageDisc(f"{PROJECT_DSK_NAME}", f"{cm.PATH_DISC}/{NEW_FILE}.PAL"):
                     cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)    
                                    
     ########################################
@@ -89,7 +108,7 @@ def create():
 
     for ascii in glob.glob(os.path.join(cm.PATH_SRC, '*.[tT][xX][tT]')):
         shutil.copyfile(ascii,f"{cm.PATH_DISC}/{cm.getFileExt(ascii)}")
-        if not addBas2ImageDisc(PROJECT_DSK_FILE, f"{cm.PATH_DISC}/{cm.getFileExt(ascii)}"):
+        if not addBas2ImageDisc(PROJECT_DSK_NAME, f"{cm.PATH_DISC}/{cm.getFileExt(ascii)}"):
             cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
 
     ########################################
@@ -115,11 +134,11 @@ def create():
                              
     DATA_UGBASIC = cm.getData(cm.PATH_SRC)
     if sys.platform != 'darwin':
-        for ugbfile in glob.glob(os.path.join(cm.PATH_SPR, '*.[uU][gG][bB]')):
+        for ugbfile in glob.glob(os.path.join(cm.PATH_SRC, '*.[uU][gG][bB]')):
             UGBASIC_NAME   = cm.getFileExt(ugbfile)
-            if not compileUGBasic(UGBASIC_NAME, cm.PATH_DISC + "/UGBTEMP.DSK"):
+            if not compileUGBasic(ugbfile, cm.PATH_DISC + "/UGBTEMP.DSK"):
                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
-            if not cm.addBin2ImageDisc(PROJECT_DSK_FILE, f"{cm.PATH_DISC}/" + UGBASIC_NAME + ".BIN"): 
+            if not addBin2ImageDisc(PROJECT_DSK_NAME, f"{cm.PATH_DISC}/" + cm.getFile(UGBASIC_NAME) + ".BIN"): 
                 cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
     else:
         cm.msgWarning("Mac OSX operating system does not support ugBasic")
@@ -131,9 +150,7 @@ def create():
     for dskfile in glob.glob(os.path.join(cm.PATH_LIB, '*.[dD][sS][kK]')):
         if not extract2ImageDisc(dskfile,cm.PATH_DISC + "/" + cm.getFile(dskfile) + ".bin"):
             cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1) 
-        # shutil.copyfile(dskfile,cm.PATH_DISC + "/" + cm.getFile(dskfile) + ".bin")
-        # os.remove(cm.PATH_DISC + "/" + cm.getFile(dskfile) + ".bin")
-        if not addBin2ImageDisc(PROJECT_DSK_FILE, cm.PATH_DISC + "/" + cm.getFile(dskfile) + ".bin"):
+        if not addBin2ImageDisc(PROJECT_DSK_NAME, cm.PATH_DISC + "/" + cm.getFile(dskfile) + ".bin"):
             cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)   
 
     ########################################
@@ -143,9 +160,25 @@ def create():
     for binfile in glob.glob(os.path.join(cm.PATH_LIB, '*.[bB][iI][nN]')):
         outputbinfile = f"{cm.PATH_DISC}/{cm.getFileExt(binfile)}"
         shutil.copy2(binfile,outputbinfile)
-        if not addBin2ImageDisc(PROJECT_DSK_FILE, outputbinfile):
-            cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)   
+        if not addBin2ImageDisc(PROJECT_DSK_NAME, outputbinfile):
+            cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
+            
+    ########################################
+    # ADD FILES TO CDT
+    ########################################
 
+    if cm.fileExist(PROJECT_CDT_NAME):
+        os.remove(PROJECT_CDT_NAME)
+    cdtfiles = PROJECT_CDT_FILES.split(',')
+    count = 0
+    for cdtfile in cdtfiles:
+        if not cm.fileExist(cm.PATH_DISC + "/" + cdtfile.strip()):
+            cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
+            sys.exit(1)
+
+        addFile2CDTImage(cdtfile,PROJECT_CDT_NAME)
+
+        
     cm.showFoodDataProject("CREATE DISC IMAGE SUCCESSFULLY", 0)
 
 
@@ -159,10 +192,12 @@ def compileUGBasic(source, out):
     try:
         cmd = [cm.UGBASIC, source, "-o", out]
         output = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
+        if cm.fileExist(cm.PWD + "/main.bin"):
+            os.remove(cm.PWD + "/main.bin")
         name = cm.getFile(source)
         if extractUGBC2ImageDisc(out):
-            shutil.move(cm.PATH_DISC + "/MAIN", name.upper() + ".BIN")
-            cm.msgInfo(f"Compile: {source} ==> " + name.upper() + ".BIN")
+            shutil.move(cm.PATH_LIB + "/MAIN.BIN", cm.PATH_DISC + "/" + name.upper() + ".BIN")
+            cm.msgInfo(f"Compile: {cm.getFileExt(source)} ==> " + name.upper() + ".BIN")
             os.remove(out)
         else:
             cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1) 
@@ -276,7 +311,50 @@ def extractUGBC2ImageDisc(imagefile):
     cmd = [cm.IDSK, imagefile, "-g", cm.PATH_LIB + "/MAIN"]
     try:
         output = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
+        shutil.move(cm.PATH_LIB + "/MAIN", cm.PATH_LIB + "/MAIN.BIN")
         return True
     except subprocess.CalledProcessError as e:
         cm.msgError(f'Error ' + cm.getFileExt(imagefile) + f' executing command: {e.output.decode()}')
         return False
+
+def addamsdos(file):
+    FNULL = open(os.devnull, 'w')
+    cmd = [cm.AMSDOS, file]
+    try:
+        output = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
+        cm.msgInfo("Add amsdos header ==> " + cm.getFileExt(file))
+        return True
+    except subprocess.CalledProcessError as e:
+        cm.msgError(f'Error ' + cm.getFileExt(file) + f' executing command: {e.output.decode()}')
+        return False
+
+def addFile2CDTImage(file,cdtimg):
+    extension = cm.getFileExtension(file)
+    if extension.upper() != ".BIN"or extension.upper() != ".SRC":
+        typefile = "cpctxt"
+    else:
+        typefile = "cpc"
+    name = cm.getFile(file)
+    FNULL = open(os.devnull, 'w')
+
+    cmd = [cm.CPC2CDT,"-t", "-m",typefile, "-r", name.upper(), file,cdtimg]
+    try:
+        output = subprocess.check_output(cmd)
+        cm.msgInfo("Add file " + cm.getFileExt(file) + " ==> " + cdtimg)
+        return True
+    except subprocess.CalledProcessError as e:
+        cm.msgError(f'Error ' + cm.getFileExt(file) + f' executing command: {e.output.decode()}')
+        return False
+
+def createImageCDT(imagefile):
+    cm.rmFolder(imagefile)
+    cmd = [cm.CDT, "-n", ".", imagefile]
+    try:
+        output = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
+        if not os.path.isfile(imagefile):
+            cm.msgError('Error generating CDT image ' + cm.getFileExt(imagefile))
+            cm.showFoodDataProject("BUILD FAILURE CDT IMAGE", 1)
+        return True
+    except subprocess.CalledProcessError as e:
+        cm.msgError(f'Error ' + cm.getFileExt(imagefile) + f' executing command: {e.output.decode()}')
+        cm.showFoodDataProject("BUILD FAILURE CDT IMAGE", 1)

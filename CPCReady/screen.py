@@ -14,7 +14,7 @@ def main():
 
     args = parser.parse_args()
     
-    if args.image != "" and args.mode != "" and args.out != "":
+    if args.image and args.mode and args.out:
         screens.create(args.image, args.mode, args.out, args.dsk)
     else:
         handle_image_mode(args, parser)

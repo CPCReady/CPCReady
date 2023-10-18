@@ -1,3 +1,4 @@
+from ctypes.wintypes import RGB
 import os
 import sys
 import datetime
@@ -16,13 +17,20 @@ from rich.columns import Columns
 from configparser import ConfigParser
 import configparser as cfg
 from jinja2 import Template
+import ipaddress as ip
+import platform
+import subprocess
+from ping3 import ping, verbose_ping
+import requests
+import os
+from docopt import docopt
 
 console = Console()
 log = logging.getLogger("rich")
 
 FORMAT = "%(message)s"
 logging.basicConfig(
-    level="NOTSET", format=FORMAT, datefmt="[%X]", handlers=[RichHandler()]
+    level="NOTSET",format=FORMAT, datefmt="[%X]", handlers=[RichHandler(rich_tracebacks=False, show_path=False,omit_repeated_times=True)]
 )
 
 CPC464 = """[grey]█▀▀█ █▀▄▀█ █▀▀▀█ ▀▀█▀▀ █▀▀█ █▀▀█ █▀▀▄                                     ╔═╗╔═╗╔═╗ ┏┓┏┓┏┓ ┌─────────────┐  ON 🟢
@@ -41,45 +49,99 @@ CPC664 = """[grey]█▀▀█ █▀▄▀█ █▀▀▀█ ▀▀█▀▀ �
 #
 ##
 
-subfolders = ["out", "dsk", "src", "cfg","lib","img","spr","doc"]
-
-
-# CFG_PROJECT      = "cfg/cpcready.cfg"
-TEMPLATE_RVM_WEB = "rvm-web.html"
-PATH_CFG         = "cfg"
-PATH_DISC        = "out"
-PATH_OBJ         = "obj"
-PATH_SRC         = "src"
-PATH_DSK         = "dsk"
-PATH_LIB         = "lib"
-PATH_SPR         = "spr"
-PATH_ASSETS      = "img"
-CFG_PROJECT      = f"{PATH_CFG}/project.cfg"
-CFG_EMULATORS    = f"{PATH_CFG}/emulators.cfg"
-CFG_IMAGES       = f"{PATH_CFG}/images.cfg"
-CFG_SPRITES      = f"{PATH_CFG}/sprites.cfg"
-APP_PATH         = os.path.dirname(os.path.abspath(__file__))
+subfolders        = ["out", "out/disc", "src", "cfg","lib","img","spr","docs"]
+PWD               = os.getcwd() + "/"
+TEMPLATE_RVM_WEB  = "rvm-web.html"
+PATH_CFG          = "cfg"
+PATH_DISC         = "out/disc"
+PATH_OBJ          = "obj"
+PATH_SRC          = "src"
+PATH_DSK          = "out"
+PATH_LIB          = "lib"
+PATH_SPR          = "spr"
+PATH_ASSETS       = "img"
+CFG_PROJECT       = f"{PATH_CFG}/project.cfg"
+CFG_EMULATORS     = f"{PATH_CFG}/emulators.cfg"
+CFG_IMAGES        = f"{PATH_CFG}/images.cfg"
+CFG_SPRITES       = f"{PATH_CFG}/sprites.cfg"
+APP_PATH          = os.path.dirname(os.path.abspath(__file__))
+SECTIONS_PROJECT  = ["general", "configurations", "CDT", "DSK"]
+SECTIONS_EMULATOR = ["rvm-web", "rvm-desktop","m4board"]
+CPC_MODELS        = ["6128","464","664"]
 
 if sys.platform == "win32":
     cm.msgError(f"WIN32 Platform not supported")
     sys.exit(1)   
 
 if sys.platform == "win64":
-    TEMP_PATH = os.getenv('TEM')
-    MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/tools/win/martine.exe"
-    DSK = os.path.dirname(os.path.abspath(__file__)) + "/bin/win64/iDSK.exe"
-    UGBASIC = os.path.dirname(os.path.abspath(__file__)) + "/bin/win64/ugbc.exe"
+    TEMP_PATH = os.getenv('USERPROFILE') + "/tmp"
+    MARTINE   = os.path.dirname(os.path.abspath(__file__)) + "/tools/win/martine.exe"
+    DSK       = os.path.dirname(os.path.abspath(__file__)) + "/bin/win64/iDSK.exe"
+    UGBASIC   = os.path.dirname(os.path.abspath(__file__)) + "/tools/win64/ugbc.exe"
+    AMSDOS    = os.path.dirname(os.path.abspath(__file__)) + "/tools/win64/amsdos.exe"
+    CDT       = os.path.dirname(os.path.abspath(__file__)) + "/tools/win64/2cdt.exe"
+    M4BOARD   = os.path.dirname(os.path.abspath(__file__)) + "/tools/win64/xfer.exe"
+    CPC2CDT   = os.path.dirname(os.path.abspath(__file__)) + "/tools/win64/cpc2cdt.exe"
 if sys.platform == 'darwin':
-    TEMP_PATH = os.getenv('TMPDIR')
-    MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/tools/" + sys.platform + "/martine"
-    IDSK = os.path.dirname(os.path.abspath(__file__)) + "/tools/darwin/iDSK"
+    TEMP_PATH = os.getenv('HOME') + "/tmp"
+    MARTINE   = os.path.dirname(os.path.abspath(__file__)) + "/tools/" + sys.platform + "/martine"
+    IDSK      = os.path.dirname(os.path.abspath(__file__)) + "/tools/darwin/iDSK"
+    AMSDOS    = os.path.dirname(os.path.abspath(__file__)) + "/tools/darwin/amsdos"
+    CDT       = os.path.dirname(os.path.abspath(__file__)) + "/tools/darwin/2cdt"
+    CPC2CDT   = os.path.dirname(os.path.abspath(__file__)) + "/tools/darwin/cpc2cdt"
+    M4BOARD   = os.path.dirname(os.path.abspath(__file__)) + "/tools/darwin/xfer"
 if sys.platform.startswith('linux'):
-    TEMP_PATH = os.getenv('TMP')
-    MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/tools/" + sys.platform + "/martine"
-    IDSK = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/iDSK"
-    UGBASIC = os.path.dirname(os.path.abspath(__file__)) + "/bin/linux/ugbc"
-    
-PWD = os.getcwd() + "/"
+    TEMP_PATH = os.getenv('HOME') + "/tmp"
+    MARTINE   = os.path.dirname(os.path.abspath(__file__)) + "/tools/" + sys.platform + "/martine"
+    IDSK      = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/iDSK"
+    UGBASIC   = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/ugbc"
+    AMSDOS    = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/amsdos"
+    CDT       = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/2cdt"
+    CPC2CDT   = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/cpc2cdt"
+    M4BOARD   = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/xfer"
+
+
+CONVERSION_PALETTE = {
+    "COLOR_0":"RGB(0,0,0)",
+    "COLOR_1":"RGB(0,0,128)",
+    "COLOR_2":"RGB(0,0,255)",
+    "COLOR_3":"RGB(128,0,0)",
+    "COLOR_4":"RGB(128,0,128)",
+    "COLOR_5":"RGB(128,0,255)",
+    "COLOR_6":"RGB(255,0,0)",
+    "COLOR_7":"RGB(255,0,128)",
+    "COLOR_8":"RGB(255,0,255)",
+    "COLOR_9":"RGB(0,128,0)",
+    "COLOR_00":"RGB(0,0,0)",
+    "COLOR_01":"RGB(0,0,128)",
+    "COLOR_02":"RGB(0,0,255)",
+    "COLOR_03":"RGB(128,0,0)",
+    "COLOR_04":"RGB(128,0,128)",
+    "COLOR_05":"RGB(128,0,255)",
+    "COLOR_06":"RGB(255,0,0)",
+    "COLOR_07":"RGB(255,0,128)",
+    "COLOR_08":"RGB(255,0,255)",
+    "COLOR_09":"RGB(0,128,0)",
+    "COLOR_10":"RGB(0,128,128)",
+    "COLOR_11":"RGB(0,128,255)",
+    "COLOR_12":"RGB(128,128,0)",
+    "COLOR_13":"RGB(128,128,128)",
+    "COLOR_14":"RGB(128,128,255)",
+    "COLOR_15":"RGB(255,128,0)",
+    "COLOR_16":"RGB(255,128,128)",
+    "COLOR_17":"RGB(255,128,255)",
+    "COLOR_18":"RGB(0,255,0)",
+    "COLOR_19":"RGB(0,255,128)",
+    "COLOR_20":"RGB(0,255,255)",
+    "COLOR_21":"RGB(128,255,0)",
+    "COLOR_22":"RGB(128,255,128)",
+    "COLOR_23":"RGB(128,255,255)",
+    "COLOR_24":"RGB(255,255,0)",
+    "COLOR_25":"RGB(255,255,128)",
+    "COLOR_26":"RGB(255,255,255)"
+}
+
+
 
 ##
 # create template file
@@ -166,7 +228,7 @@ def msgError(message):
 # @param message: message to display
 ##
 def msgInfo(message):
-    log.info(message)
+    log.info(message, extra={"highlighter": None})
 
 
 ##
@@ -307,20 +369,55 @@ def crear_entrada_ini(ruta_archivo, seccion, clave, valor):
         config.write(archivo)
 
 
-def recorrer_claves_y_valores_ini(ruta_archivo):
-    # Crear un objeto ConfigParser
+def validateSection(file, sectionfile):
     config = configparser.ConfigParser()
-    
-    # Leer el archivo INI
-    config.read(ruta_archivo)
-    
-    # Recorrer las secciones del archivo INI
+    config.read(file)
     for seccion in config.sections():
-        # Imprimir el nombre de la sección
-        print(f"[{seccion}]")
-        
-        # Recorrer las claves y valores de cada sección
-        for clave, valor in config.items(seccion):
-            print(f"{clave} = {valor}")
-        
-        print()  # Imprimir una línea en blanco entre secciones
+        if seccion == sectionfile:
+            return True
+    return False
+
+def validate_cfg(cfg,datos):
+    if not fileExist(cfg):
+        sys.exit(1)    
+    for section in datos:
+        if not validateSection(cfg,section):
+            msgError(f"{section} section does not exist in the {cfg} file") 
+            sys.exit(1)
+
+def validateCPCModel(model): 
+    for modelos in CPC_MODELS:
+        if str(modelos) == str(model):
+            return True
+    return False
+    
+
+def validateIP(ip_string):
+   try:
+       ip_object = ip.ip_address(ip_string)
+       msgInfo(f"IP address ==> {ip_string}") 
+       return True
+   except ValueError:
+       msgError("IP address ==> '{ip_string}' is not valid")
+       return False       
+
+
+# def ping(host):
+#     param = '-n' if platform.system().lower()=='windows' else '-c'
+#     command = ['ping', param, '1', host]
+#     return subprocess.call(command) == 0
+
+
+# r = pyping.ping('google.com')
+
+# if r.ret_code == 0:
+#     print("Success")
+# else:
+#     print("Failed with {}".format(r.ret_code))
+#     # config = configparser.ConfigParser()
+#     # config.read(cfg)
+#     # for seccion in config.sections():
+#     #     print(f"{seccion}")
+#     #     for clave, valor in config.items(seccion):
+#     #         print(f"{clave} = {valor}")
+#     #     print()

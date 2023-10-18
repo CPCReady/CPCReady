@@ -25,7 +25,7 @@ def create(project, model):
     current_datetime = datetime.datetime.now()
    
 
-    cm.banner(str(model))
+    # cm.banner(str(model))
     cm.showHeadDataProject(project)
 
     if os.path.exists(folder_project) and os.path.isdir(folder_project):

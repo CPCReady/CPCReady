@@ -34,7 +34,9 @@ setup(
         'jinja2',
         'emoji',
         'jsonschema',
-        'python-dotenv'
+        'python-dotenv',
+        'docopt',
+        'requests'
     ],
     python_requires='>=3.6',
     classifiers=[
@@ -55,6 +57,7 @@ setup(
             'cpcr_screen  = CPCReady.screen:main',
             'cpcr_build   = CPCReady.build:main',
             'cpcr_run     = CPCReady.run:main',
+            'cpcr_palette = CPCReady.palette:main',
         ]
     }
 )

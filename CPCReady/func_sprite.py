@@ -25,23 +25,22 @@ def create(filename, mode, fileout, height, width, api=False):
     # VARIABLES
     ########################################
 
-    if cm.TEMP_PATH is not None:
-        IMAGE_TEMP_PATH = cm.TEMP_PATH + "." + os.path.basename(filename)
-    else:
-        IMAGE_TEMP_PATH = cm.PWD + "." + os.path.basename(filename)
-    
+    IMAGE_TEMP_PATH = cm.TEMP_PATH + "/." + os.path.basename(filename)
     IMAGE_TMP_FILE = os.path.basename(os.path.splitext(filename)[0])
+
+    if not os.path.exists(cm.TEMP_PATH):
+        os.mkdir(cm.TEMP_PATH)
 
     ########################################
     # WE CHECK IF WE COMPLY WITH RULE 6:3
     ########################################
 
     if len(IMAGE_TMP_FILE) > 6:
-        IMAGE_TMP_TXT = IMAGE_TEMP_PATH + "/" + IMAGE_TMP_FILE[:6] + ".TXT"
-        IMAGE_TMP_CTXT = IMAGE_TEMP_PATH + "/" + IMAGE_TMP_FILE[:6] + "C.TXT"
+        IMAGE_TMP_TXT = IMAGE_TEMP_PATH + "/" + IMAGE_TMP_FILE[:6].upper() + ".TXT"
+        IMAGE_TMP_CTXT = IMAGE_TEMP_PATH + "/" + IMAGE_TMP_FILE[:6].upper() + "C.TXT"
     else:
-        IMAGE_TMP_TXT = IMAGE_TEMP_PATH + "/" + IMAGE_TMP_FILE + ".TXT"
-        IMAGE_TMP_CTXT = IMAGE_TEMP_PATH + "/" + IMAGE_TMP_FILE + "C.TXT"
+        IMAGE_TMP_TXT = IMAGE_TEMP_PATH + "/" + IMAGE_TMP_FILE.upper() + ".TXT"
+        IMAGE_TMP_CTXT = IMAGE_TEMP_PATH + "/" + IMAGE_TMP_FILE.upper() + "C.TXT"
         
     IMAGE_TMP_JSON = IMAGE_TEMP_PATH + "/" + IMAGE_TMP_FILE + ".json"
 

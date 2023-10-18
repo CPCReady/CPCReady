@@ -6,12 +6,12 @@
             "type": "python",
             "request": "launch",
             "module": "CPCReady.run",
-            "cwd": "${workspaceFolder}/testing2basic",
+            "cwd": "${workspaceFolder}/testing0",
             "justMyCode": true,
             "env": {
                 "PYTHONPATH": "${workspaceFolder}",
             },
-            "args": ["--emulator", "rvm-web"] 
+            "args": ["--emulator", "m4board"] 
         },
         {
             "name": "VERSION",
@@ -30,7 +30,7 @@
             "type": "python",
             "request": "launch",
             "module": "CPCReady.build",
-            "cwd": "${workspaceFolder}/testing333",
+            "cwd": "${workspaceFolder}/testing0",
             "justMyCode": true,
             "env": {
                 "PYTHONPATH": "${workspaceFolder}",
@@ -48,6 +48,18 @@
                 "PYTHONPATH": "${workspaceFolder}",
             },
             "args": ["--project", "testing2basic22"] 
+        },
+        {
+            "name": "PALETTE",
+            "type": "python",
+            "request": "launch",
+            "module": "CPCReady.palette",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+            },
+            "args": ["--image", "/Users/david/Downloads/logole222222.png","--mode", "0"] 
         },
         {
             "name": "CREATE SCREEN",
@@ -83,7 +95,7 @@
             "env": {
                 "PYTHONPATH": "${workspaceFolder}",
             },
-            "args": ["--image", "/Users/david/Downloads/logole222222.png","--mode", "0","--out","testing2basic","--height","12", "--width","12"] 
+            "args": ["--image", "/home/destroyer/Github/CPCReady/sdk/testing333/img/avatar.png","--mode", "0","--out","testing333","--height","12", "--width","12"] 
         }
     ]
 }
