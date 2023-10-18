@@ -4,7 +4,6 @@ import datetime
 import shutil
 import subprocess
 import glob
-import yaml
 from CPCReady import common as cm
 from CPCReady import func_screen as screens
 from CPCReady import func_sprite as sprites

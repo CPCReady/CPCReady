@@ -30,7 +30,6 @@ setup(
         'click',
         'configparser',
         'rich',
-        'PyYAML',
         'jinja2',
         'emoji',
         'requests'
