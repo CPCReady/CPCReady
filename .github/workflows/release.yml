@@ -36,7 +36,6 @@ jobs:
       with:
         user: __token__
         password: ${{ secrets.PYPI_SECRET }}
-        repository-url: https://test.pypi.org/legacy/
         skip-existing: false
         verbose: true
 # on:
