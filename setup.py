@@ -35,7 +35,6 @@ setup(
         'emoji',
         'jsonschema',
         'python-dotenv',
-        'ping3',
         'docopt',
         'requests'
     ],

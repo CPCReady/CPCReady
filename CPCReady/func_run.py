@@ -7,7 +7,6 @@ import subprocess
 import yaml
 from CPCReady import common as cm
 import io
-from ping3 import ping as ping34
 import platform
 
 
