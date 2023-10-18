@@ -32,8 +32,7 @@ setup(
         'rich',
         'jinja2',
         'emoji',
-        'requests',
-        'setuptools'
+        'requests'
     ],
     python_requires='>=3.6',
     classifiers=[
