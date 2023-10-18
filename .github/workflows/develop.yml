@@ -14,10 +14,9 @@ on:
       - develop
     types:
       - closed
-      
+
 permissions:
   contents: read
-
 
 jobs:
     release-build:
