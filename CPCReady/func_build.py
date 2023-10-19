@@ -168,14 +168,16 @@ def create():
 
     if cm.fileExist(PROJECT_CDT_NAME):
         os.remove(PROJECT_CDT_NAME)
+    createImageCDT(PROJECT_CDT_NAME)
     cdtfiles = PROJECT_CDT_FILES.split(',')
     count = 0
     for cdtfile in cdtfiles:
-        if not cm.fileExist(cm.PATH_DISC + "/" + cdtfile.strip()):
+        file = cm.PATH_DISC + "/" + cdtfile.strip()
+        if not cm.fileExist(file):
             cm.showFoodDataProject("BUILD FAILURE DISC IMAGE", 1)
             sys.exit(1)
 
-        addFile2CDTImage(cdtfile,PROJECT_CDT_NAME)
+        addFile2CDTImage(file,PROJECT_CDT_NAME)
 
         
     cm.showFoodDataProject("CREATE DISC IMAGE SUCCESSFULLY", 0)
@@ -188,9 +190,13 @@ def create():
 # @param out: output file name
 ##
 def compileUGBasic(source, out):
-    try:
-        cmd = [cm.UGBASIC, source, "-o", out]
+    try:    
+        variables_entorno = os.environ.copy()
+        variables_entorno["PATH"] = cm.PWD + ":" + variables_entorno["PATH"]
+        # cmd = ["." + cm.UGBASICSH, out,source]
+        cmd = [cm.UGBASIC, "-O","dsk","-o", out,source ]
         output = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
+
         if cm.fileExist(cm.PWD + "/main.bin"):
             os.remove(cm.PWD + "/main.bin")
         name = cm.getFile(source)
@@ -204,6 +210,7 @@ def compileUGBasic(source, out):
     except subprocess.CalledProcessError as e:
         cm.msgError(cm.getFileExt(source) + f' ==> Error executing command: {e.output.decode()}')
         return False
+
 
 def concatAllFiles(path, inFile):
     allBasFiles = glob.glob(os.path.join(path, '*.[bB][aA][sS]'))
