@@ -94,6 +94,8 @@ if sys.platform.startswith('linux'):
     MARTINE   = os.path.dirname(os.path.abspath(__file__)) + "/tools/" + sys.platform + "/martine"
     IDSK      = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/iDSK"
     UGBASIC   = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/ugbc"
+    UGBASIC2   = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux"
+    UGBASICSH = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/ugbcsh"
     AMSDOS    = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/amsdos"
     CDT       = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/2cdt"
     CPC2CDT   = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/cpc2cdt"
