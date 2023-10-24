@@ -66,6 +66,7 @@ CFG_SPRITES       = f"{PATH_CFG}/sprites.cfg"
 APP_PATH          = os.path.dirname(os.path.abspath(__file__))
 SECTIONS_PROJECT  = ["general", "configurations", "CDT", "DSK"]
 SECTIONS_EMULATOR = ["rvm-web", "rvm-desktop","m4board"]
+EMULATORS_TYPES   = ["web", "desktop","m4board"]
 CPC_MODELS        = ["6128","464","664"]
 
 if sys.platform == "win32":
@@ -158,7 +159,7 @@ def createTemplate(templateName, templateData, out):
         template_string = file.read()
     template = Template(template_string)
     rendered_template = template.render(templateData)
-    with open(out + "/" + templateName, 'w') as file:
+    with open(out, 'w') as file:
         file.write(rendered_template)
 
 
@@ -209,7 +210,8 @@ def banner(cpc):
 # @param message: message to display
 ##
 def msgWarning(message):
-    log.warning(message)
+    console.print("[bold yellow]WARNING [/bold yellow][white]" + message + "[/white]")
+    # log.warning(message)
 
 
 ##
@@ -219,7 +221,8 @@ def msgWarning(message):
 # @param message: message to display
 ##
 def msgError(message):
-    log.error(message)
+    console.print("[bold red]ERROR     [/bold red][yellow]" + message + "[/yellow]")
+    # log.error(message)
 
 
 ##
@@ -229,17 +232,9 @@ def msgError(message):
 # @param message: message to display
 ##
 def msgInfo(message):
-    log.info(message, extra={"highlighter": None})
+    #log.info(message, extra={"highlighter": None})
+    console.print("[bold blue]INFO      [/bold blue][green]" + message + "[/green]")
 
-
-##
-# Print message debug
-#
-# @param file: File to which the message refers
-# @param message: message to display
-##
-def msgInfo(message):
-    log.info(message)
 
 
 ##
@@ -383,8 +378,9 @@ def validate_cfg(cfg,datos):
         sys.exit(1)    
     for section in datos:
         if not validateSection(cfg,section):
-            msgError(f"{section} section does not exist in the {cfg} file") 
+            msgError(f"{section} configuration does not exist in the {cfg} file") 
             sys.exit(1)
+
 
 def validateCPCModel(model): 
     for modelos in CPC_MODELS:

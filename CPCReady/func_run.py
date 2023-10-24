@@ -165,3 +165,91 @@ def execute(project,emulator):
                   
 
         
+def launch(file,emulator):
+
+    if not cm.fileExist(file):
+        sys.exit(1)
+        
+    if not cm.validateSection(file,emulator):
+        cm.msgError(f"Setting {emulator} not exist in {file}")
+        sys.exit(1)        
+    
+    DATA_EMULATORS = cm.getData(file)
+    RVM_EMULATOR_TYPE  = DATA_EMULATORS.get(emulator,'type',fallback="NONE")
+    RVM_CPC_MODEL      = DATA_EMULATORS.get(emulator,'model',fallback="NONE")
+    RVM_CPC_RUN        = DATA_EMULATORS.get(emulator,'run',fallback="NONE")
+    RVM_CPC_IMAGE      = DATA_EMULATORS.get(emulator,'image',fallback="NONE")
+    RVM_CPC_PATH       = DATA_EMULATORS.get(emulator,'path',fallback="NONE")
+
+    if RVM_EMULATOR_TYPE not in cm.EMULATORS_TYPES:
+        cm.msgError(f"The {RVM_EMULATOR_TYPE} emulator type is not supported.")
+        sys.exit(1)  
+    if RVM_CPC_MODEL not in cm.CPC_MODELS:
+        cm.msgError(f"CPC Model {RVM_CPC_MODEL} not supported.")
+        sys.exit(1)          
+    if not cm.fileExist(RVM_CPC_IMAGE):
+        sys.exit(1)  
+    print()
+    cm.msgInfo(f"Emulator type ==> {RVM_EMULATOR_TYPE}")  
+    cm.msgInfo(f"CPC Model     ==> {RVM_CPC_MODEL}")
+    cm.msgInfo(f"CPC Image     ==> {RVM_CPC_IMAGE}") 
+    
+    if RVM_EMULATOR_TYPE.upper() == "DESKTOP":
+        if not cm.fileExist(RVM_CPC_PATH):
+            sys.exit(1) 
+        rvmDesktop(RVM_CPC_PATH,RVM_CPC_IMAGE,RVM_CPC_MODEL,RVM_CPC_RUN)
+    elif RVM_EMULATOR_TYPE.upper() == "WEB":
+        context = {
+            'name': "RETRO VIRTUAL MACHINE WEB",
+            'model': RVM_CPC_MODEL,
+            'dsk': f"{RVM_CPC_IMAGE}",
+            'run': f'{RVM_CPC_RUN}'
+        }
+        cm.createTemplate("rvm-web.html", context, RVM_CPC_PATH) 
+        cm.msgInfo(f"Disk image launched successfully")   
+         
+    elif RVM_EMULATOR_TYPE.upper() == "M4BOARD":
+        
+        PROJECT_M4_EXECUTE = DATA_EMULATORS.get(emulator,'execute',fallback="")
+        PROJECT_M4_FOLDER  = DATA_EMULATORS.get(emulator,'folder',fallback="CPCReady")
+        PROJECT_M4BOARD_IP = DATA_EMULATORS.get(emulator,'ip',fallback="NONE")
+        cm.msgInfo(f"Emulator type ==> M4 Board")  
+        cm.msgInfo(f"CPC Image     ==> {RVM_CPC_IMAGE}")
+        cm.msgInfo(f"Files         ==> {PROJECT_M4_FOLDER}") 
+        if PROJECT_M4BOARD_IP == "NONE":
+            cm.msgError(f"No ip found in {cm.CFG_EMULATORS} for M4 Board")
+        if not cm.validateIP(PROJECT_M4BOARD_IP):
+            sys.exit(1)
+        if not ping_ok(PROJECT_M4BOARD_IP):
+            cm.msgError(f"No connect    ==> {PROJECT_M4BOARD_IP}")
+            cm.msgInfo (f"Connect OK    ==> {PROJECT_M4BOARD_IP}")
+            sys.exit(1)
+        else:
+            cm.msgInfo (f"Connect OK    ==> {PROJECT_M4BOARD_IP}")        
+        
+        count = 0
+
+        archivos = os.listdir(cm.PATH_DISC)
+        for archivo in archivos:
+            if os.path.isfile(os.path.join(cm.PATH_DISC, archivo)):
+                if not uploadFileM4BOARD(PROJECT_M4BOARD_IP,cm.PATH_DISC + "/" + archivo,PROJECT_M4_FOLDER):
+                    sys.exit(1)
+            count = count + 1     
+        
+        if count > 0:
+            if cm.fileExist(cm.PATH_DISC + "/" + PROJECT_M4_EXECUTE):
+                if not executeFileM4BOARD(PROJECT_M4BOARD_IP,PROJECT_M4_FOLDER + "/" + PROJECT_M4_EXECUTE):
+                    sys.exit(1)
+                
+                cm.msgInfo (f"Files upload and execute in M4 Board.")
+        else:
+            cm.msgWarning("No upload files in " + cm.PATH_DISC)    
+        
+def rvmDesktop(RVM_CPC_PATH,RVM_CPC_IMAGE,RVM_CPC_MODEL,RVM_CPC_RUN):
+    FNULL = open(os.devnull, 'w')
+    try:
+        retcode = subprocess.Popen([RVM_CPC_PATH,"-i", RVM_CPC_IMAGE,"-b=cpc"+str(RVM_CPC_MODEL),"-c="+RVM_CPC_RUN + "\n"], stdout=FNULL, stderr=subprocess.STDOUT)
+        cm.msgInfo(f"Disk image launched successfully")
+    except subprocess.CalledProcessError as e:
+        cm.msgError(f'Failed to launch {cm.getFileExt(RVM_CPC_IMAGE)} image on RVM Desktop: {e.output.decode()}')
+        sys.exit(1)

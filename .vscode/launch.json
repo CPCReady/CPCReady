@@ -2,6 +2,18 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "EMULACION2",
+            "type": "python",
+            "request": "launch",
+            "module": "CPCReady.main",
+            "cwd": "${workspaceFolder}/testing2basic22",
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+            },
+            "args": ["run","--setting", "CPC6128"] 
+        },
+        {
             "name": "EMULACION",
             "type": "python",
             "request": "launch",
