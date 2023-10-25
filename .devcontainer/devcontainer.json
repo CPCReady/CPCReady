@@ -1,0 +1,38 @@
+
+{
+	"name": "CPCReady-workday",
+	"image": "cpcready-base-image:v0.0.2",
+	// "features": {
+	// 	"settings": { 
+	// 			// "terminal.integrated.shell.linux": "/bin/zsh"
+	// 			"terminal.integrated.defaultProfile.linux": "zsh", 
+	// 			"terminal.integrated.profiles.linux": {
+	// 				"zsh": {
+	// 					"path": "/usr/bin/zsh"
+	// 				}
+	// 			}
+	// 		}
+	// 	},
+
+	"containerEnv": {
+		"GITHUB_TOKEN": "",
+		"GITHUB_USER": "",
+		"GIT_USER_NAME": "destroyer",
+		"GIT_USER_EMAIL":"destroyer.dcf@gmail.com"
+	},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": {
+		"shell": "zsh"
+	  }
+	  
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	//"remoteUser": "root"
+}

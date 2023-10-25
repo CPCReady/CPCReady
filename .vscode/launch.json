@@ -2,6 +2,30 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "BUILD2",
+            "type": "python",
+            "request": "launch",
+            "module": "CPCReady.main",
+            "cwd": "${workspaceFolder}/pepepe",
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+            },
+            "args": ["build","--scope", "all"] 
+        },
+        {
+            "name": "PROJECT2",
+            "type": "python",
+            "request": "launch",
+            "module": "CPCReady.main",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+            },
+            "args": ["project","--name", "pepepepepe"] 
+        },
+        {
             "name": "EMULACION2",
             "type": "python",
             "request": "launch",

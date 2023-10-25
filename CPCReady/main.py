@@ -2,20 +2,25 @@
 import click
 from CPCReady import __version__
 from CPCReady import func_run as emulador
+from CPCReady import func_palette as pal
+from CPCReady import func_sprite as sprites
+from CPCReady import func_screen as screens
+from CPCReady import func_project as projects
+from CPCReady import func_build as compile
 from CPCReady import common as cm
 
 
 
 @click.group()
 def main():
-    """ CLI Software Developer Kit for programming in Amstrad Basic and Ugbasic """
+    """ CLI Software Developer Kit for programming in Amstrad Basic and Ugbasic. """
 
 @main.command()
 @click.option('--file', '-f',required=False, help="File with emulator configurations")
 @click.option('--setting', '-s',required=True, help="Emulator Settings Name")
 
 def run(file, setting):
-    """ Execute DSK/CDT in emulator """
+    """ Execute DSK/CDT in emulator. """
     try:
         if not file:
             file = cm.CFG_EMULATORS
@@ -23,77 +28,54 @@ def run(file, setting):
     except Exception as e:
         raise Exception(f"Error {str(e)}")
 
-# @main.command()
-# @click.option('--issue', '-i',required=True, help="issue key")
+@main.command()
+@click.option("-i", "--image", "image", type=click.STRING, help="Input file name",required=True)
+@click.option("-m", "--mode", "mode",   type=click.Choice(["0","1","2"]), help="Image Mode (0, 1, 2)",required=True)
 
-# def delete(issue):
-#     """ Delete issue """
-#     try:
-#         func.delete_issue(issue)
-#     except Exception as e:
-#         logging.error(f"ERROR: {str(e)}")
-#         raise Exception(f"Error {str(e)}")
+def palette(image, mode):
+    """ Extract the color palette from the image. """
+    pal.getData(image, mode)
 
-# @main.command()
-# @click.option('--issue', '-i',required=True, help="issue key")
-# @click.option('--user', '-u',required=True, help="User to be assigned with X format")
 
-# def assign(user,issue):
-#     """ Assign user to issue """
-#     try:
-#         func.assignment_issue(issue,user)
-#     except Exception as e:
-#         logging.error(f"ERROR: {str(e)}")
-#         raise Exception(f"Error {str(e)}")
+@main.command()
+@click.option("-i", "--image", type=click.STRING, help="Input file name",required=True)
+@click.option("-m", "--mode",  type=click.Choice(["0","1","2"]), help="Image Mode (0, 1, 2)",required=True)
+@click.option("-o", "--out",   type=click.STRING, help="Out path file name",required=True)
+@click.option("-h", "--height",type=click.INT, help="Height sprite size",required=True)
+@click.option("-w", "--width", type=click.INT, help="Width sprite size",required=True)
 
-# @main.command()
-# @click.option('--issue', '-i',required=True, help="issue key")
-# @click.option('--user', '-u',required=True, help="User to be assigned with X format")
+def sprite(image, mode, out, height, width):
+    """ Extract the color palette from the image. """
+    sprites.create(image, mode, out, height, width)
 
-# def observer(user,issue):
-#     """ Add observer user to issue """
-#     try:
-#         func.observer_issue(issue,user)
-#     except Exception as e:
-#         logging.error(f"ERROR: {str(e)}")
-#         raise Exception(f"Error {str(e)}")
+@main.command()
+@click.option("-i", "--image", type=click.STRING, help="Input file name.",required=True)
+@click.option("-m", "--mode",  type=click.Choice(["0","1","2"]), help="Image Mode (0, 1, 2)",required=True)
+@click.option("-o", "--out",   type=click.STRING, help="Out path file name.",required=True)
+@click.option("-d", "--dsk",   is_flag=True, help="Generate DSK with only the scr image.",required=False)
 
-# @main.command()
-# @click.option('--issue', '-i',required=True, help="issue key")
-# @click.option('--summary', '-s',required=False, help="update field summay")
-# @click.option('--description', '-d',required=False, help="update field description")
 
-# def update(issue,summary, description):
-#     """ Update fields issue (summary, description) """
-#     try:
-#         func.update_issue(issue,summary,description)
-#     except Exception as e:
-#         logging.error(f"ERROR: {str(e)}")
-#         raise Exception(f"Error {str(e)}")
+def screen(image, mode, out, dsk):
+    """ Convert an image to Amstrad scr format. """
+    screens.create(image, mode, out, dsk)
 
-# @main.command()
-# @click.option('--issue', '-i',required=True, help="issue key")
-# @click.option('--name', '-n',required=True, help="Tag to add")
+@main.command()
+@click.option("-n", "--name", type=click.STRING, help="Project's name.",required=True)
 
-# def label(issue,name):
-#     """ Update issue labels """
-#     try:
-#         func.update_label(issue,name)
-#     except Exception as e:
-#         logging.error(f"ERROR: {str(e)}")
-#         raise Exception(f"Error {str(e)}")
+def project(name):
+    """ Create the project structure for CPCReady. """
+    projects.create(name)
 
-# @main.command()
-# @click.option('--issue', '-i',required=True, help="issue key")
-# @click.option('--state', '-n',type=click.Choice(['PROGRESS', 'CLOSE'], case_sensitive=False), required=True)
+@main.command()
+@click.option("-s", "--scope",  default="all", type=click.Choice(["dsk","cdt","all"]), help="Scope of creating disk and tape images.",required=False)
 
-# def transition(issue,state):
-#     """ Transitions issue state (PROGRESS, CLOSE) """
-#     try:
-#         func.transition_issue(issue,state)
-#     except Exception as e:
-#         logging.error(f"ERROR: {str(e)}")
-#         raise Exception(f"Error {str(e)}")
+def build(scope):
+    """ Create project disk and cdt image. """
+    try:
+        compile.create(scope)
+    except Exception as e:
+        raise Exception(f"Error {str(e)}")
+
 
 if __name__ == '__main__':
     main()

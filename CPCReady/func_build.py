@@ -8,7 +8,7 @@ from CPCReady import common as cm
 from CPCReady import func_screen as screens
 from CPCReady import func_sprite as sprites
 
-def create():
+def create(scope):
 
     cm.validate_cfg(cm.CFG_PROJECT,cm.SECTIONS_PROJECT)
 

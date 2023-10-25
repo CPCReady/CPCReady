@@ -210,7 +210,7 @@ def banner(cpc):
 # @param message: message to display
 ##
 def msgWarning(message):
-    console.print("[bold yellow]WARNING [/bold yellow][white]" + message + "[/white]")
+    console.print("[bold yellow]WARNING   [/bold yellow][white]" + message + "[/white]")
     # log.warning(message)
 
 
@@ -221,7 +221,7 @@ def msgWarning(message):
 # @param message: message to display
 ##
 def msgError(message):
-    console.print("[bold red]ERROR     [/bold red][yellow]" + message + "[/yellow]")
+    console.print("[bold red]ERROR     [/bold red][white]" + message + "[/white]")
     # log.error(message)
 
 
@@ -233,7 +233,7 @@ def msgError(message):
 ##
 def msgInfo(message):
     #log.info(message, extra={"highlighter": None})
-    console.print("[bold blue]INFO      [/bold blue][green]" + message + "[/green]")
+    console.print("[bold blue]INFO      [/bold blue][white]" + message + "[/white]")
 
 
 
