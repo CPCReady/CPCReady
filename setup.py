@@ -5,6 +5,9 @@ from pathlib import Path
 this_directory = Path(__file__).parent
 long_description = (this_directory / "README.md").read_text()
 
+if os.name != 'posix':
+    raise RuntimeError("CPCReady is only compatible with Linux operating systems.")
+
 VERSION =  version
 DESCRIPTION = 'Software Developer Kit for programming in Basic for Amstrad CPC'
 
