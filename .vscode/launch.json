@@ -6,7 +6,7 @@
             "type": "python",
             "request": "launch",
             "module": "CPCReady.main",
-            "cwd": "${workspaceFolder}/pepepe",
+            "cwd": "${workspaceFolder}/${env:PROJECT_TEST}",
             "justMyCode": true,
             "env": {
                 "PYTHONPATH": "${workspaceFolder}",
@@ -23,14 +23,14 @@
             "env": {
                 "PYTHONPATH": "${workspaceFolder}",
             },
-            "args": ["project","--name", "pepepepepe"] 
+            "args": ["project","--name", "${env:PROJECT_TEST}"] 
         },
         {
             "name": "EMULACION2",
             "type": "python",
             "request": "launch",
             "module": "CPCReady.main",
-            "cwd": "${workspaceFolder}/testing2basic22",
+            "cwd": "${workspaceFolder}/${env:PROJECT_TEST}",
             "justMyCode": true,
             "env": {
                 "PYTHONPATH": "${workspaceFolder}",
@@ -42,7 +42,7 @@
             "type": "python",
             "request": "launch",
             "module": "CPCReady.run",
-            "cwd": "${workspaceFolder}/testing0",
+            "cwd": "${workspaceFolder}/${env:PROJECT_TEST}",
             "justMyCode": true,
             "env": {
                 "PYTHONPATH": "${workspaceFolder}",
@@ -66,7 +66,7 @@
             "type": "python",
             "request": "launch",
             "module": "CPCReady.build",
-            "cwd": "${workspaceFolder}/testing0",
+            "cwd": "${workspaceFolder}/${env:PROJECT_TEST}",
             "justMyCode": true,
             "env": {
                 "PYTHONPATH": "${workspaceFolder}",
@@ -83,7 +83,7 @@
             "env": {
                 "PYTHONPATH": "${workspaceFolder}",
             },
-            "args": ["--project", "testing2basic22"] 
+            "args": ["--project", "${env:PROJECT_TEST}"] 
         },
         {
             "name": "PALETTE",

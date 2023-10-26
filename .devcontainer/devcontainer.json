@@ -1,9 +1,9 @@
 
 {
 	"name": "CPCReady-app-developer",
-	"image": "docker-z88dk-library-image:v1.0.0",
+	"image": "sdk-develop-image:latest",
 	"mounts": [
-		"source=/Users/david/Devsecops/CPCReady/base-image/.ssh,target=/home/amstrad/.ssh,type=bind,consistency=cached"
+		"source=${env:HOME}/.ssh,target=/home/amstrad/.ssh,type=bind,consistency=cached"
 	  ],
 	"customizations": {
 		"vscode": {
@@ -20,6 +20,7 @@
 		}
 	},	
 	"containerEnv": {
+		"PROJECT_TEST": "testing000",
 		"GITHUB_TOKEN": "",
 		"GITHUB_USER": "",
 		"GIT_USER_NAME": "destroyer",
