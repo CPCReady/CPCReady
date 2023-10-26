@@ -1,16 +1,36 @@
 import typer
 from typing import Optional
 from typing_extensions import Annotated
+from enum import Enum
 
+class cpcModes(str, Enum):
+    mode0 = "0"
+    mode1 = "1"
+    mode2 = "2"
+    
 app = typer.Typer(help="CLI Software Developer Kit for programming in Amstrad Basic and Ugbasic. ")
 
 
 @app.command()
-def run(file: str = typer.Option(default="fff",help="dfasdfasdfasdfa"),setting:str = typer.Option(default="fff",help="dfasdfasdfasdfa")):
+def run(
+    file   : str = typer.Option(...,help="File with emulator configurations."),
+    setting: str = typer.Option(...,help="Emulator Settings Name."),
+    ):
     """
     Execute DSK/CDT in emulator.
     """
     print(f"Creating user: {file} {setting}")
+
+@app.command()
+def palette(
+    image: str = typer.Option(...,help="Input file name."),
+    mode: cpcModes = "0"
+    ):
+    """
+    Extract the color palette from the image.
+    """
+    print(f"Creating user: {image} {mode.value}")
+
 
 @app.command()
 def pepe(
