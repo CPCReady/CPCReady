@@ -10,7 +10,6 @@ from CPCReady import func_build as compile
 from CPCReady import common as cm
 
 
-
 @click.group()
 def main():
     """ CLI Software Developer Kit for programming in Amstrad Basic and Ugbasic. """

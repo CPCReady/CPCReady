@@ -21,14 +21,14 @@ setup(
     description=DESCRIPTION,
     license="GPL",
     packages=find_packages(),
-    package_data={
-        'CPCReady': [
-            'templates/*',
-            'tools/darwin/*',
-            'tools/linux/*',
-            'tools/win64/*'
-        ],
-    },
+    # package_data={
+    #     'CPCReady': [
+    #         'templates/*',
+    #         'tools/darwin/*',
+    #         'tools/linux/*',
+    #         'tools/win64/*'
+    #     ],
+    # },
     install_requires=[
         'click',
         'configparser',
@@ -51,12 +51,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'cpcr_project = CPCReady.project:main',
-            'cpcr_sprite  = CPCReady.sprite:main',
-            'cpcr_screen  = CPCReady.screen:main',
-            'cpcr_build   = CPCReady.build:main',
-            'cpcr_run     = CPCReady.run:main',
-            'cpcr_palette = CPCReady.palette:main',
+            'cpcr = CPCReady.main:main',
         ]
     }
 )

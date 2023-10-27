@@ -63,45 +63,21 @@ CFG_PROJECT       = f"{PATH_CFG}/project.cfg"
 CFG_EMULATORS     = f"{PATH_CFG}/emulators.cfg"
 CFG_IMAGES        = f"{PATH_CFG}/images.cfg"
 CFG_SPRITES       = f"{PATH_CFG}/sprites.cfg"
-APP_PATH          = os.path.dirname(os.path.abspath(__file__))
+APP_PATH          = os.getenv('CPCREADY')
 SECTIONS_PROJECT  = ["general", "configurations", "CDT", "DSK"]
 SECTIONS_EMULATOR = ["rvm-web", "rvm-desktop","m4board"]
 EMULATORS_TYPES   = ["web", "desktop","m4board"]
 CPC_MODELS        = ["6128","464","664"]
 
-if sys.platform == "win32":
-    cm.msgError(f"WIN32 Platform not supported")
-    sys.exit(1)   
-
-if sys.platform == "win64":
-    TEMP_PATH = os.getenv('USERPROFILE') + "/tmp"
-    MARTINE   = os.path.dirname(os.path.abspath(__file__)) + "/tools/win/martine.exe"
-    DSK       = os.path.dirname(os.path.abspath(__file__)) + "/bin/win64/iDSK.exe"
-    UGBASIC   = os.path.dirname(os.path.abspath(__file__)) + "/tools/win64/ugbc.exe"
-    AMSDOS    = os.path.dirname(os.path.abspath(__file__)) + "/tools/win64/amsdos.exe"
-    CDT       = os.path.dirname(os.path.abspath(__file__)) + "/tools/win64/2cdt.exe"
-    M4BOARD   = os.path.dirname(os.path.abspath(__file__)) + "/tools/win64/xfer.exe"
-    CPC2CDT   = os.path.dirname(os.path.abspath(__file__)) + "/tools/win64/cpc2cdt.exe"
-if sys.platform == 'darwin':
-    TEMP_PATH = os.getenv('HOME') + "/tmp"
-    MARTINE   = os.path.dirname(os.path.abspath(__file__)) + "/tools/" + sys.platform + "/martine"
-    IDSK      = os.path.dirname(os.path.abspath(__file__)) + "/tools/darwin/iDSK"
-    AMSDOS    = os.path.dirname(os.path.abspath(__file__)) + "/tools/darwin/amsdos"
-    CDT       = os.path.dirname(os.path.abspath(__file__)) + "/tools/darwin/2cdt"
-    CPC2CDT   = os.path.dirname(os.path.abspath(__file__)) + "/tools/darwin/cpc2cdt"
-    M4BOARD   = os.path.dirname(os.path.abspath(__file__)) + "/tools/darwin/xfer"
 if sys.platform.startswith('linux'):
     TEMP_PATH = os.getenv('HOME') + "/tmp"
-    MARTINE   = os.path.dirname(os.path.abspath(__file__)) + "/tools/" + sys.platform + "/martine"
-    IDSK      = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/iDSK"
-    UGBASIC   = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/ugbc"
-    UGBASIC2   = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux"
-    UGBASICSH = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/ugbcsh"
-    AMSDOS    = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/amsdos"
-    CDT       = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/2cdt"
-    CPC2CDT   = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/cpc2cdt"
-    M4BOARD   = os.path.dirname(os.path.abspath(__file__)) + "/tools/linux/xfer"
-
+    MARTINE   = os.getenv('CPCREADY') + "/tools/bin/martine"
+    IDSK      = os.getenv('CPCREADY') + "/tools/bin/iDSK"
+    UGBASIC   = os.getenv('CPCREADY') + "/tools/bin/ugbc"
+    AMSDOS    = os.getenv('CPCREADY') + "/tools/bin/amsdos"
+    CDT       = os.getenv('CPCREADY') + "/tools/bin/2cdt"
+    CPC2CDT   = os.getenv('CPCREADY') + "/tools/bin/cpc2cdt"
+    M4BOARD   = os.getenv('CPCREADY') + "/tools/bin/xfer"
 
 CONVERSION_PALETTE = {
     "COLOR_0":"RGB(0,0,0)",
@@ -154,8 +130,8 @@ CONVERSION_PALETTE = {
 ##
 def createTemplate(templateName, templateData, out):
     
-    APP_PATH = os.path.dirname(os.path.abspath(__file__))
-    with open(APP_PATH + f"/templates/{templateName}.j2", 'r') as file:
+    APP_PATH = os.getenv('CPCREADY')
+    with open(APP_PATH + f"/cfg/{templateName}.j2", 'r') as file:
         template_string = file.read()
     template = Template(template_string)
     rendered_template = template.render(templateData)

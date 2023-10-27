@@ -35,7 +35,7 @@
             "env": {
                 "PYTHONPATH": "${workspaceFolder}",
             },
-            "args": ["run","--setting", "CPC6128"] 
+            "args": ["run","--setting", "WEB6128"] 
         },
         {
             "name": "EMULACION",

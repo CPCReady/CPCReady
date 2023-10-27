@@ -165,8 +165,8 @@ def create(scope):
     ########################################
     # ADD FILES TO CDT
     ########################################
-
-    if cm.fileExist(PROJECT_CDT_NAME):
+    
+    if os.path.isfile(PROJECT_CDT_NAME):
         os.remove(PROJECT_CDT_NAME)
     createImageCDT(PROJECT_CDT_NAME)
     cdtfiles = PROJECT_CDT_FILES.split(',')
@@ -346,7 +346,7 @@ def addFile2CDTImage(file,cdtimg):
     cmd = [cm.CPC2CDT,"-t", "-m",typefile, "-r", name.upper(), file,cdtimg]
     try:
         output = subprocess.check_output(cmd)
-        cm.msgInfo("Add file " + cm.getFileExt(file) + " ==> " + cdtimg)
+        cm.msgInfo("Add file " + cm.getFileExt(file) + " ==> " + cm.getFileExt(cdtimg))
         return True
     except subprocess.CalledProcessError as e:
         cm.msgError(f'Error ' + cm.getFileExt(file) + f' executing command: {e.output.decode()}')
