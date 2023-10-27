@@ -3,7 +3,7 @@
 	"name": "CPCReady-app-developer",
 	"image": "sdk-develop-image:latest",
 	"mounts": [
-		"source=${env:HOME}/.ssh,target=/home/amstrad/.ssh,type=bind,consistency=cached"
+		"source=/Users/david/.ssh,target=/home/amstrad/.ssh,type=bind,consistency=cached"
 	  ],
 	"customizations": {
 		"vscode": {
