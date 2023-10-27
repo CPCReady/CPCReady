@@ -189,7 +189,9 @@ def launch(file,emulator):
         sys.exit(1)          
     if not cm.fileExist(RVM_CPC_IMAGE):
         sys.exit(1)  
-    print()
+    
+    cm.showInfoTask(f"Launch [green]{cm.getFile(RVM_CPC_IMAGE)}.dsk [/]disc image in progress...")
+    
     cm.msgInfo(f"Emulator type ==> {RVM_EMULATOR_TYPE}")  
     cm.msgInfo(f"CPC Model     ==> {RVM_CPC_MODEL}")
     cm.msgInfo(f"CPC Image     ==> {RVM_CPC_IMAGE}") 
@@ -243,8 +245,10 @@ def launch(file,emulator):
                 
                 cm.msgInfo (f"Files upload and execute in M4 Board.")
         else:
-            cm.msgWarning("No upload files in " + cm.PATH_DISC)    
-        
+            cm.msgWarning("No upload files in " + cm.PATH_DISC) 
+               
+    cm.endTask("launch disc image", "OK")
+          
 def rvmDesktop(RVM_CPC_PATH,RVM_CPC_IMAGE,RVM_CPC_MODEL,RVM_CPC_RUN):
     FNULL = open(os.devnull, 'w')
     try:

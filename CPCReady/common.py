@@ -32,17 +32,6 @@ logging.basicConfig(
     level="NOTSET",format=FORMAT, datefmt="[%X]", handlers=[RichHandler(rich_tracebacks=False, show_path=False,omit_repeated_times=True)]
 )
 
-CPC464 = """[grey]█▀▀█ █▀▄▀█ █▀▀▀█ ▀▀█▀▀ █▀▀█ █▀▀█ █▀▀▄                                     ╔═╗╔═╗╔═╗ ┏┓┏┓┏┓ ┌─────────────┐  ON 🟢
-[grey]█▄▄█ █ █ █ ▀▀▀▄▄   █   █▄▄▀ █▄▄█ █  █                                     ║  ╠═╝║   ┃┃┣┓┃┃ │[red] ███ [green]███ [blue]███ [white]│
-[grey]█  █ █   █ █▄▄▄█   █   █  █ █  █ █▄▄▀     64K COLOUR PERSONAL COMPUTER[white]    ╚═╝╩  ╚═╝ ┗╋┗┛┗╋ └─────────────┘ COLOR"""
-
-CPC6128 = """[grey]█▀▀█ █▀▄▀█ █▀▀▀█ ▀▀█▀▀ █▀▀█ █▀▀█ █▀▀▄                                                      ┌─────────────┐  ENC.
-[grey]█▄▄█ █ █ █ ▀▀▀▄▄   █   █▄▄▀ █▄▄█ █  █                                                      │[red] ███ [green]███ [blue]███ [white]│  [green]▄▄▄[/green]
-[grey]█  █ █   █ █▄▄▄█   █   █  █ █  █ █▄▄▀     128K ORDENADOR PERSONAL[white]                          └─────────────┘"""
-
-CPC664 = """[grey]█▀▀█ █▀▄▀█ █▀▀▀█ ▀▀█▀▀ █▀▀█ █▀▀█ █▀▀▄                                     ╔═╗╔═╗╔═╗ ┏┓┏┓┏┓ ┌─────────────┐  ON 🟢
-[grey]█▄▄█ █ █ █ ▀▀▀▄▄   █   █▄▄▀ █▄▄█ █  █                                     ║  ╠═╝║   ┣┓┣┓┃┃ │[red] ███ [green]███ [blue]███ [white]│
-[grey]█  █ █   █ █▄▄▄█   █   █  █ █  █ █▄▄▀     64K COLOUR PERSONAL COMPUTER[white]    ╚═╝╩  ╚═╝ ┗┛┗┛┗╋ └─────────────┘ COLOR"""
 
 ## Common Variables
 #
@@ -137,6 +126,8 @@ def createTemplate(templateName, templateData, out):
     rendered_template = template.render(templateData)
     with open(out, 'w') as file:
         file.write(rendered_template)
+    bytes = os.path.getsize(out)
+    msgCustom("CREATE", f"{out} ({bytes} bytes)", "green")
 
 
 ##
@@ -159,34 +150,13 @@ def getData(cfgFile):
     return config
 
 ##
-# Show banner dependencie model cpc
-#
-# @param cpc: Model CPC
-##
-def banner(cpc):
-    BANNER = Table(show_header=False)
-
-    if cpc == "6128":
-        BANNER.add_row(CPC6128)
-    elif cpc == "464":
-        BANNER.add_row(CPC464)
-    elif cpc == "664":
-        BANNER.add_row(CPC664)
-    else:
-        msgError("Model CPC not supported")
-        sys.exit(1)
-
-    console.print(BANNER)
-
-
-##
 # Print message warning
 #
 # @param file: File to which the message refers
 # @param message: message to display
 ##
 def msgWarning(message):
-    console.print("[bold yellow]WARNING   [/bold yellow][white]" + message + "[/white]")
+    console.print("[bold yellow]  WARNING [/][white]" + message + "[/white]")
     # log.warning(message)
 
 
@@ -197,7 +167,7 @@ def msgWarning(message):
 # @param message: message to display
 ##
 def msgError(message):
-    console.print("[bold red]ERROR     [/bold red][white]" + message + "[/white]")
+    console.print("[bold red]  ERROR   [/][white]" + message + "[/white]")
     # log.error(message)
 
 
@@ -209,8 +179,38 @@ def msgError(message):
 ##
 def msgInfo(message):
     #log.info(message, extra={"highlighter": None})
-    console.print("[bold blue]INFO      [/bold blue][white]" + message + "[/white]")
+    console.print("[bold blue]  INFO    [/][white]" + message + "[/]")
 
+##
+# Print message custom
+#
+# @param file: File to which the message refers
+# @param flavor: Area to which it refers
+# @param message: message to display
+##
+def msgCustom(flavor, message, color):
+    flavor = flavor.ljust(8, " ")
+    flavor = flavor.upper()
+    if color.upper() == "GREEN":
+        console.print(f"[bold green]  {flavor}[/][white]{message}[/]")
+    elif color.upper() == "RED":
+        console.print(f"[bold red]  {flavor}[/][bold white]{message}[/]")    
+    elif color.upper() == "BLUE":
+        console.print(f"[bold blue]  {flavor}[/][bold white]{message}[/]")    
+    elif color.upper() == "YELLOW":
+        console.print(f"[bold yellow]  {flavor}[/][bold white]{message}[/]")
+
+def endTask (message,flavor):
+    print()
+    if flavor == "OK":
+        console.print(f"🚀  Successfully {message}.")
+    if flavor == "ERROR":
+        console.print(f"💥  [red]Unsuccessful {message}.[/]")
+
+def showInfoTask(message):
+    print()    
+    console.print(f"👉  {message}🍺")
+    print()
 
 
 ##

@@ -40,9 +40,7 @@ def create(scope):
     PROJECT_CDT_FILES    = DATA_PROJECT.get('CDT','files',fallback="NONE").strip()
     PROJECT_CONCAT_OUT   = DATA_PROJECT.get('configurations','concatenate',fallback="")        
 
-
-    # cm.banner(CPC_MODEL)
-    cm.showHeadDataProject("BUILD " + PROJECT_NAME)
+    cm.showInfoTask(f"Build [green]{PROJECT_NAME} [/]project in progress...")
     
     cm.removeContentDirectory(cm.PATH_DISC)
     
@@ -179,8 +177,7 @@ def create(scope):
 
         addFile2CDTImage(file,PROJECT_CDT_NAME)
 
-        
-    cm.showFoodDataProject("CREATE DISC IMAGE SUCCESSFULLY", 0)
+    cm.endTask("create disc image", "OK")
 
 
 ##

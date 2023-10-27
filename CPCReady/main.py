@@ -7,6 +7,7 @@ from CPCReady import func_sprite as sprites
 from CPCReady import func_screen as screens
 from CPCReady import func_project as projects
 from CPCReady import func_build as compile
+from CPCReady import func_info as information
 from CPCReady import common as cm
 
 
@@ -72,6 +73,15 @@ def build(scope):
     """ Create project disk and cdt image. """
     try:
         compile.create(scope)
+    except Exception as e:
+        raise Exception(f"Error {str(e)}")
+
+@main.command()
+
+def info():
+    """ Show infor CPCReady. """
+    try:
+        information.show()
     except Exception as e:
         raise Exception(f"Error {str(e)}")
 

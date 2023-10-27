@@ -51,7 +51,9 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'cpcr = CPCReady.main:main',
+            'cpcr     = CPCReady.main:main',
+            'cpc      = CPCReady.main:main',
+            'cpcready = CPCReady.main:main',
         ]
     }
 )

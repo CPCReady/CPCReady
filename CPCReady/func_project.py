@@ -2,10 +2,11 @@ import os
 import sys
 import datetime
 import shutil
-
+from rich import print
+from rich.console import Console
 from CPCReady import common as cm
 
-
+console = Console()
 
 ##
 # Create project
@@ -17,24 +18,23 @@ from CPCReady import common as cm
 def create(project):
 
     folder_project = f"{project}"
-    cm.showHeadDataProject(project)
 
+    cm.showInfoTask(f"Create project in progress...")
+    
     if os.path.exists(folder_project) and os.path.isdir(folder_project):
         cm.msgError(f"The {folder_project} project name exists on this path.")
         sys.exit(1)
         # cm.endCreteProject("ERROR")
     else:
         os.makedirs(f"{folder_project}")
-        cm.msgInfo(f"Project Name: {folder_project}")
-
-    # cm.msgInfo("CPC Model: " + str(model))
+        cm.msgCustom("CREATE", f"{folder_project}", "green")
 
     ########################################
     # CREATE PROJECT FOLDERS
     ########################################
     for folders in cm.subfolders:
         os.makedirs(f"{folder_project}/{folders}")
-        cm.msgInfo(f"     - {folders}")
+        cm.msgCustom("CREATE", f"{folder_project}/{folders}", "green")
 
     ########################################
     # CREATE TEMPLATES PROJECT
@@ -48,11 +48,10 @@ def create(project):
     cm.createTemplate("sprites.cfg",   DATA, f"{folder_project}/{cm.PATH_CFG}/sprites.cfg")
     cm.createTemplate("MAIN.BAS",      DATA, f"{folder_project}/{cm.PATH_SRC}/MAIN.BAS")
     cm.createTemplate("MAIN.UGB",      DATA, f"{folder_project}/{cm.PATH_SRC}/MAIN.UGB")
+    cm.createTemplate("Makefile",      DATA, f"{folder_project}/Makefile")
 
-    cm.msgInfo(f"Create Templates.")
-
-    if sys.platform != "win64" or sys.platform != "win32":
-        cm.createTemplate("Makefile", DATA, f"{folder_project}/Makefile")
-        cm.msgInfo(f"Create Makefile.")
-
-    cm.showFoodDataProject(f"{project} PROJECT SUCCESSFULLY CREATED.", 0)
+    print()
+    console.print(f"🚀  Successfully creeated project [green]{project}[/]")
+    print()
+    console.print(f"👉  [yellow]Thank you for using CPCReady[/]")
+    
