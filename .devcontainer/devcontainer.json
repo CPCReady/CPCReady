@@ -20,7 +20,7 @@
 		}
 	},	
 	"containerEnv": {
-		"PROJECT_TEST": "testing000",
+		"PROJECT_TEST": "test/data/project",
 		"GITHUB_TOKEN": "",
 		"GITHUB_USER": "",
 		"GIT_USER_NAME": "destroyer",
