@@ -1,3 +1,4 @@
+
 import os
 import sys
 import datetime
@@ -5,6 +6,7 @@ import subprocess
 import shutil
 import json
 from CPCReady import common as cm
+from CPCReady import func_info as info
 
 
 ##
@@ -17,8 +19,7 @@ from CPCReady import common as cm
 # @param api: function in code o out
 ##
 
-def getData(filename, mode,api=False):
-    
+def getData(filename, mode, api=False):
     ########################################
     # VARIABLES
     ########################################
@@ -36,8 +37,8 @@ def getData(filename, mode,api=False):
     IMAGE_TMP_JSON = IMAGE_TEMP_PATH + "/" + IMAGE_TMP_FILE + ".json"
 
     if len(IMAGE_TMP_FILE) > 6:
-        IMAGE_TMP_FILE =  IMAGE_TMP_FILE[:6]
-        
+        IMAGE_TMP_FILE = IMAGE_TMP_FILE[:6]
+
     ########################################
     # DELETE TEMPORAL FILES
     ########################################
@@ -49,9 +50,11 @@ def getData(filename, mode,api=False):
     ########################################
     # EXECUTE MARTINE
     ########################################
-    if api == False:
-        cm.showHeadDataProject(cm.getFileExt(filename))
 
+    if api == False:
+        # info.show("👉 IMAGE FILE: " + cm.getFileExt(filename))
+        info.show(False)
+    cm.showInfoTask(f"Get palette from " + cm.getFileExt(filename) + "...")
     try:
         subprocess.check_output(cmd, stderr=subprocess.DEVNULL)
     except subprocess.CalledProcessError as e:
@@ -61,7 +64,6 @@ def getData(filename, mode,api=False):
         ########################################
 
         cm.rmFolder(IMAGE_TEMP_PATH)
-        
 
     ########################################
     # READ JSON PALETTE
@@ -73,11 +75,11 @@ def getData(filename, mode,api=False):
     sw_palette = str(data['palette'])
     hw_palette = str(data['hardwarepalette'])
     ugBasic_palette = []
-    
+
     for color in data['palette']:
         palette_amstrad = cm.CONVERSION_PALETTE.get("COLOR_" + color)
         ugBasic_palette.append(palette_amstrad)
-    
+
     ug_palette = str(ugBasic_palette)
 
     ########################################
@@ -98,8 +100,6 @@ def getData(filename, mode,api=False):
     # SHOW FOOTER
     ########################################
 
-    cm.showFoodDataProject(f"{cm.getFileExt(filename)} GET SUCCESSFULLY PALETTE.", 0)
-    
+    cm.showFoodDataProject(f"Successfully obtained image palette.", 0)
+
     return True
-
-
