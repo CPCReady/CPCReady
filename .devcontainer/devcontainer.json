@@ -1,6 +1,6 @@
 
 {
-	"name": "CPCReady-app-developer",
+	"name": "CPCReady-poetry",
 	"image": "sdk-develop-image:latest",
 	"mounts": [
 		"source=${env:HOME}/.ssh,target=/home/amstrad/.ssh,type=bind,consistency=cached"
