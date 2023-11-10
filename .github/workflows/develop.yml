@@ -1,12 +1,14 @@
 
 name: Upload TEST PYPY.ORG
 
-on:
-  pull_request:
-    branches:
-      - develop
-    types:
-      - closed
+# on:
+#   pull_request:
+#     branches:
+#       - develop
+#     types:
+#       - closed
+
+on: [push]
 
 permissions:
   contents: read
@@ -34,11 +36,11 @@ jobs:
       run: |
         python -m unittest discover -v
 
-    - name: Build and publish to pypi
-      uses: JRubics/poetry-publish@v1.17
-      with:
-        pypi_token: ${{ secrets.PYPI_TEST_TOKEN }}
-        repository_name: "cpcready"
-        repository_url: "https://test.pypi.org/legacy/"
+    # - name: Build and publish to pypi
+    #   uses: JRubics/poetry-publish@v1.17
+    #   with:
+    #     pypi_token: ${{ secrets.PYPI_TEST_TOKEN }}
+    #     repository_name: "cpcready"
+    #     repository_url: "https://test.pypi.org/legacy/"
 
         

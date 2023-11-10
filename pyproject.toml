@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "CPCReady"
-version = "0.0.10"
+version = "0.0.11a0"
 description = "SDK for programing in basic and Basic compile (ugbasic)"
 authors = ["Destroyer <destroyer.dcf@gmail.com>"]
 readme = "README.md"
@@ -18,9 +18,6 @@ packages = [
     { include = "CPCReady" }
 ]
 
-[virtualenvs]
-create = true
-in-project = true
 
 [tool.poetry.dependencies]
 python = "^3.8"
@@ -36,7 +33,6 @@ setuptools = ">=68.2.2,<68.3.0"
 cpcr     = "CPCReady.main:main"
 cpc      = "CPCReady.main:main"
 cpcready = "CPCReady.main:main"
-test = "python3 -m unittest discover"
 
 [build-system]
 requires = ["poetry-core"]
