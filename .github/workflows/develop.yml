@@ -38,11 +38,15 @@ jobs:
       run: |
         python -m unittest discover -v
 
-    - name: Build and publish to pypi
-      uses: JRubics/poetry-publish@v1.17
-      with:
-        pypi_token: ${{ secrets.PYPI_TEST_TOKEN }}
-        repository_name: "cpcready"
-        repository_url: "https://test.pypi.org/legacy/"
+    - name: add configs
+      run: |
+        poetry config repositories.test-pypi https://test.pypi.org/legacy/
+        poetry config pypi-token.test-pypi ${{ secrets.PYPI_TEST_TOKEN }}
+
+    - name: build and publish
+      run: |
+          poetry publish --build
+        
+
 
         
