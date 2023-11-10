@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "CPCReady"
-version = "0.0.1"
+version = "0.0.10"
 description = "SDK for programing in basic and Basic compile (ugbasic)"
 authors = ["Destroyer <destroyer.dcf@gmail.com>"]
 readme = "README.md"
 license = "GPL-3.0-or-later"
-homepage = " https://cpcready.github.io/doc/"
+homepage = "https://cpcready.github.io/doc/"
 repository = "https://github.com/CPCReady/sdk.git"
-documentation = " https://cpcready.github.io/doc/"
+documentation = "https://cpcready.github.io/doc/"
 keywords = ["packaging", "cpcready","amstrad","programing"]
 classifiers = [
     "Topic :: Software Development :: Build Tools",
