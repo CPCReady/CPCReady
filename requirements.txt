@@ -1,6 +1,0 @@
-click
-configparser
-rich
-jinja2
-emoji
-requests
