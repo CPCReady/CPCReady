@@ -1,12 +1,14 @@
 
 name: Upload TEST PYPY.ORG
 
-on:
-  pull_request:
-    branches:
-      - develop
-    types:
-      - closed
+# on:
+#   pull_request:
+#     branches:
+#       - develop
+#     types:
+#       - closed
+
+on: [push]
 
 permissions:
   contents: read
@@ -32,13 +34,18 @@ jobs:
         poetry install
         poetry version prerelease
 
-    - name: add configs
+    - name: Run tests
       run: |
-        poetry config pypi-token.pypi ${{ secrets.PYPI_TOKEN }}
+        python -m unittest discover -v
 
-    - name: build and publish
-      run: |
-        poetry publish --build
+    # - name: add configs
+    #   run: |
+    #     poetry config repositories.test-pypi https://test.pypi.org/legacy/
+    #     poetry config pypi-token.test-pypi ${{ secrets.PYPI_TEST_TOKEN }}
+
+    # - name: build and publish
+    #   run: |
+    #     poetry publish -r test-pypi --build
         
 
 
