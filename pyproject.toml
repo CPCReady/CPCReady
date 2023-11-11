@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "CPCReady"
-version = "0.0.12"
+version = "0.0.10a0"
 description = "SDK for programing in basic and Basic compile (ugbasic)"
 authors = ["Destroyer <destroyer.dcf@gmail.com>"]
 readme = "README.md"
