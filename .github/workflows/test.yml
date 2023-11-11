@@ -1,12 +1,5 @@
 
-name: Upload TEST PYPY.ORG
-
-# on:
-#   pull_request:
-#     branches:
-#       - develop
-#     types:
-#       - closed
+name: Executing TEST
 
 on: [push]
 
