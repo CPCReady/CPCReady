@@ -194,6 +194,7 @@ def create(scope):
         addFile2CDTImage(file, PROJECT_CDT_NAME)
 
     cm.showFoodDataProject("Successfully create disc image", 0)
+    print()
 
 
 ##
