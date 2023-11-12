@@ -1,10 +1,9 @@
 
-name: Upload TEST PYPY.ORG
-
+name: Upload PYPI.ORG
 on:
   pull_request:
     branches:
-      - develop
+      - maindd
     types:
       - closed
 
