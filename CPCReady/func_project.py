@@ -103,4 +103,4 @@ def create():
     console.print(f"🚀  Successfully creeated project [green]{project}[/]")
     print()
     console.print(f"👉  [yellow]Thank you for using CPCReady[/]")
-    
+    print()

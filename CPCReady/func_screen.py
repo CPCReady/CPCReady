@@ -132,8 +132,9 @@ def create(filename, mode, fileout, dsk, api=False):
     if dsk:
         if api == False:
             cm.showFoodDataProject(f"Image conversion done successfully in Image file.", 0)
+            print()
     else:
         if api == False:
             cm.showFoodDataProject(f"Image conversion done successfully.", 0)
-
+            print()
     return True

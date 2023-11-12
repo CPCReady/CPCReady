@@ -4,7 +4,7 @@ name: Upload TEST PYPY.ORG
 on:
   pull_request:
     branches:
-      - develop
+      - developdd
     types:
       - closed
 
@@ -28,17 +28,18 @@ jobs:
         python -m pip install --upgrade pip
         pip install build
         pip install poetry
+        pip install -r requirements.txt
         poetry install
+        poetry version prerelease
 
-    - name: Run tests
+    - name: add configs
       run: |
-        python -m unittest discover -v
+        poetry config pypi-token.pypi ${{ secrets.PYPI_TOKEN }}
 
-    - name: Build and publish to pypi
-      uses: JRubics/poetry-publish@v1.17
-      with:
-        pypi_token: ${{ secrets.PYPI_TEST_TOKEN }}
-        repository_name: "cpcready"
-        repository_url: "https://test.pypi.org/legacy/"
+    - name: build and publish
+      run: |
+        poetry publish --build
+        
+
 
         

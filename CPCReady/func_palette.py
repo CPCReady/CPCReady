@@ -101,5 +101,5 @@ def getData(filename, mode, api=False):
     ########################################
 
     cm.showFoodDataProject(f"Successfully obtained image palette.", 0)
-
+    print()
     return True
