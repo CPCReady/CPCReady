@@ -18,6 +18,9 @@ packages = [
     { include = "CPCReady" }
 ]
 
+[virtualenvs]
+create = true
+in-project = true
 
 [tool.poetry.dependencies]
 python = "^3.8"
