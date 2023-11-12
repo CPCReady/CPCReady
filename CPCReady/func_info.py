@@ -80,3 +80,4 @@ def show(description=True):
         print()
         print("[bold white]Github: [/]https://github.com/CPCReady/installer")
         print("[bold white]Docs  : [/]https://cpcready.github.io/doc/")
+    print()

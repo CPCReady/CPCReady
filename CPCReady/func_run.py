@@ -212,7 +212,7 @@ def launch(file, emulator):
 
         rvmDesktop("RetroVirtualMachine", RVM_CPC_IMAGE, RVM_CPC_MODEL, RVM_CPC_RUN)
         cm.showFoodDataProject("Successfully launch disc image", 0)
-
+        print()
     elif RVM_EMULATOR_TYPE.upper() == "WEB":
         context = {
             'name': "RETRO VIRTUAL MACHINE WEB",
@@ -222,7 +222,7 @@ def launch(file, emulator):
         }
         cm.createTemplate("rvm-web.html", context, "cfg/" + emulator + ".html")
         cm.showFoodDataProject("Template RVM Web Create successfully", 0)
-
+        print()
     elif RVM_EMULATOR_TYPE.upper() == "M4BOARD":
 
         PROJECT_M4_EXECUTE = DATA_EMULATORS.get(emulator, 'execute', fallback="")
@@ -261,7 +261,7 @@ def launch(file, emulator):
             cm.msgWarning("No upload files in " + cm.PATH_DISC)
 
         cm.showFoodDataProject("Successfully send files to M4 Board", 0)
-
+        print()
 
 def rvmDesktop(RVM_CPC_PATH, RVM_CPC_IMAGE, RVM_CPC_MODEL, RVM_CPC_RUN):
     FNULL = open(os.devnull, 'w')

@@ -138,6 +138,7 @@ def create(filename, mode, fileout, height, width, api=False):
 
     if not api:
         cm.showFoodDataProject(f"Generation of sprite files done successfully.", 0)
+        print()
     cm.rmFolder(IMAGE_TEMP_PATH)
 
     return True
