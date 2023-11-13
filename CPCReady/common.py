@@ -47,16 +47,17 @@ SECTIONS_EMULATOR = ["rvm-web", "rvm-desktop", "m4board"]
 EMULATORS_TYPES = ["web", "desktop", "m4board"]
 CPC_MODELS = ["6128", "464", "664"]
 
-if sys.platform.startswith('linux'):
-    TEMP_PATH = os.getenv('HOME') + "/tmp"
-    MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/binary/martine"
-    IDSK = os.path.dirname(os.path.abspath(__file__)) + "/binary/iDSK"
-    UGBASIC = os.path.dirname(os.path.abspath(__file__)) + "/binary/ugbc"
-    AMSDOS = os.path.dirname(os.path.abspath(__file__)) + "/binary/amsdos"
-    CDT = os.path.dirname(os.path.abspath(__file__)) + "/binary/2cdt"
-    CPC2CDT = os.path.dirname(os.path.abspath(__file__)) + "/binary/cpc2cdt"
-    M4BOARD = os.path.dirname(os.path.abspath(__file__)) + "/binary/xfer"
-    RETROVIRTUALMACHINE = os.path.dirname(os.path.abspath(__file__)) + "/binary/RetroVirtualMachine"
+TEMP_PATH = os.getenv('HOME') + "/tmp"
+IMAGE2CPR = os.path.dirname(os.path.abspath(__file__)) + "/binary/nocart"
+MARTINE   = os.path.dirname(os.path.abspath(__file__)) + "/binary/martine"
+IDSK      = os.path.dirname(os.path.abspath(__file__)) + "/binary/iDSK"
+UGBASIC   = os.path.dirname(os.path.abspath(__file__)) + "/binary/ugbc"
+AMSDOS    = os.path.dirname(os.path.abspath(__file__)) + "/binary/amsdos"
+CDT       = os.path.dirname(os.path.abspath(__file__)) + "/binary/2cdt"
+CPC2CDT   = os.path.dirname(os.path.abspath(__file__)) + "/binary/cpc2cdt"
+M4BOARD   = os.path.dirname(os.path.abspath(__file__)) + "/binary/xfer"
+RETROVIRTUALMACHINE = os.path.dirname(os.path.abspath(__file__)) + "/binary/RetroVirtualMachine"
+DSK2CPR   = os.path.dirname(os.path.abspath(__file__)) + "/binary/nocart"
 
 TEMPLATES_PATH = os.path.dirname(os.path.abspath(__file__)) + "/cfg/"
 

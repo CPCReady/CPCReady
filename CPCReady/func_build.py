@@ -29,9 +29,11 @@ def create(scope):
     PROJECT_NAME = DATA_PROJECT.get('general', 'name', fallback="NONE")
     PROJECT_AUTHOR = DATA_PROJECT.get('general', 'author', fallback="NONE")
     PROJECT_63_FILES = DATA_PROJECT.get('general', 'nomenclature63', fallback="NO").strip()
-    PROJECT_CDT = DATA_PROJECT.get('CDT', 'name', fallback="NONE")
-    PROJECT_DSK = DATA_PROJECT.get('DSK', 'name', fallback="NONE")
-
+    PROJECT_CDT = DATA_PROJECT.get('general', 'name', fallback="NONE") + ".CDT"
+    PROJECT_DSK = DATA_PROJECT.get('general', 'name', fallback="NONE") + ".DSK"
+    PROJECT_CPR_NAME = DATA_PROJECT.get('general', 'name', fallback="NONE") + ".CPR"
+    PROJECT_CPR_RUN = DATA_PROJECT.get('general', 'cpr_run', fallback="NONE")
+    
     # info.show("👉 PROJECT: " + PROJECT_NAME)
     info.show(False)
     if PROJECT_NAME == "NONE":
@@ -193,6 +195,12 @@ def create(scope):
 
         addFile2CDTImage(file, PROJECT_CDT_NAME)
 
+    ########################################
+    # GENERATE CPR
+    ########################################
+
+    dsk2cpr(cm.PATH_DISC + "/" + PROJECT_DSK_NAME,cm.PATH_DISC + "/" + PROJECT_CPR_NAME,PROJECT_CPR_RUN)
+    
     cm.showFoodDataProject("Successfully create disc image", 0)
     print()
 
@@ -288,6 +296,18 @@ def removeComments(source, output):
     cm.msgCustom("REMOVE", f"Comments Remove ==> {file}", "green")
     return True
 
+def dsk2cpr(imagefile,imagecpr, file):
+    name = cm.getFile(imagefile)
+    cmd = [cm.IMAGE2CPR, imagefile, imagecpr, "-c",'RUN"'+ file]
+    try:
+        output = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
+        if not os.path.isfile(imagefile):
+            cm.msgError('Error generating CPR image ' + cm.getFileExt(imagefile) + ".cpr")
+            cm.showFoodDataProject("Build failure disc image", 1)
+        return True
+    except subprocess.CalledProcessError as e:
+        cm.msgError(f'Error ' + cm.getFileExt(imagefile) + f' executing command: {e.output.decode()}')
+        cm.showFoodDataProject("Build failure disc image", 1)
 
 def createImageDisc(imagefile):
     cm.rmFolder(imagefile)
