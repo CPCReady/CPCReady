@@ -1,5 +1,3 @@
-
-
 import sys
 import logging
 import shutil
@@ -22,44 +20,42 @@ logging.basicConfig(
     handlers=[RichHandler(rich_tracebacks=False, show_path=False, omit_repeated_times=True)]
 )
 
-## Common Variables
-#
-##
+# Variables
 
-subfolders          = ["out", "out/disc", "src", "cfg", "lib", "img", "spr", "docs"]
-PWD                 = os.getcwd() + "/"
-TEMPLATE_RVM_WEB    = "rvm-web.html"
-PATH_CFG            = "cfg"
-PATH_DISC           = "out/disc"
-PATH_OBJ            = "obj"
-PATH_SRC            = "src"
-PATH_DSK            = "out"
-PATH_LIB            = "lib"
-PATH_SPR            = "spr"
-PATH_ASSETS         = "img"
-CFG_PROJECT         = f"{PATH_CFG}/project.cfg"
-CFG_EMULATORS       = f"{PATH_CFG}/emulators.cfg"
-CFG_IMAGES          = f"{PATH_CFG}/images.cfg"
-CFG_SPRITES         = f"{PATH_CFG}/sprites.cfg"
-APP_PATH            = os.getenv('CPCREADY')
-SECTIONS_PROJECT    = ["general", "configurations", "CDT"]
-SECTIONS_EMULATOR   = ["rvm-web", "rvm-desktop", "m4board"]
-EMULATORS_TYPES     = ["web", "desktop", "m4board"]
-CPC_MODELS          = ["6128", "464", "664"]
+subfolders = ["out", "out/disc", "src", "cfg", "lib", "img", "spr", "docs"]
+PWD = os.getcwd() + "/"
+TEMPLATE_RVM_WEB = "rvm-web.html"
+PATH_CFG = "cfg"
+PATH_DISC = "out/disc"
+PATH_OBJ = "obj"
+PATH_SRC = "src"
+PATH_DSK = "out"
+PATH_LIB = "lib"
+PATH_SPR = "spr"
+PATH_ASSETS = "img"
+CFG_PROJECT = f"{PATH_CFG}/project.cfg"
+CFG_EMULATORS = f"{PATH_CFG}/emulators.cfg"
+CFG_IMAGES = f"{PATH_CFG}/images.cfg"
+CFG_SPRITES = f"{PATH_CFG}/sprites.cfg"
+APP_PATH = os.getenv('CPCREADY')
+SECTIONS_PROJECT = ["general", "configurations", "CDT"]
+SECTIONS_EMULATOR = ["rvm-web", "rvm-desktop", "m4board"]
+EMULATORS_TYPES = ["web", "desktop", "m4board"]
+CPC_MODELS = ["6128", "464", "664"]
 
-TEMP_PATH           = os.getenv('HOME') + "/tmp"
-IMAGE2CPR           = os.path.dirname(os.path.abspath(__file__)) + "/binary/nocart"
-MARTINE             = os.path.dirname(os.path.abspath(__file__)) + "/binary/martine"
-IDSK                = os.path.dirname(os.path.abspath(__file__)) + "/binary/iDSK"
-UGBASIC             = os.path.dirname(os.path.abspath(__file__)) + "/binary/ugbc"
-AMSDOS              = os.path.dirname(os.path.abspath(__file__)) + "/binary/amsdos"
-CDT                 = os.path.dirname(os.path.abspath(__file__)) + "/binary/2cdt"
-CPC2CDT             = os.path.dirname(os.path.abspath(__file__)) + "/binary/cpc2cdt"
-M4BOARD             = os.path.dirname(os.path.abspath(__file__)) + "/binary/xfer"
+TEMP_PATH = os.getenv('HOME') + "/tmp"
+IMAGE2CPR = os.path.dirname(os.path.abspath(__file__)) + "/binary/nocart"
+MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/binary/martine"
+IDSK = os.path.dirname(os.path.abspath(__file__)) + "/binary/iDSK"
+UGBASIC = os.path.dirname(os.path.abspath(__file__)) + "/binary/ugbc"
+AMSDOS = os.path.dirname(os.path.abspath(__file__)) + "/binary/amsdos"
+CDT = os.path.dirname(os.path.abspath(__file__)) + "/binary/2cdt"
+CPC2CDT = os.path.dirname(os.path.abspath(__file__)) + "/binary/cpc2cdt"
+M4BOARD = os.path.dirname(os.path.abspath(__file__)) + "/binary/xfer"
 RETROVIRTUALMACHINE = os.path.dirname(os.path.abspath(__file__)) + "/binary/RetroVirtualMachine"
-DSK2CPR             = os.path.dirname(os.path.abspath(__file__)) + "/binary/nocart"
+DSK2CPR = os.path.dirname(os.path.abspath(__file__)) + "/binary/nocart"
 
-TEMPLATES_PATH      = os.path.dirname(os.path.abspath(__file__)) + "/cfg/"
+TEMPLATES_PATH = os.path.dirname(os.path.abspath(__file__)) + "/cfg/"
 
 CONVERSION_PALETTE = {
     "COLOR_0": "RGB(0,0,0)",
@@ -101,6 +97,7 @@ CONVERSION_PALETTE = {
     "COLOR_26": "RGB(255,255,255)"
 }
 
+
 ##
 # verificamos si es linux
 def verificar_linux():
@@ -108,7 +105,8 @@ def verificar_linux():
     if sistema_operativo != 'Linux':
         mensaje_error = f"\nThis operating system is not supported. Linux only."
         raise OSError(mensaje_error)
-    
+
+
 ##
 # create template file
 #
@@ -116,11 +114,11 @@ def verificar_linux():
 # @param templatedata: template data
 # @param out: generate template directory
 ##
-def createTemplate(templateName, templateData, out):
-    with open(TEMPLATES_PATH + f"{templateName}.j2", 'r') as file:
+def createTemplate(templatename, templatedata, out):
+    with open(TEMPLATES_PATH + f"{templatename}.j2", 'r') as file:
         template_string = file.read()
     template = Template(template_string)
-    rendered_template = template.render(templateData)
+    rendered_template = template.render(templatedata)
     with open(out, 'w') as file:
         file.write(rendered_template)
     bytes = os.path.getsize(out)
