@@ -158,7 +158,7 @@ def msgWarning(message):
 
 
 ##
-# Print message eror
+# Print message error
 #
 # @param file: File to which the message refers
 # @param message: message to display
@@ -215,10 +215,10 @@ def endTask(message, flavor):
 
 
 def showInfoTask(message):
-    BANNER = Table(show_header=False)
+    # BANNER = Table(show_header=False)
     print()
-    MSG = f"👉  {message}🍺"
-    print(MSG)
+    message = f"👉  {message}🍺"
+    print(message)
     # TEXT = MSG.ljust(112, " ")
     # BANNER.add_row(TEXT)
     # console.print(BANNER)
@@ -281,7 +281,7 @@ def showHeadDataProject(project):
 
 def showFoodDataProject(description, out):
     print()
-    BANNER = Table(show_header=False)
+    # BANNER = Table(show_header=False)
     if out == 0:
         TEXT = f"🚀  " + description.ljust(110, " ")
         print(TEXT)
@@ -386,7 +386,7 @@ def validateCPCModel(model):
 
 def validateIP(ip_string):
     try:
-        ip_object = ip.ip_address(ip_string)
+        ip.ip_address(ip_string)
         msgInfo(f"IP address ==> {ip_string}")
         return True
     except ValueError:
