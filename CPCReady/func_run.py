@@ -213,16 +213,22 @@ def launch(file, emulator):
         rvmDesktop("RetroVirtualMachine", RVM_CPC_IMAGE, RVM_CPC_MODEL, RVM_CPC_RUN)
         cm.showFoodDataProject("Successfully launch disc image", 0)
         print()
+        
     elif RVM_EMULATOR_TYPE.upper() == "WEB":
+        module_path = os.path.dirname(os.path.abspath(__file__))
+        cfg_path = os.path.join(module_path, 'cfg') + "/monitor.png"
+            
         context = {
             'name': "RETRO VIRTUAL MACHINE WEB",
             'model': RVM_CPC_MODEL,
             'dsk': f"{RVM_CPC_IMAGE}",
             'run': f'{RVM_CPC_RUN}'
         }
+
         cm.createTemplate("rvm-web.html", context, "cfg/" + emulator + ".html")
         cm.showFoodDataProject("Template RVM Web Create successfully", 0)
         print()
+        
     elif RVM_EMULATOR_TYPE.upper() == "M4BOARD":
 
         PROJECT_M4_EXECUTE = DATA_EMULATORS.get(emulator, 'execute', fallback="")

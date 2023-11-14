@@ -12,7 +12,7 @@ Algunas de las caracteristicas incluidas en **CPCReady** son:
 
 - Creación de proyectos.
 - Programación en Basic por objetos (BAS independientes).
-- Generacion de imagenes DSK, CDT. CPR y archivos preparados para M4 Board.
+- Generacion de imagenes DSK, CDT y archivos preparados para M4 Board.
 - Creación de Pantallas de carga y sprites desde una imagen.
 - test y pruebas sobre RetrovirtualMachine Desktop y Web.
 - Basic compilado con la libreria [ugbasic](https://ugbasic.iwashere.eu/)

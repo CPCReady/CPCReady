@@ -25,14 +25,12 @@ def create(scope):
     DATA_PROJECT = cm.getData(cm.CFG_PROJECT)
     DATA_EMULATORS = cm.getData(cm.CFG_EMULATORS)
 
-    COUNT = 0
-    PROJECT_NAME = DATA_PROJECT.get('general', 'name', fallback="NONE")
-    PROJECT_AUTHOR = DATA_PROJECT.get('general', 'author', fallback="NONE")
+    PROJECT_NAME     = DATA_PROJECT.get('general', 'name', fallback="NONE")
     PROJECT_63_FILES = DATA_PROJECT.get('general', 'nomenclature63', fallback="NO").strip()
-    PROJECT_CDT = DATA_PROJECT.get('general', 'name', fallback="NONE") + ".CDT"
-    PROJECT_DSK = DATA_PROJECT.get('general', 'name', fallback="NONE") + ".DSK"
+    PROJECT_CDT      = DATA_PROJECT.get('general', 'name', fallback="NONE") + ".CDT"
+    PROJECT_DSK      = DATA_PROJECT.get('general', 'name', fallback="NONE") + ".DSK"
     PROJECT_CPR_NAME = DATA_PROJECT.get('general', 'name', fallback="NONE") + ".CPR"
-    PROJECT_CPR_RUN = DATA_PROJECT.get('general', 'cpr_run', fallback="NONE")
+    PROJECT_CPR_RUN  = DATA_PROJECT.get('general', 'cpr_run', fallback="NONE")
     
     # info.show("👉 PROJECT: " + PROJECT_NAME)
     info.show(False)
@@ -46,9 +44,9 @@ def create(scope):
         cm.msgError(f"DSK name in {cm.CFG_PROJECT} does not exist or is empty")
         sys.exit(1)
 
-    PROJECT_CDT_NAME = f"{cm.PATH_DSK}/{PROJECT_CDT}"
-    PROJECT_DSK_NAME = f"{cm.PATH_DSK}/{PROJECT_DSK}"
-    PROJECT_CDT_FILES = DATA_PROJECT.get('CDT', 'files', fallback="NONE").strip()
+    PROJECT_CDT_NAME   = f"{cm.PATH_DSK}/{PROJECT_CDT}"
+    PROJECT_DSK_NAME   = f"{cm.PATH_DSK}/{PROJECT_DSK}"
+    PROJECT_CDT_FILES  = DATA_PROJECT.get('CDT', 'files', fallback="NONE").strip()
     PROJECT_CONCAT_OUT = DATA_PROJECT.get('configurations', 'concatenate', fallback="")
 
     cm.showInfoTask(f"Build project " + PROJECT_NAME + " in progress...")
@@ -117,7 +115,7 @@ def create(scope):
                 if not addBin2ImageDisc(f"{PROJECT_DSK_NAME}", f"{cm.PATH_DISC}/{NEW_FILE}.PAL"):
                     cm.showFoodDataProject("Build failure disc image", 1)
 
-                    ########################################
+    ########################################
     # PROCESING ASCII FILES
     ########################################                            
 
@@ -195,11 +193,11 @@ def create(scope):
 
         addFile2CDTImage(file, PROJECT_CDT_NAME)
 
-    ########################################
-    # GENERATE CPR
-    ########################################
+    # ########################################
+    # # GENERATE CPR
+    # ########################################
 
-    dsk2cpr(cm.PATH_DISC + "/" + PROJECT_DSK_NAME,cm.PATH_DISC + "/" + PROJECT_CPR_NAME,PROJECT_CPR_RUN)
+    # dsk2cpr(PROJECT_DSK_NAME,cm.PATH_DISC + "/" + PROJECT_CPR_NAME,PROJECT_CPR_RUN)
     
     cm.showFoodDataProject("Successfully create disc image", 0)
     print()
