@@ -1,14 +1,7 @@
 {
     "version": "0.2.0",
     "configurations": [
-        {
-            "type": "bashdb",
-            "request": "launch",
-            "name": "INSTALL",
-            "cwd": "${workspaceFolder}",
-            "program": "${workspaceFolder}/setup.sh",
-            "args": []
-        },
+
         {
             "type": "bashdb",
             "request": "launch",

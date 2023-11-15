@@ -359,11 +359,11 @@ def create_entry_ini(ruta_archivo, seccion, clave, valor):
         config.write(archivo)
 
 
-def validateSection(file, sectionfile):
+def validateSection(file, section):
     config = configparser.ConfigParser()
     config.read(file)
     for seccion in config.sections():
-        if seccion == sectionfile:
+        if seccion == section:
             return True
     return False
 
