@@ -9,7 +9,8 @@ from CPCReady import common as cm
 from CPCReady import func_screen as screens
 from CPCReady import func_sprite as sprites
 from CPCReady import func_info as info
-
+from CPCReady import func_about as my
+from CPCReady import __version__ as version
 
 module_path = os.path.dirname(os.path.abspath(__file__))
 binary_path = os.path.join(module_path, 'z88dk', 'bin')
@@ -33,7 +34,7 @@ def create(scope):
     PROJECT_CPR_RUN  = DATA_PROJECT.get('general', 'cpr_run', fallback="NONE")
     
     # info.show("👉 PROJECT: " + PROJECT_NAME)
-    info.show(False)
+    my.show(False)
     if PROJECT_NAME == "NONE":
         cm.msgError(f"project name in {cm.CFG_PROJECT} does not exist or is empty")
         sys.exit(1)
@@ -200,6 +201,7 @@ def create(scope):
     # dsk2cpr(PROJECT_DSK_NAME,cm.PATH_DISC + "/" + PROJECT_CPR_NAME,PROJECT_CPR_RUN)
     
     cm.showFoodDataProject("Successfully create disc image", 0)
+
     print()
 
 

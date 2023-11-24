@@ -10,6 +10,7 @@ from rich import print
 from jinja2 import Template
 import ipaddress as ip
 import os
+from CPCReady import __version__ as version
 
 console = Console()
 log = logging.getLogger("rich")
@@ -203,9 +204,9 @@ def endTask(message, flavor):
     global MSG
     print()
     if flavor == "OK":
-        MSG = f"🚀  Successfully {message}."
+        MSG = f"🚀 Successfully {message}."
     if flavor == "ERROR":
-        MSG = f"💥  [red]Unsuccessful {message}.[/]"
+        MSG = f"💥 [bold red]Unsuccessful {message}.[/]"
 
     BANNER = Table(show_header=False)
     TEXT = MSG.ljust(122, " ")
@@ -216,8 +217,10 @@ def endTask(message, flavor):
 
 def showInfoTask(message):
     # BANNER = Table(show_header=False)
-    print()
-    message = f"👉  {message}🍺"
+    # print()
+    # print(f"[bold white]CPCReady - {version}")
+    # print()
+    message = f"👉 · [bold yellow]{message}[/]🍺"
     print(message)
     # TEXT = MSG.ljust(112, " ")
     # BANNER.add_row(TEXT)
@@ -283,19 +286,22 @@ def showFoodDataProject(description, out):
     print()
     # BANNER = Table(show_header=False)
     if out == 0:
-        TEXT = f"🚀  " + description.ljust(110, " ")
+        TEXT = f"🚀 · [bold yellow]" + description.ljust(110, " ")
         print(TEXT)
         # TEXT = "[green]" + TEXT + "[/green]"
         # BANNER.add_row(TEXT)
         # console.print(BANNER)
     if out == 1:
-        TEXT = f"💥  " + description.ljust(110, " ")
+        TEXT = f"💥 · [bold red]" + description.ljust(110, " ")
         print(TEXT)
+
         # TEXT = "[bold red]" + TEXT + "[/bold red]"
         # BANNER.add_row(TEXT)
         # console.print(BANNER)
         sys.exit(1)
-
+    print()
+    print("[bold yellow]Ready[/]")
+    print("[bold yellow]█[/]")
 
 ##
 # verify file exist

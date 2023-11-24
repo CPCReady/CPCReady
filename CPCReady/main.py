@@ -8,6 +8,7 @@ from CPCReady import func_project as projects
 from CPCReady import func_build as compile
 from CPCReady import func_info as information
 from CPCReady import func_update as update
+from CPCReady import func_about as my
 from CPCReady import common as cm
 import logging
 import requests
@@ -94,13 +95,21 @@ def build(scope):
 
 @main.command()
 def info():
-    """ Show info CPCReady. """
+    """ Info Project. """
     try:
         cm.verificar_linux()
         information.show(True)
     except Exception as e:
         raise Exception(f"Error {str(e)}")
 
+@main.command()
+def about():
+    """ About info CPCReady. """
+    try:
+        cm.verificar_linux()
+        my.show(True)
+    except Exception as e:
+        raise Exception(f"Error {str(e)}")
 
 # @main.command()
 # def upgrade():
