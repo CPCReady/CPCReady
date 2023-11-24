@@ -75,7 +75,7 @@ def projectInformation():
                 table.add_row(folder, cm.getFileExt(basfile), str(bytes) + " Bytes")      
     sizeDisc = cm.bytes_to_kilobytes(TotalBytes)
     table.add_row("--------", "--------", "---------")
-    sizeDisc = 176
+
     if sizeDisc > 174:
         table.add_row("", "[bold yellow]WARNING !!", f"[bold yellow]{sizeDisc:.0f} KB")
     else:
