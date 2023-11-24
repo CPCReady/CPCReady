@@ -11,6 +11,7 @@ from jinja2 import Template
 import ipaddress as ip
 import os
 from CPCReady import __version__ as version
+import math
 
 console = Console()
 log = logging.getLogger("rich")
@@ -98,7 +99,13 @@ CONVERSION_PALETTE = {
     "COLOR_26": "RGB(255,255,255)"
 }
 
+def bytes_to_kilobytes(bytes_value):
+    kilobytes_value = bytes_value / 1024
+    return kilobytes_value
 
+def kilobytes_to_bytes(kilobytes):
+    bytes_value = math.ceil(kilobytes * 1024)
+    return bytes_value
 ##
 # verificamos si es linux
 def verificar_linux():

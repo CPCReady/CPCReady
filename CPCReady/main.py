@@ -98,7 +98,7 @@ def info():
     """ Info Project. """
     try:
         cm.verificar_linux()
-        information.show(True)
+        information.projectInformation()
     except Exception as e:
         raise Exception(f"Error {str(e)}")
 
