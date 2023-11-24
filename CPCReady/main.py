@@ -1,5 +1,3 @@
-
-
 import click
 from CPCReady import __version__
 from CPCReady import func_run as emulador
@@ -14,12 +12,14 @@ from CPCReady import common as cm
 import logging
 import requests
 import os
+
 requests.packages.urllib3.disable_warnings()
 logging.getLogger("requests").setLevel(logging.WARNING)
 
 module_path = os.path.dirname(os.path.abspath(__file__))
 binary_path = os.path.join(module_path, 'z88dk', 'bin')
 os.environ['PATH'] = f"{binary_path}:{os.environ['PATH']}"
+
 
 @click.version_option(version=__version__)
 @click.group()
@@ -69,7 +69,7 @@ def sprite(image, mode, out, height, width):
 @click.option("-d", "--dsk", is_flag=True, help="Generate DSK with only the scr image.", required=False)
 def screen(image, mode, out, dsk):
     """ Convert an image to Amstrad scr format. """
-    cm.verificar_linux()    
+    cm.verificar_linux()
     screens.create(image, mode, out, dsk)
 
 
@@ -94,7 +94,7 @@ def build(scope):
 
 @main.command()
 def info():
-    """ Show infor CPCReady. """
+    """ Show info CPCReady. """
     try:
         cm.verificar_linux()
         information.show(True)
