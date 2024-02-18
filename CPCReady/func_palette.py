@@ -51,9 +51,10 @@ def getData(filename, mode, api=False):
     # EXECUTE MARTINE
     ########################################
 
-    if api == False:
-        # info.show("👉 IMAGE FILE: " + cm.getFileExt(filename))
-        info.show(False)
+    # if api == False:
+    #     # info.show("👉 IMAGE FILE: " + cm.getFileExt(filename))
+    #     # info.show(False)
+    print()
     cm.showInfoTask(f"Get palette from " + cm.getFileExt(filename) + "...")
     try:
         subprocess.check_output(cmd, stderr=subprocess.DEVNULL)

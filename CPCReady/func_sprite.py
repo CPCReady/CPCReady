@@ -52,7 +52,7 @@ def create(filename, mode, fileout, height, width, api=False):
     ########################################
     if not api:
         # info.show("👉 SPRITE FILES: " + cm.getFileExt(filename))
-        info.show(False)
+        print()
         cm.showInfoTask(f"Generate sprite files...")
 
     try:

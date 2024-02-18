@@ -55,7 +55,7 @@ def create(filename, mode, fileout, dsk, api=False):
     ########################################
     if api == False:
         # info.show("👉 CONVER IMAGE: " + cm.getFileExt(filename))
-        info.show(False)
+        print()
         cm.showInfoTask(f"Conver " + cm.getFileExt(filename) + " to scr...")
 
     try:

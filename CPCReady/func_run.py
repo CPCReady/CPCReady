@@ -195,8 +195,8 @@ def launch(file, emulator):
         sys.exit(1)
 
         # info.show("👉 DSK FILE: " + RVM_CPC_IMAGE)
-    info.show(False)
 
+    print()
     cm.showInfoTask(f"Launch disc image " + RVM_CPC_IMAGE + " in progress...")
 
     cm.msgInfo(f"Emulator type ==> {RVM_EMULATOR_TYPE}")
