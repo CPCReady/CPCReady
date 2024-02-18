@@ -117,7 +117,7 @@ def create(filename, mode, fileout, dsk, api=False):
 
     cm.msgCustom("GET", f"Software Palette: {sw_palette}", "green")
     cm.msgCustom("GET", f"Hardware Palette: {hw_palette}", "green")
-    cm.msgCustom("GET", f"Ugbasic  Palette: {ug_palette}", "green")
+    # cm.msgCustom("GET", f"Ugbasic  Palette: {ug_palette}", "green")
 
     ########################################
     # DELETE TEMPORAL FILES

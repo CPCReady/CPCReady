@@ -18,14 +18,14 @@ requests.packages.urllib3.disable_warnings()
 logging.getLogger("requests").setLevel(logging.WARNING)
 
 module_path = os.path.dirname(os.path.abspath(__file__))
-binary_path = os.path.join(module_path, 'z88dk', 'bin')
-os.environ['PATH'] = f"{binary_path}:{os.environ['PATH']}"
+# binary_path = os.path.join(module_path, 'z88dk', 'bin')
+# os.environ['PATH'] = f"{binary_path}:{os.environ['PATH']}"
 
 
 @click.version_option(version=__version__)
 @click.group()
 def main():
-    """ CLI SDK for programming in Amstrad Locomotive Basic and Compiled Basic with Ugbasic. """
+    """ CLI SDK for programming in Amstrad Locomotive Basic. """
 
 
 @main.command()

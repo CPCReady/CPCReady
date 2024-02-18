@@ -134,7 +134,7 @@ def create(filename, mode, fileout, height, width, api=False):
     cm.msgCustom("CREATE", fileout + "/" + IMAGE_TMP_FILE.upper() + ".ASM", "green")
     cm.msgCustom("GET", f"Software Palette: {sw_palette}", "green")
     cm.msgCustom("GET", f"Hardware Palette: {hw_palette}", "green")
-    cm.msgCustom("GET", f"Ugbasic  Palette: {ug_palette}", "green")
+    # cm.msgCustom("GET", f"Ugbasic  Palette: {ug_palette}", "green")
 
     if not api:
         cm.showFoodDataProject(f"Generation of sprite files done successfully.", 0)

@@ -146,15 +146,15 @@ def create(scope):
     # PROCESSING UGBASIC FILES
     ########################################
 
-    DATA_UGBASIC = cm.getData(cm.PATH_SRC)
-    # if sys.platform != 'darwin':
-    for ugbfile in glob.glob(os.path.join(cm.PATH_SRC, '*.[uU][gG][bB]')):
-        UGBASIC_NAME = cm.getFileExt(ugbfile)
-        if not compileUGBasic(ugbfile, cm.PATH_DISC + "/UGBTEMP.DSK"):
-            cm.showFoodDataProject("Build failure disc image", 1)
-        if not addBin2ImageDisc(PROJECT_DSK_NAME, f"{cm.PATH_DISC}/" + cm.getFile(UGBASIC_NAME) + ".BIN"):
-            cm.showFoodDataProject("Build failure disc image", 1)
-    # else:
+    # DATA_UGBASIC = cm.getData(cm.PATH_SRC)
+    # # if sys.platform != 'darwin':
+    # for ugbfile in glob.glob(os.path.join(cm.PATH_SRC, '*.[uU][gG][bB]')):
+    #     UGBASIC_NAME = cm.getFileExt(ugbfile)
+    #     if not compileUGBasic(ugbfile, cm.PATH_DISC + "/UGBTEMP.DSK"):
+    #         cm.showFoodDataProject("Build failure disc image", 1)
+    #     if not addBin2ImageDisc(PROJECT_DSK_NAME, f"{cm.PATH_DISC}/" + cm.getFile(UGBASIC_NAME) + ".BIN"):
+    #         cm.showFoodDataProject("Build failure disc image", 1)
+    # # else:
     #     cm.msgWarning("Mac OSX operating system does not support ugBasic")
 
     ########################################
@@ -211,31 +211,31 @@ def create(scope):
 # @param source: source file name
 # @param out: output file name
 ##
-def compileUGBasic(source, out):
-    module_path = os.path.dirname(os.path.abspath(__file__))
-    binary_path = os.path.join(module_path, 'z88dk', 'bin')
-    os.environ['PATH'] = f"{binary_path}:{os.environ['PATH']}"
-    try:
-        cmd = [cm.UGBASIC, "-O", "dsk", "-o", out, source]
-        output = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
-        if not os.path.isfile(cm.PATH_DISC + "/UGBTEMP.DSK"):
-            cm.msgError("Create bin: MAIN.BIN")
-            sys.exit(1)
-        else:
-            os.remove(os.getcwd() + "/main.bin")
+# def compileUGBasic(source, out):
+#     module_path = os.path.dirname(os.path.abspath(__file__))
+#     binary_path = os.path.join(module_path, 'z88dk', 'bin')
+#     os.environ['PATH'] = f"{binary_path}:{os.environ['PATH']}"
+#     try:
+#         cmd = [cm.UGBASIC, "-O", "dsk", "-o", out, source]
+#         output = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
+#         if not os.path.isfile(cm.PATH_DISC + "/UGBTEMP.DSK"):
+#             cm.msgError("Create bin: MAIN.BIN")
+#             sys.exit(1)
+#         else:
+#             os.remove(os.getcwd() + "/main.bin")
 
-        name = cm.getFile(source)
-        if extractUGBC2ImageDisc(out):
-            shutil.move(cm.PATH_LIB + "/MAIN.BIN", cm.PATH_DISC + "/" + name.upper() + ".BIN")
-            cm.msgCustom("BUILD", f"{cm.getFileExt(source)} ==> " + name.upper() + ".BIN", "green")
-            os.remove(out)
-        else:
-            cm.showFoodDataProject("Build failure disc image", 1)
-        return True
+#         name = cm.getFile(source)
+#         if extractUGBC2ImageDisc(out):
+#             shutil.move(cm.PATH_LIB + "/MAIN.BIN", cm.PATH_DISC + "/" + name.upper() + ".BIN")
+#             cm.msgCustom("BUILD", f"{cm.getFileExt(source)} ==> " + name.upper() + ".BIN", "green")
+#             os.remove(out)
+#         else:
+#             cm.showFoodDataProject("Build failure disc image", 1)
+#         return True
 
-    except subprocess.CalledProcessError as e:
-        cm.msgError(cm.getFileExt(source) + f' ==> Error executing command: {e.output.decode()}')
-        return False
+#     except subprocess.CalledProcessError as e:
+#         cm.msgError(cm.getFileExt(source) + f' ==> Error executing command: {e.output.decode()}')
+#         return False
 
 
 def concatAllFiles(path, inFile):
@@ -358,16 +358,16 @@ def extract2ImageDisc(imagefile, file):
         return False
 
 
-def extractUGBC2ImageDisc(imagefile):
-    FNULL = open(os.devnull, 'w')
-    cmd = [cm.IDSK, imagefile, "-g", cm.PATH_LIB + "/MAIN"]
-    try:
-        output = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
-        shutil.move(cm.PATH_LIB + "/MAIN", cm.PATH_LIB + "/MAIN.BIN")
-        return True
-    except subprocess.CalledProcessError as e:
-        cm.msgError(f'Error ' + cm.getFileExt(imagefile) + f' executing command: {e.output.decode()}')
-        return False
+# def extractUGBC2ImageDisc(imagefile):
+#     FNULL = open(os.devnull, 'w')
+#     cmd = [cm.IDSK, imagefile, "-g", cm.PATH_LIB + "/MAIN"]
+#     try:
+#         output = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
+#         shutil.move(cm.PATH_LIB + "/MAIN", cm.PATH_LIB + "/MAIN.BIN")
+#         return True
+#     except subprocess.CalledProcessError as e:
+#         cm.msgError(f'Error ' + cm.getFileExt(imagefile) + f' executing command: {e.output.decode()}')
+#         return False
 
 
 def addamsdos(file):

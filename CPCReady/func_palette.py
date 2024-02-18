@@ -74,13 +74,13 @@ def getData(filename, mode, api=False):
 
     sw_palette = str(data['palette'])
     hw_palette = str(data['hardwarepalette'])
-    ugBasic_palette = []
+    # ugBasic_palette = []
 
-    for color in data['palette']:
-        palette_amstrad = cm.CONVERSION_PALETTE.get("COLOR_" + color)
-        ugBasic_palette.append(palette_amstrad)
+    # for color in data['palette']:
+    #     palette_amstrad = cm.CONVERSION_PALETTE.get("COLOR_" + color)
+    #     ugBasic_palette.append(palette_amstrad)
 
-    ug_palette = str(ugBasic_palette)
+    # ug_palette = str(ugBasic_palette)
 
     ########################################
     # IF PARAM DSK IS TRUE
@@ -88,7 +88,7 @@ def getData(filename, mode, api=False):
 
     cm.msgInfo(f"Software : {sw_palette}")
     cm.msgInfo(f"Hardware : {hw_palette}")
-    cm.msgInfo(f"UgBasic  : {ug_palette}")
+    # cm.msgInfo(f"UgBasic  : {ug_palette}")
 
     ########################################
     # DELETE TEMPORAL FILES
