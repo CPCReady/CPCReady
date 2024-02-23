@@ -1,0 +1,39 @@
+kind: BasicProject
+apiVersion: v1
+metadata:
+  name: Nombre_de_proyecto
+  files_8_3: True
+  merge:
+    destination_File:
+    files_to_merge:
+      - file1
+      - file2
+      - file3
+spec:
+  images:
+    image1.png: 
+      mode: 0
+      include_pal: True
+    image2.png: 
+      mode: 0
+      include_pal: True
+  sprites:
+    sprite1.png:
+      mode: 0
+      width: 16
+      height: 16
+    sprite2.png:
+      mode: 0
+      width: 16
+      height: 16
+  emulators:
+    cpc464:
+      model: 464
+      run: run""
+      image: Nombre_de_proyecto.CDT
+    cpc6128:
+      model: 6128
+      run: run"MAIN.BAS"
+      image: Nombre_de_proyecto.dsk
+  cdtfiles:
+    - file1

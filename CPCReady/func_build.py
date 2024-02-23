@@ -13,50 +13,41 @@ from CPCReady import func_about as my
 from CPCReady import __version__ as version
 
 module_path = os.path.dirname(os.path.abspath(__file__))
-binary_path = os.path.join(module_path, 'z88dk', 'bin')
-os.environ['PATH'] = f"{binary_path}:{os.environ['PATH']}"
+# binary_path = os.path.join(module_path, 'z88dk', 'bin')
+# os.environ['PATH'] = f"{binary_path}:{os.environ['PATH']}"
 
 def create(scope):
-    cm.validate_cfg(cm.CFG_PROJECT, cm.SECTIONS_PROJECT)
+    # cm.validate_cfg(cm.CFG_PROJECT, cm.SECTIONS_PROJECT)
 
     # Check is cfg project exist
-    if not cm.fileExist(cm.CFG_PROJECT):
-        sys.exit(1)
+    # if not cm.fileExist(cm.CFG_PROJECT):
+    #     sys.exit(1)
 
-    DATA_PROJECT = cm.getData(cm.CFG_PROJECT)
-    DATA_EMULATORS = cm.getData(cm.CFG_EMULATORS)
 
-    PROJECT_NAME     = DATA_PROJECT.get('general', 'name', fallback="NONE")
-    PROJECT_63_FILES = DATA_PROJECT.get('general', 'nomenclature63', fallback="NO").strip()
-    PROJECT_CDT      = DATA_PROJECT.get('general', 'name', fallback="NONE") + ".CDT"
-    PROJECT_DSK      = DATA_PROJECT.get('general', 'name', fallback="NONE") + ".DSK"
-    PROJECT_CPR_NAME = DATA_PROJECT.get('general', 'name', fallback="NONE") + ".CPR"
-    PROJECT_CPR_RUN  = DATA_PROJECT.get('general', 'cpr_run', fallback="NONE")
     
-    # info.show("👉 PROJECT: " + PROJECT_NAME)
-    my.show(False)
-    if PROJECT_NAME == "NONE":
-        cm.msgError(f"project name in {cm.CFG_PROJECT} does not exist or is empty")
-        sys.exit(1)
-    if PROJECT_CDT == "NONE":
-        cm.msgError(f"CDT name in {cm.CFG_PROJECT} does not exist or is empty")
-        sys.exit(1)
-    if PROJECT_DSK == "NONE":
-        cm.msgError(f"DSK name in {cm.CFG_PROJECT} does not exist or is empty")
-        sys.exit(1)
 
-    PROJECT_CDT_NAME   = f"{cm.PATH_DSK}/{PROJECT_CDT}"
-    PROJECT_DSK_NAME   = f"{cm.PATH_DSK}/{PROJECT_DSK}"
-    PROJECT_CDT_FILES  = DATA_PROJECT.get('CDT', 'files', fallback="NONE").strip()
-    PROJECT_CONCAT_OUT = DATA_PROJECT.get('configurations', 'concatenate', fallback="")
+    PROJECT_NAME     = cm.getNameProject()
+    PROJECT_83_FILES = cm.get83Files()
+    PROJECT_CDT      = f"{PROJECT_NAME}.CDT"
+    PROJECT_DSK      = f"{PROJECT_NAME}.DSK"
+    PROJECT_CPR_NAME = f"{PROJECT_NAME}.CPR"
+    DATA_EMULATORS   = cm.getEmulators()
+
+    my.show(False)
+
+    PROJECT_CDT_NAME       = f"{cm.PATH_DSK}/{PROJECT_CDT}"
+    PROJECT_DSK_NAME       = f"{cm.PATH_DSK}/{PROJECT_DSK}"
+    PROJECT_CDT_FILES      = cm.getCdtFiles()
+    DESTINATION_MERGE_FILE = cm.getMergeDestinationFile()
+    MERGE_FILES            = cm.getMergeFiles()
 
     cm.showInfoTask(f"Build project " + PROJECT_NAME + " in progress...")
 
-    if PROJECT_63_FILES.upper() == "YES":
+    if PROJECT_83_FILES:
         check_subfolders = ["src", "lib", "img", "spr"]
         for carpeta in check_subfolders:
-            if not check_nomenclature63(carpeta):
-                cm.msgError(f"Folder '{carpeta}' contains files with names longer than 6 characters.")
+            if not check_nomenclature83(carpeta):
+                cm.msgError(f"Folder '{carpeta}' contains files with names longer than 8 characters.")
                 cm.showFoodDataProject("Build failure disc image", 1)
 
     cm.removeContentDirectory(cm.PATH_DISC)
@@ -73,14 +64,14 @@ def create(scope):
     # PROCESING BAS FILES
     ########################################
 
-    if PROJECT_CONCAT_OUT:
-        PROJECT_CONCAT_OUT = cm.PATH_DISC + "/" + PROJECT_CONCAT_OUT
-        concatAllFiles(cm.PATH_SRC, PROJECT_CONCAT_OUT)
-        if not convert2Dos(PROJECT_CONCAT_OUT, PROJECT_CONCAT_OUT):
+    if DESTINATION_MERGE_FILE:
+        MERGE_FILES = cm.PATH_DISC + "/" + MERGE_FILES
+        mergeFiles(cm.PATH_SRC, MERGE_FILES)
+        if not convert2Dos(MERGE_FILES, MERGE_FILES):
             cm.showFoodDataProject("Build failure disc image", 1)
-        if not addBas2ImageDisc(PROJECT_DSK_NAME, PROJECT_CONCAT_OUT):
+        if not addBas2ImageDisc(PROJECT_DSK_NAME, MERGE_FILES):
             cm.showFoodDataProject("Build failure disc image", 1)
-        # addamsdos(PROJECT_CONCAT_OUT)
+        # addamsdos(MERGE_FILES)
     else:
         for basfile in glob.glob(os.path.join(cm.PATH_SRC, '*.[bB][aA][sS]')):
             outputbasfile = f"{cm.PATH_DISC}/{cm.getFileExt(basfile)}"
@@ -238,7 +229,7 @@ def create(scope):
 #         return False
 
 
-def concatAllFiles(path, inFile):
+def mergeFiles(path, inFile):
     allBasFiles = glob.glob(os.path.join(path, '*.[bB][aA][sS]'))
     for basfile in allBasFiles:
         addContenToFile(inFile, readContentFile(basfile))
@@ -415,11 +406,11 @@ def createImageCDT(imagefile):
         cm.showFoodDataProject("BUILD FAILURE CDT IMAGE", 1)
 
 
-def check_nomenclature63(path):
+def check_nomenclature83(path):
     try:
         archivos = os.listdir(path)
         for archivo in archivos:
-            if len(cm.getFile(archivo)) > 6:
+            if len(cm.getFile(archivo)) > 8:
                 return False
         return True
     except FileNotFoundError:

@@ -11,8 +11,21 @@
             "args": []
         },
         {
+            "name": "CPC YAML",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "CPCReady.main",
+            "cwd": "${workspaceFolder}/${env:PROJECT_TEST}",
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+                "PROJECT_TEST":"/home/destroyer/Github/CPCReady/sdk/test/data/project"
+            },
+            "args": ["pr"] 
+        },
+        {
             "name": "CPC INFO",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "module": "CPCReady.main",
             "cwd": "${workspaceFolder}",
@@ -24,19 +37,20 @@
         },
         {
             "name": "CPC BUILD",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "module": "CPCReady.main",
-            "cwd": "${workspaceFolder}/${env:PROJECT_TEST}",
+            "cwd": "${workspaceFolder}/test/data/project",
             "justMyCode": true,
             "env": {
                 "PYTHONPATH": "${workspaceFolder}",
+                "PROJECT_TEST":"/test/data/project"
             },
             "args": ["build","--scope", "all"] 
         },
         {
             "name": "CPC PROJECT",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "module": "CPCReady.main",
             "cwd": "${workspaceFolder}",
@@ -48,7 +62,7 @@
         },
         {
             "name": "CPC RUN (WEB)",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "module": "CPCReady.main",
             "cwd": "${workspaceFolder}/${env:PROJECT_TEST}",
@@ -60,7 +74,7 @@
         },
         {
             "name": "CPC RUN (DESKTOP)",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "module": "CPCReady.main",
             "cwd": "${workspaceFolder}/${env:PROJECT_TEST}",
@@ -72,7 +86,7 @@
         },
         {
             "name": "CPC RUN (XXXXXX)",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "module": "CPCReady.main",
             "cwd": "${workspaceFolder}/${env:PROJECT_TEST}",
@@ -84,7 +98,7 @@
         },
         {
             "name": "VERSION",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "module": "CPCReady.main",
             "cwd": "${workspaceFolder}",
@@ -96,7 +110,7 @@
         },
         {
             "name": "CPC PALETTE",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "module": "CPCReady.main",
             "cwd": "${workspaceFolder}",
@@ -108,7 +122,7 @@
         },
         {
             "name": "CPC SCREEN",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "module": "CPCReady.main",
             "cwd": "${workspaceFolder}/tools/sdk",
@@ -120,7 +134,7 @@
         },
         {
             "name": "CPC SCREEN DSK",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "module": "CPCReady.main",
             "cwd": "${workspaceFolder}/tools/sdk",
@@ -132,7 +146,7 @@
         },
         {
             "name": "CPC SPRITE",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "module": "CPCReady.main",
             "cwd": "${workspaceFolder}/tools/sdk",
@@ -144,7 +158,7 @@
         },
         {
             "name": "CPC UPGRADE",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "module": "CPCReady.main",
             "cwd": "${workspaceFolder}",

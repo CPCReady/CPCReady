@@ -12,6 +12,8 @@ import ipaddress as ip
 import os
 from CPCReady import __version__ as version
 import math
+import yaml
+
 
 console = Console()
 log = logging.getLogger("rich")
@@ -24,18 +26,18 @@ logging.basicConfig(
 
 # Variables
 
-subfolders = ["out", "out/disc", "src", "cfg", "lib", "img", "spr", "docs"]
+subfolders = ["out", "out/m4board", "src", "cfg", "lib", "img", "spr", "docs"]
 PWD = os.getcwd() + "/"
 TEMPLATE_RVM_WEB = "rvm-web.html"
 PATH_CFG = "cfg"
-PATH_DISC = "out/disc"
+PATH_DISC = "out/m4board"
 PATH_OBJ = "obj"
 PATH_SRC = "src"
 PATH_DSK = "out"
 PATH_LIB = "lib"
 PATH_SPR = "spr"
 PATH_ASSETS = "img"
-CFG_PROJECT = f"{PATH_CFG}/project.cfg"
+CFG_PROJECT = f"{PWD}{PATH_CFG}/project.yml"
 CFG_EMULATORS = f"{PATH_CFG}/emulators.cfg"
 CFG_IMAGES = f"{PATH_CFG}/images.cfg"
 CFG_SPRITES = f"{PATH_CFG}/sprites.cfg"
@@ -72,45 +74,84 @@ DSK2CPR = os.path.dirname(os.path.abspath(__file__)) + "/binary/nocart"
 
 TEMPLATES_PATH = os.path.dirname(os.path.abspath(__file__)) + "/cfg/"
 
-CONVERSION_PALETTE = {
-    "COLOR_0": "RGB(0,0,0)",
-    "COLOR_1": "RGB(0,0,128)",
-    "COLOR_2": "RGB(0,0,255)",
-    "COLOR_3": "RGB(128,0,0)",
-    "COLOR_4": "RGB(128,0,128)",
-    "COLOR_5": "RGB(128,0,255)",
-    "COLOR_6": "RGB(255,0,0)",
-    "COLOR_7": "RGB(255,0,128)",
-    "COLOR_8": "RGB(255,0,255)",
-    "COLOR_9": "RGB(0,128,0)",
-    "COLOR_00": "RGB(0,0,0)",
-    "COLOR_01": "RGB(0,0,128)",
-    "COLOR_02": "RGB(0,0,255)",
-    "COLOR_03": "RGB(128,0,0)",
-    "COLOR_04": "RGB(128,0,128)",
-    "COLOR_05": "RGB(128,0,255)",
-    "COLOR_06": "RGB(255,0,0)",
-    "COLOR_07": "RGB(255,0,128)",
-    "COLOR_08": "RGB(255,0,255)",
-    "COLOR_09": "RGB(0,128,0)",
-    "COLOR_10": "RGB(0,128,128)",
-    "COLOR_11": "RGB(0,128,255)",
-    "COLOR_12": "RGB(128,128,0)",
-    "COLOR_13": "RGB(128,128,128)",
-    "COLOR_14": "RGB(128,128,255)",
-    "COLOR_15": "RGB(255,128,0)",
-    "COLOR_16": "RGB(255,128,128)",
-    "COLOR_17": "RGB(255,128,255)",
-    "COLOR_18": "RGB(0,255,0)",
-    "COLOR_19": "RGB(0,255,128)",
-    "COLOR_20": "RGB(0,255,255)",
-    "COLOR_21": "RGB(128,255,0)",
-    "COLOR_22": "RGB(128,255,128)",
-    "COLOR_23": "RGB(128,255,255)",
-    "COLOR_24": "RGB(255,255,0)",
-    "COLOR_25": "RGB(255,255,128)",
-    "COLOR_26": "RGB(255,255,255)"
-}
+# CONVERSION_PALETTE = {
+#     "COLOR_0": "RGB(0,0,0)",
+#     "COLOR_1": "RGB(0,0,128)",
+#     "COLOR_2": "RGB(0,0,255)",
+#     "COLOR_3": "RGB(128,0,0)",
+#     "COLOR_4": "RGB(128,0,128)",
+#     "COLOR_5": "RGB(128,0,255)",
+#     "COLOR_6": "RGB(255,0,0)",
+#     "COLOR_7": "RGB(255,0,128)",
+#     "COLOR_8": "RGB(255,0,255)",
+#     "COLOR_9": "RGB(0,128,0)",
+#     "COLOR_00": "RGB(0,0,0)",
+#     "COLOR_01": "RGB(0,0,128)",
+#     "COLOR_02": "RGB(0,0,255)",
+#     "COLOR_03": "RGB(128,0,0)",
+#     "COLOR_04": "RGB(128,0,128)",
+#     "COLOR_05": "RGB(128,0,255)",
+#     "COLOR_06": "RGB(255,0,0)",
+#     "COLOR_07": "RGB(255,0,128)",
+#     "COLOR_08": "RGB(255,0,255)",
+#     "COLOR_09": "RGB(0,128,0)",
+#     "COLOR_10": "RGB(0,128,128)",
+#     "COLOR_11": "RGB(0,128,255)",
+#     "COLOR_12": "RGB(128,128,0)",
+#     "COLOR_13": "RGB(128,128,128)",
+#     "COLOR_14": "RGB(128,128,255)",
+#     "COLOR_15": "RGB(255,128,0)",
+#     "COLOR_16": "RGB(255,128,128)",
+#     "COLOR_17": "RGB(255,128,255)",
+#     "COLOR_18": "RGB(0,255,0)",
+#     "COLOR_19": "RGB(0,255,128)",
+#     "COLOR_20": "RGB(0,255,255)",
+#     "COLOR_21": "RGB(128,255,0)",
+#     "COLOR_22": "RGB(128,255,128)",
+#     "COLOR_23": "RGB(128,255,255)",
+#     "COLOR_24": "RGB(255,255,0)",
+#     "COLOR_25": "RGB(255,255,128)",
+#     "COLOR_26": "RGB(255,255,255)"
+# }
+
+def readProyect():
+    if not fileExist(CFG_PROJECT):
+        sys.exit(1)
+    with open(CFG_PROJECT, 'r') as archivo:
+        dic = yaml.safe_load(archivo)
+    return dic
+
+def getNameProject():
+    project = readProyect()
+    return project["metadata"]["name"]
+
+def get83Files():
+    project = readProyect()
+    return project["metadata"]["files_8_3"]
+
+def getMergeDestinationFile():
+    project = readProyect()
+    return project["metadata"]["merge"]["destination_File"]
+
+def getMergeFiles():
+    project = readProyect()
+    return project["metadata"]["merge"]["files_to_merge"]
+
+def getImages():
+    project = readProyect()
+    return project["spec"]["images"]
+
+def getSprites():
+    project = readProyect()
+    return project["spec"]["sprites"]    
+
+def getEmulators():
+    project = readProyect()
+    return project["spec"]["emulators"] 
+
+def getCdtFiles():
+    project = readProyect()
+    return project["spec"]["cdtfiles"] 
 
 def bytes_to_kilobytes(bytes_value):
     kilobytes_value = bytes_value / 1024

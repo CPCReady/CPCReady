@@ -10,6 +10,8 @@ from CPCReady import func_info as information
 from CPCReady import func_update as update
 from CPCReady import func_about as my
 from CPCReady import common as cm
+from CPCReady import func_yaml as proyecto
+
 import logging
 import requests
 import os
@@ -108,6 +110,14 @@ def about():
     try:
         cm.verificar_linux()
         my.show(True)
+    except Exception as e:
+        raise Exception(f"Error {str(e)}")
+
+@main.command()
+def pr():
+    """ Aasfasdfasdfasdfasdf. """
+    try:
+        proyecto.execute()
     except Exception as e:
         raise Exception(f"Error {str(e)}")
 
