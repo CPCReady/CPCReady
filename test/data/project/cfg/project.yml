@@ -4,25 +4,24 @@ metadata:
   name: Nombre_de_proyecto
   files_8_3: True
   merge:
-    destination_File:
+    destination_File: MAIN25.BAS
     files_to_merge:
-      - file1
-      - file2
-      - file3
+      - MAIN1.BAS
+      - MAIN2.BAS
 spec:
   images:
-    image1.png: 
+    avatar.png: 
       mode: 0
       include_pal: True
-    image2.png: 
+    yo.png: 
       mode: 0
-      include_pal: True
+      include_pal: False
   sprites:
-    sprite1.png:
+    avatar.png:
       mode: 0
       width: 16
       height: 16
-    sprite2.png:
+    yo.png:
       mode: 0
       width: 16
       height: 16
@@ -36,4 +35,6 @@ spec:
       run: run"MAIN.BAS"
       image: Nombre_de_proyecto.dsk
   cdtfiles:
-    - file1
+    - MAIN.BAS
+    - MAIN25.BAS
+    - AVATAR.SCR

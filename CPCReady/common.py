@@ -26,7 +26,7 @@ logging.basicConfig(
 
 # Variables
 
-subfolders = ["out", "out/m4board", "src", "cfg", "lib", "img", "spr", "docs"]
+subfolders = ["out", "out/m4board", "out/code","src", "cfg", "lib", "img", "spr", "docs","assets","8BP"]
 PWD = os.getcwd() + "/"
 TEMPLATE_RVM_WEB = "rvm-web.html"
 PATH_CFG = "cfg"
@@ -36,7 +36,9 @@ PATH_SRC = "src"
 PATH_DSK = "out"
 PATH_LIB = "lib"
 PATH_SPR = "spr"
-PATH_ASSETS = "img"
+PATH_ASSETS = "assets"
+PATH_CODE = "out/code"
+PATH_8BP = "8BP"
 CFG_PROJECT = f"{PWD}{PATH_CFG}/project.yml"
 CFG_EMULATORS = f"{PATH_CFG}/emulators.cfg"
 CFG_IMAGES = f"{PATH_CFG}/images.cfg"
@@ -140,6 +142,26 @@ def getMergeFiles():
 def getImages():
     project = readProyect()
     return project["spec"]["images"]
+
+def getImageMode(image):
+    project = readProyect()
+    return project["spec"]["images"][image]["mode"]
+
+def getImagePal(image):
+    project = readProyect()
+    return project["spec"]["images"][image]["include_pal"]
+
+def getSpriteMode(image):
+    project = readProyect()
+    return project["spec"]["sprites"][image]["mode"]
+
+def getSpriteHeight(image):
+    project = readProyect()
+    return project["spec"]["sprites"][image]["height"]
+
+def getSpriteWidth(image):
+    project = readProyect()
+    return project["spec"]["sprites"][image]["width"]
 
 def getSprites():
     project = readProyect()

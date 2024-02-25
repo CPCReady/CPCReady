@@ -44,7 +44,7 @@ def create(scope):
     cm.showInfoTask(f"Build project " + PROJECT_NAME + " in progress...")
 
     if PROJECT_83_FILES:
-        check_subfolders = ["src", "lib", "img", "spr"]
+        check_subfolders = ["src", "lib", "img", "spr","assets"]
         for carpeta in check_subfolders:
             if not check_nomenclature83(carpeta):
                 cm.msgError(f"Folder '{carpeta}' contains files with names longer than 8 characters.")
@@ -61,51 +61,34 @@ def create(scope):
     createImageDisc(PROJECT_DSK_NAME)
 
     ########################################
+    # PROCESING MERGE FILES
+    ########################################
+    if DESTINATION_MERGE_FILE:
+        for file_to_merge in MERGE_FILES:
+            if cm.fileExist(cm.PATH_SRC + "/" + file_to_merge):
+                addContenToFile(cm.PATH_DISC + "/" + DESTINATION_MERGE_FILE, readContentFile(cm.PATH_SRC + "/" + file_to_merge))
+                cm.msgCustom("MERGE", f"{cm.getFileExt(file_to_merge)} ==> {cm.getFileExt(DESTINATION_MERGE_FILE)}", "green")
+        convert2Dos(cm.PATH_DISC + "/" + DESTINATION_MERGE_FILE, cm.PATH_DISC + "/" + DESTINATION_MERGE_FILE)
+        if not removeComments(cm.PATH_DISC + "/" + DESTINATION_MERGE_FILE,cm.PATH_DISC + "/" + DESTINATION_MERGE_FILE):
+            cm.showFoodDataProject("Build failure disc image", 1)
+        if not addBas2ImageDisc(PROJECT_DSK_NAME, cm.PATH_DISC + "/" + DESTINATION_MERGE_FILE):
+            cm.showFoodDataProject("Build failure disc image", 1)
+        addamsdos(cm.PATH_DISC + "/" + DESTINATION_MERGE_FILE)    
+            
+
+    ########################################
     # PROCESING BAS FILES
     ########################################
-
-    if DESTINATION_MERGE_FILE:
-        MERGE_FILES = cm.PATH_DISC + "/" + MERGE_FILES
-        mergeFiles(cm.PATH_SRC, MERGE_FILES)
-        if not convert2Dos(MERGE_FILES, MERGE_FILES):
-            cm.showFoodDataProject("Build failure disc image", 1)
-        if not addBas2ImageDisc(PROJECT_DSK_NAME, MERGE_FILES):
-            cm.showFoodDataProject("Build failure disc image", 1)
-        # addamsdos(MERGE_FILES)
-    else:
-        for basfile in glob.glob(os.path.join(cm.PATH_SRC, '*.[bB][aA][sS]')):
-            outputbasfile = f"{cm.PATH_DISC}/{cm.getFileExt(basfile)}"
-            if not removeComments(basfile, outputbasfile):
+    
+    allBasFiles = glob.glob(os.path.join(cm.PATH_SRC, '*.[bB][aA][sS]'))
+    for basfile in allBasFiles:
+        if not basInMergeFiles(MERGE_FILES,cm.getFileExt(basfile)):
+            convert2Dos(basfile, cm.PATH_DISC + "/" + cm.getFileExt(basfile))
+            if not removeComments(basfile,cm.PATH_DISC + "/" + cm.getFileExt(basfile)):
                 cm.showFoodDataProject("Build failure disc image", 1)
-            if not convert2Dos(outputbasfile, outputbasfile):
+            if not addBas2ImageDisc(PROJECT_DSK_NAME, cm.PATH_DISC + "/" + cm.getFileExt(basfile)):
                 cm.showFoodDataProject("Build failure disc image", 1)
-            if not addBas2ImageDisc(PROJECT_DSK_NAME, outputbasfile):
-                cm.showFoodDataProject("Build failure disc image", 1)
-            # addamsdos(outputbasfile)  
-
-    ########################################
-    # PROCESING IMAGES FILES
-    ########################################
-
-    DATA_IMAGES = cm.getData(cm.CFG_IMAGES)
-    for image in glob.glob(os.path.join(cm.PATH_ASSETS, '*.[pP][nN][gG]')):
-        IMAGE_NAME = cm.getFileExt(image)
-        IMAGE_MODE = DATA_IMAGES.get(IMAGE_NAME, "mode", fallback="NULL")
-        outputbinfile = f"{cm.PATH_DISC}/{cm.getFileExt(image)}"
-        if IMAGE_MODE == "NULL":
-            cm.msgWarning(f"No configuration {IMAGE_NAME} in images.cfg, not process files")
-        else:
-            IMAGE_PAL = DATA_IMAGES.get(IMAGE_NAME, "include_pal", fallback="FALSE")
-            if not screens.create(image, IMAGE_MODE, cm.PATH_DISC, False, True):
-                cm.showFoodDataProject("Build failure disc image", 1)
-            NEW_FILE = cm.getFile(image).upper()
-            if not addBin2ImageDisc(f"{PROJECT_DSK_NAME}", f"{cm.PATH_DISC}/{NEW_FILE}.SCR"):
-                cm.showFoodDataProject("Build failure disc image", 1)
-            if IMAGE_PAL.upper() == "FALSE":
-                os.remove(f"{cm.PATH_DISC}/{NEW_FILE}.PAL")
-            else:
-                if not addBin2ImageDisc(f"{PROJECT_DSK_NAME}", f"{cm.PATH_DISC}/{NEW_FILE}.PAL"):
-                    cm.showFoodDataProject("Build failure disc image", 1)
+            addamsdos(cm.PATH_DISC + "/" + cm.getFileExt(basfile))    
 
     ########################################
     # PROCESING ASCII FILES
@@ -117,21 +100,46 @@ def create(scope):
             cm.showFoodDataProject("Build failure disc image", 1)
 
     ########################################
+    # PROCESING IMAGES FILES
+    ########################################
+
+    PROJECT_IMAGES = cm.getImages()
+    for asset in PROJECT_IMAGES:
+        if cm.fileExist(cm.PATH_ASSETS + "/" + asset):
+            if not screens.create(cm.PATH_ASSETS + "/" + asset, cm.getImageMode(asset), cm.PATH_DISC, False, True):
+                cm.showFoodDataProject("Build failure disc image", 1)
+            NEW_FILE = cm.getFile(asset).upper()
+            if not addBin2ImageDisc(f"{PROJECT_DSK_NAME}", f"{cm.PATH_DISC}/{NEW_FILE}.SCR"):
+                cm.showFoodDataProject("Build failure disc image", 1)
+            if cm.getImagePal(asset):
+                if not addBin2ImageDisc(f"{PROJECT_DSK_NAME}", f"{cm.PATH_DISC}/{NEW_FILE}.PAL"):
+                    cm.showFoodDataProject("Build failure disc image", 1)
+                else:
+                    os.remove(f"{cm.PATH_DISC}/{NEW_FILE}.PAL")         
+                    
+                
+
+    ########################################
     # PROCESING SPRITES FILES
     ########################################
 
-    DATA_SPRITES = cm.getData(cm.CFG_SPRITES)
-
-    for sprite in glob.glob(os.path.join(cm.PATH_SPR, '*.[pP][nN][gG]')):
-        SPRITE_NAME = cm.getFileExt(sprite)
-        SPRITE_MODE = DATA_SPRITES.get(SPRITE_NAME, "mode", fallback="NULL")
-        SPRITE_HEIGHT = DATA_SPRITES.get(SPRITE_NAME, "height", fallback="NULL")
-        SPRITE_WIDTH = DATA_SPRITES.get(SPRITE_NAME, "width", fallback="NULL")
-        if SPRITE_MODE == "NULL":
-            cm.msgWarning(f"No configuration {SPRITE_NAME} in sprites.cfg, not process file.")
-        else:
-            if not sprites.create(sprite, SPRITE_MODE, cm.PATH_DISC, SPRITE_WIDTH, SPRITE_HEIGHT, True):
+    PROJECT_SPRITES = cm.getSprites()
+    for asset in PROJECT_SPRITES:
+        if cm.fileExist(cm.PATH_ASSETS + "/" + asset):
+            if not sprites.create(cm.PATH_ASSETS + "/" + asset, cm.getSpriteMode(asset), cm.PATH_CODE, cm.getSpriteWidth(asset), cm.getSpriteHeight(asset), True):
                 cm.showFoodDataProject("Build failure disc image", 1)
+            
+            
+    # for sprite in glob.glob(os.path.join(cm.PATH_SPR, '*.[pP][nN][gG]')):
+    #     SPRITE_NAME = cm.getFileExt(sprite)
+    #     SPRITE_MODE = DATA_SPRITES.get(SPRITE_NAME, "mode", fallback="NULL")
+    #     SPRITE_HEIGHT = DATA_SPRITES.get(SPRITE_NAME, "height", fallback="NULL")
+    #     SPRITE_WIDTH = DATA_SPRITES.get(SPRITE_NAME, "width", fallback="NULL")
+    #     if SPRITE_MODE == "NULL":
+    #         cm.msgWarning(f"No configuration {SPRITE_NAME} in sprites.cfg, not process file.")
+    #     else:
+    #         if not sprites.create(sprite, SPRITE_MODE, cm.PATH_DISC, SPRITE_WIDTH, SPRITE_HEIGHT, True):
+    #             cm.showFoodDataProject("Build failure disc image", 1)
 
     ########################################
     # PROCESSING UGBASIC FILES
@@ -152,21 +160,21 @@ def create(scope):
     # PROCESSING DSK FILES (LIB)
     ########################################
 
-    for dskfile in glob.glob(os.path.join(cm.PATH_LIB, '*.[dD][sS][kK]')):
-        if not extract2ImageDisc(dskfile, cm.PATH_DISC + "/" + cm.getFile(dskfile) + ".bin"):
-            cm.showFoodDataProject("Build failure disc image", 1)
-        if not addBin2ImageDisc(PROJECT_DSK_NAME, cm.PATH_DISC + "/" + cm.getFile(dskfile) + ".bin"):
-            cm.showFoodDataProject("Build failure disc image", 1)
+    # for dskfile in glob.glob(os.path.join(cm.PATH_LIB, '*.[dD][sS][kK]')):
+    #     if not extract2ImageDisc(dskfile, cm.PATH_DISC + "/" + cm.getFile(dskfile) + ".bin"):
+    #         cm.showFoodDataProject("Build failure disc image", 1)
+    #     if not addBin2ImageDisc(PROJECT_DSK_NAME, cm.PATH_DISC + "/" + cm.getFile(dskfile) + ".bin"):
+    #         cm.showFoodDataProject("Build failure disc image", 1)
 
     ########################################
     # PROCESSING BIN FILES (LIB)
     ########################################
 
-    for binfile in glob.glob(os.path.join(cm.PATH_LIB, '*.[bB][iI][nN]')):
-        outputbinfile = f"{cm.PATH_DISC}/{cm.getFileExt(binfile)}"
-        shutil.copy2(binfile, outputbinfile)
-        if not addBin2ImageDisc(PROJECT_DSK_NAME, outputbinfile):
-            cm.showFoodDataProject("Build failure disc image", 1)
+    # for binfile in glob.glob(os.path.join(cm.PATH_LIB, '*.[bB][iI][nN]')):
+    #     outputbinfile = f"{cm.PATH_DISC}/{cm.getFileExt(binfile)}"
+    #     shutil.copy2(binfile, outputbinfile)
+    #     if not addBin2ImageDisc(PROJECT_DSK_NAME, outputbinfile):
+    #         cm.showFoodDataProject("Build failure disc image", 1)
 
     ########################################
     # ADD FILES TO CDT
@@ -175,8 +183,8 @@ def create(scope):
     if os.path.isfile(PROJECT_CDT_NAME):
         os.remove(PROJECT_CDT_NAME)
     createImageCDT(PROJECT_CDT_NAME)
-    cdtfiles = PROJECT_CDT_FILES.split(',')
-    count = 0
+    cdtfiles = PROJECT_CDT_FILES
+
     for cdtfile in cdtfiles:
         file = cm.PATH_DISC + "/" + cdtfile.strip()
         if not cm.fileExist(file):
@@ -229,19 +237,24 @@ def create(scope):
 #         return False
 
 
-def mergeFiles(path, inFile):
-    allBasFiles = glob.glob(os.path.join(path, '*.[bB][aA][sS]'))
-    for basfile in allBasFiles:
-        addContenToFile(inFile, readContentFile(basfile))
-        cm.msgCustom("CONCAT", f"{cm.getFileExt(basfile)} ==> {cm.getFileExt(inFile)}", "green")
-    return
+def basInMergeFiles(lista, elemento):
+    """
+    Comprueba si el bas existe para merge
+
+    Args:
+        lista (_type_): _description_
+        elemento (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
+    return elemento in lista
 
 
 def readContentFile(source):
     with open(source, 'r') as origen_file:
         contenfile = origen_file.read()
     return contenfile
-
 
 def addContenToFile(source, text):
     with open(source, 'a') as destino_file:
@@ -301,17 +314,24 @@ def dsk2cpr(imagefile,imagecpr, file):
         cm.showFoodDataProject("Build failure disc image", 1)
 
 def createImageDisc(imagefile):
+    
     cm.rmFolder(imagefile)
-    cmd = [cm.IDSK, imagefile, "-n"]
-    try:
-        output = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
-        if not os.path.isfile(imagefile):
-            cm.msgError('Error generating disk image ' + cm.getFileExt(imagefile))
+    
+    if cm.fileExist(cm.PATH_8BP + "/dsk/8BP.dsk"):
+        shutil.copy2(cm.PATH_8BP + "/dsk/8BP.dsk", imagefile)
+        cm.msgCustom("MOVE", "8BP.dsk ==> " + imagefile, "green")
+    else:
+    
+        cmd = [cm.IDSK, imagefile, "-n"]
+        try:
+            output = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
+            if not os.path.isfile(imagefile):
+                cm.msgError('Error generating disk image ' + cm.getFileExt(imagefile))
+                cm.showFoodDataProject("Build failure disc image", 1)
+            return True
+        except subprocess.CalledProcessError as e:
+            cm.msgError(f'Error ' + cm.getFileExt(imagefile) + f' executing command: {e.output.decode()}')
             cm.showFoodDataProject("Build failure disc image", 1)
-        return True
-    except subprocess.CalledProcessError as e:
-        cm.msgError(f'Error ' + cm.getFileExt(imagefile) + f' executing command: {e.output.decode()}')
-        cm.showFoodDataProject("Build failure disc image", 1)
 
 
 def addBas2ImageDisc(imagefile, file):

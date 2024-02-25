@@ -97,11 +97,11 @@ def create(filename, mode, fileout, dsk, api=False):
     hw_palette = str(data['hardwarepalette'])
     ugBasic_palette = []
 
-    for color in data['palette']:
-        palette_amstrad = cm.CONVERSION_PALETTE.get("COLOR_" + color)
-        ugBasic_palette.append(palette_amstrad)
+    # for color in data['palette']:
+    #     palette_amstrad = cm.CONVERSION_PALETTE.get("COLOR_" + color)
+    #     ugBasic_palette.append(palette_amstrad)
 
-    ug_palette = str(ugBasic_palette)
+    # ug_palette = str(ugBasic_palette)
 
     ########################################
     # IF PARAM DSK IS TRUE
