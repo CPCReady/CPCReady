@@ -13,8 +13,6 @@ from CPCReady import func_about as my
 from CPCReady import __version__ as version
 
 module_path = os.path.dirname(os.path.abspath(__file__))
-# binary_path = os.path.join(module_path, 'z88dk', 'bin')
-# os.environ['PATH'] = f"{binary_path}:{os.environ['PATH']}"
 
 def create(scope):
     # cm.validate_cfg(cm.CFG_PROJECT, cm.SECTIONS_PROJECT)
@@ -23,8 +21,6 @@ def create(scope):
     # if not cm.fileExist(cm.CFG_PROJECT):
     #     sys.exit(1)
 
-
-    
 
     PROJECT_NAME     = cm.getNameProject()
     PROJECT_83_FILES = cm.get83Files()
@@ -251,12 +247,26 @@ def basInMergeFiles(lista, elemento):
     return elemento in lista
 
 
-def readContentFile(source):
+def readContentFile( source):
+    """Read content file to merge
+
+    Args:
+        source (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
     with open(source, 'r') as origen_file:
         contenfile = origen_file.read()
     return contenfile
 
 def addContenToFile(source, text):
+    """Añade el contenido del fichero a otro
+
+    Args:
+        source (_type_): _description_
+        text (_type_): _description_
+    """
     with open(source, 'a') as destino_file:
         destino_file.write(text)
 
