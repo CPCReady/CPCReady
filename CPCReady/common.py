@@ -457,15 +457,6 @@ def validateSection(file, section):
             return True
     return False
 
-
-def validate_cfg(cfg, datos):
-    if not fileExist(cfg):
-        sys.exit(1)
-    for section in datos:
-        if not validateSection(cfg, section):
-            msgError(f"{section} configuration does not exist in the {cfg} file")
-            sys.exit(1)
-
 def validateYaml(file):
     if not fileExist(file):
         sys.exit(1)
@@ -481,14 +472,6 @@ def validateYaml(file):
     else:
         msgError(f"File project config is not valid: \n\n\t{errores}")
         sys.exit(1)
-
-    
-    # if not fileExist(cfg):
-    #     sys.exit(1)
-    # for section in datos:
-    #     if not validateSection(cfg, section):
-    #         msgError(f"{section} configuration does not exist in the {cfg} file")
-    #         sys.exit(1)
 
 
 def validateCPCModel(model):
