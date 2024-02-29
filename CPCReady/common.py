@@ -40,6 +40,7 @@ PATH_SPR = "spr"
 PATH_ASSETS = "assets"
 PATH_CODE = "out/code"
 PATH_8BP = "8BP"
+PATH_OUT = "out"
 CFG_PROJECT = f"{PWD}{PATH_CFG}/project.yml"
 CFG_EMULATORS = f"{PATH_CFG}/emulators.cfg"
 CFG_IMAGES = f"{PATH_CFG}/images.cfg"
@@ -179,6 +180,15 @@ def getCdtFiles():
 def bytes_to_kilobytes(bytes_value):
     kilobytes_value = bytes_value / 1024
     return kilobytes_value
+
+def getSEmulatorModel(emulator):
+    project = readProyect()
+    return project["spec"]["emulators"][emulator]["model"]
+
+def getSEmulatorRun(emulator):
+    project = readProyect()
+    return project["spec"]["emulators"][emulator]["run"]
+
 
 def kilobytes_to_bytes(kilobytes):
     bytes_value = math.ceil(kilobytes * 1024)

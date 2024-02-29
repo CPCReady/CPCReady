@@ -25,7 +25,7 @@ def create(scope):
     PROJECT_CDT      = f"{PROJECT_NAME}.CDT"
     PROJECT_DSK      = f"{PROJECT_NAME}.DSK"
     PROJECT_CPR_NAME = f"{PROJECT_NAME}.CPR"
-    DATA_EMULATORS   = cm.getEmulators()
+
 
     
 

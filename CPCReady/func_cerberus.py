@@ -2,6 +2,7 @@ import cerberus
 import yaml
 
 # Definicion esquema de validacion
+
 schema = {
     'kind': {'type': 'string', 'allowed': ['BasicProject']},
     'apiVersion': {'type': 'string', 'allowed': ['v1']},
@@ -24,12 +25,21 @@ schema = {
         'schema': {
             'images': {'type': 'dict', 'nullable': True, 'valueschema': {'type': 'dict', 'schema': {'mode': {'type': 'integer'}, 'include_pal': {'type': 'boolean'}}}},
             'sprites': {'type': 'dict', 'nullable': True, 'valueschema': {'type': 'dict', 'schema': {'mode': {'type': 'integer'}, 'width': {'type': 'integer'}, 'height': {'type': 'integer'}}}},
-            'emulators': {'type': 'dict', 'nullable': True, 'valueschema': {'type': 'dict', 'schema': {'model': {'type': 'integer'}, 'run': {'type': 'string'}}}},
+            'emulators': {
+                'type': 'dict',
+                'nullable': True,
+                'valueschema': {
+                    'type': 'dict',
+                    'schema': {
+                        'model': {'type': 'integer', 'allowed': [464, 6128, 664]},
+                        'run': {'type': 'string'}
+                    }
+                }
+            },
             'cdtfiles': {'type': 'list', 'nullable': True, 'schema': {'type': 'string'}}
         }
     }
 }
-
 
 def validar_yaml(yaml_data):
     v = cerberus.Validator(schema)
