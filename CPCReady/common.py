@@ -11,6 +11,7 @@ from jinja2 import Template
 import ipaddress as ip
 import os
 from CPCReady import __version__ as version
+from CPCReady import func_cerberus as verify
 import math
 import yaml
 
@@ -464,6 +465,30 @@ def validate_cfg(cfg, datos):
         if not validateSection(cfg, section):
             msgError(f"{section} configuration does not exist in the {cfg} file")
             sys.exit(1)
+
+def validateYaml(file):
+    if not fileExist(file):
+        sys.exit(1)
+
+    with open(file, 'r') as file:
+        yaml_data = yaml.safe_load(file)
+
+    # Validar el YAML
+    es_valido, errores = verify.validar_yaml(yaml_data)
+
+    if es_valido:
+        msgCustom("CHECK", "Setting Project.yml ==> OK", "green")
+    else:
+        msgError(f"File project config is not valid: \n\n\t{errores}")
+        sys.exit(1)
+
+    
+    # if not fileExist(cfg):
+    #     sys.exit(1)
+    # for section in datos:
+    #     if not validateSection(cfg, section):
+    #         msgError(f"{section} configuration does not exist in the {cfg} file")
+    #         sys.exit(1)
 
 
 def validateCPCModel(model):

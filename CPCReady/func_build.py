@@ -15,12 +15,10 @@ from CPCReady import __version__ as version
 module_path = os.path.dirname(os.path.abspath(__file__))
 
 def create(scope):
-    # cm.validate_cfg(cm.CFG_PROJECT, cm.SECTIONS_PROJECT)
-
-    # Check is cfg project exist
-    # if not cm.fileExist(cm.CFG_PROJECT):
-    #     sys.exit(1)
-
+    
+    my.show(False)
+    cm.showInfoTask(f"Build project in progress...")
+    cm.validateYaml(cm.CFG_PROJECT)
 
     PROJECT_NAME     = cm.getNameProject()
     PROJECT_83_FILES = cm.get83Files()
@@ -29,7 +27,7 @@ def create(scope):
     PROJECT_CPR_NAME = f"{PROJECT_NAME}.CPR"
     DATA_EMULATORS   = cm.getEmulators()
 
-    my.show(False)
+    
 
     PROJECT_CDT_NAME       = f"{cm.PATH_DSK}/{PROJECT_CDT}"
     PROJECT_DSK_NAME       = f"{cm.PATH_DSK}/{PROJECT_DSK}"
@@ -37,7 +35,7 @@ def create(scope):
     DESTINATION_MERGE_FILE = cm.getMergeDestinationFile()
     MERGE_FILES            = cm.getMergeFiles()
 
-    cm.showInfoTask(f"Build project " + PROJECT_NAME + " in progress...")
+    
 
     if PROJECT_83_FILES:
         check_subfolders = ["src", "lib", "img", "spr","assets"]

@@ -9,17 +9,20 @@ from CPCReady import common as cm
 from CPCReady import func_info as info
 
 
-##
-# Create SCR image
-#
-# @param project: image filename
-# @param mode: CPC mode (0, 1, 2)
-# @param fileout: folder out
-# @param dsk: if create dsk
-# @param api: function in code o out
-##
-
 def create(filename, mode, fileout, dsk, api=False):
+    
+    """ Convierte imagen a formato amstrad
+
+        param project: image filename
+        param mode: CPC mode (0, 1, 2)
+        param fileout: folder out
+        param dsk: if create dsk
+        param api: function in code o out
+
+    Returns:
+        boolean_: si se ha creado el archivo scr correctamente
+    """
+    
     ########################################
     # VARIABLES
     ########################################
