@@ -65,12 +65,12 @@
             "type": "debugpy",
             "request": "launch",
             "module": "CPCReady.main",
-            "cwd": "${workspaceFolder}/${env:PROJECT_TEST}",
+            "cwd": "${workspaceFolder}/test/data/project",
             "justMyCode": true,
             "env": {
                 "PYTHONPATH": "${workspaceFolder}",
             },
-            "args": ["run","--setting", "WEB6128"] 
+            "args": ["run"] 
         },
         {
             "name": "CPC RUN (DESKTOP)",

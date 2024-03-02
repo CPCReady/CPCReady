@@ -26,14 +26,13 @@ spec:
       width: 16
       height: 16
   emulators:
+    cpc6128:
+      model: 6128
+      ip: 192.168.1.2
+      run: run"MAIN.BAS"
     cpc464:
       model: 464
       run: run""
-      image: Nombre_de_proyecto.CDT
-    cpc6128:
-      model: 6128
-      run: run"MAIN.BAS"
-      image: Nombre_de_proyecto.dsk
   cdtfiles:
     - MAIN.BAS
     - MAIN25.BAS

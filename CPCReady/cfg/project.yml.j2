@@ -1,0 +1,23 @@
+kind: BasicProject
+apiVersion: v1
+metadata:
+  name: {{ name }}
+  files_8_3: {{ nomenclature63 }}
+  merge:
+    destination_File: 
+    files_to_merge:
+spec:
+  images:
+  sprites:
+  emulators:
+    cpc464:
+      model: 464
+      run: run""
+    cpc6128:
+      model: 6128
+      run: run"MAIN.BAS"
+    m4board:
+      ip: 0.0.0.0
+      run: run"MAIN.BAS"
+  cdtfiles:
+    - MAIN.BAS

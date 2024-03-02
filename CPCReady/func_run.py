@@ -46,10 +46,10 @@ def uploadFileM4BOARD(ip, file, folder):
         return False
 
 
-def launch(file, emulador):
+def launch(emulador):
     
     print()
-    if not cm.fileExist(file):
+    if not cm.fileExist(cm.CFG_PROJECT):
         sys.exit(1)
 
     DATA_EMULATORS = cm.getEmulators()

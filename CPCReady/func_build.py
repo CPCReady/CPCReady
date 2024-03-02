@@ -14,7 +14,7 @@ from CPCReady import __version__ as version
 
 module_path = os.path.dirname(os.path.abspath(__file__))
 
-def create(scope):
+def create():
     
     my.show(False)
     cm.showInfoTask(f"Build project in progress...")

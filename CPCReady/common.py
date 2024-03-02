@@ -173,6 +173,10 @@ def getEmulators():
     project = readProyect()
     return project["spec"]["emulators"] 
 
+def getFirstEmulator():
+    project = readProyect()
+    return next(iter(project.get("spec", {}).get("emulators", {})), None)
+
 def getCdtFiles():
     project = readProyect()
     return project["spec"]["cdtfiles"] 
@@ -193,6 +197,7 @@ def getSEmulatorRun(emulator):
 def kilobytes_to_bytes(kilobytes):
     bytes_value = math.ceil(kilobytes * 1024)
     return bytes_value
+
 ##
 # verificamos si es linux
 def verificar_linux():
@@ -200,6 +205,14 @@ def verificar_linux():
     if sistema_operativo != 'Linux':
         mensaje_error = f"\nThis operating system is not supported. Linux only."
         raise OSError(mensaje_error)
+
+
+def validateIP(value, field, error):
+    try:
+        ip.ip_address(value)
+        return True
+    except ValueError:
+        error(field, f"'{value}' no es una dirección IP válida.")
 
 
 ##
@@ -491,14 +504,7 @@ def validateCPCModel(model):
     return False
 
 
-def validateIP(ip_string):
-    try:
-        ip.ip_address(ip_string)
-        msgInfo(f"IP address ==> {ip_string}")
-        return True
-    except ValueError:
-        msgError("IP address ==> '{ip_string}' is not valid")
-        return False
+
 
     # def ping(host):
 #     param = '-n' if platform.system().lower()=='windows' else '-c'

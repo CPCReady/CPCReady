@@ -1,7 +1,18 @@
 import cerberus
 import yaml
+import re
+
 
 # Definicion esquema de validacion
+
+# def es_direccion_ip(value, field, error):
+#     # Patrón para validar una dirección IP
+#     patron_ip = re.compile(r'^(25[0-5]|2[0-4][0-9]|[0-1]?[0-9]?[0-9])(\.(25[0-5]|2[0-4][0-9]|[0-1]?[0-9]?[0-9])){3}$')
+    
+#     if not patron_ip.match(value):
+#         error(field, f"'{value}' no es una dirección IP válida.")
+
+
 
 schema = {
     'kind': {'type': 'string', 'allowed': ['BasicProject']},
@@ -32,7 +43,8 @@ schema = {
                     'type': 'dict',
                     'schema': {
                         'model': {'type': 'integer', 'allowed': [464, 6128, 664]},
-                        'run': {'type': 'string'}
+                        'run': {'type': 'string'},
+                        'ip': {'type': 'string', 'nullable': True}
                     }
                 }
             },
