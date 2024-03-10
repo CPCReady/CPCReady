@@ -57,7 +57,7 @@ def create():
     ########################################
     # PROCESING MERGE FILES
     ########################################
-    if DESTINATION_MERGE_FILE:
+    if DESTINATION_MERGE_FILE is not None:
         for file_to_merge in MERGE_FILES:
             if cm.fileExist(cm.PATH_SRC + "/" + file_to_merge):
                 addContenToFile(cm.PATH_DISC + "/" + DESTINATION_MERGE_FILE, readContentFile(cm.PATH_SRC + "/" + file_to_merge))
@@ -77,16 +77,16 @@ def create():
     
     allBasFiles = glob.glob(os.path.join(cm.PATH_SRC, '*.[bB][aA][sS]'))
     for basfile in allBasFiles:
-        if not basInMergeFiles(MERGE_FILES,cm.getFileExt(basfile)):
-            
-            #convert2Dos(basfile, cm.PATH_DISC + "/" + cm.getFileExt(basfile))
-            if not removeComments(basfile,cm.PATH_DISC + "/" + cm.getFileExt(basfile)):
-                cm.showFoodDataProject("Build failure disc image", 1)
-                
-            toDos(cm.PATH_DISC + "/" + cm.getFileExt(basfile))
-            if not addBas2ImageDisc(PROJECT_DSK_NAME, cm.PATH_DISC + "/" + cm.getFileExt(basfile)):
-                cm.showFoodDataProject("Build failure disc image", 1)
-            addamsdos(cm.PATH_DISC + "/" + cm.getFileExt(basfile))    
+        if MERGE_FILES is not None:
+            if not basInMergeFiles(MERGE_FILES,cm.getFileExt(basfile)):
+                #convert2Dos(basfile, cm.PATH_DISC + "/" + cm.getFileExt(basfile))
+                if not removeComments(basfile,cm.PATH_DISC + "/" + cm.getFileExt(basfile)):
+                    cm.showFoodDataProject("Build failure disc image", 1)
+                    
+                toDos(cm.PATH_DISC + "/" + cm.getFileExt(basfile))
+                if not addBas2ImageDisc(PROJECT_DSK_NAME, cm.PATH_DISC + "/" + cm.getFileExt(basfile)):
+                    cm.showFoodDataProject("Build failure disc image", 1)
+                addamsdos(cm.PATH_DISC + "/" + cm.getFileExt(basfile))    
 
     ########################################
     # PROCESING ASCII FILES

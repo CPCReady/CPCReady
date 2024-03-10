@@ -72,11 +72,11 @@ def new():
 @main.command()
 def save():
     """ Create project disk and cdt image. """
-    try:
-        cm.verificar_linux()
-        compile.create()
-    except Exception as e:
-        raise Exception(f"Error {str(e)}")
+    # try:
+    #     cm.verificar_linux()
+    compile.create()
+    # except Exception as e:
+    #     raise Exception(f"Error {str(e)}")
 
 @main.command()
 def about():

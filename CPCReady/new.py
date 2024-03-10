@@ -33,19 +33,6 @@ def project_validation(answers, current):
             raise inquirer.errors.ValidationError("", reason="Error: Project name cannot be more than 8 characters.")
     return True
 
-##
-# name63 return name format 6:3
-#
-# @param project: Project name
-# @param model: CPC model
-##
-# def name83 (name):
-#     if len(name) > 8:
-#         validate_name = name[:8]
-#     else:
-#         validate_name = name
-#     return validate_name
-
 
 def new():
     
@@ -94,12 +81,8 @@ def new():
     ## PROJECT
     DATA = {'name': project,'nomenclature63': nomenclature63}
     cm.createTemplate("project.yml",   DATA, f"{folder_project}/{cm.PATH_CFG}/project.yml")
-    # cm.createTemplate("project.cfg",   DATA, f"{folder_project}/{cm.PATH_CFG}/project.cfg")
-    # cm.createTemplate("emulators.cfg", DATA, f"{folder_project}/{cm.PATH_CFG}/emulators.cfg")
-    # cm.createTemplate("images.cfg",    DATA, f"{folder_project}/{cm.PATH_CFG}/images.cfg")
-    # cm.createTemplate("sprites.cfg",   DATA, f"{folder_project}/{cm.PATH_CFG}/sprites.cfg")
     cm.createTemplate("MAIN.BAS",      DATA, f"{folder_project}/{cm.PATH_SRC}/MAIN.BAS")
-    cm.createTemplate("Makefile",      DATA, f"{folder_project}/Makefile")
+
 
     print()
     console.print(f"🚀  Successfully creeated project [green]{project}[/]")

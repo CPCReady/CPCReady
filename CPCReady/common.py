@@ -29,7 +29,7 @@ logging.basicConfig(
 
 # Variables
 
-subfolders          = ["out", "out/m4board", "out/code","src", "cfg", "lib", "img", "spr", "docs","assets","8BP"]
+subfolders          = ["out", "out/m4board", "out/code","src", "cfg","docs","assets","8BP"]
 PWD                 = os.getcwd() + "/"
 FILE_PROJECT        = "project.yml"
 PATH_PROJECT        = os.getcwd() + "/"
