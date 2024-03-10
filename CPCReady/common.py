@@ -11,10 +11,12 @@ from jinja2 import Template
 import ipaddress as ip
 import os
 from CPCReady import __version__ as version
-from CPCReady import func_cerberus as verify
+from CPCReady import cerberus as verify
 import math
 import yaml
-
+import inquirer
+from CPCReady import new as validate
+import re
 
 console = Console()
 log = logging.getLogger("rich")
@@ -27,96 +29,41 @@ logging.basicConfig(
 
 # Variables
 
-subfolders = ["out", "out/m4board", "out/code","src", "cfg", "lib", "img", "spr", "docs","assets","8BP"]
-PWD = os.getcwd() + "/"
-TEMPLATE_RVM_WEB = "rvm-web.html"
-PATH_CFG = "cfg"
-PATH_DISC = "out/m4board"
-PATH_OBJ = "obj"
-PATH_SRC = "src"
-PATH_DSK = "out"
-PATH_LIB = "lib"
-PATH_SPR = "spr"
-PATH_ASSETS = "assets"
-PATH_CODE = "out/code"
-PATH_8BP = "8BP"
-PATH_OUT = "out"
-CFG_PROJECT = f"{PWD}{PATH_CFG}/project.yml"
-CFG_EMULATORS = f"{PATH_CFG}/emulators.cfg"
-CFG_IMAGES = f"{PATH_CFG}/images.cfg"
-CFG_SPRITES = f"{PATH_CFG}/sprites.cfg"
-APP_PATH = os.getenv('CPCREADY')
-SECTIONS_PROJECT = ["general", "configurations", "CDT"]
-SECTIONS_EMULATOR = ["rvm-web", "rvm-desktop", "m4board"]
-EMULATORS_TYPES = ["web", "desktop", "m4board"]
-CPC_MODELS = ["6128", "464", "664"]
-
-TEMP_PATH = os.getenv('HOME') + "/tmp"
-
-# IMAGE2CPR = os.path.dirname(os.path.abspath(__file__)) + "/binary/nocart"
-# MARTINE = os.path.dirname(os.path.abspath(__file__)) + "/binary/martine"
-# IDSK = os.path.dirname(os.path.abspath(__file__)) + "/binary/iDSK"
-# UGBASIC = os.path.dirname(os.path.abspath(__file__)) + "/binary/ugbc"
-# AMSDOS = os.path.dirname(os.path.abspath(__file__)) + "/binary/amsdos"
-# CDT = os.path.dirname(os.path.abspath(__file__)) + "/binary/2cdt"
-# CPC2CDT = os.path.dirname(os.path.abspath(__file__)) + "/binary/cpc2cdt"
-# M4BOARD = os.path.dirname(os.path.abspath(__file__)) + "/binary/xfer"
-# RETROVIRTUALMACHINE = os.path.dirname(os.path.abspath(__file__)) + "/binary/RetroVirtualMachine"
-# DSK2CPR = os.path.dirname(os.path.abspath(__file__)) + "/binary/nocart"
-
-IMAGE2CPR = "nocart"
-MARTINE = "martine"
-IDSK = "iDSK"
-UGBASIC = "ugbc"
-AMSDOS = "amsdos"
-CDT = "2cdt"
-CPC2CDT = "cpc2cdt"
-M4BOARD = "xfer"
+subfolders          = ["out", "out/m4board", "out/code","src", "cfg", "lib", "img", "spr", "docs","assets","8BP"]
+PWD                 = os.getcwd() + "/"
+FILE_PROJECT        = "project.yml"
+PATH_PROJECT        = os.getcwd() + "/"
+PATH_CFG            = f"cfg"
+PATH_DISC           = f"out/m4board"
+PATH_OBJ            = f"obj"
+PATH_SRC            = f"src"
+PATH_DSK            = f"out"
+PATH_LIB            = f"lib"
+PATH_SPR            = f"spr"
+PATH_ASSETS         = f"assets"
+PATH_CODE           = f"out/code"
+PATH_8BP            = f"8BP"
+PATH_OUT            = f"out"
+CFG_PROJECT         = f"{PATH_CFG}/{FILE_PROJECT}"
+TEMP_PATH           = os.getenv('HOME') + "/tmp"
+IMAGE2CPR           = "nocart"
+MARTINE             = "martine"
+IDSK                = "iDSK"
+UGBASIC             = "ugbc"
+AMSDOS              = "amsdos"
+CDT                 = "2cdt"
+CPC2CDT             = "cpc2cdt"
+M4BOARD             = "xfer"
 RETROVIRTUALMACHINE = "RetroVirtualMachine"
-DSK2CPR = os.path.dirname(os.path.abspath(__file__)) + "/binary/nocart"
+DSK2CPR             = os.path.dirname(os.path.abspath(__file__)) + "/binary/nocart"
+TEMPLATES_PATH      = os.path.dirname(os.path.abspath(__file__)) + "/cfg/"
 
-
-TEMPLATES_PATH = os.path.dirname(os.path.abspath(__file__)) + "/cfg/"
-
-# CONVERSION_PALETTE = {
-#     "COLOR_0": "RGB(0,0,0)",
-#     "COLOR_1": "RGB(0,0,128)",
-#     "COLOR_2": "RGB(0,0,255)",
-#     "COLOR_3": "RGB(128,0,0)",
-#     "COLOR_4": "RGB(128,0,128)",
-#     "COLOR_5": "RGB(128,0,255)",
-#     "COLOR_6": "RGB(255,0,0)",
-#     "COLOR_7": "RGB(255,0,128)",
-#     "COLOR_8": "RGB(255,0,255)",
-#     "COLOR_9": "RGB(0,128,0)",
-#     "COLOR_00": "RGB(0,0,0)",
-#     "COLOR_01": "RGB(0,0,128)",
-#     "COLOR_02": "RGB(0,0,255)",
-#     "COLOR_03": "RGB(128,0,0)",
-#     "COLOR_04": "RGB(128,0,128)",
-#     "COLOR_05": "RGB(128,0,255)",
-#     "COLOR_06": "RGB(255,0,0)",
-#     "COLOR_07": "RGB(255,0,128)",
-#     "COLOR_08": "RGB(255,0,255)",
-#     "COLOR_09": "RGB(0,128,0)",
-#     "COLOR_10": "RGB(0,128,128)",
-#     "COLOR_11": "RGB(0,128,255)",
-#     "COLOR_12": "RGB(128,128,0)",
-#     "COLOR_13": "RGB(128,128,128)",
-#     "COLOR_14": "RGB(128,128,255)",
-#     "COLOR_15": "RGB(255,128,0)",
-#     "COLOR_16": "RGB(255,128,128)",
-#     "COLOR_17": "RGB(255,128,255)",
-#     "COLOR_18": "RGB(0,255,0)",
-#     "COLOR_19": "RGB(0,255,128)",
-#     "COLOR_20": "RGB(0,255,255)",
-#     "COLOR_21": "RGB(128,255,0)",
-#     "COLOR_22": "RGB(128,255,128)",
-#     "COLOR_23": "RGB(128,255,255)",
-#     "COLOR_24": "RGB(255,255,0)",
-#     "COLOR_25": "RGB(255,255,128)",
-#     "COLOR_26": "RGB(255,255,255)"
-# }
+def validar_nomenclatura_8_3(nombre):
+    patron = re.compile(r'^[a-zA-Z0-9]{1,8}\.[a-zA-Z0-9]{1,3}$')
+    if patron.match(nombre):
+        return True
+    else:
+        return False
 
 def readProyect():
     if not fileExist(CFG_PROJECT):
@@ -136,6 +83,12 @@ def get83Files():
 def getMergeDestinationFile():
     project = readProyect()
     return project["metadata"]["merge"]["destination_File"]
+
+def modifyMergeDestinationFile(new_destination_file):
+    project = readProyect()
+    project['metadata']['merge']['destination_File'] = new_destination_file
+    with open(CFG_PROJECT, 'w') as file:
+        yaml.dump(project, file, default_flow_style=False)
 
 def getMergeFiles():
     project = readProyect()
@@ -417,6 +370,7 @@ def showFoodDataProject(description, out):
 ##
 def fileExist(source):
     if not os.path.isfile(source):
+        print()
         msgError(f"File {source} does not exist.")
         return False
     return True
@@ -497,11 +451,11 @@ def validateYaml(file):
         sys.exit(1)
 
 
-def validateCPCModel(model):
-    for modelos in CPC_MODELS:
-        if str(modelos) == str(model):
-            return True
-    return False
+# def validateCPCModel(model):
+#     for modelos in CPC_MODELS:
+#         if str(modelos) == str(model):
+#             return True
+#     return False
 
 
 

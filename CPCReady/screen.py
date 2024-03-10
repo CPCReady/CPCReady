@@ -6,7 +6,13 @@ import subprocess
 import shutil
 import json
 from CPCReady import common as cm
-from CPCReady import func_info as info
+
+
+
+def getSettingImage(image):
+    image = image.replace('"', "")
+    if cm.fileExist(cm.PATH_ASSETS + "/" + image):
+        create(cm.PATH_ASSETS + "/" + image,cm.getImageMode(image),cm.PATH_OUT,True,False)
 
 
 def create(filename, mode, fileout, dsk, api=False):
@@ -99,12 +105,6 @@ def create(filename, mode, fileout, dsk, api=False):
     sw_palette = str(data['palette'])
     hw_palette = str(data['hardwarepalette'])
     ugBasic_palette = []
-
-    # for color in data['palette']:
-    #     palette_amstrad = cm.CONVERSION_PALETTE.get("COLOR_" + color)
-    #     ugBasic_palette.append(palette_amstrad)
-
-    # ug_palette = str(ugBasic_palette)
 
     ########################################
     # IF PARAM DSK IS TRUE

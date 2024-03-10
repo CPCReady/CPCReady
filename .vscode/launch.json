@@ -11,17 +11,30 @@
             "args": []
         },
         {
-            "name": "CPC YAML",
+            "name": "MERGE",
             "type": "debugpy",
             "request": "launch",
             "module": "CPCReady.main",
-            "cwd": "${workspaceFolder}/${env:PROJECT_TEST}",
+            "cwd": "${workspaceFolder}/test/data/project",
             "justMyCode": true,
             "env": {
                 "PYTHONPATH": "${workspaceFolder}",
                 "PROJECT_TEST":"/home/destroyer/Github/CPCReady/sdk/test/data/project"
             },
-            "args": ["pr"] 
+            "args": ["merge"] 
+        },
+        {
+            "name": "RUN",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "CPCReady.main",
+            "cwd": "${workspaceFolder}/test/data/project",
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+                "PROJECT_TEST":"/home/destroyer/Github/CPCReady/sdk/test/data/project"
+            },
+            "args": ["run","sdfasdfs"] 
         },
         {
             "name": "CPC INFO",
@@ -94,7 +107,7 @@
             "env": {
                 "PYTHONPATH": "${workspaceFolder}",
             },
-            "args": ["run","--setting", "XXXXX"] 
+            "args": ["run","cpc6128"] 
         },
         {
             "name": "VERSION",
@@ -131,6 +144,18 @@
                 "PYTHONPATH": "${workspaceFolder}",
             },
             "args": ["screen","--image", "/workspaces/sdk/testing000/img/avatar.png","--mode", "0","--out","testing001"] 
+        },
+        {
+            "name": "CPC SCREEN 2",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "CPCReady.main",
+            "cwd": "${workspaceFolder}/tools/sdk",
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+            },
+            "args": ["scr","--image", "avatar.png"] 
         },
         {
             "name": "CPC SCREEN DSK",

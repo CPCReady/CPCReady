@@ -6,7 +6,8 @@ import shutil
 from jinja2 import Template
 import subprocess
 from CPCReady import common as cm
-from CPCReady import func_info as info
+
+
 import io
 import platform
 
@@ -49,13 +50,20 @@ def uploadFileM4BOARD(ip, file, folder):
 def launch(emulador):
     
     print()
+    
+    # loading.readEnvironmentVariable()
+    
+    emulador = emulador.replace('"', "")
+    
     if not cm.fileExist(cm.CFG_PROJECT):
         sys.exit(1)
 
     DATA_EMULATORS = cm.getEmulators()
+    
 
     if not validateSettingEmulator(emulador,DATA_EMULATORS):
         cm.msgError(f"Config Emulator {emulador} not exist in settings project.")
+        exit(-1)
 
     cm.showInfoTask(f"Launch DSK in progress...")
     run   = cm.getSEmulatorRun(emulador)

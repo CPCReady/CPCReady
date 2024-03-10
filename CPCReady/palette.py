@@ -6,7 +6,12 @@ import subprocess
 import shutil
 import json
 from CPCReady import common as cm
-from CPCReady import func_info as info
+
+
+def getSettingPalette(image):
+    image = image.replace('"', "")
+    if cm.fileExist(cm.PATH_ASSETS + "/" + image):
+        getData(cm.PATH_ASSETS + "/" + image,cm.getImageMode(image),False)
 
 
 ##
@@ -86,7 +91,7 @@ def getData(filename, mode, api=False):
     ########################################
     # IF PARAM DSK IS TRUE
     ########################################
-
+    cm.msgInfo(f"Mode     : {mode}")
     cm.msgInfo(f"Software : {sw_palette}")
     cm.msgInfo(f"Hardware : {hw_palette}")
     # cm.msgInfo(f"UgBasic  : {ug_palette}")

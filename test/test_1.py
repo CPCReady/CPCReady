@@ -2,7 +2,7 @@
 import os
 import shutil
 import unittest
-from CPCReady.func_project import create
+from CPCReady.new import create
 import io
 from unittest.mock import patch
 

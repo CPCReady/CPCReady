@@ -1,39 +1,38 @@
-kind: BasicProject
 apiVersion: v1
+kind: BasicProject
 metadata:
-  name: Nombre_de_proyecto
-  files_8_3: True
+  files_8_3: true
   merge:
-    destination_File: MAIN25.BAS
+    destination_File:
     files_to_merge:
-      - MAIN1.BAS
-      - MAIN2.BAS
+    - MAIN1.BAS
+    - MAIN2.BAS
+  name: Nombre_de_proyecto
 spec:
-  images:
-    avatar.png: 
-      mode: 0
-      include_pal: True
-    yo.png: 
-      mode: 0
-      include_pal: False
-  sprites:
-    avatar.png:
-      mode: 0
-      width: 16
-      height: 16
-    yo.png:
-      mode: 0
-      width: 16
-      height: 16
+  cdtfiles:
+  - MAIN.BAS
+  - AVATAR.SCR
   emulators:
-    cpc6128:
-      model: 6128
-      ip: 192.168.1.2
-      run: run"MAIN.BAS"
     cpc464:
       model: 464
       run: run""
-  cdtfiles:
-    - MAIN.BAS
-    - MAIN25.BAS
-    - AVATAR.SCR
+    cpc6128:
+      ip: 192.168.1.2
+      model: 6128
+      run: run"MAIN.BAS"
+  images:
+    avatar.png:
+      include_pal: true
+      mode: 0
+    yo.png:
+      include_pal: false
+      mode: 0
+  sprites:
+    avatar.png:
+      height: 16
+      mode: 0
+      width: 16
+    yo.png:
+      height: 16
+      mode: 0
+      width: 16

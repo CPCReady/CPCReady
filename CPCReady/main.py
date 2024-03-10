@@ -1,16 +1,17 @@
 import click
 from CPCReady import __version__
-from CPCReady import func_run as emulador
-from CPCReady import func_palette as pal
-from CPCReady import func_sprite as sprites
-from CPCReady import func_screen as screens
-from CPCReady import func_project as projects
-from CPCReady import func_build as compile
-from CPCReady import func_info as information
-from CPCReady import func_update as update
-from CPCReady import func_about as my
+from CPCReady import run as emulador
+from CPCReady import palette as pal
+from CPCReady import sprite as sprites
+from CPCReady import screen as screens
+from CPCReady import new as projects
+from CPCReady import save as compile
+from CPCReady import load as loading
+from CPCReady import upgrade as update
+from CPCReady import about as my
 from CPCReady import common as cm
-from CPCReady import func_yaml as proyecto
+from CPCReady import yaml as proyecto
+from CPCReady import merge as command_merge
 
 import logging
 import requests
@@ -27,74 +28,53 @@ def main():
     """ CLI SDK for programming in Amstrad Locomotive Basic. """
 
 
+#, type=click.STRING, help="Input file name.", required=True)
+
 @main.command()
-@click.option('--setting', '-s', required=False, default="", help="Emulator Settings Name")
-def run(setting):
+@click.argument('emulator',required=True)
+def run(emulator):
     """ Execute DSK/CDT in emulator. """
     try:
         cm.verificar_linux()
-        if not setting:
-            setting = cm.getFirstEmulator()
-        emulador.launch(setting)
+        emulador.launch(emulator)
     except Exception as e:
         raise Exception(f"Error {str(e)}")
 
-
 @main.command()
-@click.option("-i", "--image", "image", type=click.STRING, help="Input file name", required=True)
-@click.option("-m", "--mode", "mode", type=click.Choice(["0", "1", "2"]), help="Image Mode (0, 1, 2)", required=True)
-def palette(image, mode):
+@click.argument('image')
+def palette(image):
     """ Extract the color palette from the image. """
     cm.verificar_linux()
-    pal.getData(image, mode)
-
+    pal.getSettingPalette(image)
 
 @main.command()
-@click.option("-i", "--image", type=click.STRING, help="Input file name", required=True)
-@click.option("-m", "--mode", type=click.Choice(["0", "1", "2"]), help="Image Mode (0, 1, 2)", required=True)
-@click.option("-o", "--out", type=click.STRING, help="Out path file name", required=True)
-@click.option("-h", "--height", type=click.INT, help="Height sprite size", required=True)
-@click.option("-w", "--width", type=click.INT, help="Width sprite size", required=True)
-def sprite(image, mode, out, height, width):
+@click.argument('image')
+def sprite(image):
     """ Extract the color palette from the image. """
     cm.verificar_linux()
-    sprites.create(image, mode, out, height, width)
+    sprites.getSettingSprite(image)
 
 
 @main.command()
-@click.option("-i", "--image", type=click.STRING, help="Input file name.", required=True)
-@click.option("-m", "--mode", type=click.Choice(["0", "1", "2"]), help="Image Mode (0, 1, 2)", required=True)
-@click.option("-o", "--out", type=click.STRING, help="Out path file name.", required=True)
-@click.option("-d", "--dsk", is_flag=True, help="Generate DSK with only the scr image.", required=False)
-def screen(image, mode, out, dsk):
-    """ Convert an image to Amstrad scr format. """
+@click.argument('image')
+def screen(image):
+    """ Convert an image to Amstrad scr format. Get data Setting project """
     cm.verificar_linux()
-    screens.create(image, mode, out, dsk)
-
+    screens.getSettingImage(image)
 
 @main.command()
-def project():
+def new():
     """ Create the project structure for CPCReady. """
     cm.verificar_linux()
-    projects.create()
+    projects.new()
 
 
 @main.command()
-def build():
+def save():
     """ Create project disk and cdt image. """
     try:
         cm.verificar_linux()
         compile.create()
-    except Exception as e:
-        raise Exception(f"Error {str(e)}")
-
-
-@main.command()
-def info():
-    """ Info Project. """
-    try:
-        cm.verificar_linux()
-        information.projectInformation()
     except Exception as e:
         raise Exception(f"Error {str(e)}")
 
@@ -107,16 +87,21 @@ def about():
     except Exception as e:
         raise Exception(f"Error {str(e)}")
 
+@main.command()
+def upgrade():
+    """ Upgrade CPCReady. """
+    try:
+        update.version(False)
+    except Exception as e:
+        raise Exception(f"Error {str(e)}")
 
-
-# @main.command()
-# def upgrade():
-#     """ Upgrade CPCReady. """
-#     try:
-#         update.version(False)
-#     except Exception as e:
-#         raise Exception(f"Error {str(e)}")
-
-
+@main.command()
+def merge():
+    """ Merge BAS files in one file. """
+    try:
+        command_merge.merge()
+    except Exception as e:
+        raise Exception(f"Error {str(e)}")
+    
 if __name__ == '__main__':
     main()

@@ -3,7 +3,11 @@ import os
 import subprocess
 import json
 from CPCReady import common as cm
-from CPCReady import func_info as info
+
+def getSettingSprite(image):
+    image = image.replace('"', "")
+    if cm.fileExist(cm.PATH_ASSETS + "/" + image):
+        create(cm.PATH_ASSETS + "/" + image,cm.getSpriteMode(image),cm.PATH_CODE,cm.getSpriteHeight(image),cm.getSpriteWidth(image),False)
 
 
 ##

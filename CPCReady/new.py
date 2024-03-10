@@ -6,7 +6,7 @@ import shutil
 from rich import print
 from rich.console import Console
 from CPCReady import common as cm
-from CPCReady import func_info as info
+
 from pprint import pprint
 import inquirer
 
@@ -47,7 +47,7 @@ def project_validation(answers, current):
 #     return validate_name
 
 
-def create():
+def new():
     
     print()
 

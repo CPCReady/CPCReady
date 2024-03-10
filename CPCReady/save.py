@@ -6,10 +6,10 @@ import shutil
 import subprocess
 import glob
 from CPCReady import common as cm
-from CPCReady import func_screen as screens
-from CPCReady import func_sprite as sprites
-from CPCReady import func_info as info
-from CPCReady import func_about as my
+from CPCReady import screen as screens
+from CPCReady import sprite as sprites
+
+from CPCReady import about as my
 from CPCReady import __version__ as version
 
 module_path = os.path.dirname(os.path.abspath(__file__))
@@ -62,7 +62,8 @@ def create():
             if cm.fileExist(cm.PATH_SRC + "/" + file_to_merge):
                 addContenToFile(cm.PATH_DISC + "/" + DESTINATION_MERGE_FILE, readContentFile(cm.PATH_SRC + "/" + file_to_merge))
                 cm.msgCustom("MERGE", f"{cm.getFileExt(file_to_merge)} ==> {cm.getFileExt(DESTINATION_MERGE_FILE)}", "green")
-        convert2Dos(cm.PATH_DISC + "/" + DESTINATION_MERGE_FILE, cm.PATH_DISC + "/" + DESTINATION_MERGE_FILE)
+        # convert2Dos(cm.PATH_DISC + "/" + DESTINATION_MERGE_FILE, cm.PATH_DISC + "/" + DESTINATION_MERGE_FILE)
+        toDos(cm.PATH_DISC + "/" + DESTINATION_MERGE_FILE)
         if not removeComments(cm.PATH_DISC + "/" + DESTINATION_MERGE_FILE,cm.PATH_DISC + "/" + DESTINATION_MERGE_FILE):
             cm.showFoodDataProject("Build failure disc image", 1)
         if not addBas2ImageDisc(PROJECT_DSK_NAME, cm.PATH_DISC + "/" + DESTINATION_MERGE_FILE):
@@ -77,9 +78,12 @@ def create():
     allBasFiles = glob.glob(os.path.join(cm.PATH_SRC, '*.[bB][aA][sS]'))
     for basfile in allBasFiles:
         if not basInMergeFiles(MERGE_FILES,cm.getFileExt(basfile)):
-            convert2Dos(basfile, cm.PATH_DISC + "/" + cm.getFileExt(basfile))
+            
+            #convert2Dos(basfile, cm.PATH_DISC + "/" + cm.getFileExt(basfile))
             if not removeComments(basfile,cm.PATH_DISC + "/" + cm.getFileExt(basfile)):
                 cm.showFoodDataProject("Build failure disc image", 1)
+                
+            toDos(cm.PATH_DISC + "/" + cm.getFileExt(basfile))
             if not addBas2ImageDisc(PROJECT_DSK_NAME, cm.PATH_DISC + "/" + cm.getFileExt(basfile)):
                 cm.showFoodDataProject("Build failure disc image", 1)
             addamsdos(cm.PATH_DISC + "/" + cm.getFileExt(basfile))    
@@ -111,8 +115,6 @@ def create():
                 else:
                     os.remove(f"{cm.PATH_DISC}/{NEW_FILE}.PAL")         
                     
-                
-
     ########################################
     # PROCESING SPRITES FILES
     ########################################
@@ -324,8 +326,7 @@ def dsk2cpr(imagefile,imagecpr, file):
 def createImageDisc(imagefile):
     
     cm.rmFolder(imagefile)
-    
-    if cm.fileExist(cm.PATH_8BP + "/dsk/8BP.dsk"):
+    if os.path.exists(cm.PATH_8BP + "/dsk/8BP.dsk"):
         shutil.copy2(cm.PATH_8BP + "/dsk/8BP.dsk", imagefile)
         cm.msgCustom("MOVE", "8BP.dsk ==> " + imagefile, "green")
     else:
@@ -388,6 +389,17 @@ def extract2ImageDisc(imagefile, file):
 #         cm.msgError(f'Error ' + cm.getFileExt(imagefile) + f' executing command: {e.output.decode()}')
 #         return False
 
+
+def toDos(file):
+    FNULL = open(os.devnull, 'w')
+    cmd = ["unix2dos", file]
+    try:
+        output = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
+        cm.msgCustom("CONVERT", "unix 2 dos ==> " + cm.getFileExt(file), "green")
+        return True
+    except subprocess.CalledProcessError as e:
+        cm.msgError(f'Error ' + cm.getFileExt(file) + f' executing command: {e.output.decode()}')
+        return False
 
 def addamsdos(file):
     FNULL = open(os.devnull, 'w')

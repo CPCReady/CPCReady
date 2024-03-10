@@ -8,7 +8,7 @@ from rich.table import Table
 from rich import print
 from rich.columns import Columns
 from CPCReady import common as cm
-from CPCReady import func_update as update
+from CPCReady import upgrade as update
 
 import sys
 import os
