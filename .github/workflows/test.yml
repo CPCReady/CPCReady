@@ -1,7 +1,13 @@
 
 name: Executing TEST
 
-on: [push]
+# on: [push]
+on:
+  pull_request:
+    branches:
+      - developddrrr
+    types:
+      - closed
 
 permissions:
   contents: read
