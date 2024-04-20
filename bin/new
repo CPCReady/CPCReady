@@ -27,7 +27,7 @@
 ##------------------------------------------------------------------------------
 
 ## Bash Include files
-source $(dirname $0)/lib/library.sh
+source $(dirname "$0")/lib/library.sh
 
 # Function to display help message
 show_help() {
@@ -39,8 +39,6 @@ show_help() {
     echo "  -h, --help     Show this help message."
     echo "  -v, --version  Show version this software."
     ready
-    exit 0
-
 }
 
 # Check if the help parameter is provided

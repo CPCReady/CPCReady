@@ -27,7 +27,7 @@
 ##------------------------------------------------------------------------------
 
 ## Bash Include files
-source $(dirname $0)/lib/library.sh
+source $(dirname "$0")/lib/library.sh
 
 ## Chequeamos si existe el archivo de variables.
 ## si no existe salimos con error
@@ -50,8 +50,6 @@ show_help() {
     echo "              If the parameter is empty, shows the"
     echo "              current value."
     ready
-    exit 0
-
 }
 
 ## Check if the help parameter is provided
@@ -72,7 +70,7 @@ mkdir -p "$OUT"
 
 PRINT "TITLE" "Create disk image with project files."
 ## Create image disk
-create_dsk $DISC
+create_dsk "$DISC"
 ## Generate disk image for all files
 if [ $# -eq 0 ]; then
     ## Add files BAS to disk image
@@ -85,7 +83,7 @@ if [ $# -eq 0 ]; then
             ## convert unix2dos
             unix2dos "$OUT/$file" >/dev/null 2>&1; PRINT "OK" "Converting file to DOS format." || PRINT "ERROR" "There was a problem converting the file to DOS format."
             ## add file to dsk image
-            add_ascii_dsk $DISC "$OUT/$file"
+            add_ascii_dsk "$DISC" "$OUT/$file"
             ## add amsdos header
             amsdos "$OUT/$file" >/dev/null 2>&1; PRINT "OK" "Added amsdos header to the file." || PRINT "ERROR" "There was an error adding the amsdos header to the file."
         fi
@@ -103,7 +101,7 @@ else
         ## convert unix2dos
         unix2dos "$OUT/$file" >/dev/null 2>&1; PRINT "OK" "Converting file to DOS format." || PRINT "ERROR" "There was a problem converting the file to DOS format."
         ## add file to dsk image
-        add_ascii_dsk $DISC "$OUT/$file"
+        add_ascii_dsk "$DISC" "$OUT/$file"
         ## add amsdos header
         amsdos "$OUT/$file" >/dev/null 2>&1; PRINT "OK" "Added amsdos header to the file." || PRINT "ERROR" "There was an error adding the amsdos header to the file."
 fi

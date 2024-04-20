@@ -27,7 +27,7 @@
 ##------------------------------------------------------------------------------
 
 ## Bash Include files
-source $(dirname $0)/lib/library.sh
+source $(dirname "$0")/lib/library.sh
 
 ## Chequeamos si existe el archivo de variables.
 ## si no existe salimos con error
@@ -38,7 +38,6 @@ source .cpc
 
 # Function to display help message
 show_help() {
-
     CPCREADY
     echo "Change screen mode."
     echo 
@@ -50,8 +49,6 @@ show_help() {
     echo "               If the parameter is empty, shows the"
     echo "               current value."
     ready
-    exit 0
-
 }
 
 # Check if the help parameter is provided
