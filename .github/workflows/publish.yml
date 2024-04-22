@@ -1,0 +1,30 @@
+name: publish version
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install zip
+      run: sudo apt-get install zip
+
+    - name: Get version
+      id: get-version
+      run: echo "::set-output name=version::$(cat VERSION)"
+
+    - name: Create zip file
+      run: zip -r cpcready-${{ steps.get-version.outputs.version }}.zip . -x "*.git*"
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: cpcready
+        path: cpcready-${{ steps.get-version.outputs.version }}.zip
