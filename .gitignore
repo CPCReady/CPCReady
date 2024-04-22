@@ -17,7 +17,6 @@ downloads/
 eggs/
 gh.token
 .eggs/
-lib/
 lib64/
 parts/
 sdist/
