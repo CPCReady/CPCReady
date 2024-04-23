@@ -1,0 +1,108 @@
+#!/bin/bash
+##------------------------------------------------------------------------------
+##
+##        ██████╗██████╗  ██████╗██████╗ ███████╗ █████╗ ██████╗ ██╗   ██╗
+##       ██╔════╝██╔══██╗██╔════╝██╔══██╗██╔════╝██╔══██╗██╔══██╗╚██╗ ██╔╝
+##       ██║     ██████╔╝██║     ██████╔╝█████╗  ███████║██║  ██║ ╚████╔╝ 
+##       ██║     ██╔═══╝ ██║     ██╔══██╗██╔══╝  ██╔══██║██║  ██║  ╚██╔╝  
+##       ╚██████╗██║     ╚██████╗██║  ██║███████╗██║  ██║██████╔╝   ██║   
+##        ╚═════╝╚═╝      ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═════╝    ╚═╝   
+##
+##-----------------------------LICENSE NOTICE------------------------------------
+##  This file is part of CPCReady Basic programation.
+##  Copyright (C) 2024 Destroyer
+##
+##  This program is free software: you can redistribute it and/or modify
+##  it under the terms of the GNU Lesser General Public License as published by
+##  the Free Software Foundation, either version 3 of the License, or
+##  (at your option) any later version.
+##
+##  This program is distributed in the hope that it will be useful,
+##  but WITHOUT ANY WARRANTY; without even the implied warranty of
+##  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+##  GNU Lesser General Public License for more details.
+##
+##  You should have received a copy of the GNU Lesser General Public License
+##  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+##------------------------------------------------------------------------------
+
+## Bash Include files
+source $(dirname "$0")/lib/library.sh
+
+## Chequeamos si existe el archivo de variables.
+## si no existe salimos con error
+check_env_file
+
+## Cargamos archivo de variables
+source .cpc
+
+# Function to display help message
+show_help() {
+
+    CPCREADY
+    echo "Run the disk image in the RVM emulator."
+    echo 
+    echo "Use: $(basename "$0") [option]"
+    echo "  -h, --help     Show this help message."
+    echo "  -v, --version  Show version this software."
+    echo "Option:"
+    echo "  [parameter]  Execute BAS File in RetroVirtualMachine."
+    echo "               If the parameter is empty, RVM is executed"
+    echo "               only with the DSK image."
+    ready
+}
+
+# Check if the help parameter is provided
+case $1 in
+    -v|--version)
+        show_version
+        ready
+        exit 0
+        ;;
+    -h|--help)
+        show_help
+        exit 0
+        ;;
+esac
+
+## Funcion que ejecuta retrovirtualmachine con el dsk
+## $1 : Nombre del DSK 
+## $2 : Tipo de cpc
+## $3 : comando a ejecutar en el cpc
+rvm_run() {
+   rvm="$CPCREADY/bin/osx/rvm.app/Contents/MacOS/rvm"
+   CPC_MACHINE="cpc$2"
+   PRINT "TAG" "$1"
+   PRINT "OK" "CPC model where $2 runs."
+   if [ -z "$3" ]; then
+    #   $rvm -i "$1" -b="$CPC_MACHINE" &> /dev/null &
+      generar_rvm "$DISC" "$MODEL"
+      PRINT "OK" "Image executed in RVM without run command."
+   else
+      CPC_COMMAND="RUN\"$3"
+    #   $rvm -i "$1" -b="$CPC_MACHINE" -c="$CPC_COMMAND" &> /dev/null &
+      generar_rvm "$DISC" "$MODEL" "$CPC_COMMAND"
+      PRINT "OK" "Image run in RVM with run\""$3"\" command"
+   fi
+}
+
+PRINT "TITLE" "Retro Virtual Machine"
+
+## Check if the disk image exists
+if [ ! -e "$DISC" ]; then
+    PRINT "ERROR" "$1 not found."
+    exit 1
+fi
+
+## Execute RVM according to the passed parameter
+if [ -z "$1" ]; then
+    rvm_run "$DISC" "$MODEL"
+else
+    ## check if file exists
+    if [ ! -e "$IN_BAS/$1" ]; then
+        PRINT "ERROR" "$1 not found."
+    fi
+    rvm_run "$DISC" "$MODEL" "$1"
+fi
+
+PRINT "TITLE" "Successfully executed image in RVM"
