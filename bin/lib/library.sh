@@ -41,6 +41,40 @@ BOLD="$(tput bold)"
 IN_BAS="src"
 OUT="out/M4Board"
 
+generar_rvm() {
+    local DISC="$1"
+    local MODEL="$2"
+    local COMMAND="$3\n"
+
+    # Definir la cadena de texto con la variable a sustituir
+    read -r -d '' rvm << EOF
+<html>
+  <head>
+    <script src='https://cdn.rvmplayer.org/rvmplayer.cpc$MODEL.0.1.1.min.js'></script>
+  </head>
+
+  <body>
+    <div class='container' style='position: relative; width: 800px; height: 600px;'></div>
+    <script>
+      const c=document.querySelector('.container')
+      rvmPlayer_cpc$MODEL(c,{
+        disk: {
+          type: 'dsk',
+          url: '$DISC',
+        },
+        command: '$COMMAND',
+        warpFrames: 20*50
+      })
+    </script>
+  </body>
+</html>
+EOF
+
+    # Escribir el contenido final en un archivo
+    printf "%s\n" "$rvm" > rvm.html
+}
+
+
 show_version(){
    CPCREADY
    VERSION=$(cat $CPCREADY/VERSION)

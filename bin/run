@@ -75,11 +75,13 @@ rvm_run() {
    PRINT "TAG" "$1"
    PRINT "OK" "CPC model where $2 runs."
    if [ -z "$3" ]; then
-      $rvm -i "$1" -b="$CPC_MACHINE" &> /dev/null &
+    #   $rvm -i "$1" -b="$CPC_MACHINE" &> /dev/null &
+      generar_rvm "$DISC" "$MODEL"
       PRINT "OK" "Image executed in RVM without run command."
    else
-      CPC_COMMAND="RUN\"$3\n"
-      $rvm -i "$1" -b="$CPC_MACHINE" -c="$CPC_COMMAND" &> /dev/null &
+      CPC_COMMAND="RUN\"$3"
+    #   $rvm -i "$1" -b="$CPC_MACHINE" -c="$CPC_COMMAND" &> /dev/null &
+      generar_rvm "$DISC" "$MODEL" "$CPC_COMMAND"
       PRINT "OK" "Image run in RVM with run\""$3"\" command"
    fi
 }
