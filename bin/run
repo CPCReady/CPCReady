@@ -70,15 +70,16 @@ esac
 ## $2 : Tipo de cpc
 ## $3 : comando a ejecutar en el cpc
 rvm_run() {
+   rvm="$CPCREADY/bin/osx/rvm.app/Contents/MacOS/rvm"
    CPC_MACHINE="cpc$2"
    PRINT "TAG" "$1"
    PRINT "OK" "CPC model where $2 runs."
    if [ -z "$3" ]; then
-      rvm1 -i "$1" -b="$CPC_MACHINE" &> /dev/null &
+      $rvm -i "$1" -b="$CPC_MACHINE" &> /dev/null &
       PRINT "OK" "Image executed in RVM without run command."
    else
       CPC_COMMAND="RUN\"$3\n"
-      rvm1 -i "$1" -b="$CPC_MACHINE" -c="$CPC_COMMAND" &> /dev/null &
+      $rvm -i "$1" -b="$CPC_MACHINE" -c="$CPC_COMMAND" &> /dev/null &
       PRINT "OK" "Image run in RVM with run\""$3"\" command"
    fi
 }
@@ -96,7 +97,7 @@ if [ -z "$1" ]; then
     rvm_run "$DISC" "$MODEL"
 else
     ## check if file exists
-    if [ ! -e "$1" ]; then
+    if [ ! -e "$IN_BAS/$1" ]; then
         PRINT "ERROR" "$1 not found."
     fi
     rvm_run "$DISC" "$MODEL" "$1"
