@@ -1,34 +1,14 @@
 {
+    // Use IntelliSense para saber los atributos posibles.
+    // Mantenga el puntero para ver las descripciones de los existentes atributos.
+    // Para más información, visite: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-
         {
-            "name": "MERGE",
-            "type": "debugpy",
+            "type": "bashdb",
             "request": "launch",
-            "module": "CPCReady.main",
-            "cwd": "${workspaceFolder}/projects/prueba1",
-            "justMyCode": true,
-            "args": ["merge"] 
-        },
-        {
-            "name": "RUN",
-            "type": "debugpy",
-            "request": "launch",
-            "module": "CPCReady.main",
-            "cwd": "${workspaceFolder}/projects/prueba1",
-            "justMyCode": true,
-            "args": ["run","cpc6128"] 
-        },
-        {
-            "name": "SAVE",
-            "type": "debugpy",
-            "request": "launch",
-            "module": "CPCReady.main",
-            "cwd": "${workspaceFolder}/projects/prueba1",
-            "justMyCode": true,
-            "args": ["save"] 
+            "name": "Bash-Debug (simplest configuration)",
+            "program": "${file}"
         }
-
     ]
 }
