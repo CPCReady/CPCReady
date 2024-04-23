@@ -48,13 +48,33 @@ generar_rvm() {
 
     # Definir la cadena de texto con la variable a sustituir
     read -r -d '' rvm << EOF
+
 <html>
   <head>
-    <script src='https://cdn.rvmplayer.org/rvmplayer.cpc$MODEL.0.1.1.min.js'></script>
+    <script src='https://cdn.rvmplayer.org/rvmplayer.cpc$MODEL.0.1.0.min.js'></script>
+    <style>
+      body {
+        background-color: rgb(7, 7, 7);
+      }
+      h1 {
+        text-align: center;
+        color: white;
+      }
+      .container {
+        background-color: black;
+        color: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 800px;
+        height: 600px;
+      }
+    </style>
   </head>
-
   <body>
-    <div class='container' style='position: relative; width: 800px; height: 600px;'></div>
+    <h1>$DISC</h1>
+    <div class='container'></div>
     <script>
       const c=document.querySelector('.container')
       rvmPlayer_cpc$MODEL(c,{
@@ -63,7 +83,8 @@ generar_rvm() {
           url: '$DISC',
         },
         command: '$COMMAND',
-        warpFrames: 20*50
+        warpFrames: 20*50,
+        videoMode: 'hd'
       })
     </script>
   </body>
