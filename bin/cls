@@ -25,5 +25,40 @@
 ##  You should have received a copy of the GNU Lesser General Public License
 ##  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ##------------------------------------------------------------------------------
-##  execute clear command
+
+## Bash Include files
+source $(dirname "$0")/lib/library.sh
+
+## Function to display help message
+function show_help {
+
+    CPCREADY
+    echo "Clear console."
+    echo 
+    echo "Use: $(basename "$0")"
+    ready
+}
+
+## Check if the help parameter is provided
+case $1 in
+    -v|--version)
+        show_version
+        ready
+        exit 0
+        ;;
+    -h|--help)
+        show_help
+        exit 0
+        ;;
+esac
+
+## Chequeamos si existe el archivo de variables.
+## si no existe salimos con error
+check_env_file
+
+## Cargamos archivo de variables
+source "$CONFIG_FILE"
+
 clear
+
+ready

@@ -29,15 +29,8 @@
 ## Bash Include files
 source $(dirname "$0")/lib/library.sh
 
-## Chequeamos si existe el archivo de variables.
-## si no existe salimos con error
-check_env_file
-
-## Cargamos archivo de variables
-source .cpc
-
 # Function to display help message
-show_help() {
+function show_help {
     CPCREADY
     echo "Create disk image."
     echo 
@@ -64,9 +57,22 @@ case $1 in
         ;;
 esac
 
+## Chequeamos si existe el archivo de variables.
+## si no existe salimos con error
+check_env_file
+
+## Cargamos archivo de variables
+source "$CONFIG_FILE"
+
+## Show logo
+CPCREADY
+
+PRINT "TAG" "DISC Project"
+
 # Check if exactly one parameter is provided
 if [ "$#" -ne 1 ]; then
-    message_info "The current value of DISC project is $DISC"
+    PRINT "INFO" "The current value of DISC project is $DISC"
+    ready
     exit 0
 fi
 
@@ -85,9 +91,9 @@ else
     ## Create disk image
     create_dsk "$1"
     ## Change disk image if exists environment file
-    if [ -f .cpc ]; then
+    if [ -f "$CONFIG_FILE" ]; then
         change_disc "$1" "$PWD"
     fi
 fi
 
-
+ready

@@ -29,15 +29,8 @@
 ## Bash Include files
 source $(dirname "$0")/lib/library.sh
 
-## Chequeamos si existe el archivo de variables.
-## si no existe salimos con error
-check_env_file
-
-## Cargamos archivo de variables
-source .cpc
-
 # Function to display help message
-show_help() {
+function show_help {
     CPCREADY
     echo "Change screen mode."
     echo 
@@ -63,6 +56,16 @@ case $1 in
         exit 0
         ;;
 esac
+
+## Chequeamos si existe el archivo de variables.
+## si no existe salimos con error
+check_env_file
+
+## Cargamos archivo de variables
+source "$CONFIG_FILE"
+
+## Show logo
+CPCREADY
 
 PRINT "TAG" "Screen Mode"
 

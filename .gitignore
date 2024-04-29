@@ -3,6 +3,8 @@
 __pycache__/
 *.py[cod]
 *$py.class
+BASURA/*
+test/*
 .develop
 # C extensions
 *.so

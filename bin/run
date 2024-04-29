@@ -29,15 +29,8 @@
 ## Bash Include files
 source $(dirname "$0")/lib/library.sh
 
-## Chequeamos si existe el archivo de variables.
-## si no existe salimos con error
-check_env_file
-
-## Cargamos archivo de variables
-source .cpc
-
 # Function to display help message
-show_help() {
+function show_help {
 
     CPCREADY
     echo "Run the disk image in the RVM emulator."
@@ -69,7 +62,7 @@ esac
 ## $1 : Nombre del DSK 
 ## $2 : Tipo de cpc
 ## $3 : comando a ejecutar en el cpc
-rvm_run() {
+function rvm_run {
    rvm="$CPCREADY/bin/osx/rvm.app/Contents/MacOS/rvm"
    CPC_MACHINE="cpc$2"
    PRINT "TAG" "$1"
@@ -85,6 +78,13 @@ rvm_run() {
       PRINT "OK" "Image run in RVM with run\""$3"\" command"
    fi
 }
+
+## Chequeamos si existe el archivo de variables.
+## si no existe salimos con error
+check_env_file
+
+## Cargamos archivo de variables
+source "$CONFIG_FILE"
 
 PRINT "TITLE" "Retro Virtual Machine"
 

@@ -40,8 +40,10 @@ NORMAL=$'\033[0;39;49m'
 BOLD="$(tput bold)"
 IN_BAS="src"
 OUT="out/M4Board"
+CONFIG_FILE=".CPCReady"
 
-generar_rvm() {
+function generar_rvm {
+
     local DISC="$1"
     local MODEL="$2"
     local COMMAND="$3\n"
@@ -92,30 +94,32 @@ generar_rvm() {
 EOF
 
     # Escribir el contenido final en un archivo
-    printf "%s\n" "$rvm" > rvm.html
+    echo "%s\n" "$rvm" > rvm.html
 }
 
 
-show_version(){
+function show_version {
    CPCREADY
-   VERSION=$(cat $CPCREADY/VERSION)
-   echo "${BOLD}v$VERSION${NORMAL}"
+   # VERSION=$(cat $CPCREADY/VERSION)
+   # echo "${BOLD}${YELLOW}v$VERSION${NORMAL}"
 }
 
 ## Funcion que pinta Ready de amstrad
-ready() {
+function ready {
    echo
-   echo "${YELLOW}Ready" >&2
-   echo "${YELLOW}█" >&2
+   echo "Ready" >&2
+   echo "█" >&2
+   # echo "${YELLOW}Ready" >&2
+   # echo "${YELLOW}█" >&2
    echo
 }
 
 ## Función para verificar si existe el archivo
-## .cpc en el directorio actual
-check_env_file() {
-   if [ ! -f .cpc ]; then
+## .CPCReady en el directorio actual
+function check_env_file {
+   if [ ! -f "$CONFIG_FILE" ]; then
       echo
-      PRINT "ERROR" "El archivo .cpc no existe en este directorio."
+      PRINT "ERROR" "El archivo $CONFIG_FILE no existe en este directorio."
    fi
 }
 
@@ -160,28 +164,28 @@ check_env_file() {
 #    echo
 # }
 
-## cambios en el archivo .cpc valor MODE
+## cambios en el archivo .CPCReady valor MODE
 ## $1 : value mode
-change_mode(){
-   sed -i.bak "s/^MODE=.*$/MODE=$1/" "$2/.cpc"
-   rm "$2/.cpc.bak"
+function change_mode {
+   sed -i.bak "s/^MODE=.*$/MODE=$1/" "$2/$CONFIG_FILE"
+   rm "$2/$CONFIG_FILE.bak"
 }
 
-## cambios en el archivo .cpc valor DISC
+## cambios en el archivo .CPCReady valor DISC
 ## $1 : value disc
-change_disc(){
-   sed -i.bak "s/^DISC=.*$/DISC=$1/" "$2/.cpc"
-   rm "$2/.cpc.bak"
+function change_disc {
+   sed -i.bak "s/^DISC=.*$/DISC=$1/" "$2/$CONFIG_FILE"
+   rm "$2/$CONFIG_FILE.bak"
 }
 
-## cambios en el archivo .cpc valor MODEL
+## cambios en el archivo .CPCReady valor MODEL
 ## $1 : value disc
-change_model(){
-   sed -i.bak "s/^MODEL=.*$/MODEL=$1/" "$2/.cpc"
-   rm "$2/.cpc.bak"
+function change_model {
+   sed -i.bak "s/^MODEL=.*$/MODEL=$1/" "$2/$CONFIG_FILE"
+   rm "$2/$CONFIG_FILE.bak"
 }
 
-create_dsk() {
+function create_dsk {
     local DSK_IMAGE="$1"
     TAG=$(basename "$1")
     PRINT "TAG" "$TAG"
@@ -192,7 +196,7 @@ create_dsk() {
     fi
 }
 
-add_ascii_dsk(){
+function add_ascii_dsk {
    local DSK_IMAGE="$1"
    local ASCII_FILE="$2"
    if iDSK "$DSK_IMAGE" -i "$ASCII_FILE" -t 0 > /dev/null 2>&1; then
@@ -202,7 +206,7 @@ add_ascii_dsk(){
    fi
 }
 
-rm_comments() {
+function rm_comments {
     local archivo_origen="$1"
     local archivo_destino="$2"
 
@@ -224,74 +228,68 @@ rm_comments() {
 #    espacios=$(( (40 - longitud_texto) / 2 ))
 #    echo
 #    echo "${RED}════════════════════════════════════════"
-#    printf "%*s%s%*s\n" $espacios '' "${YELLOW}${BOLD}$texto" $espacios ''
+#    echo "%*s%s%*s\n" $espacios '' "${YELLOW}${BOLD}$texto" $espacios ''
 #    echo "${RED}════════════════════════════════════════"
 #    echo
 # }
 
-model_cpc(){
-case $1 in
-    6128)
-echo """ 
-Amstrad 128K Microcomputer    (v3)
-©1985 Amstrad Consumer Electronics plc
-        and Locomotive Software Ltd.
+# function model_cpc{
+# case $1 in
+#     6128)
+# echo """ 
+# Amstrad 128K Microcomputer    (v3)
+# ©1985 Amstrad Consumer Electronics plc
+#         and Locomotive Software Ltd.
 
-BASIC 1.1
+# BASIC 1.1
 
-Ready
-█${NORMAL}"""
-        ;;
-    664)
-echo """ 
-Amstrad 64K Microcomputer    (v2)
-©1984 Amstrad Consumer Electronics plc
-        and Locomotive Software Ltd.
+# Ready
+# █${NORMAL}"""
+#         ;;
+#     664)
+# echo """ 
+# Amstrad 64K Microcomputer    (v2)
+# ©1984 Amstrad Consumer Electronics plc
+#         and Locomotive Software Ltd.
 
-BASIC 1.1
+# BASIC 1.1
 
-Ready
-█${NORMAL}"""
-        ;;
-    464)
-echo """ 
-Amstrad 64K Microcomputer    (v1)
-©1984 Amstrad Consumer Electronics plc
-        and Locomotive Software Ltd.
+# Ready
+# █${NORMAL}"""
+#         ;;
+#     464)
+# echo """ 
+# Amstrad 64K Microcomputer    (v1)
+# ©1984 Amstrad Consumer Electronics plc
+#         and Locomotive Software Ltd.
 
-BASIC 1.0
+# BASIC 1.0
 
-Ready
-█${NORMAL}"""
-        ;;
-esac
+# Ready
+# █${NORMAL}"""
+#         ;;
+# esac
+# }
+
+function CPCREADY {
+
+echo
+VERSION=$(cat $CPCREADY/VERSION)
+if [ -z "$1" ]; then
+   echo "${WHITE}Software Developer Kit    (v$VERSION)"
+else
+   echo "${WHITE}Amstrad $MODEL Microcomputer    (v$VERSION)"
+fi
+echo "${WHITE}╔═╗╔═╗╔═╗  ┌──────────┐"
+echo "${WHITE}║  ╠═╝║    │ ${NORMAL}${RED}██ ${GREEN}██ ${BLUE}██${NORMAL} │"
+echo "${WHITE}╚═╝╩  ╚═╝  └──────────┘"
+
+echo "Ready" >&2
+# echo "█" >&2
+echo "${NORMAL}"
 }
 
-CPCREADY(){
-   echo
-   # echo " ██████╗██████╗  ██████╗██████╗ ███████╗ █████╗ ██████╗ ██╗   ██╗"
-   # echo "██╔════╝██╔══██╗██╔════╝██╔══██╗██╔════╝██╔══██╗██╔══██╗╚██╗ ██╔╝"
-   # echo "██║     ██████╔╝██║     ██████╔╝█████╗  ███████║██║  ██║ ╚████╔╝" 
-   # echo "██║     ██╔═══╝ ██║     ██╔══██╗██╔══╝  ██╔══██║██║  ██║  ╚██╔╝ " 
-   # echo "╚██████╗██║     ╚██████╗██║  ██║███████╗██║  ██║██████╔╝   ██║  "
-   # echo " ╚═════╝╚═╝      ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═════╝    ╚═╝  "
-   # echo "${RED}════════════════════════════════════════"
-   echo "${YELLOW}░█▀▀░█▀█░█▀▀░█▀▄░█▀▀░█▀█░█▀▄░█░█░"
-   echo "${YELLOW}░█░░░█▀▀░█░░░█▀▄░█▀▀░█▀█░█░█░░█░░"
-   echo "${YELLOW}░▀▀▀░▀░░░▀▀▀░▀░▀░▀▀▀░▀░▀░▀▀░░░▀░░"
-   echo
-   # echo "${RED}════════════════════════════════════════"
-   # echo "${GREEN}════════════════════════════════════════"
-   # echo "${YELLOW}░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░"
-   # echo "${YELLOW}░░░░░█▀▀░█▀█░█▀▀░█▀▄░█▀▀░█▀█░█▀▄░█░█░░░░"
-   # echo "${YELLOW}░░░░░█░░░█▀▀░█░░░█▀▄░█▀▀░█▀█░█░█░░█░░░░░"
-   # echo "${YELLOW}░░░░░▀▀▀░▀░░░▀▀▀░▀░▀░▀▀▀░▀░▀░▀▀░░░▀░░░░░"
-   # echo "${YELLOW}░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░"
-   # echo "${GREEN}════════════════════════════════════════"
-   # echo ${NORMAL}
-}
-
-PRINT(){
+function PRINT {
 
    exit_type="$1"
    case "$exit_type" in
@@ -300,10 +298,16 @@ PRINT(){
          ;;
       "ERROR")
          echo "${WHITE}${BOLD}  → ${RED}${BOLD}$2${NORMAL}"
+         echo -e "\n${RED}${BOLD}    ****************************"
+         echo "${RED}${BOLD}    *          ERROR           *"
+         echo "${RED}${BOLD}    ****************************${NORMAL}"
          exit 1
          ;;
       "ERROR_NO_EXIT")
          echo "${WHITE}${BOLD}  → ${RED}${BOLD}$2${NORMAL}"
+         echo -e "\n${RED}${BOLD}    ****************************"
+         echo "${RED}${BOLD}    *          ERROR           *"
+         echo "${RED}${BOLD}    ****************************${NORMAL}"
          ;;
       "INFO")
          echo "${WHITE}${BOLD}  → ${BLUE}${BOLD}$2${NORMAL}"
@@ -318,18 +322,26 @@ PRINT(){
          ;;
       "TITLE")
          echo
-         echo "${BLUE}${BOLD} [${YELLOW}${BOLD}$2${BLUE}${BOLD}] -----------------------"
+         echo "${BLUE}${BOLD} [${YELLOW}${BOLD}$2${BLUE}${BOLD}] -----------------------${NORMAL}"
          ;;
    esac   
 }
 
-print_general_tag(){
-   echo
-   echo "${BLUE}${BOLD}-- [${YELLOW}${BOLD}$1${BLUE}${BOLD}] -----------------------"
+# function print_general_tag {
+#    echo
+#    echo "${BLUE}${BOLD}-- [${YELLOW}${BOLD}$1${BLUE}${BOLD}] -----------------------"
+# }
+
+# function print_tag {
+#    echo
+#    echo "   ${WHITE}${BOLD}[$1]"
+#    echo
+# }
+
+# Función para verificar si una línea existe en un archivo
+function previus_version {
+    local line="export CPCREADY=$PWD"
+    local file="$1"
+    grep -qF -- "$line" "$file"
 }
 
-print_tag(){
-   echo
-   echo "   ${WHITE}${BOLD}[$1]"
-   echo
-}
