@@ -1,0 +1,46 @@
+name: publish version
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    permissions:
+      id-token: write
+      contents: read
+      issues: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install zip
+      run: sudo apt-get install zip
+
+    - name: Get version
+      id: get-version
+      run: echo "::set-output name=version::$(cat VERSION)"
+
+    - name: Create zip file
+      run: zip -r CPCReady-${{ steps.get-version.outputs.version }}.zip . -x "*.git*"
+
+    - name: Create release
+      id: create_release
+      uses: actions/create-release@v1
+      with:
+        tag_name: ${{ steps.get-version.outputs.version }}
+        release_name: CPCReady ${{ steps.get-version.outputs.version }}
+        body: |
+          CPCReady Release ${{ steps.get-version.outputs.version }}
+        draft: false
+        prerelease: false
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: cpcready
+        path: CPCReady-${{ steps.get-version.outputs.version }}.zip

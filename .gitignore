@@ -3,6 +3,9 @@
 __pycache__/
 *.py[cod]
 *$py.class
+NOTAS.TXT
+BASURA/*
+test/*
 .develop
 # C extensions
 *.so
@@ -12,15 +15,16 @@ __pycache__/
 build/
 develop-eggs/
 dist/
+projects/*
 downloads/
 eggs/
 gh.token
 .eggs/
-lib/
 lib64/
 parts/
 sdist/
 var/
+prueba/
 wheels/
 share/python-wheels/
 *.egg-info/
