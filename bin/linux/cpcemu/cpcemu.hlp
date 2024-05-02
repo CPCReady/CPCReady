@@ -1,0 +1,3946 @@
+#[INTRODUCTION.UK]
+   ıııııı¤ ıııııııı¤¤     ıııııı¤  ıııııııı¤  ıııı    ıııı¤¤  ıı¤¤     ıı¤¤
+ ıı¤¤¤¤¤¤  ıı¤¤¤¤¤ıı¤¤  ıı¤¤¤¤¤¤   ıı¤¤¤¤¤¤   ıı¤ıı  ıı¤ıı¤¤  ıı¤¤     ıı¤¤
+ıı¤¤       ıı¤¤   ıı¤¤ ıı¤¤        ıı¤¤¤      ıı¤¤ ıı¤¤ ıı¤¤  ıı¤¤     ıı¤¤
+ıı¤¤       ıııııııı¤¤  ıı¤¤        ıııııııı¤  ıı¤¤ ¤¤¤  ıı¤¤  ıı¤¤     ıı¤¤
+ıı¤¤       ıı¤¤¤¤¤¤    ıı¤¤        ıı¤¤¤¤¤¤   ıı¤¤      ıı¤¤  ıı¤¤     ıı¤¤
+ ıı¤¤      ıı¤¤         ıı¤¤       ıı¤¤       ıı¤¤      ıı¤¤  ıı¤¤     ıı¤¤
+   ıııııı¤ ıı¤¤           ıııııı¤  ıııııııı¤  ıı¤¤      ıı¤¤   ııııııııı¤¤
+   ¤¤¤¤¤¤¤ ¤¤¤¤           ¤¤¤¤¤¤¤  ¤¤¤¤¤¤¤¤¤  ¤¤¤¤      ¤¤¤¤   ¤¤¤¤¤¤¤¤¤¤
+
+                                                          v2.4  H E L P
+
+  To navigate, use a mouse or the following keys:
+    <Page up, down> to scroll by pages,
+    <Home>, <End> to move to the top or bottom,
+    <Cursor up, down> to move up and down by single lines,
+    <Cursor left, right> to move the page horizontally,
+    <RETURN> to select a topic, and
+    <ESC> to exit help.  You can only select lines containing [BRACKETS].
+
+  Choose [SELECT LANGUAGE] to change the language.
+  [TABLE OF CONTENTS]
+#[BRACKETS.UK]
+BRACKETS
+  As you can see, it works!
+Back to the [Introduction].
+#[SELECT LANGUAGE.UK]
+  Select a Language
+  [ENGLISH] (Anglaise)
+  [GERMAN]  (Allemagne)
+  [FRENCH]  (Francaise)
+  [SPANISH] (Espagnol)
+  You can also change the language from the [SETUP MENU]
+  and under [LANGUAGE].
+#[TABLE OF CONTENTS.UK]
+Table of Contents:
+  - [Introduction]
+  - [Function Keys]
+  - [Setup Menu]
+  - [Configuration file]
+  - [Disk Menu]
+  - [Keyboard Layouts]
+  - [Select Language]
+  - ...
+  - [ABOUT HELP]
+#[FUNCTION KEYS.UK]
+Function Keys
+=============
+
+ F1  Help [Introduction]
+ Shift+F1  Call the M4 hack menu (or NMIROM, resp.)
+ F2  Toggle between real-time and unlimited-frames-per-second emulation [Realtime]
+ Shift+F2  Toggle between CPU speed 1x, 3x and 24x at current number of frames per second
+ F3  [Insert Disk]
+ F4  Toggle Sound on/off [Sound enabled]
+ Shift+F4  Toggle cursor keys as joystick 0 [CURSOR KEYS AS JOYSTICK 0]
+ F5  [Load Snapshot] (memory dump)
+ F6  [Save Snapshot]
+ F7  [Setup Menu]
+ F8  Reset CPC
+ F9  Pause CPC (until mouse is clicked)
+ F10 Debug Menu
+ F11 Toggle fullscreen mode {Non-DOS only}
+ F12 Exit CPCEMU
+
+Other keys:
+ - left ALT: COPY on CPC
+
+ - Keypad: Simulates Joystick 0 if "Num-Lock" is off, otherwise the CPC
+    function keys.
+
+[SETUP MENU]
+#[___EMULATION.UK]
+___EMULATION - Settings to control the emulation
+  [REALTIME]
+
+[SETUP MENU]
+#[___SCREEN.UK]
+___SCREEN - Settings to control the screen
+  [COLOUR SCREEN]
+  [VIDEO MODE]
+  [CRTC TYPE]
+
+[SETUP MENU]
+#[___M4_BOARD.UK]
+___M4 Board - Settings to control the M4 board
+  [M4 ENABLED]
+  [SD CARD OPERATION MODE]
+
+[SETUP MENU]
+#[___SOUND.UK]
+___SOUND - Settings to control the sound
+  [SOUND ENABLED]
+  [SB SAMPLE RATE]
+
+[SETUP MENU]
+#[___CONTROL.UK]
+___CONTROL - Settings for input devices
+  (keyboard, joystick, mouse)
+  [KBD LANGUAGE]
+  [CURSOR KEYS AS JOYSTICK 0]
+  [MOUSE ENABLED]
+
+[SETUP MENU]
+#[___PPI_SETTINGS.UK]
+___PPI - Settings for PPI Port B
+  [COMPANY NAME]
+  [PPI 50HZ]
+  [PPI EXP SIGNAL]
+
+[SETUP MENU]
+#[___MISC.UK]
+___MISC - Miscellaneous settings
+  [AMSDOS DISABLED]
+  [AMSDOS SPEEDUP]
+  [LANGUAGE]
+  [TAPE BYPASS]
+
+[SETUP MENU]
+#[SETUP MENU.UK]
+Setup Menu
+
+
+  Submenus:
+  [___EMULATION]
+  [___SCREEN]
+  [___M4_Board]
+  [___SOUND]
+  [___CONTROL]
+  [___PPI_SETTINGS]
+  [___MISC]
+
+
+AMSDOS disabled      [AMSDOS DISABLED]
+AMSDOS speedup       [AMSDOS SPEEDUP]
+Colour screen        [COLOUR SCREEN]
+Company name         [COMPANY NAME]
+CPC Type             [CPC TYPE]
+CRTC Type            [CRTC TYPE]
+KBD language         [KBD LANGUAGE]
+Language             [LANGUAGE]
+M4 enabled           [M4 enabled]
+M4 SD operation mode [SD CARD OPERATION MODE]
+Mouse enabled        [MOUSE ENABLED]
+PPI 50Hz             [PPI 50HZ]
+PPI EXP Signal       [PPI EXP SIGNAL]
+RAM size             [RAM SIZE]
+RAM extension type   [RAM TYPE]
+Realtime             [REALTIME]
+SB sampling rate     [SB SAMPLE RATE]
+Show configuration   [SHOW CONFIG]
+Sound enabled        [SOUND ENABLED]
+Tape bypass          [TAPE BYPASS]
+Video mode           [VIDEO MODE]
+Load Configuration   [LOAD CONFIGURATION]
+Restart Emulation    [RESTART EMULATION]
+Save Configuration   [SAVE CONFIGURATION]
+Poke database        [POKE DATABASE]
+DOS Shell            [DOS SHELL]
+Continue             [CONTINUE]
+
+See also [Configuration file].
+#[CONFIGURATION FILE.UK]
+Configuration file
+
+
+ENDIF                [#ENDIF]
+IFCPC                [#IFCPC]
+AMSDOS_disabled      [AMSDOS DISABLED]
+AMSDOS_speedup       [AMSDOS SPEEDUP]
+Colour_screen        [COLOUR SCREEN]
+Company_name         [COMPANY NAME]
+CPC_Type             [CPC TYPE]
+CRTC_Type            [CRTC TYPE]
+Data_File            [DATA FILE]
+Drive_A              [DRIVE A]
+Drive_A_Autostart    [AUTOSTART]
+Drive_A_Side         [SIDE SELECT]
+Drive_A_Writeprot    [WRITE PROTECTED]
+Drive_B              [DRIVE B]
+Drive_B_Autostart    [AUTOSTART]
+Drive_B_Side         [SIDE SELECT]
+Drive_B_Writeprot    [WRITE PROTECTED]
+Help_file            [HELP FILE]
+JOY0_CURSOR_KEYS     [CURSOR KEYS AS JOYSTICK 0]
+KBD_language         [KBD LANGUAGE]
+Language             [LANGUAGE]
+M4_enabled           [M4 enabled]
+M4_SD_PATH           [M4_SD_PATH]
+M4_SD_MODE           [SD CARD OPERATION MODE]
+Mouse_enabled        [MOUSE ENABLED]
+Mouse_type           [MOUSE TYPE]
+Poke_database        [POKE DATABASE]
+PPI_50Hz             [PPI 50HZ]
+PPI_Exp_Signal       [PPI EXP SIGNAL]
+Printer              [PRINTER]
+RAM_size             [RAM SIZE]
+RAM_type             [RAM EXTENSION TYPE]
+Realtime             [REALTIME]
+ROM_block            [ROM BLOCK]
+ROM_path             [ROM PATH]
+SB_sample_rate       [SB SAMPLE RATE]
+Show_configuration   [SHOW CONFIG]
+Snapshot             [SNAPSHOT]
+SNA_SIZE             [SNAPSHOT SIZE]
+Sound_enabled        [SOUND ENABLED]
+Tape_bypass          [TAPE BYPASS]
+Tape_path            [TAPE PATH]
+Tmp_path             [TMP PATH]
+Video_mode           [VIDEO MODE]
+
+See also [Setup menu].
+#[#ENDIF.UK,#IFCPC.UK]
+-#IFCPC, #ENDIF
+  Control instructions for conditional configuration depending on
+  the desired CPC:
+    #IFCPC <CPC type> ... #ENDIF
+  For <CPC type> all four types from [CPC TYPE] are valid.
+  Consequently, you need only one configuration file for all CPCs.
+  The batch files CPC464.BAT, CPC664.BAT and CPC6128.BAT set the
+  desired type via command line parameters.
+
+[CONFIGURATION FILE]
+#[AMSDOS DISABLED.UK]
+AMSDOS_DISABLED (0)
+  Disables AMSDOS.
+  Useful if you want to load programs from cassette without giving
+  having to type the '|TAPE' instruction every time.
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[AMSDOS SPEEDUP.UK]
+AMSDOS_SPEEDUP (1)
+  AMSDOS ROM modification to speed up disk accesses.
+  This is done by minimizing the motor waiting times, which are
+  unnecessary for the emulator.
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[BREAK MASK.UK]
+BREAK_MASK (3)
+  Only for debugging purposes.
+  b0 = 1 -> display Z80 emulation errors (slow)
+  b1 = 1 -> display Z80 emulation errors (fast)
+  b2 = 1 -> display port errors
+  With a value of 3, port errors are ignored.
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[COLOUR SCREEN.UK]
+COLOUR_SCREEN (1)
+  Emulation of a green or colour monitor by changing the palette.
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[CRTC TYPE.UK]
+CRTC Type (1)
+CRTC_TYPE = 0,1,2
+  Emulation of the different CRTC types.
+  
+  For many demos to work, type 0 or type 1, depending on the demo, needs
+  to  be set before starting the demo.
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[M4 ENABLED.UK]
+M4 Enabled (1)
+M4_ENABLED = 0,1
+  Emulation of an M4 board (http://www.spinpoint.org).
+  
+  Needs a configured M4.ROM in ROM path.
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[SD CARD OPERATION MODE.UK]
+SD-Card operation mode (0)
+M4_SDCARD_MODE = 0,1
+  Operation mode of the emulated SD card in SymbOS.
+  
+  In mode 0 a FAT32 image is created from the host directory (see [M4_SD_PATH])
+  that is emulated as SD card of the M4 board when SymbOS is started. Modified
+  content of this image is written back to the host directory on the next
+  system reset.
+  
+  In mode 1 (*experimental*!) a live FAT32 file system is emulated on this
+  host directory, reading as well as writing.
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[M4_SD_PATH.UK]
+SD-card path
+M4_SD_PATH = "<path+filename>"
+  Path that is emulated as SD card.
+
+[CONFIGURATION FILE]
+#[COMPANY NAME.UK]
+COMPANY_NAME (7)
+  Company name in the startup message.
+  0 = Isp
+  1 = Triumph
+  2 = Saisho
+  3 = Solavox
+  4 = Awa
+  5 = Schneider
+  6 = Orion
+  7 = Amstrad
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[CPC TYPE.UK]
+CPC_TYPE (0..5)
+  Set the desired CPC type
+  0 = CPC 464
+  1 = CPC 664
+  2 = CPC 6128
+  3 = CPC 464+ (?)
+  4 = CPC 6128+ (?)
+  5 = KC compact (CPC 6128)
+  6 = unknown
+  In order to use type 3, 4 or 5, you will have to supply ROM images in
+  CPCEMU.CFG first.
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[DATA FILE.UK]
+DATA_FILE = "<path+filename>" (".\CPCEMU.DAT")
+  Set the data file for CPCEMU.
+
+[CONFIGURATION FILE]
+#[CURSOR KEYS AS JOYSTICK 0.UK]
+  Cursor keys as Joystick 0 (0)
+  JOY0_CURSOR_KEYS = 0,1,2
+  
+  0: Off.
+  1: Use the cursor keys as the first Joystick.
+  2: Use the on-screen joystick as cursor keys
+     and the fire button as COPY (Android and iOS only).
+  
+  Can also be toggled by Shift+F4.
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[DRIVE A.UK]
+DRIVE_A = "<path+filename>"
+  Path to the disk images.
+  If you include a filename, this disk is automatically inserted into
+  drive A.
+
+[CONFIGURATION FILE]
+[DISK MENU]
+#[DRIVE B.UK]
+DRIVE_B = "<path+filename>"
+  The same as [DRIVE A], but for drive B.
+
+[CONFIGURATION FILE]
+[DISK MENU]
+#[EMS ENABLED.UK]
+EMS_ENABLED (1)
+  Enable EMS memory (Expanded Memory System).
+  Absolutely recommended to get a fast emulation.
+  Otherwise conventional memory is used.
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[EMULATION DELAY.UK]
+EMULATION_DELAY (0)
+  Slow down the emulation.
+    0   = no delay
+    100 = some delay
+    ...
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[EMULATION SPEED.UK]
+EMULATION_SPEED (1)
+    0   = slow Z80 emulation
+    1   = fast Z80 emulation
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[HELP FILE.UK]
+HELP_FILE = "<path+filename>" (".\CPCEMU.HLP")
+  Set the path and filename of the help file.
+
+[CONFIGURATION FILE]
+#[INTERRUPT FREQUENCY.UK]
+INTERRUPT_FREQUENCY (300)
+  Frequency of interrupt generation.
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[INTERRUPT RESUME.UK]
+INTERRUPT_RESUME (1)
+  Resume "forgotten" interrupts.
+  Impossible without EMS, since memory block movements consume too much
+  time.
+  Note:
+  It seems that CP/M Plus only runs with EMS enabled and this option = 0!
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[JOY0 CALIBRATE.UK]
+JOY0_CALIBRATE
+  Calibrate the PC joystick.
+  Necessary for analog joysticks.
+  If two joysticks are connected, calibrate the second one with
+  [JOY1 CALIBRATE].
+  If you always want to use your joystick, take note of these
+  parameters and insert them in the configuration file.
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[JOY1 CALIBRATE.UK]
+JOY1_CALIBRATE
+  The same as [JOY0 CALIBRATE], but for the second joystick.
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[KBD LANGUAGE.UK]
+KBD_LANGUAGE (0)
+  Keyboard mapping for other countries.
+  0 = UK
+  1 = GR ("German-like") keyboard.
+      Unfortunately it is impossible to have a full German keyboard.
+  2 = FR ("French-like") keyboard.
+      Unfortunately it is impossible to have a full French keyboard.
+  3 = SP ("Spanish-like") keyboard.
+      Unfortunately it is impossible to have a full Spanish keyboard.
+  4 = DK ("danish-like") keyboard.
+      Unfortunately it is impossible to have a full Danish keyboard.
+  5 = Original UK ("CPC-like") keyboard.
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[LANGUAGE.UK]
+LANGUAGE (0)
+  Language for help messages.
+    0=UK (English)
+    1=GR (German)
+    2=FR (French)
+    3=SP (Spanish)
+  Change it with [SELECT LANGUAGE].
+  See also: [KBD LANGUAGE]
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[MOUSE ENABLED.UK]
+MOUSE_ENABLED (1)
+  Enables mouse usage in menus.
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[MOUSE TYPE.UK]
+MOUSE_TYPE (0)
+  Enables CPC mouse and determines its type:
+  0 = off (Joystick)
+  1 = AMX
+  2 = Reisware/Gerdes
+  3 = Symbiface II (PS/2)
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[MULTIMODE UPDATE.UK]
+MULTIMODE_UPDATE (0 {DOS} / 2 {Non-DOS})
+MULTIMODE_UPDATE = 0,1,2 {2 Non-DOS only}
+  Useful for programs that use several modes simultaneously on the screen
+  (especially many games).
+  CPCEMU tries to handle it correctly.
+{DOS}
+  By default this option is turned off, since it does not work properly
+  in all cases.
+{Non-DOS}
+  The default value is 2, because then results are best (scanning by lines).
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[PALETTE CHANGE.UK]
+PALETTE_CHANGE (1)
+  Allow palette changes.
+  If some games flicker too much, toggle this option off.
+  Palette changes will then be suppressed.
+  This option is reset to 1 during a hardware reset with F8.
+  Hint:
+  Try pressing F2 twice, if the colours are completely wrong.
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[PPI 50HZ.UK]
+PPI_50HZ (1)
+  The CPC can operate with
+    0 - 60 Hz, or
+    1 - 50 Hz (default in Germany, France)
+  During a reset bit 4 of port B PPI is checked and the CRTC is
+  initialized properly.
+  Let it on 50 Hz.
+  See also [PPI EXP SIGNAL]
+  and [COMPANY NAME].
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[PPI EXP SIGNAL.UK]
+PPI_EXP_SIGNAL (1)
+  Some expansions cards set this signal.
+  Active on a CPC 464, if a disc drive is connected.
+  Always active on a CPC 6128.
+  See also [PPI 50HZ]
+  and [COMPANY NAME].
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[PRINTER.UK]
+PRINTER = "<path+filename>"
+  Printer file to spool line printer outputs.
+  Cleared during every emulation start.
+  After quitting the emulator, you can send it to your printer
+  with 'COPY <filename> prn:'.
+  Print without a printer file with PRINTER="prn".
+  Use the first parallel port LPT1 directly with PRINTER="".
+
+[CONFIGURATION FILE]
+#[RAM SIZE.UK]
+RAM_SIZE (64 or 128)
+  Size of RAM in KB in steps of 64 KB.
+  Possible values are:
+  - 64 to 4160 for the dk'tronics/Jarek extension
+  - 64 to 576 for the Vortex extension
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[RAM EXTENSION TYPE.UK]
+RAM_TYPE (0)
+  Type of RAM extension.
+  Possible values are:
+  0: dk'tronics/Jarek type
+  1: Vortex type
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[REALTIME.UK]
+REALTIME (0)
+  Realtime CPC or fastest possible CPC.
+  The realtime CPC counts instruction cycles and inserts wait states
+  to slow down the emulation, if it gets too fast compared to the original.
+  
+  Can also be toggled by Shift+F2.
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[ROM BLOCK.UK]
+ROM_BLOCK <ROM number>, "<filename>", <ROM position>
+  Defines what ROM should be loaded and where.
+  - <ROM number> is the number assigned to the ROM.
+     0       : Foreground ROM (e.g. BASIC)
+     1 - 251 : Background ROMs (e.g. AMSDOS has number 7)
+         255 : Lower ROM
+  - <filename> ROM-file in the directory [ROM PATH].
+
+  - <ROM position> is naturally 0. If a file contains more ROMs, this
+      is the desired ROM position 0, 1, 2, ...
+        ROM_BLOCK = 255, "CPC6128.ROM", 0
+        ROM_BLOCK = 0  , "CPC6128.ROM", 1
+    The lower ROM and the foreground ROM are loaded one after the other
+    from the same file.
+
+[CONFIGURATION FILE]
+#[ROM PATH.UK]
+ROM_PATH = "<path>" (".\ROM")
+  Path to ROM images.
+  The ROMs itself are defined with [ROM BLOCK].
+
+[CONFIGURATION FILE]
+#[SB DELAY.UK]
+SB_DELAY (35)
+  Delay for Soundblaster card (in FM mode) or Adlib card.
+  This is the amount of delay after every write access to the soundcard.
+  To speed up sound output, you can try 0, but this does not work with
+  all soundcards.
+  This delay is not used for the digital soundblaster sound.
+  See also: [SB DELAY0]
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[SB DELAY0.UK]
+SB_DELAY0 (6)
+  Another delay for the Soundblaster card or Adlib card.
+  You should not need to change it.
+  This delay is not used for the digital soundblaster sound.
+  See also: [SB DELAY]
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[SB DMA BUF.UK]
+SB_DMA_BUF (128)
+SB_DMA_BUF = 8..255
+  Set the DMA buffer size for Soundblaster digital sound.
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[SB SAMPLE RATE.UK]
+SB_SAMPLE_RATE (0)
+SB_SAMPLE_RATE = 0..1
+  Set the sampling rate for digital sound.
+  0=22kHz, 1=44kHz, 2=48kHz, 3=62,5kHz
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[SB STEREO.UK]
+SB_STEREO (0)
+SB_STEREO = 0..1
+  Set the stereo flag.
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[SCREEN OFFSET.UK]
+SCREEN_OFFSET (0)
+  Number of lines the CPC screen should be moved.
+  You can achive the same effect by pressing <Page Up> and <Page Down>.
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[SHOW CONFIG.UK]
+SHOW_CONFIG (1)
+  Permits the display of the configuration overview when starting the
+  emulator.
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[SNAPSHOT.UK]
+SNAPSHOT = "<path+filename>" (".\SNAP")
+  Path to snapshots.
+  If you specify a snapshot file, it is automatically started.
+
+[CONFIGURATION FILE]
+#[SOUND DEVICE.UK]
+SOUND_DEVICE (1 or maximum device)
+  Set the sound output device.
+  0 = none
+  1 = PC speaker
+  2 = Adlib (or Soundblaster in FM mode, stereo with OPL3)
+  3 = Soundblaster (Pro), thanks to Ulrich Doewich
+  4 = GUS (Gravis Ultrasound), thanks to Ulrich Doewich
+
+  Make sure you enable sound output with [SOUND ENABLED].
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[SOUND ENABLED.UK]
+SOUND_ENABLED (1)
+  Enable sound output.
+  This can also be toggled via F4. [FUNCTION KEYS]
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[TAPE BYPASS.UK]
+TAPE_BYPASS (1)
+  Necessary, if you intend to use "tapes".
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[TAPE PATH.UK]
+TAPE_PATH = "<path>" (".\TAPE")
+  Path to tape files.
+
+[CONFIGURATION FILE]
+#[TMP PATH.UK]
+TMP_PATH = "<path>" (".\TMP")
+  Path to a directory for temporary files.
+
+[CONFIGURATION FILE]
+#[VIDEO MODE.UK]
+Video mode (0)
+VIDEO_MODE = 0,1
+  Emulation of a cathode-ray monitor in mode 1.
+  Without it (mode 0) CPCemu is significantly faster.
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[VSYNC POSITION.UK]
+VSYNC_POSITION (5)
+  Position of the vertical synchronisation.
+  In the emulator, the VSYNC bit is set during one interrupt interval.
+  There are 6 interrupts during a screen update cycle, so values
+  can range from 0-5.
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[LOAD CONFIGURATION.UK]
+LOAD CONFIGURATION
+  Load another configuration file, saved using [SAVE CONFIGURATION].
+  Some parameters may have no effect until you select [RESTART EMULATION].
+  "CPCEMU -c <config file>" will start up CPCEMU with this configuration.
+
+[SETUP MENU]
+[FILE SELECTION]
+#[RESTART EMULATION.UK]
+RESTART EMULATION
+  After loading a configuration with [LOAD CONFIGURATION], you can
+  restart the emulation with the new values.
+
+[SETUP MENU]
+#[SAVE CONFIGURATION.UK]
+SAVE CONFIGURATION
+  Save the current configuration.
+  Note that you cannot overwrite the master configuration file CPCEMU.CFG.
+  See also: [LOAD CONFIGURATION].
+
+[SETUP MENU]
+[FILE SELECTION]
+#[POKE DATABASE.UK]
+POKE_DATABASE = "<path+filename>" (".\CPCEMU.DBF")
+  Game poke database for infinite lifes or other cheats for games.
+  You can also extend the list (CPCEMU.DBF) with your own pokes.
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[DOS SHELL.UK]
+DOS SHELL
+  DOS shell with lots of memory.
+  Parts of CPCEMU are swapped out automatically.
+  You can quit the shell with 'exit'.
+
+[SETUP MENU]
+#[CONTINUE.UK]
+CONTINUE
+  Accept the settings and continue with the emulation.
+  You get the same effect by pressing <RETURN> on any line with a value.
+
+[SETUP MENU]
+#[DISK MENU.UK]
+DISK MENU
+  [Insert disk]
+  [Drive number]
+  [Side Select]
+  [Write Protected]
+  [Autostart]
+#[INSERT DISK.UK]
+INSERT DISK
+  Select a disk image with [FILE SELECTION] which is inserted with
+  side [SIDE SELECT]
+  in drive [DRIVE NUMBER].
+  The disk can be set to be [WRITE PROTECTED].
+
+[DISK MENU]
+#[DRIVE NUMBER.UK]
+DRIVE NUMBER
+[DRIVE A]
+[DRIVE B]
+  The drive into which the disk is inserted.
+
+[DISK MENU]
+#[SIDE SELECT.UK]
+SIDE SELECT
+DRIVE_A_SIDE = 0,1
+DRIVE_B_SIDE = 0,1
+  With double sided formats, side 1 (B) is inserted.
+
+[CONFIGURATION FILE]
+[DISK MENU]
+#[WRITE PROTECTED.UK]
+WRITE PROTECTED
+DRIVE_A_WRITEPROT = 0,1
+DRIVE_B_WRITEPROT = 0,1
+  The disk image is inserted write protected, so it is read only.
+  This is especially useful if the disk image is on a read-only medium
+  (e.g. a CD-ROM).
+
+[CONFIGURATION FILE]
+[DISK MENU]
+#[AUTOSTART.UK]
+Autostart
+DRIVE_A_AUTOSTART = 0,1
+DRIVE_B_AUTOSTART = 0,1
+  When you insert a disk image the first BASIC program is run
+  automatically. DISC.BAS is always run if present.
+  You may use the AMSDOS command |DIR to see the first BASIC program.
+
+[CONFIGURATION FILE]
+[DISK MENU]
+#[LOAD SNAPSHOT.UK]
+LOAD SNAPSHOT
+  Load a snapshot saved with [Save snapshot].
+
+[FILE SELECTION]
+#[SAVE SNAPSHOT.UK]
+SAVE SNAPSHOT
+  Saves the complete configuration of the emulated CPC. This includes
+  CPU registers, memory,...
+  With [SNAPSHOT SIZE], a 128 KB memory dump or even the full memory of
+  the CPC is saved instead of 64 KB.
+See also: [128K SNAPSHOT]
+
+[FILE SELECTION]
+#[SNAPSHOT SIZE.UK]
+Snapshot Size
+SNA_SIZE = 0,1,2
+  0: Use the 64 KB snapshot format.
+  1: Use the 128 KB snapshot format.
+  2: Use the full memory of the CPC.
+  Save a snapshot with [SAVE SNAPSHOT].
+See also: [SAVE SNAPSHOT]
+
+[CONFIGURATION FILE]
+#[FILE SELECTION.UK]
+FILE SELECTION
+
+  Keyboard-Control:
+  - <HOME> = first filename
+  - <END> = last filename
+  - <Page up/down> : scrolls by pages
+  - <RETURN> : accepts highlighted filename
+  - <ESC> : aborts
+  Alphanumeric keys = move to names directly
+
+  Mouse control:
+  left mouse button  = select
+  right mouse button = move only (accept it with "[ok]")
+  "[]" = <Page up>
+  "[]" = <Page down> (if there are more files)
+  "[<]" = <Cursor left>
+  "[>]" = <Cursor right>
+  "[ok]" = <Return> (or left mouse button)
+  "[help]" = F1 (display help)
+  "[ş]" = <ESC>
+
+  ".." = parent directory
+  "[A]", "[B]", ... = available drives
+
+  "*.ZIP" = ZIP archives, displayed like directories.
+  Selected files are automatically decompressed.
+  (PKUNZIP must be in the DOS searchpath, or in the CPCEMU directory!)
+
+
+
+  File selection is used for
+    [DISK MENU]
+    [LOAD SNAPSHOT]
+    [SAVE SNAPSHOT]
+    Load_Tape, Save_Tape, Catalog
+    [LOAD CONFIGURATION]
+    [SAVE CONFIGURATION]
+#[KEYBOARD LAYOUTS.UK]
+KEYBOARD LAYOUTS
+  [UK_KEYBOARD_LAYOUT]
+  [GR_KEYBOARD_LAYOUT]
+  [FR_KEYBOARD_LAYOUT]
+#[UK_KEYBOARD_LAYOUT.UK]
+The English keyboard layout used by CPCEMU:
+
+ÕÍÍÍ¸ ÕÍÍÍÍÍÍÍÍÍÍÍÍ¸ ÕÍÍÍÍÍÍÍÍÍÍÍÍ¸ ÕÍÍÍÍÍÍÍÍÍÍÍÍ¸ ÕÍÍÍÍÍÍÍÍÍ¸
+³ESC³ ³HLP³TRB³DSK³SND³ ³LOA³SAV³SET³RST³ ³HLT³DBG³WIN³EXT³ ³PRT³SCR³BRK³
+ÔÍÍÍ¾ ÔÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍ¾ ÔÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍ¾ ÔÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍ¾ ÔÍÍÍÏÍÍÍÏÍÍÍ¾
+ÕÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¸  ÕÍÍÍÍÍÍÍÍÍ¸
+³^ °³1 !³2 "³3 #³4 $³5 %³6 &³7 '³8 (³9 )³0 _³- =³î £³BKSP³  ³INS³HOM³PGU³
+ÔÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÍ¾  ’ÍÍÍØÍÍÍØÍÍÍ‘
+ÕÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¸  ³DEL³END³PGD³
+³TAB ³ Q ³ W ³ E ³ R ³ T ³ Y ³ U ³ I ³ O ³ P ³@ |³[ {³ R ³  ÔÍÍÍÏÍÍÍÏÍÍÍ¾
+’ÍÍÍÍØÍÍÍØÍÍÍØÍÍÍØÍÍÍØÍÍÍØÍÍÍØÍÍÍØÍÍÍØÍÍÍØÍÍÍØÍÍÍØÍÍÍ‘ E ³  C P C - E M U
+³CAPS³ A ³ S ³ D ³ F ³ G ³ H ³ J ³ K ³ L ³: *³; +³] }³ T ³
+’ÍÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÍÏÍÍÍ‘      ÕÍÍÍ¸
+³SFT³\ `³ Z ³ X ³ C ³ V ³ B ³ N ³ M ³, <³. >³/ ?³  SHIFT ³      ³ U ³
+’ÍÍÍØÍÍÍÏÍÍÏÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÏÍÍÏÍÍÍÍÍÍÍ‘  ÕÍÍÍØÍÍÍØÍÍÍ¸
+³CTL³     ³COPY³   S   P   A   C   E     ³COPY³      ³CTL³  ³ L ³ D ³ R ³
+ÔÍÍÍ¾     ÔÍÍÍÍÏÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÏÍÍÍÍ¾      ÔÍÍÍ¾  ÔÍÍÍÏÍÍÍÏÍÍÍ¾
+#[ORIGINAL_KEYBOARD_LAYOUT.UK]
+ÕÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¸  ÕÍÍÍÍÍÍÍÍÍ¸
+³ESC³1 !³2 "³3 #³4 $³5 %³6 &³7 '³8 (³9 )³0 _³- =³î £³CLR³BKSP³  ³ 7 ³ 8 ³ 9 ³
+’ÍÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÍÍ‘  ’ÍÍÍØÍÍÍØÍÍÍ‘
+³ TAB ³ Q ³ W ³ E ³ R ³ T ³ Y ³ U ³ I ³ O ³ P ³@ |³[ {³   R  ³  ³ 4 ³ 5 ³ 6 ³
+’ÍÍÍÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏ¸  E  ³  ’ÍÍÍØÍÍÍØÍÍÍ‘
+³ CAPS ³ A ³ S ³ D ³ F ³ G ³ H ³ J ³ K ³ L ³: *³; +³] }³  T  ³  ³ 1 ³ 2 ³ 3 ³
+’ÍÍÍÍÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÍÍÍ‘  ’ÍÍÍØÍÍÍØÍÍÍ‘
+³ SHIFT  ³ Z ³ X ³ C ³ V ³ B ³ N ³ M ³, <³. >³/ ?³\ `³ SHIFT ³  ³ 0 ³ U ³ . ³
+’ÍÍÍÍÍÍÍÏÍÍÏÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÏÍÍÍÏÍÍÍÍÍÍ‘  ’ÍÍÍØÍÍÍØÍÍÍ‘
+³CTRL³     ³COPY³       S   P   A   C   E       ³      ³ENTER³  ³ L ³ D ³ R ³
+ÔÍÍÍÍ¾     ÔÍÍÍÍÏÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¾      ÔÍÍÍÍÍ¾  ÔÍÍÍÏÍÍÍÏÍÍÍ¾
+#[ABOUT HELP.UK]
+ABOUT HELP
+  The file CPCEMU.HLP contains the on-line help for several languages.
+  Currently CPCEMU supports 4 languages:
+  UK - English
+  GR - German
+  FR - French
+  SP - Spanish
+
+  A TOPIC in language "LL" is introduced by "#[TOPIC.LL]" in the first
+  column of a line. Note that you must use upper case letters for topics.
+  It is also possible to have one topic for more languages, eg.
+  "#[TOPIC.UK,TOPIC.GR]".
+
+  References are simply written as "[Reference]". They can be mixed
+  upper and lower case. If they are not surrounded by quotes, you can
+  click on them and get a follow-on topic.
+  This follow-on topic is found by searching the help file for
+  the topic "REFERENCE.LL" where "LL" = selected language.
+  If no "REFERENCE.LL" is found, the first "REFERENCE.xx" is taken
+  (normally xx=UK); if this also does not exist, the error message
+  "Topic not found" appears.
+  If more than one reference is on a single line, the first one is taken.
+
+  There are pre-defined "topics" [ENGLISH], [GERMAN], [FRENCH], [SPANISH]
+  to select a language.
+
+  Most references are in the message file CPCEMU.MSG.
+#[EINFÜHRUNG.GR]
+   ıııııı¤ ıııııııı¤¤     ıııııı¤  ıııııııı¤  ıııı    ıııı¤¤  ıı¤¤     ıı¤¤
+ ıı¤¤¤¤¤¤  ıı¤¤¤¤¤ıı¤¤  ıı¤¤¤¤¤¤   ıı¤¤¤¤¤¤   ıı¤ıı  ıı¤ıı¤¤  ıı¤¤     ıı¤¤
+ıı¤¤       ıı¤¤   ıı¤¤ ıı¤¤        ıı¤¤¤      ıı¤¤ ıı¤¤ ıı¤¤  ıı¤¤     ıı¤¤
+ıı¤¤       ıııııııı¤¤  ıı¤¤        ıııııııı¤  ıı¤¤ ¤¤¤  ıı¤¤  ıı¤¤     ıı¤¤
+ıı¤¤       ıı¤¤¤¤¤¤    ıı¤¤        ıı¤¤¤¤¤¤   ıı¤¤      ıı¤¤  ıı¤¤     ıı¤¤
+ ıı¤¤      ıı¤¤         ıı¤¤       ıı¤¤       ıı¤¤      ıı¤¤  ıı¤¤     ıı¤¤
+   ıııııı¤ ıı¤¤           ıııııı¤  ıııııııı¤  ıı¤¤      ıı¤¤   ııııııııı¤¤
+   ¤¤¤¤¤¤¤ ¤¤¤¤           ¤¤¤¤¤¤¤  ¤¤¤¤¤¤¤¤¤  ¤¤¤¤      ¤¤¤¤   ¤¤¤¤¤¤¤¤¤¤
+
+                                                          v2.4  H I L F E
+
+  Benutze eine Maus mit linke Taste=Auswahl, rechte Taste=nur bewegen, oder:
+    <Bild hoch, runter>, um seitenweise zu blättern (auch: <Pos1>, <Ende>),
+    <Cursor hoch, runter>, um eine Zeile anzuwählen,
+    <Cursor links, rechts>, um die Seite zu verschieben,
+    <ESC>, um die Hilfe zu verlassen.   [Klammern] lassen sich anwählen.
+
+  Um die Sprache zu ändern, wählen Sie [Sprachwahl].
+  [Inhaltsverzeichnis]
+#[KLAMMERN.GR]
+Klammern
+  Sehen Sie, es hat geklappt!
+Zurück zur [Einführung].
+#[INHALTSVERZEICHNIS.GR]
+  Inhaltsverzeichnis:
+  - [Einführung]
+  - [Tastenbelegung]
+  - [Setup-Menü]
+  - [Konfigurationsdatei]
+  - [Disketten-Menü]
+  - Tastatur-Belegungen [Keyboard Layouts]
+  - [Sprachwahl]
+  - ...
+  - [Über Hilfe]
+#[SPRACHWAHL.GR]
+Sprachwahl
+
+  Englisch    [ENGLISH]
+  Deutsch     [GERMAN]
+  Französisch [FRENCH]
+  Spanisch    [SPANISH]
+  Sie können die Sprache auch im [Setup-Menü] oder
+  unter [Sprache] ändern.
+
+Zum [Inhaltsverzeichnis].
+#[TASTENBELEGUNG.GR]
+Tastenbelegung
+
+1. Funktionstasten:
+===================
+
+ F1  Hilfe [Einführung]
+ Shift+F1  Aufruf des M4-Hackmenüs (bzw. NMIROM)
+ F2  Wechsel zwischen Echtzeit-Emulation und unbegrenzten Bildern pro Sekunde [Echtzeit]
+ Shift+F2  Wechsel zwischen 1x, 3x und 24x CPU-Geschwindigkeit bei unveränderter Bilderanzahl pro Sekunde
+ F3  [Diskette einlegen]
+ F4  Soundausgabe ein/aus
+ Shift+F4  Ein-/Ausschalten der Pfeiltasten als Joystick 0 [Cursor-Tasten als Joystick 0]
+ F5  [Lade Schnappschuß]
+ F6  [Speichere Schnappschuß]
+ F7  [Setup-Menü]
+ F8  Reset CPC (falls CTRL/SHIFT/ESC nicht funktioniert)
+ F9  CPC anhalten (bis Mausklick)
+ F10 Debug-Menü
+ F11 Umschaltung Fenster <-> Vollbild
+ F12 Beende CPCEMU
+
+
+2. Andere Tasten:
+=================
+ - ALT links: COPY auf dem CPC
+
+ - Keypad (Zehnerblock): Simuliert Joystick 0 bei "Num-Lock" aus, sonst die
+   Funktionstasten.
+[Setup-Menü]
+#[___EMULATION.GR]
+___Emulations - Einstellungen
+  [Echtzeit]
+
+[Setup-Menü]
+#[___BILDSCHIRM.GR]
+___Bildschirm - Einstellungen
+  [Farbbildschirm]
+  [Video-Modus]
+  [CRTC-Typ]
+
+[Setup-Menü]
+#[___SOUND.GR]
+___Sound - Einstellungen
+  [Sound erlaubt]
+  [SB-Sampling-Rate]
+
+[Setup-Menü]
+#[___M4_BOARD.GR]
+___M4-Board - Einstellungen
+  [M4 erlaubt]
+  [SD-Card-Betriebsmodus]
+
+[Setup-Menü]
+#[___STEUERUNG.GR]
+___Steuerung  (Tastatur, Joystick, Maus)
+  [Tastatur-Layout]
+  [Cursor-Tasten als Joystick 0]
+  [Maus erlaubt]
+
+[Setup-Menü]
+#[___PPI-EINSTELLUNGEN.GR]
+___PPI-Einstellungen
+  [Firmen-Name]
+  [PPI_50Hz]
+  [PPI_EXP_Signal]
+
+[Setup-Menü]
+#[___SONSTIGES.GR]
+___Sonstiges
+  [AMSDOS abgeschaltet]
+  [AMSDOS-Bechleunigung]
+  [Sprache]
+  [Kassetten-Umleitung]
+
+[Setup-Menü]
+#[SETUP-MENÜ.GR]
+Setup-Menü
+
+
+  Untermenüs:
+  [___Emulation]
+  [___Bildschirm]
+  [___M4_Board]
+  [___Sound]
+  [___Steuerung]
+  [___PPI-Einstellungen]
+  [___Sonstiges]
+
+
+AMSDOS abgeschaltet     [AMSDOS abgeschaltet]
+AMSDOS-Beschleunigung   [AMSDOS-Beschleunigung]
+Farbbildschirm          [Farbbildschirm]
+Firmenname              [Firmenname]
+CPC-Typ                 [CPC-Typ]
+CRTC-Typ                [CRTC-Typ]
+Cursor-Tasten als Joystick 0 [Cursor-Tasten als Joystick 0]
+Tastatur-Layout         [Tastatur-Layout]
+Sprache                 [Sprache]
+M4 erlaubt              [M4 erlaubt]
+Maus erlaubt            [Maus erlaubt]
+PPI_50Hz                [PPI_50Hz]
+PPI_EXP_Signal          [PPI_EXP_Signal]
+RAM-Größe               [RAM-Größe]
+Echtzeit                [Echtzeit]
+SB-Sampling-Rate        [SB-Sampling-Rate]
+Zeige Konfiguration     [Zeige Konfiguration]
+Schnappschuß            [Schnappschuß]
+SD-Card-Betriebsmodus   [SD-Card-Betriebsmodus]
+Sound erlaubt           [Sound erlaubt]
+Kassetten-Umleitung     [Kassetten-Umleitung]
+Video-Modus             [Video-Modus]
+Lade Konfiguration      [Lade Konfiguration]
+Neustart der Emulation  [Neustart der Emulation]
+Speichere Konfiguration [Speichere Konfiguration]
+Poke-Datenbank          [Poke-Datenbank]
+Dos-Shell               [Dos-Shell]
+Fortsetzen              [Fortsetzen]
+
+Siehe auch: [Konfigurationsdatei].
+#[KONFIGURATIONSDATEI.GR]
+Konfigurationsdatei
+
+
+ENDIF                   [#ENDIF]
+IFCPC                   [#IFCPC]
+AMSDOS_disabled         [AMSDOS abgeschaltet]
+AMSDOS_speedup          [AMSDOS-Beschleunigung]
+Colour_screen           [Farbbildschirm]
+Company_name            [Firmenname]
+CPC_Type                [CPC-Typ]
+CRTC_Type               [CRTC-Typ]
+Data_File               [Datendatei]
+Drive_A                 [Laufwerk A]
+Drive_A_Autostart       [Autostart]
+Drive_A_Side            [Diskettenseite]
+Drive_A_Writeprot       [Schreibschutz]
+Drive_B                 [Laufwerk B]
+Drive_B_Autostart       [Autostart]
+Drive_B_Side            [Diskettenseite]
+Drive_B_Writeprot       [Schreibschutz]
+Help_file               [Hilfedatei]
+JOY0_CURSOR_KEYS        [Cursor-Tasten als Joystick 0]
+KBD_language            [Tastatur-Layout]
+Language                [Sprache]
+Mouse_enabled           [Maus erlaubt]
+Mouse_type              [Maustyp]
+M4_enabled              [M4 erlaubt]
+M4_SD_PATH              [M4_SD_PATH]
+M4_SD_MODE           [  [SD-CARD-BETRIEBSMODUS]
+Poke_database           [Poke-Datenbank]
+PPI_50Hz                [PPI_50Hz]
+PPI_Exp_signal          [PPI_EXP_Signal]
+Printer                 [Drucker]
+RAM_SIZE                [RAM-Größe]
+RAM_TYPE                [RAM-Typ]
+Realtime                [Echtzeit]
+ROM_BLOCK               [ROM-Block]
+ROM_PATH                [ROM-Pfad]
+Sb_sample_rate          [SB-Sampling-Rate]
+Show_configuration      [Zeige Konfiguration]
+Snapshot                [Schnappschuß]
+SNA_SIZE                [SCHNAPPSCHUßGRÖßE]
+Sound_enabled           [Sound erlaubt]
+Tape_bypass             [Kassetten-Umleitung]
+Tape_path               [Kassetten-Pfad]
+TMP-path                [TMP-Pfad]
+Video_mode              [Video-Modus]
+
+Siehe auch: [Setup-Menü].
+#[#ENDIF.GR,#IFCPC.GR]
+-#IFCPC.GR, #ENDIF.GR
+  Diese Steuerbefehle ermöglichen eine bedingte Konfiguration je nach
+  gewünschtem CPC:
+    #IFCPC <CPC-Typ> ... #ENDIF
+  Als <CPC-Typ> sind alle 5 Typen wie bei [CPC-Typ] zulässig.
+  Somit kommen Sie mit einer Konfigurationsdatei für alle CPCs aus.
+  In den Batch-Dateien CPC464.BAT, CPC664.BAT, CPC6128.BAT wird der
+  gewünschte CPC durch Kommandozeilen-Parameter gewählt.
+
+[Konfigurationsdatei]
+#[AMSDOS ABGESCHALTET.GR]
+AMSDOS abgeschaltet (0)
+AMSDOS_DISABLED = 0,1
+  Verbietet die Initialisierung des AMSDOS. Das ist sinnvoll, wenn Sie
+  viele Programme von Kassette laden möchten, ohne vorher immer den
+  Befehl '|TAPE' eingeben zu müssen.
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[AMSDOS-BESCHLEUNIGUNG.GR]
+AMSDOS-Beschleunigung (1)
+AMSDOS_SPEEDUP = 0,1
+  Das AMSDOS-ROM wird so modifiziert, daß Diskettenzugriffe beschleunigt
+  werden. Dies wird durch Minimieren der Motor-Wartezeiten erreicht, die
+  für den Emulator nicht nötig sind.
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[UNTERBRECHUNGS-MASKE.GR]
+Unterbrechungs-Maske (3)
+BREAK_MASK = 0..3
+  Nur für Debugging-Zwecke.
+  b0 = 1 -> Zeige Z80-Emulations-Fehler (langsam)
+  b1 = 1 -> Zeige Z80-Emulations-Fehler (schnell)
+  b2 = 1 -> Zeige Port-Fehler
+  Mit 3 werden Port-Fehler ignoriert.
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[FARBBILDSCHIRM.GR]
+Farbbildschirm (1)
+COLOUR_SCREEN = 0,1
+  Emulation eines Grün- oder Farbmonitors, indem die Farbpalette
+  angepaßt wird.
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[CRTC-TYP.GR]
+CRTC-Typ (1)
+CRTC_TYPE = 0,1,2
+  Emulation der unterschiedlichen CRTC-Typen.
+  
+  Für Demos muss in der Regel vor deren Start Typ 0 oder Typ 1
+  eingestellt werden, abhängig vom Demo.
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[M4 ERLAUBT.GR]
+M4 Erlaubt (1)
+M4_ENABLED = 0,1
+  Emulation eines M4-Boards (http://www.spinpoint.org).
+  
+  Benötigt ein konfiguriertes M4.ROM im ROM-Pfad.
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[SD-CARD-BETRIEBSMODUS.GR]
+SD-Card-Betriebsmodus (0)
+M4_SDCARD_MODE = 0,1
+  Betriebsmodus der emulierten SD-Karte in SymbOS.
+  
+  Im Modus 0 wird beim Start von SymbOS ein FAT32-Image aus dem
+  Host-Verzeichnis erzeugt, das als SD-Karte des M4-Boards emuliert wird
+  (siehe [M4_SD_PATH]). Beim nächsten System-Reset wird veränderter Inhalt
+  des Images zurück in das Host-Verzeichnis geschrieben.
+  
+  Im Modus 1 (*experimentell*!) wird live ein FAT32-System auf diesem
+  Host-Verzeichnis emuliert, sowohl lesend als auch schreibend.
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[M4_SD_PATH.GR]
+SD-Card-Pfad
+M4_SD_PATH = "<Pfad+Dateiname>"
+  Pfad, der als SD-Card emuliert wird.
+
+[Konfigurationsdatei]
+#[FIRMENNAME.GR]
+Firmenname (7)
+COMPANY_NAME = 0..7
+  Firmenname auf dem Eröffnungsbildschirm.
+  0 = Isp
+  1 = Triumph
+  2 = Saisho
+  3 = Solavox
+  4 = Awa
+  5 = Schneider
+  6 = Orion
+  7 = Amstrad
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[CPC-TYP.GR]
+CPC-Typ (2)
+CPC_TYPE = 0..5
+  Setzt den gewünschten CPC-Typ
+  0 = CPC 464
+  1 = CPC 664
+  2 = CPC 6128
+  3 = CPC 464+ (?)
+  4 = CPC 6128+ (?)
+  5 = KC compact (CPC 6128)
+  6 = unbekannt
+  Um die Typen 3, 4 oder 5 zu benutzen, müssen Sie zuerst entsprechende
+  ROM-Abbilder in CPCEMU.CFG eintragen.
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[DATENDATEI.GR]
+  Datendatei (".\CPCEMU.DAT")
+  DATA_FILE = "<Pfad+Dateiname>"
+  Datendatei festlegen.
+
+[Konfigurationsdatei]
+#[CURSOR-TASTEN ALS JOYSTICK 0.GR]
+  Cursor-Tasten als Joystick 0 (0)
+  JOY0_CURSOR_KEYS = 0,1,2
+  
+  0: Aus.
+  1: Cursor-Tasten als ersten Joystick verwenden.
+  2: Virtuellen Joystick als Cursor-Tasten und den
+     Feuerknopf als COPY verwenden (nur Android und iOS).
+  
+  Kann auch mit Shift+F4 umgeschaltet werden.
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[LAUFWERK A.GR]
+Laufwerk A
+DRIVE_A = "<Pfad+Dateiname>"
+  Pfad für Disketten-Abbilder.
+  Bei einem Dateinamen wird diese "Diskette" automatisch in Laufwerk A
+  "gelegt".
+
+[Konfigurationsdatei]
+[Disketten-Menü]
+#[LAUFWERK B.GR]
+Laufwerk B
+DRIVE_B = "<Pfad+Dateiname>"
+  Wie [Laufwerk A], aber für Laufwerk B.
+
+[Konfigurationsdatei]
+[Disketten-Menü]
+#[EMS ERLAUBT.GR]
+EMS erlaubt (1)
+EMS_ENABLED = 0,1
+  EMS-Speicher (Expanded Memory System) erlauben.
+  Unbedingt empfohlen, da die Emulation dann schneller ist.
+  Ansonsten wird konventioneller Speicher benutzt.
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[EMULATIONS-VERZÖGERUNG.GR]
+Emulations-Verzögerung (0)
+EMULATION_DELAY = 0..2000
+  Abbremsen der Emulation.
+    0   = keine Verlangsamung,
+    100 = ein wenig langsamer
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[EMULATIONS-GESCHWINDIGKEIT.GR]
+Emulations-Geschwindigkeit (1)
+EMULATION_SPEED = 0,1
+  Geschwindigkeit der Emulation.
+    0 = langsame Z80-Emulation
+    1 = schnelle Z80-Emulation
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[HILFEDATEI.GR]
+Hilfedatei (".\CPCEMU.HLP")
+HELP_FILE = "<Pfad+Dateiname>"
+  Hilfedatei festlegen.
+
+[Konfigurationsdatei]
+#[INTERRUPT-FREQUENZ.GR]
+Interrupt-Frequenz (300)
+INTERRUPT_FREQUENCY = 18..600
+  Frequenz, mit der Interrupts (Unterbrechnugen) generiert werden.
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[INTERRUPTS NACHHOLEN.GR]
+Interrupts nachholen (1)
+INTERRUPT_RESUME = 0,1
+  "Vergessene" Unterbrechungen nachholen.
+  Ohne EMS unmöglich, da das Verschieben von Speicherblöcken zu viel
+  Zeit beansprucht.
+  Bemerkung:
+  CP/M Plus scheint nur mit EMS und trotzdem ausgeschalteter Option
+  zu laufen!
+[Setup-Menü]
+[Konfigurationsdatei]
+#[JOY0 KALIBRIEREN.GR]
+Joy0 kalibirieren (0,0,0,0)
+JOY0_CALIBRATE
+  Kalibrieren des PC-Joysticks.
+  Dies ist bei einem analogen Joystick unbedingt nötig.
+  Falls Sie zwei Joysticks angeschlossen haben, können Sie den zweiten
+  unter [Joy1 kalibrieren] kalibrieren.
+  Die angezeigten Werte können Sie dann dauerhaft in die
+  Konfigurations-Datei übernehmen.
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[JOY1 KALIBRIEREN.GR]
+Joy1 kalibirieren (0,0,0,0)
+JOY1_CALIBRATE
+  Wie [Joy0 kalibrieren], nur für den zweiten Joystick.
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[TASTATUR-LAYOUT.GR]
+Tastatur-Layout (0)
+KBD_LANGUAGE = 0..3
+  Landesspezifische Tastaturbelegung.
+  0 = UK
+  1 = GR ("deutschere" Tastatur)
+      Eine vollkommen deutsche Tastatur ist leider nicht möglich.
+  2 = FR ("französischere" Tastatur)
+      Auch eine komplett französische Tastatur ist nicht möglich.
+  3 = SP ("spanischere" Tastatur)
+      Auch eine komplett spanische Tastatur ist nicht möglich.
+  4 = DK ("dänischere" Tastatur)
+      Auch eine komplett dänische Tastatur ist nicht möglich.
+  5 = Original UK (wie auf dem CPC)
+  Siehe auch: [Sprache]
+        und:  [KEYBOARD LAYOUTS]
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[SPRACHE.GR]
+Sprache (0)
+LANGUAGE = 0..3
+  Sprache, in der Hilfstexte angezeigt werden.
+  Möglich sind
+    0=UK (Englisch)
+    1=GR (Deutsch)
+    2=FR (Französisch)
+    3=SP (Spanisch)
+  Mit [Sprachwahl] können Sie die Sprache ändern.
+  Siehe auch: [Tastatur-Layout]
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[MAUS ERLAUBT.GR]
+Maus erlaubt (1)
+MOUSE_ENABLED = 0,1
+  Maus zur Menüauswahl.
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[MAUSTYP.UK]
+MOUSE_TYPE (0)
+  Aktiviert CPC-Maus und legt ihren Typ fest:
+  0 = aus (Joystick)
+  1 = AMX
+  2 = Reisware/Gerdes
+  3 = Symbiface II (PS/2)
+
+#[MULTIMODES AUFFRISCHEN.GR]
+Multimodes auffrischen (0 {DOS} / 2 {Non-DOS})
+MULTIMODE_UPDATE = 0,1,2 {2 nur Non-DOS}
+  Sinnvoll, wenn Programme mehrere Modi gleichzeitig auf dem Bildschirm
+  verwenden (gilt häufig für Spiele).
+  CPCEMU versucht, Modusänderungen sofort anzuzeigen.
+{DOS}
+  Standardmäßig ist diese Option ausgeschaltet, da sie nicht immer richtig
+  funktioniert.
+{Non-DOS}
+  Diese Option ist auf 2 voreingestellt, da dann die besten Ergebnisse
+  erzielt werden (zeilenweise Abtastung).
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[PALETTEN-ÄNDERUNG.GR]
+Paletten-Änderung (1)
+PALETTE_CHANGE = 0,1
+  Farbänderungen an.
+  Bei unerträglichem Flimmern mancher Spielen diese Option auf 0 setzen.
+  Dann werden Farbänderungen unterdrückt.
+  Dieses wird durch einen Hardware-Reset (F8) wieder aufgehoben.
+  Tip:
+  Völlig falsche Farben durch 2 mal F2 korrigieren.
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[PPI_50HZ.GR]
+PPI_50Hz (1)
+PPI_50HZ = 0,1
+  Der CPC wird mit
+    0 - 60 Hz, oder mit
+    1 - 50 Hz (Standard in Deutschland,Frankreich)
+  betrieben werden.
+  Dazu wird bei einem Reset das Bit 4 des Port B PPI abgefragt und der
+  CRTC entsprechend initialisiert.
+  Sollte auf 50 Hz bleiben.
+  Siehe auch [PPI_EXP_Signal]
+  und [Firmenname].
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[PPI_EXP_SIGNAL.GR]
+PPI_EXP_Signal (1)
+PPI_EXP_SIGNAL = 0,1
+  Erweiterungskarten können dieses Signal setzen.
+  Beim CPC 464 normalerweise gesetzt, wenn eine Floppy angeschlossen ist.
+  Beim CPC 6128 immer gesetzt.
+  Siehe auch [PPI_50Hz]
+  und [Firmenname].
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[DRUCKER.GR]
+Drucker ("")
+PRINTER = "<Pfad+Dateiname>"
+  Druckerdatei für Druckerausgaben.
+  Wird bei jedem Start des Emulators gelöscht.
+  Nachdem Sie den Emulator verlassen haben, schicken Sie die Datei
+  mit 'COPY <Dateiname> prn:' zu Ihrem Drucker.
+  Bei PRINTER="prn" wird ohne Druckerdatei auf dem Drucker ausgedruckt.
+  Bei PRINTER="" wird die parallele Schnittstelle LPT1 direkt
+  angesprochen.
+
+[Konfigurationsdatei]
+#[RAM-GRÖßE.GR]
+RAM-Größe (64 oder 128)
+RAM_SIZE = 64..576/4160
+  Größe des RAM in KB in Schritten von 64 KB.
+  Mögliche Werte sind:
+  - 64 bis 4160 bei der dk'tronics/Jarek-Erweiterung
+  - 64 bis 576 bei der Vortex-Erweiterung
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[RAM-ERWEITERUNGSTYP.GR]
+RAM-Erweiterungstyp (0)
+RAM_TYPE = 0,1
+  Typ der RAM-Erweiterung:
+  0: dk'tronics/Jarek
+  1: Vortex
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[ECHTZEIT.GR]
+Echtzeit (0)
+REALTIME = 0,1
+  Echtzeit-CPC oder normaler (schneller) CPC.
+  Im Echtzeit-Modus zählt der Emulator die Taktzyklen der einzelnen
+  Befehle und fügt Warteschleifen ein, falls die Emulation gegenüber dem
+  Original zu schnell ist.
+  
+  Kann auch mit F2 umgeschaltet werden.
+  Shift+F2 schaltet zwischen normaler CPU-Geschwindigkeit, 3x- und
+  24x-fachem Turbo-Modus um.
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[ROM-BLOCK.GR]
+ROM-Block
+ROM_BLOCK = <ROM-Nummer>, "<Dateiname>", <ROM-Position>
+  Beschreibt, was für ein ROM geladen werden soll.
+  - <ROM-Nummer> ist die Nummer die das ROM bekommen soll
+    0       = Vordergrund-ROM (z.B. BASIC)
+    1 - 251 = Hintergrund-ROMs, z.B. AMSDOS mit Nummer 7.
+    255     = Lower-ROM
+  - <Dateiname> Die ROM-Datei im Verzeichnis [ROM_PATH].
+  - <ROM-Position> normalerweise 0. Bei mehreren ROMs in einer Datei
+      ist dies das gewünschte ROM-Position 0, 1, 2,...
+    Bei den Einträgen
+          ROM_BLOCK =   255, "CPC6128.ROM", 0
+          ROM_BLOCK =   0  , "CPC6128.ROM", 1
+    befinden sich also Lower-ROM und Vordergrund-ROM direkt nacheinander
+    in derselben Datei.
+
+[Konfigurationsdatei]
+#[ROM-PFAD.GR]
+ROM-Pfad (".\ROM")
+ROM_PATH = "<Pfad>"
+  Pfad, wo sich die ROM-Abbilder befinden.
+  Die ROMs selber werden mit [ROM-Block] festgelegt.
+
+[Konfigurationsdatei]
+#[SB-VERZÖGERUNG.GR]
+SB-Verzögerung (35)
+SB_DELAY = 0..255
+  Verzögerungszeit für die Soundblaster-Soundkarte (im FM-Modus).
+  Diese Zeit wird nach jedem Schreibzugriff auf die Soundkarte gewartet.
+  Um Soundausgaben zu beschleunigen, auf 0 setzen.
+  Dieses funktioniert allerdings nicht mit allen Soundkarten.
+  Diese Option wird für den digitalen Sound nicht mehr benötigt.
+  Siehe auch: [SB-Verzögerung0]
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[SB-VERZÖGERUNG0.GR]
+SB-Verzögerung0 (6)
+SB_DELAY0 = 0..255
+  Noch ein Verzögerungswert für die Soundkarte (im FM-Modus).
+  Möglichst nicht ändern.
+  Diese Option wird für den digitalen Sound nicht mehr benötigt.
+  Siehe auch: [SB-Verzögerung]
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[SB-DMA-PUFFER.GR]
+SB-DMA-Puffer (32)
+SB_DMA_BUF = 8..255
+  Setzt die DMA-Puffergröße für digitalen Soundblaster-Sound.
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[SB-SAMPLING-RATE.GR]
+SB-Sampling-Rate (1)
+SB_SAMPLING_RATE = 0..1
+  Setzt die Sampling-Rate für digitalen Sound.
+  0=22kHz, 1=44kHz, 2=48kHz, 3=62,5kHz
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[SB-STEREO.GR]
+SB-Stereo (0)
+SB_STEREO = 0..1
+  Setzt die Stereo-Option.
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[BILDSCHIRM-VERSCHIEBUNG.GR]
+Bildschirm-Verschiebung (0)
+SCREEN_OFFSET = 0..25
+  Anzahl der Zeilen, um die der Bildschirm verschoben werden soll.
+  Den gleichen Effekt können Sie auch mit den Tasten <Bild hoch> und
+  <Bild runter> erreichen.
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[ZEIGE KONFIGURATION.GR]
+Zeige Konfiguration (1)
+SHOW_CONFIG = 0,1
+  Anzeigen der Konfigurations-Übersicht beim Start des Emulators.
+
+[Setup-Menü]
+#[SCHNAPPSCHUß.GR]
+Schnappschuß (".\SNAP")
+SNAPSHOT = "<Pfad+Dateiname>"
+  Pfad für Snapshots.
+  Bei einem Dateinamen wird dieser Snapshot automatisch gestartet.
+
+[Konfigurationsdatei]
+#[SOUND-AUSGABEGERÄT.GR]
+Sound-Ausgabegerät (1 oder maximal mögliches)
+SOUND_DEVICE = 0..4
+  Setzt das Sound-Ausgabegerät.
+  0 = keins
+  1 = PC-Lautsprecher
+  2 = Adlib (oder Soundblaster im FM-Modus, Stereo mit OPL3)
+  3 = Soundblaster (Pro), dank Ulrich Doewich
+  4 = GUS (Gravis Ultrasound), dank Ulrich Doewich
+
+  Zusätzlich muß die Sondausgabe mittels [Sound_erlaubt] erlaubt sein.
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[SOUND ERLAUBT.GR]
+Sound erlaubt (1)
+SOUND_ENABLED = 0,1
+  Soundausgabe erlauben.
+  Dies geht auch mit der Funktionstaste F4. [Tastenbelegung]
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[KASSETTEN-UMLEITUNG.GR]
+Kassetten-Umleitung (1)
+TAPE_BYPASS = 0,1
+  Unbedingt notwendig, falls Sie "Kassetten" verwenden möchten.
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[KASSETTEN-PFAD.GR]
+Kassetten-Pfad (".\TAPE")
+TAPE_PATH = "<Pfad>"
+  Pfad für "Kassetten"-Dateien.
+
+[Konfigurationsdatei]
+#[TMP-PFAD.GR]
+TMP-Pfad (".\TMP")
+TMP_PATH = "<Pfad>"
+  Pfad für temporäre Dateien.
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[VIDEO-MODUS.GR]
+Video-Modus (0)
+VIDEO_MODE = 0,1
+  Emulation eines Kathodenstrahl-Monitors im Modus 1.
+  Ohne sie (Modus 0) ist CPCemu deutlich schneller.
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[VSYNC-POSITION.GR]
+VSYNC-Position (5)
+VSYNC_POSITION 0..5
+  Position der vertikalen Synchronisation.
+  Im Emulator ist das VSYNC-Bit während eines Interrupt-Intervalls
+  gesetzt. Bei 6 Interrupts während des Bildaufbaus sind die Werte
+  0-5 möglich.
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[LADE KONFIGURATION.GR]
+Lade Konfiguration
+  Läd eine Konfigurations-Datei, welche mit [Speichere Konfiguration]
+  abgespeichert wurde. Manche Parameter wirken erst, wenn Sie
+  [Neustart der Emulation] wählen
+  Eine andere Möglichkeit ist "CPCEMU -c <Konfigurations-Datei>".
+
+[Setup-Menü]
+[Dateiauswahl]
+#[NEUSTART DER EMULATION.GR]
+Neustart der Emulation
+  Wenn Sie eine Konfiguration mittels [Lade Konfiguration] geladen
+  haben, können Sie den Emulator mit diesen Werten neu starten.
+
+[Setup-Menü]
+#[SPEICHERE KONFIGURATION.GR]
+Speichere Konfiguration
+  Speichert die aktuelle Konfiguration.
+  Die Haupt-Konfiguration "CPCEMU.CFG" läßt sich nicht überschreiben.
+  Siehe auch: [Lade Konfiguration].
+
+[Setup-Menü]
+[Dateiauswahl]
+#[POKE-DATENBANK.GR]
+Poke-Datenbank ("CPCEMU.DBF")
+POKE_DATABASE = "<Datei>"
+  Poke Datenbank für unendliche Leben und andere Hilfen bei Spielen.
+  Sie können die Liste (CPCEMU.DBF) auch um eigene Pokes erweitern.
+
+[Setup-Menü]
+[Konfigurationsdatei]
+#[DOS-SHELL.GR]
+DOS-Shell
+  DOS-Shell mit viel Speicher.
+  Teile von CPCEMU werden automatisch ausgelagert.
+  Mit 'exit' kommen Sie zurück in der Emulator.
+
+[Setup-Menü]
+#[FORTSETZEN.GR]
+Fortsetzen
+  Werte übernehmen und Programm fortsetzen.
+  Die geänderten Werte werden übernommen und die Emulation wird
+  fortgesetzt. Den gleichen Effekt bekommen Sie auch, wenn Sie auf
+  einem beliebigen Menüpunkt (mit Zahl) <RETURN> drücken.
+
+[Setup-Menü]
+#[DISKETTEN-MENÜ.GR]
+Disketten-Menü
+  [Diskette einlegen]
+  [Laufwerk]
+  [Diskettenseite]
+  [Schreibschutz]
+  [Autostart]
+#[DISKETTE EINLEGEN.GR]
+Diskette einlegen
+  Sie wählen ein Disketten-Abbild mittels [Dateiauswahl], welches mit
+  Diskettenseite [Diskettenseite]
+  in das Laufwerk [Laufwerk] eingelegt wird.
+  Die Diskette kann schreibgeschützt  werden mit [Schreibschutz].
+
+[Disketten-Menü]
+#[LAUFWERK.GR]
+Laufwerk
+[Laufwerk A]
+[Laufwerk B]
+  In dieses Laufwerk wird das Disketten-Abbild eingelegt.
+
+[Disketten-Menü]
+#[DISKETTENSEITE.GR]
+Diskettenseite
+DRIVE_A_SIDE = 0,1
+DRIVE_B_SIDE = 0,1
+  Bei doppelseitigen Formaten kann mit dieser Option die Seite 1 (B)
+  gewählt werden.
+
+[Disketten-Menü]
+#[SCHREIBSCHUTZ.GR]
+Schreibschutz
+DRIVE_A_WRITEPROT = 0,1
+DRIVE_B_WRITEPROT = 0,1
+  Das Disketten-Abbild wird schreibgeschützt eingelegt.
+  Das ist sinnvoll, wenn es nicht modifiziert werden soll oder sich auf
+  einem Nur-Lese-Medium (z.B. CD-ROM) befindet.
+
+[Disketten-Menü]
+#[AUTOSTART.GR]
+Autostart
+DRIVE_A_AUTOSTART = 0,1
+DRIVE_B_AUTOSTART = 0,1
+  Startet automatisch das erste BASIC-Programm, wenn ein Disketten-Abbild
+  eingelegt wird. Alternativ wird DISC.BAS gestartet, falls vorhanden.
+  Mit dem AMSDOS-Befehl |DIR können Sie schauen, welches das erste
+  BASIC-Programm ist.
+
+[Disketten-Menü]
+#[LADE SCHNAPPSCHUß.GR]
+Lade Schnappschuß
+  Läd einen Schnappschuß, der mit [Speichere Schnappschuß] gespeichert
+  wurde.
+
+[Dateiauswahl]
+#[SPEICHERE SCHNAPPSCHUß.GR]
+Speichere Schnappschuß
+  Es wird der komplette Zustand abgespeichert, in dem sich der emulierte
+  CPC gerade befindet. (CPU-Register, Speicher,...)
+  Mit [Schnappschußgröße] können Sie 128KB oder den gesamten Speicher
+  anstatt 64KB wählen.
+
+[Dateiauswahl]
+#[SCHNAPPSCHUßGRÖßE.GR]
+Schnappschußgröße (0)
+SNA_SIZE = 0,1,2
+  0: Wählt das 64KB-Schnappschuß-Format.
+  1: Wählt das 128KB-Schnappschuß-Format.
+  2: Wählt den gesamten Speicher des CPC.
+  Den Schnapschuß können Sie dann mit [Speichere Schnappschuß] speichern.
+
+[Konfigurationsdatei]
+#[DATEIAUSWAHL.GR]
+Dateiauswahl
+
+  Tastatur-Steuerung:
+  - <POS1> = erster Dateiname
+  - <ENDE> = letzter Dateiname
+  - <Bild hoch/runter> : blättert seitenweise
+  - <RETURN> : übernimmt den angewählten Dateinamen
+  - <ESC> : bricht ab.
+  Anfangsbuchstaben drücken = Namen direkt auswählen.
+
+  Maussteuerung:
+  linke Maustaste = Auswählen
+  rechte Maustaste= nur bewegen, kann mit "[ok]" bestätigt werden.
+  "[]" = <Bild hoch>
+  "[]" = <Bild runter> (falls mehr Dateien vorhanden sind)
+  "[<]" = <Cursor links>
+  "[>]" = <Cursor rechts>
+  "[ok]" = <Return>
+  "[help]" = F1 (Hilfe anzeigen)
+  "[ş]" = <ESC>
+
+  ".." = Eltern-Verzeichnis
+  "[A]", "[B]", ... = verfügbare Laufwerke
+
+  "*.ZIP" = ZIP-Archive, die wie Verzeichnisse angezeigt werden.
+  angewählte Dateien werden automatisch entpackt.
+  (Benötigt Programm PKUNZIP im CPCEMU-Verzeichnis oder im DOS-Suchpfad.)
+
+
+  Datei-Auswahl wird benutzt bei:
+    [Disketten-Menü]
+    [Lade Schnappschuß]
+    [Speichere Schnappschuß]
+    Laden von Kassette, Speichern auf Kassette, Katalog
+    [Lade Konfiguration]
+    [Speichere Konfiguration]
+#[GR_KEYBOARD_LAYOUT.GR]
+
+... Wer malt mal was Schönes? ...
+
+Deutsche PC AT Tastaturbelegung [GERMAN_KEYBOARD]
+#[GERMAN_KEYBOARD.GR]
+Die deutsche Tastenbelegung:
+
+ÕÍÍÍ¸ ÕÍÍÍÍÍÍÍÍÍÍÍÍ¸ ÕÍÍÍÍÍÍÍÍÍÍÍÍ¸ ÕÍÍÍÍÍÍÍÍÍÍÍÍ¸ ÕÍÍÍÍÍÍÍÍÍ¸
+³ESC³ ³HLP³TRB³DSK³SND³ ³LOA³SAV³SET³RST³ ³HLT³DBG³WIN³EXT³ ³PRT³SCR³BRK³
+ÔÍÍÍ¾ ÔÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍ¾ ÔÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍ¾ ÔÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍ¾ ÔÍÍÍÏÍÍÍÏÍÍÍ¾
+ÕÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¸  ÕÍÍÍÍÍÍÍÍÍ¸
+³^ °³1 !³2 "³3 §³4 $³5 %³6 &³7 /³8 (³9 )³0 =³ß ?³' `³BKSP³  ³INS³HOM³PGU³
+ÔÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÍ¾  ’ÍÍÍØÍÍÍØÍÍÍ‘
+ÕÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¸  ³DEL³END³PGD³
+³TAB ³ Q ³ W ³ E ³ R ³ T ³ Z ³ U ³ I ³ O ³ P ³ Ü ³+ *³ R ³  ÔÍÍÍÏÍÍÍÏÍÍÍ¾
+’ÍÍÍÍØÍÍÍØÍÍÍØÍÍÍØÍÍÍØÍÍÍØÍÍÍØÍÍÍØÍÍÍØÍÍÍØÍÍÍØÍÍÍØÍÍÍ‘ E ³ ENH. 101 AT KBD
+³CAPS³ A ³ S ³ D ³ F ³ G ³ H ³ J ³ K ³ L ³ Ö ³ Ä ³# `³ T ³
+’ÍÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÍÏÍÍÍ‘      ÕÍÍÍ¸
+³SFT³< >³ Y ³ X ³ C ³ V ³ B ³ N ³ M ³, ;³. :³- _³  SHIFT ³      ³ U ³
+’ÍÍÍØÍÍÍÏÍÍÏÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÏÍÍÏÍÍÍÍÍÍÍ‘  ÕÍÍÍØÍÍÍØÍÍÍ¸
+³CTL³     ³ALT³   S   P   A   C   E       ³ALT³      ³CTL³  ³ L ³ D ³ R ³
+ÔÍÍÍ¾     ÔÍÍÍÏÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÏÍÍÍ¾      ÔÍÍÍ¾  ÔÍÍÍÏÍÍÍÏÍÍÍ¾
+#[ÜBER HILFE.GR]
+Über Hilfe
+  Die Datei CPCEMU.HLP enthält die On-Line-Hilfe für einige Sprachen.
+  Zur Zeit unterstützt CPCEMU 4 Sprachen:
+  UK - Englisch
+  GR - Deutsch
+  FR - Französisch
+  SP - Spanisch
+
+  Ein "THEMA" in der Sprache "LL" wird durch "#[THEMA.LL]" in der ersten
+  Spalte einer Zeile eingeleitet. Es muß in Grßbuchstaben geschrieben sein.
+  Es ist auch möglich, ein Thema für mehrere Sprachen zu haben, z.B. ist
+  "#[THEMA.UK,THEMA.GR]" für Englisch und Deutsch.
+
+  Referenzen werden einfach als "[Referenz]" geschrieben. Sie können aus
+  Groß- und Kleinbuchstaben bestehen. Wenn sie nicht von "" umschlossen
+  sind, können Sie sie anwählen, um das Folgethema zu sehen.
+
+  Das Hilfesystem findet dieses Folgethema, indem es die Hilfedatei nach
+  dem Thema "REFERENZ.LL" (mit "LL"=gewählte Sprache) durchsucht.
+  Wenn es das Thema "REFERENZ.LL" nicht finded, nimmt es das erste
+  "REFERENZ.xx" (mit normalerweise xx=UK); wenn das auch nicht existiert,
+  erscheint die Fehlermeldung "Thema nicht gefunden".
+  Wenn mehrere Referenzen in einer Zeile stehen, wird die erste ausgewählt.
+
+  Im Hilfesystem vordefinierte "Themen" sind
+  [ENGLISH], [GERMAN], [FRENCH], [SPANISH], um eine Sprache zu wählen.
+
+  Die meisten Referenzen stehen in der Meldungsdatei CPCEMU.MSG.
+#[INTRODUCTION.FR]
+   ıııııı¤ ıııııııı¤¤     ıııııı¤  ıııııııı¤  ıııı    ıııı¤¤  ıı¤¤     ıı¤¤
+ ıı¤¤¤¤¤¤  ıı¤¤¤¤¤ıı¤¤  ıı¤¤¤¤¤¤   ıı¤¤¤¤¤¤   ıı¤ıı  ıı¤ıı¤¤  ıı¤¤     ıı¤¤
+ıı¤¤       ıı¤¤   ıı¤¤ ıı¤¤        ıı¤¤¤      ıı¤¤ ıı¤¤ ıı¤¤  ıı¤¤     ıı¤¤
+ıı¤¤       ıııııııı¤¤  ıı¤¤        ıııııııı¤  ıı¤¤ ¤¤¤  ıı¤¤  ıı¤¤     ıı¤¤
+ıı¤¤       ıı¤¤¤¤¤¤    ıı¤¤        ıı¤¤¤¤¤¤   ıı¤¤      ıı¤¤  ıı¤¤     ıı¤¤
+ ıı¤¤      ıı¤¤         ıı¤¤       ıı¤¤       ıı¤¤      ıı¤¤  ıı¤¤     ıı¤¤
+   ıııııı¤ ıı¤¤          ıııııı¤   ıııııııı¤  ıı¤¤      ıı¤¤   ııııııııı¤¤
+   ¤¤¤¤¤¤¤ ¤¤¤¤           ¤¤¤¤¤¤¤  ¤¤¤¤¤¤¤¤¤  ¤¤¤¤      ¤¤¤¤   ¤¤¤¤¤¤¤¤¤¤
+
+                                                          v2.4  A I D E
+
+  Utilisez une souris : - <BoutonGauche> = déplacement et sélection
+                        - <BoutonDroit>  = déplacement sans sélection
+  ou naviguez dans la page (ou de page en page) avec les flèches du curseur,
+  <PagePréc>, <Page/Suiv>, <Début> et <Fin>.
+  Sélection d'une ligne contenant des [CROCHETS] avec <ENTREE> ou souris.
+  Choisissez [SELECTION DE LA LANGUE] pour changer de langue.
+
+  [TABLE DES MATIERES]
+#[CROCHETS.FR]
+CROCHETS
+--------
+
+         Vous le voyez bien, 
+         que ça marche !
+
+         Et maintenant, pour sortir...
+
+                     Retour à [INTRODUCTION]
+                     ou à la  [TABLE DES MATIERES]
+
+#[SELECTION DE LA LANGUE.FR]
+Sélection de la langue
+----------------------
+  
+  [ENGLISH] (Anglais)
+  [GERMAN]  (Allemand)
+  [FRENCH]  (Français)
+  [SPANISH] (Espagnol)
+
+  Vous pouvez aussi changer de langue 
+  dans le [MENU DES REGLAGES]
+  et dans [LANGUE DE L'AIDE].
+
+[TABLE DES MATIERES]
+#[TABLE DES MATIERES.FR]
+Table des matières
+------------------
+
+  - [INTRODUCTION]
+  - [TOUCHES DE FONCTION]
+  - [MENU DES REGLAGES]
+  - [MENU DISQUETTE]
+  - [DISPOSITION DU CLAVIER]
+  - [SELECTION DE LA LANGUE]
+  - ...
+  - [A PROPOS DE L'AIDE]
+#[TOUCHES DE FONCTION.FR]
+Touches de Fonction
+-------------------
+
+ F1  Aide : [INTRODUCTION]
+ Shift+F1  Appel du "hack menu" (ou de la NMIROM, resp.)
+ F2  Bascule entre le mode du temps réel et le mode de la frequence de balayage de l'écran sans limitation
+ Shift+F2  Bascule entre des modes 1x, 3x et 24x de la vitesse de la UC du CPC
+ F3  [INSÉRER UNE DISQUETTE]
+ F4  Son marche/arrêt : [SON ACTIF]
+ Shift+F4  Bascule pour les touches curseur comme joystick 0 [TOUCHES CURSEUR COMME JOYSTICK 0]
+ F5  [CHARGER UN SNAPSHOT] (dump de mémoire)
+ F6  [SAUVEGARDER UN SNAPSHOT]
+ F7  [MENU DES REGLAGES]
+ F8  Reset du CPC
+ F9  Suspend l'action du CPC (jusqu'à un clic de souris)
+ F10 Menu "Debug"
+ F11 Toggle fullscreen mode
+ F12 Quitter CPCEMU
+
+Autres touches :
+ - ALT à gauche : COPY sur CPC
+
+ - Pavé numérique : simule le Joystick(0) si "Num-Lock" allumé, 
+        sinon, touches de fonction du CPC.
+
+[TABLE DES MATIERES]
+#[___EMULATION.FR]
+___EMULATION - Réglages contrôlant l'émulation
+   ---------
+
+  [EMULATION RALENTIE]
+  [VITESSE DU Z80]
+  [FRÉQUENCE DES INTERRUPTIONS]
+  [REPRISE POST-INTERRUPTION]
+  [TEMPS RÉEL]
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[___ÉCRAN.FR]
+___ÉCRAN - Réglages contrôlant l'écran
+   -----
+
+  [AFFICHAGE COULEURS]
+  [GESTION DU MULTIMODE]
+  [CHANGEMENTS DE PALETTE]
+  [OFFSET DE L'ÉCRAN]
+  [MODE GRAPHIQUE]
+  [POSITION DE LA VSYNC]
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[___SON.FR]
+___SON - Réglages contrôlant le son
+   ---
+
+  [SON ACTIF]
+  [TYPE DE CARTE SON]
+  [TEMPORISATION POUR SB]
+  [AUTRE TEMPORISATION POUR SB]
+  [TAMPON DMA POUR SB]
+  [TAUX D'ÉCHANTILLONNAGE POUR SB]
+  [STÉRÉO AVEC SB]
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[___CONTROLES.FR]
+___CONTROLES - Réglages pour contrôles généraux
+   ---------
+
+  (Clavier, joystick, souris)
+
+  [CALIBRER JOYSTICK(0)]
+  [CALIBRER JOYSTICK(1)]
+  [TOUCHES CURSEUR COMME JOYSTICK 0]
+  [LANGUE DU CLAVIER]
+  [SOURIS ACTIVE]
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[___PPI.FR]
+___PPI - Réglages pour le port B du PPI
+   ---
+
+  [NOM DE LA FIRME]
+  [SECTEUR SUR 50 HZ]
+  [SIGNAL D'EXTENSION]
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[___DIVERS.FR]
+___DIVERS - Réglages divers
+   ------
+
+  [AMSDOS DÉSACTIVÉ]
+  [AMSDOS ACCÉLÉRÉ]
+  [MASQUE DE BREAK]
+  [EMS ACTIVE]
+  [LANGUE DE L'AIDE]
+  [DÉRIVATION DE LA CASSETTE]
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[MENU DES REGLAGES.FR]
+Menu des réglages
+-----------------
+
+  Sous-menus :
+
+  [___EMULATION]
+  [___ÉCRAN]
+  [___SON]
+  [___CONTROLES]
+  [___PPI]
+  [___DIVERS]
+
+ 
+
+AMSDOS désactivé                [AMSDOS DÉSACTIVÉ]
+AMSDOS accéléré                 [AMSDOS ACCÉLÉRÉ]
+Masque de Break                 [MASQUE DE BREAK]
+Affichage couleurs              [AFFICHAGE COULEURS]
+Nom de la firme                 [NOM DE LA FIRME]
+Type de CPC                     [TYPE DE CPC]
+Emulation ralentie              [EMULATION RALENTIE]
+Vitesse du Z80                  [VITESSE DU Z80]
+Fréquence des interruptions     [FRÉQUENCE DES INTERRUPTIONS]
+Reprise post-interruption       [REPRISE POST-INTERRUPTION]
+Les touches curseur comme joystick 0 [TOUCHES CURSEUR COMME JOYSTICK 0]
+Langue du clavier               [LANGUE DU CLAVIER]
+Langue de l'aide                [LANGUE DE L'AIDE]
+Souris activée                  [SOURIS ACTIVE]
+Type de souris                  [TYPE DE SOURIS]
+Gestion du multimode            [GESTION DU MULTIMODE]
+Changements de palette          [CHANGEMENTS DE PALETTE]
+Secteur sur 50 Hz               [SECTEUR SUR 50 HZ]
+Signal d'extension PPI          [SIGNAL D'EXTENSION]
+Impressions                     [PRINTER]
+Taille de la RAM                [TAILLE DE LA RAM]
+Temps réel                      [TEMPS RÉEL]
+Temporisation pour SB           [TEMPORISATION POUR SB]
+Autre temporisation pour SB     [AUTRE TEMPORISATION POUR SB]
+Tampon DMA pour SB              [TAMPON DMA POUR SB]
+Taux d'échantillonnage pour SB  [TAUX D'ÉCHANTILLONNAGE POUR SB]
+Offset de l'écran               [OFFSET DE L'ÉCRAN]
+Afficher la configuration       [AFFICHER LA CONFIGURATION]
+Type de carte son               [TYPE DE CARTE SON]
+Son actif                       [SON ACTIF]
+Dérivation de la cassette       [DÉRIVATION DE LA CASSETTE]
+Mode graphique                  [MODE GRAPHIQUE]
+Position de la VSync            [POSITION DE LA VSYNC]
+Charger la configuration        [CHARGER UNE CONFIGURATION]
+Relancer CPCEMU                 [RELANCER CPCEMU]
+Sauve la configuration          [SAUVEGARDER LA CONFIGURATION]
+POKEs pour tricher              [POKES POUR TRICHER]
+Shell vers le DOS               [SHELL VERS LE DOS]
+Continuer                       [CONTINUER]
+
+Voir aussi [FICHIER DE CONFIGURATION].
+[TABLE DES MATIERES]
+#[FICHIER DE CONFIGURATION.FR]
+Fichier de configuration
+------------------------
+
+ENDIF                     [#ENDIF]
+IFCPC                     [#IFCPC]
+AMSDOS_disabled           [AMSDOS DÉSACTIVÉ]
+AMSDOS_speedup            [VITESSE DU Z80]
+Colour_screen             [AFFICHAGE COULEURS]
+Company_name              [NOM DE LA FIRME]
+CPC_Type                  [TYPE DE CPC]
+Data_File                 [FICHIER DE DONNÉES]
+Drive_A                   [LECTEUR A]
+Drive_A_Autostart         [AUTOSTART]
+Drive_A_Side              [SÉLECTIONNER UNE FACE]
+Drive_A_Writeprot         [PROTECTION EN ÉCRITURE]
+Drive_B                   [LECTEUR B]
+Drive_B_Autostart         [AUTOSTART]
+Drive_B_Side              [SÉLECTIONNER UNE FACE]
+Drive_B_Writeprot         [PROTECTION EN ÉCRITURE]
+Help_file                 [FICHIER D'AIDE]
+JOY0_CURSOR_KEYS          [TOUCHES CURSEUR COMME JOYSTICK 0]
+KBD_language              [LANGUE DU CLAVIER]
+Language                  [LANGUE DE L'AIDE]
+M4_enabled           
+M4_SD_PATH           
+M4_SD_MODE           
+Mouse_enabled             [SOURIS ACTIVE]
+Mouse_type                [TYPE DE SOURIS]
+Poke_database             [POKES POUR TRICHER]
+PPI_50Hz                  [SECTEUR SUR 50 HZ]
+PPI_Exp_Signal            [SIGNAL DE L'EXTENSION]
+Printer                   [PRINTER]
+RAM_size                  [TAILLE DE LA RAM]
+RAM_type                  [TYPE D'EXTENSION DE LA RAM]
+Realtime                  [TEMPS RÉEL]
+ROM_block                 [BLOCS DE ROM]
+ROM_path                  [CHEMIN VERS LES ROMS]
+SB_sample_rate            [TAUX D'ÉCHANTILLONNAGE POUR SB]
+Show_configuration        [AFFICHER LA CONFIGURATION]
+Snapshot                  [SNAPSHOT]
+SNA_SIZE                  [TAILLE DU SNAPSHOT]
+Sound enabled             [SON ACTIF]
+Tape_bypass               [DÉRIVATION DE LA CASSETTE]
+Tape_path                 [CHEMIN VERS LA CASSETTE]
+Tmp_path                  [CHEMIN VERS FICHIER TEMPORAIRE]
+Video_mode                [MODE GRAPHIQUE]
+
+Voir aussi [MENU DES REGLAGES].
+[TABLE DES MATIERES]
+#[#ENDIF.FR,#IFCPC.FR]
+-#IFCPC, #ENDIF
+ --------------
+
+  Instructions de contrôle, présentes seulement dans le fichier 
+  CPCEMU.CFG, pour avoir une configuration conditionnelle selon 
+  le CPC désiré :
+                  #IFCPC <type de CPC> ... #ENDIF
+  Par conséquent, vous n'avez besoin que d'un fichier de configuration 
+  pour tous les CPCs.
+  Pour <type de CPC>, voir les valeurs légales à [TYPE DE CPC].
+  Les fichiers batch CPC464.BAT, CPC664.BAT et CPC6128.BAT définissent
+  le type désiré avec les paramètres de la ligne de commande.
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[AMSDOS DÉSACTIVÉ.FR]
+AMSDOS désactivé (0 = non par défaut)
+----------------
+
+  Désactive l'AMSDOS.
+  Utile si vous voulez charger des programmes à partir d'une cassette 
+  sans donner à chaque fois l'instruction "|TAPE".
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[AMSDOS ACCÉLÉRÉ.FR]
+AMSDOS accéléré (1 = oui par défaut)
+---------------
+
+  Modification de la ROM de l'AMSDOS accélérant les accès-disque.
+  Cela est réalisé en minimisant les temps d'attente du moteur, 
+  inutiles pour l'émulateur.
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[MASQUE DE BREAK.FR]
+Masque de Break (3 par défaut)
+---------------
+
+  Réservé au déboguage.
+  b0 = 1 -> affiche les erreurs d'émulation lente du Z80
+  b1 = 1 -> affiche les erreurs d'émulation rapide du z80
+  b2 = 1 -> affiche les erreurs de port
+  Avec 3, les erreurs de port sont ignorées.
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[AFFICHAGE COULEURS.FR]
+Affichage Couleurs/Monochrome (1 = couleurs par défaut)
+-----------------------------
+
+  Emulation d'un écran couleurs (1) ou vert (0) en changeant la palette.
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[NOM DE LA FIRME.FR]
+Nom de la firme (7 = Amstrad par défaut)
+---------------
+
+  Nom de la firme affiché sur l'écran de présentation.
+  0 = Isp
+  1 = Triumph
+  2 = Saisho
+  3 = Solavox
+  4 = Awa
+  5 = Schneider
+  6 = Orion
+  7 = Amstrad
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[TYPE DE CPC.FR]
+Type de CPC (0 à 6)
+-----------
+
+  Définit le type de CPC désiré.
+  0 = CPC 464
+  1 = CPC 664
+  2 = CPC 6128
+  3 = CPC 464+ (?)
+  4 = CPC 6128+ (?)
+  5 = KC compact (CPC 6128)
+  6 = inconnu
+  Pour utiliser les types 3, 4 ou 5, vous devez vous procurer les images
+  de ROM et les mentionner dans CPCEMU.CFG.
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[FICHIER DE DONNÉES.FR.UK]
+Fichier de données
+------------------
+  Le mot-clé DATA_FILE n'est employé que dans le fichier de configuration
+  CPCEMU.CFG, sur la ligne :
+
+            DATA_FILE = "<chemin+nom_de_fichier>" (".\CPCEMU.DAT")
+
+  Il prescrit le fichier de données pour CPCEMU.
+
+[MENU DES REGLAGES]
+#[LECTEUR A.FR]
+Lecteur A
+---------
+
+  Le mot-clé DRIVE_A est utilisé dans le fichier de configuration, sur
+  la ligne :
+
+              DRIVE_A = "<path+filename>"
+
+  Il définit le chemin vers les images de disquettes.
+  Si vous employez un nom de fichier, cette disquette est 
+  automatiquement "insérée" dans le lecteur A.
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[LECTEUR B.FR]
+Lecteur B
+---------
+
+  Le mot-clé DRIVE_B est utilisé dans le fichier de configuration, sur
+  la ligne :
+
+              DRIVE_B = "<path+filename>"
+  
+  Comme pour [DRIVE_A], mais avec le lecteur B.
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[EMS ACTIVE.FR]
+EMS activée (1 = oui par défaut)
+-----------
+  
+  Active la mémoire EMS (Expanded Memory System).
+  Absolument recommandée pour obtenir une émulation rapide.
+  Sinon, la mémoire conventionnelle est utilisée.
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[EMULATION RALENTIE.FR]
+Emulation ralentie (1 par défaut)
+------------------
+
+  Ralentit l'émulation en établissant un délai.
+    0   = aucun délai
+    100 = quelque délai
+    ...
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[VITESSE DU Z80.FR]
+Vitesse de l'émulation du Z80 (1 = rapide par défaut)
+-----------------------------
+
+    0   = émulation lente du Z80
+    1   = émulation rapide du Z80
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[HELP_FILE.FR]
+HELP_FILE
+---------
+
+  Mot-clé présent seulement dans CPCEMU.CFG, sur la ligne :
+        HELP_FILE = "<path+filename>" (".\CPCEMU.HLP")
+  Définit le fichier d'aide.
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[FRÉQUENCE DES INTERRUPTIONS.FR]
+Fréquence des interruptions (300 par défaut)
+---------------------------
+ 
+  Fréquence de génération des interruptions. Sur un vrai CPC, les
+  programmes qui tournent sont interrompus 300 fois par seconde.
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[REPRISE POST-INTERRUPTION.FR]
+Reprise après une interruption (1 = oui par défaut)
+------------------------------
+
+  Reprend les interruptions "oubliées".
+  Impossible sans EMS, car le déplacement des blocs de mémoire
+  prend trop de temps.
+
+  Note :
+  Il semble que CP/M Plus ne marche qu'avec EMS et cette option
+  mise à 0 !
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[CALIBRER JOYSTICK(0).FR]
+Calibrage du joystick(0)
+------------------------
+
+  Les joysticks analogiques du PC doivent être calibrés.
+  Si deux joysticks sont connectés, il faudra calibrer
+  le second avec [CALIBRER JOYSTICK(1)].
+  Si vous voulez réutiliser votre joystick, notez les paramètres 
+  et écrivez-les dans le fichier de configuration.
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[CALIBRER JOYSTICK(1).FR]
+Calibrage du joysctick(1)
+-------------------------
+
+  Comme pour [CALIBRER JOYSTICK(0)], mais avec le second joystick.
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[TOUCHES CURSEUR COMME JOYSTICK 0.FR]
+Les touches curseur comme joystick (0)
+JOY0_CURSOR_KEYS = 0,1,2
+--------------------------------------
+
+  0: Éteint.
+  1: Les touches curseur agissent comme le premier joystick.
+  2: Le joystick à l'écran agit comme les touches curseur et
+     le bouton de tir agit comme COPY (seulement en Android et iOS).
+
+[MENU DES REGLAGES]
+[FICHIER DE CONFIGURATION]
+#[LANGUE DU CLAVIER.FR]
+Langue du clavier (0 = anglais par défaut)
+-----------------
+
+  Disposition du clavier pour les différents pays.
+  0 = UK (clavier anglais)
+  1 = GR (clavier "presque allemand")
+      Malheureusement, il est impossible d'avoir un vrai clavier allemand.
+  2 = FR (clavier "presque français". A ne pas utiliser. Pour un vrai
+      clavier français, sortir de CPCEMU et lire le texte "COCORICO.TXT").
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[LANGUE DE L'AIDE.FR]
+Langue de l'aide (0 = anglais par défaut)
+----------------
+
+  Langue pour les messages d'aide.
+    0=UK (anglais)
+    1=GR (allemand)
+    2=FR (français)
+    3=SP (espagnol)
+
+  Changez de langue avec [SELECTION DE LA LANGUE].
+  Voir aussi : [LANGUE DU CLAVIER]
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[SOURIS ACTIVE.FR]
+Souris activée (1 = oui par défaut)
+--------------
+
+  Active l'utilisation de la souris dans les menus.
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[TYPE DE SOURIS.FR]
+MOUSE_TYPE (0)
+  Active la souris du CPC et fixe sa type:
+  0 = éteinte (Joystick)
+  1 = AMX
+  2 = Reisware/Gerdes
+  3 = Symbiface II (PS/2)
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[GESTION DU MULTIMODE.FR]
+Gestion du multimode (0 = non par défaut)
+--------------------
+
+  Utile pour les programmes qui utilisent plusieurs modes graphiques
+  simultanément.
+  CPCEMU essaie de gérer correctement le multimode.
+  Par défaut, cette option est déconnectée, parce qu'elle ne fonctionne
+  pas très bien dans tous les cas.
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[CHANGEMENTS DE PALETTE.FR]
+Changements de palette (1 = oui par défaut)
+----------------------
+    
+  Permet de changer la palette des couleurs.
+  Si certains jeux provoquent un clignotement, mettez cette option 
+  sur 0 : les changements de palette seront supprimés.
+  L'option est remise à 1 lors d'un reset avec la touche F8.
+  Suggestion : si les couleurs sont complètement fausses, essayez
+  d'appuyer deux fois de suite sur la touche F2.
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[SECTEUR SUR 50 HZ.FR]
+Secteur sur 50HZ (1)
+----------------
+
+  Le CPC peut fonctionner avec le courant alternatif du secteur, 
+  selon les fréquences de :
+    0 - 60 Hz
+        ou
+    1 - 50 Hz (par défaut en Allemagne, en France, etc.)
+  Durant un reset, le bit 4 du port B sur le PPI est vérifié, 
+  et le CRTC est initialisé convenablement.
+  Laissez ce bit sur 50 Hz.
+  Voyez aussi [SIGNAL D'EXTENSION]
+  et [NOM DE LA FIRME].
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[SIGNAL D'EXTENSION.FR]
+Signal d'extension (1)
+------------------
+
+  Quelques cartes d'extension positionnent ce signal.
+  Sur le CPC 464, il est positionné si un lecteur de disquettes
+  est connecté.
+  Sur un CPC 6128, il est toujours positionné.
+  Voyez également [SECTEUR SUR 50 HZ]
+  et [NOM DE LA FIRME].
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[PRINTER.FR]
+PRINTER
+-------
+
+  Mot-clé du fichier de configuration, sur la ligne :
+             PRINTER = "<path+filename>"
+  On définit ici un fichier d'impression pour recevoir les sorties 
+  sur imprimante, toujours différées avec CPCEMU.
+  Il est effacé à chaque redémarrage de CPCEMU.
+  Après avoir quitté l'émulateur, vous pouvez l'envoyer sur votre
+  imprimante avec "COPY <nom_de_fichier> prn:", ou en utilisant EDIT.
+
+  Autre méthode :
+     - dans le fichier de configuration CPCEMU.CFG, mettre la ligne :
+                          PRINTER="prn"
+     - dès que vous quitterez CPCEMU, l'impression commencera
+       automatiquement... à condition que votre imprimante soit prête.
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[TAILLE DE LA RAM.FR]
+Taille de la RAM (64 ou 128)
+----------------
+
+  Taille (en kilo-octets) de la RAM en pas de 64 ko.
+  Valeurs possibles :
+  - 64 à 4160 avec l'extension dk'tronics/Jarek
+  - 64 à 576 avec l'extension Vortex
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[TYPE D'EXTENSION DE LA RAM.FR]
+RAM_TYPE (0)
+  Type d'extension de la RAM.
+  Valeurs possible :
+  0 : type dk'tronics/Jarek
+  1 : type Vortex
+
+[SETUP MENU]
+[CONFIGURATION FILE]
+#[TEMPS RÉEL.FR]
+Temps réel (0 = non par défaut)
+----------
+
+  Choix entre CPC en temps réel ou CPC le plus rapide possible.
+  Le mode "temps réel" compte les cycles d'instruction et insère
+  des délais d'attente pour ralentir l'émulation, si elle se révèle
+  trop rapide comparée à l'original.
+  Utile seulement à partir du 486DX2/66.
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[ROM_BLOCK.FR]
+ROM_BLOCK
+---------
+
+  N'existe que dans le fichier de configuration CPCEMU.CFG, à la ligne :
+     ROM_BLOCK <ROM_number>, "<filename>", <ROM_position>
+  Décrit quelle ROM doit être chargée, et à quelle place.
+  - <ROM_number> est le numéro d'ordre assigné à la ROM.
+     0       : ROM de premier plan (par exemple l'interpréteur BASIC)
+     1 - 251 : ROMs d'arrière-plan (par exemple : AMSDOS = 7)
+         255 : ROM basse.
+  - <filename> est le fichier contenant la copie de la ROM dans
+           le sous-répertoire [ROM_PATH].
+
+  - <ROM_position> est 0 pour la première ROM. Si un fichier contient 
+           plus d'une ROM, c'est la position désirée : 0, 1, 2,...
+        ROM_BLOCK = 255, "CPC6128.ROM", 0
+        ROM_BLOCK = 0  , "CPC6128.ROM", 1
+    La ROM basse et la ROM de premier plan sont chargées l'une après
+    l'autre à partir du même fichier.
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[ROM_PATH.FR]
+ROM_PATH
+--------
+  N'existe que dans le fichier de configuration CPCEMU.CFG, à la ligne :
+                ROM_PATH = "<path>" (".\ROM")
+  Définit le chemin vers les images de ROM.
+  Les ROMs elles-mêmes sont définies avec [ROM_BLOCK].
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[TEMPORISATION POUR SB.FR]
+Temporisation pour SB (35 par défaut)
+---------------------
+
+  Temporisation pour une carte Soundblaster.
+  C'est la valeur du délai après chaque accès en écriture
+  sur la carte son. Pour accélérer la sortie du son, vous pouvez
+  essayer 0, mais cela ne fonctionne pas avec toutes les cartes.
+  Voir aussi : [AUTRE TEMPORISATION POUR SB]
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[AUTRE TEMPORISATION POUR SB.FR]
+Autre temporisation pour SB (6 par défaut)
+---------------------------  
+
+  Un autre délai pour la carte Soundblaster.
+  Vous ne devriez pas le modifier.
+  Voir aussi : [TEMPORISATION POUR SB]
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[TAMPON DMA POUR SB.FR]
+Tampon DMA pour SoundBlaster (128)
+----------------------------
+
+  Fixe la taille du tampon DMA pour les sons numériques SoundBlaster.
+  Valeurs comprises entre 8 et 255.
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[TAUX D'ÉCHANTILLONNAGE POUR SB.FR]
+Taux d'échantillonnage pour SoundBlaster (0)
+----------------------------------------
+
+  Fixe le taux d'échantillonnage pour les sons numériques Soundblaster.
+  Valeurs admises :
+  
+         0 pour 22kHz
+         1 pour 44kHz
+         2 pour 48kHz
+         3 pour 62,5kHz
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[STÉRÉO AVEC SB.FR]
+Stéréo avec SoundBlaster (0)
+------------------------
+
+  Initialise le drapeau stéréo.
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[OFFSET DE L'ÉCRAN.FR]
+Offset de l'écran (0 par défaut)
+-----------------
+
+  Nombre de lignes de texte dont l'écran du CPC peut être déplacé
+  (dans le sens vertical). Vous aurez le même effet en appuyant sur
+  <PagePréc> et <PageSuiv>.
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[AFFICHER LA CONFIGURATION.FR]
+SHOW_CONFIG (1 = oui par défaut)
+-----------
+
+  Mot-clé n'existant que dans le fichier de configuration CPCEMU.CFG.
+  Permet l'affichage d'un aperçu de la configuration lors du 
+  lancement de l'émulateur.
+  Cet affichage étant très fugitif, on peut en lire le contenu
+  si on le redirige vers un fichier-texte, avec "CPCEMU >texte".
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[SNAPSHOT.FR]
+SNAPSHOT
+--------
+  La ligne suivante se trouve dans le fichier de configuration :
+            SNAPSHOT = "<path+ filename>" (".\SNAP")
+  Elle définit le chemin d'accès aux snapshots.
+  Si vous spécifiez un fichier de snapshot, il démarre automatiquement.
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[TYPE DE CARTE SON.FR]
+Périphérique de son (1 ou périphérique maximal)
+-------------------
+
+  Définit le périphérique produisant le son :
+  0 = aucun
+  1 = haut-parleur du PC
+  2 = Adlib (ou Soundblaster ... stéréo avec OPL3)
+  3 = Soundblaster (Pro), merci à Ulrich Doewich
+  4 = GUS (Gravis Ultrasound), merci à Ulrich Doewich
+
+  Assurez-vous d'avoir activé la sortie du son avec [SON ACTIF] !
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[SON ACTIF.FR]
+Son actif (1 = oui par défaut)
+---------
+
+  Active la production de son.
+  C'est aussi réalisable avec F4. Voir [TOUCHES DE FONCTION].
+  Sélectionnez le périphérique de sortie du son avec [TYPE DE CARTE SON].
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[DÉRIVATION DE LA CASSETTE.FR]
+Dérivation de la "cassette" (1 = oui par défaut)
+-------------------------
+
+  Nécessaire si vous désirez utiliser la "cassette".
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[TAPE_PATH.FR]
+TAPE_PATH
+---------
+
+  Mot-clé utilisé seulement dans le fichier de configuration,
+  sur la ligne :
+                TAPE_PATH = "<path>" (".\TAPE")
+  Chemin d'accès aux fichiers "cassette".
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[TMP_PATH.FR]
+TMP_PATH 
+--------
+
+  Mot-clé utilisé seulement dans le fichier de configuration,
+  sur la ligne :
+                 TMP_PATH = "<path>" (".\TMP")
+  Chemin d'accès aux fichiers temporaires.
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[MODE GRAPHIQUE.FR]
+Mode graphique (0 par défaut)
+--------------
+
+  Définit le mode graphique de la carte VGA.
+  0 = 640x200x16 (par défaut)
+  1 = 640x350x16
+  2 = 640x480x16
+  et si vous avez un BIOS VESA, le plus souvent :
+  3 = 800x600x16
+  4 = 1024x768x16
+  5 = 1280x1024x16
+  ...
+
+  ATTENTION :
+  N'utilisez les modes supérieurs ou égaux à 3 que si votre moniteur
+  peut les supporter !
+  S'il produit des bruits étranges, éteignez-le immédiatement !
+  (Mais cela ne devrait arriver qu'avec de très vieux moniteurs).
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[POSITION DE LA VSYNC.FR]
+Position de la VSync (5)
+--------------------
+
+  Position de la synchronisation verticale.
+  Avec l'émulateur, le bit VSYNC est mis sur 1 durant l'intervalle
+  d'une interruption.
+  Il y a 6 interruptions pendant un cycle de balayage de l'écran, 
+  de sorte que les valeurs possibles vont de 0 à 5.
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[CHARGER UNE CONFIGURATION.FR]
+Charger une configuration
+-------------------------
+
+  Charge un fichier de configuration autre que CPCEMU.CFG, s'il a
+  été sauvegardé auparavant avec [SAUVEGARDER LA CONFIGURATION].
+  Certains paramètres peuvent n'avoir aucun effet jusqu'à ce que
+  vous sélectionniez [RELANCER CPCEMU].
+  La commande "CPCEMU -c <autre_fichier_de_configuration>" relancera 
+  CPCEMU avec cette autre configuration.
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[RELANCER CPCEMU.FR]
+Relancer l'émulation
+--------------------
+
+  Après avoir chargé une configuration avec [CHARGER UNE CONFIGURATION], 
+  vous pouvez relancer l'émulation avec les nouvelles valeurs.
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[SAUVEGARDER LA CONFIGURATION.FR]
+Sauvegarder la configuration
+----------------------------
+
+  Sauvegarde la configuration courante pour la réutiliser ensuite.
+  Notez que vous ne pouvez pas écraser le fichier originel 
+  de configuration CPCEMU.CFG. Il faudra positionner le curseur
+  sur la ligne <FREE> et donner un nom différent.
+  Voir aussi : [CHARGER UNE CONFIGURATION].   
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[POKES POUR TRICHER.FR]
+Base de données de POKEs
+------------------------
+
+  Base de données de POKEs pour avoir des vies infinies,
+  ou autres trucs permettant de tricher dans les jeux.
+  Il vous est possible d'étendre la liste (CPCEMU.DBF) avec
+  vos propres POKEs. Lire la documentation pour davantage
+  de détails.
+
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[SHELL VERS LE DOS.FR]
+Shell vers le DOS
+-----------------
+
+  Ouvre une porte vers le DOS avec davantage de mémoire : des parties 
+  entières de CPCEMU sont automatiquement commutées en mémoire supérieure
+  pour libérer la mémoire conventionnelle.
+  Vous quitterez le Shell avec "EXIT".
+  
+[MENU DES REGLAGES]
+[TABLE DES MATIERES]
+#[CONTINUER.FR]
+Continuer avec l'émulation
+--------------------------
+
+  Prend en compte les valeurs modifiées, et retourne à l'émulation.
+  Vous obtiendrez le même effet en appuyant sur <RETURN> dans
+  n'importe quelle ligne comportant une valeur.
+
+[MENU DES REGLAGES]        
+[TABLE DES MATIERES]
+#[MENU DISQUETTE.FR]
+Menu disquette
+--------------
+
+  [INSÉRER UNE DISQUETTE]
+  [NUMÉRO DE LECTEUR]
+  [SÉLECTIONNER UNE FACE]
+  [PROTECTION EN ÉCRITURE]
+  [AUTOSTART]
+
+[TABLE DES MATIERES]
+#[INSÉRER UNE DISQUETTE.FR]
+Insérer une disquette
+---------------------
+
+  Sélectionne une image de disquette avec [SELECTION DE FICHIER]. 
+  La face insérée est choisie avec [SÉLECTIONNER UNE FACE]
+  et le lecteur avec [NUMÉRO DE LECTEUR].
+  La disquette peut être protégée avec [PROTECTION EN ÉCRITURE].
+
+[MENU DISQUETTE]
+[TABLE DES MATIERES]
+#[NUMÉRO DE LECTEUR.FR]
+Numéro de lecteur
+-----------------
+
+  La disquette est insérée dans le lecteur indiqué.
+
+[MENU DISQUETTE]
+[TABLE DES MATIERES]
+#[SÉLECTIONNER UNE FACE.FR]
+Sélectionner une face
+---------------------
+
+  Pour les disquettes double face, on peut aussi insérer
+  la face B (1).
+
+[MENU DISQUETTE]
+[TABLE DES MATIERES]
+#[PROTECTION EN ÉCRITURE.FR]
+Protection en écriture
+----------------------
+
+  L'image de disquette est insérée comme étant protégée en écriture,
+  donc en lecture seule. Option spécialement utile si l'image de
+  disquette est sur un support qu'on ne peut que lire (par exemple,
+  un CD-ROM). Option valable sur les lecteurs A et B.
+
+[MENU DISQUETTE]
+#[AUTOSTART.FR]
+Autostart
+---------
+
+  Avec cette option mise sur 1, lorsque vous insérez une image de
+  disquette, le premier programme en Basic est lancé automatiquement.
+  Si un programme DISC.BAS est présent, c'est lui qui est lancé.
+  Vous pouvez utiliser la commande ùDIR de l'AMSDOS (plutôt que CAT)
+  pour voir le premier programme en Basic.
+     
+[MENU DISQUETTE]
+[TABLE DES MATIERES]
+#[CHARGER UN SNAPSHOT.FR]
+Charger un snapshot
+-------------------
+
+  Charge un snapshot sauvegardé par [SAUVEGARDER UN SNAPSHOT].
+
+[TABLE DES MATIERES]
+#[SAUVEGARDER UN SNAPSHOT.FR]
+Sauvegarder un snapshot
+-----------------------
+
+  Sauvegarde la configuration complète du CPC émulé. Ce qui inclut 
+  les registres du Z80, la mémoire, etc.
+  Avec [TAILLE DU SNAPSHOT], une sauvegarde de 128 K de mémoire ou
+  meme de la taille de toute la memoire est effectuée, au lieu de 64 K.
+  Voir aussi : [TAILLE DU SNAPSHOT]
+
+[TABLE DES MATIERES]
+#[TAILLE DU SNAPSHOT.FR]
+Taille du Snapshot (0)
+------------------------
+SNA_SIZE = 0,1,2
+  
+  0: Fixe le format du snapshot à 64 K.
+  1: Fixe le format du snapshot à 128 K.
+  2: Fixe le format du snapshot à la taille de toute la mémoire du CPC.
+  On sauvegarde un snapshot avec [SAUVEGARDER UN SNAPSHOT].
+
+[FICHIER DE CONFIGURATION]
+[TABLE DES MATIERES]
+#[SELECTION DE FICHIER.FR]
+Sélection de fichier
+--------------------
+
+  Avec le clavier :
+  - <Début> = premier fichier
+  - <Fin> = dernier fichier
+  - <PagePréc/Suiv> : faire défiler les pages
+  - <RETURN> : prend en compte le nom choisi
+  - <Esc> : sortie du menu sans choix
+  Premières lettres = le curseur va directement au nom
+
+  Avec la souris :
+  bouton gauche  = sélectionne
+  bouton droit = déplacement seul (acceptation avec "[ok]")
+  "[]" = <PagePréc>
+  "[]" = <PageSuiv> (s'il y a encore des noms de fichiers)
+  "[<]" = <Curseur à gauche>
+  "[>]" = <Curseur à droite>
+  "[ok]" = <Return>
+  "[help]" = F1 (affiche l'aide)
+  "[İ]" = <Esc>
+
+  ".." = répertoire parent
+  "[A]", "[B]", ... = lecteurs disponibles
+
+  "*.ZIP" = archives ZIP, affichées comme sous-répertoires.
+  Les fichiers sélectionnés sont automatiquement décompressés.
+  (Nécessite PKUNZIP dans le chemin du DOS, ou dans le sous-répertoire
+  de CPCEMU.)
+
+
+
+  La sélection de fichiers est utilisée pour
+    [MENU DISQUETTE]
+    [CHARGER UN SNAPSHOT]
+    [SAUVEGARDER UN SNAPSHOT]
+    Charger Une Cassette
+    Sauvegarder sur Cassette
+    Catalogue
+    [CHARGER UNE CONFIGURATION]
+    [SAUVEGARDER LA CONFIGURATION]
+
+[TABLE DES MATIERES]
+#[DISPOSITION DU CLAVIER.FR]
+Disposition du clavier
+----------------------
+
+Le clavier français du PC, tel qu'il est utilisé par CPCEMU :
+
+-----   ----------------- ----------------- ----------------- -------------
+|ESC|   |HLP|TRB|DSK|SND| |LOA|SAV|SET|RST| |HLT|DBG|WIN|EXI| |   |   |PAU|
+-----   ----------------- ----------------- ----------------- -------------
+------------------------------------------------------------- ------------- -----------------
+|   |1 !|2 "|3 #|4 $|5 %|6 &|7 '|8 (|9 )|0 _|- =|^ £|  DEL  | |INS|HOM|PGU| |JOY|/ ?|   |- =|
+|-----------------------------------------------------------| |-----------| |---------------|
+|TAB  | A | Z | E | R | T | Y | U | I | O | P |@ ||[ {|  R  | |CLR|END|PGD| | 7 | 8 | 9 | ; |
+|------------------------------------------------------- E  | ------------- |-----------|   |
+|CAPS  | Q | S | D | F | G | H | J | K | L | M |; -|] }| T  |               | 4 | 5 | 6 | - |
+|-----------------------------------------------------------|     -----     |---------------|
+|SHFT|\ `| W | X | C | V | B | N |, <|: *|. >|/ ?|   SHFT   |     |UP |     | 1 | 2 | 3 | E |
+|-----------------------------------------------------------| ------------- |-----------| N |
+|CTRL |   |COPY |      S  P  A  C  E       |COPY |    |CTRL | |LF |DW |RG | |   0   | . | T |
+-------   ----------------------------------------    ------- ------------- -----------------
+
+(£ = 156)
+
+[CLAVIER FRANÇAIS]
+[TABLE DES MATIERES]
+#[CLAVIER FRANÇAIS.FR]
+Le clavier français du PC
+-------------------------
+
+-----   ----------------- ----------------- ----------------- -------------
+|ESC|   |F1 |F2 |F3 |F4 | |F5 |F6 |F7 |F8 | |F9 |F10|F11|F12| |PSC|SCL|PAU|
+-----   ----------------- ----------------- ----------------- -------------
+------------------------------------------------------------- ------------- -----------------
+|²  |& 1|é 2|" 3|' 4|( 5|- 6|è 7|_ 8|ç 9|à 0|) °|= -|BACKSPC| |INS|HOM|PGU| |NUM| / | * | - |
+|-----------------------------------------------------------| |-----------| |---------------|
+|TAB  | A | Z | E | R | T | Y | U | I | O | P |^ —|$ £|  R  | |DEL|END|PGD| | 7 | 8 | 9 |   |
+|------------------------------------------------------| E  | ------------- |-----------| - |
+|CAPS  | Q | S | D | F | G | H | J | K | L | M |ù %|* µ| T  |               | 4 | 5 | 6 |   |
+|-----------------------------------------------------------|     -----     |---------------|
+|SHFT|< >| W | X | C | V | B | N |, ?|; .|: /|!  |   SHFT   |     |UP |     | 1 | 2 | 3 | E |
+|-----------------------------------------------------------| ------------- |-----------| N |
+|CTRL |   | ALT |      S  P  A  C  E       |ALTGR|    |CTRL | |LF |DW |RG | |   0   | . | T |
+-------   ----------------------------------------    ------- ------------- -----------------
+
+(é = 130 ; à = 133 ; ç = 135 ; è = 138 ; ù = 151 ; µ = 230 ; £ = 156 ; ² = 252)
+
+Le clavier français du CPC :
+
+-------------------------------------------------------------------------
+|ESC|& 1|é 2|" 3|' 4|( 5|] 6|è 7|! 8|ç 9|à 0|) [|- _|CLR|DEL|f7 |f8 |f9 |
+|-----------------------------------------------------------------------|
+|TAB  | A | Z | E | R | T | Y | U | I | O | P |^ ||* <| RET |f4 |f5 |f6 |
+|------------------------------------------------------|    |-----------|
+|CAPS  | Q | S | D | F | G | H | J | K | L | M |ù %|# >|    |f1 |f2 |f3 |
+|-----------------------------------------------------------------------|
+|SHIFT   | W | X | C | V | B | N |, ?|. ;|: /|- =|$ à|SHIFT |f0 |UP | . |
+|-----------------------------------------------------------------------|
+|CONTROL | COPY |         S  P  A  C  E         |   ENTER   |LE |DW |RI |
+-------------------------------------------------------------------------
+
+(à = 64 ; ç = 92 ; é = 123 ; ù = 124 ; è = 125)
+
+[TABLE DES MATIERES]
+#[A PROPOS DE L'AIDE.FR]
+A propos de l'aide
+------------------
+
+  Le fichier CPCEMU.HLP contient une aide en ligne en quatre langues :
+  UK - Anglais
+  GR - Allemand
+  FR - Français
+  SP - Espagnol
+
+  Une RUBRIQUE dans la langue "LL" est précédée par "#[RUBRIQUE.LL]" dans
+  la première colonne d'une ligne. Notez que vous devez utiliser des
+  majuscules pour les titres des rubriques. Avec la version 1.5, les
+  majuscules accentuées sont autorisées.
+  Il est aussi possible d'avoir une rubrique en plusieurs langues, par
+  exemple "#[RUBRIQUE.UK,RUBRIQUE.GR]".
+
+  Les références sont simplement écrites "[Référence]". On peut y mêler
+  majuscules et minuscules. Si elles ne sont pas encadrées par des
+  guillemets, vous pouvez cliquer dessus et avoir une rubrique "à suivre".
+  Ctte rubrique à suivre est trouvée en cherchant, dans le fichier
+  d'aide, la rubrique "REFERENCE.LL" (avec "LL" désignant toujours
+  la langue sélectionnée). Si aucune "REFERENCE.LL" n'est trouvée,
+  la première "REFERENCE.xx" est adoptée (normalement, xx=UK). Si celle-ci
+  n'existe pas non plus, le message d'erreur "Topic not found" apparaît.
+  S'il y a plus d'une référence sur la même ligne, c'est la première
+  qui est choisie.
+
+  Les rubriques pré-définies [ENGLISH], [GERMAN], [FRENCH] et [SPANISH]
+  permettent de sélectionner une langue.
+
+  Davantage de références se trouvent dans le fichier CPCEMU.MSG.
+
+[TABLE DES MATIERES]
+#[INTRODUCCIóN.SP]
+   ıııııı¤ ıııııııı¤¤     ıııııı¤  ıııııııı¤  ıııı    ıııı¤¤  ıı¤¤     ıı¤¤
+ ıı¤¤¤¤¤¤  ıı¤¤¤¤¤ıı¤¤  ıı¤¤¤¤¤¤   ıı¤¤¤¤¤¤   ıı¤ıı  ıı¤ıı¤¤  ıı¤¤     ıı¤¤
+ıı¤¤       ıı¤¤   ıı¤¤ ıı¤¤        ıı¤¤¤      ıı¤¤ ıı¤¤ ıı¤¤  ıı¤¤     ıı¤¤
+ıı¤¤       ıııııııı¤¤  ıı¤¤        ıııııııı¤  ıı¤¤ ¤¤¤  ıı¤¤  ıı¤¤     ıı¤¤
+ıı¤¤       ıı¤¤¤¤¤¤    ıı¤¤        ıı¤¤¤¤¤¤   ıı¤¤      ıı¤¤  ıı¤¤     ıı¤¤
+ ıı¤¤      ıı¤¤         ıı¤¤       ıı¤¤       ıı¤¤      ıı¤¤  ıı¤¤     ıı¤¤
+   ıııııı¤ ıı¤¤          ıııııı¤   ıııııııı¤  ıı¤¤      ıı¤¤   ııııııııı¤¤
+   ¤¤¤¤¤¤¤ ¤¤¤¤           ¤¤¤¤¤¤¤  ¤¤¤¤¤¤¤¤¤  ¤¤¤¤      ¤¤¤¤   ¤¤¤¤¤¤¤¤¤¤
+
+                                                          A Y U D A v2.4
+
+  Para moverte por la ayuda utiliza un ratón o las teclas siguientes:
+    <Re Pág, Av Pág> para moverte por páginas
+    <Inicio>, <Fin>, para ir al principio y al final
+    <Cursor arriba, abajo>, para moverte arriba y abajo una línea
+    <Cursor izquierda, derecha>, para mover la página horizontalmente
+    <INTRO> para seleccionar un tema, y
+    <ESC> para salir. Sólo Puedes seleccionar líneas que tengan [Corchetes].
+
+  Selecciona [Seleccionar Idioma] para cambiar el idioma.
+  [Tabla de Contenidos]
+#[CORCHETES.SP]
+Corchetes
+  Como puedes ver, ¡funciona!
+  
+Volver a la [Introducción].
+#[SELECCIONAR IDIOMA.SP]
+Seleccionar Idioma
+==================  
+
+  [ENGLISH] (Inglés)
+  [GERMAN]  (Alemán)
+  [FRENCH]  (Francés)
+  [SPANISH] (Español)
+
+  También puede cambiar el idioma en el [Menú de Configuración]
+  y en [Idioma].
+#[TABLA DE CONTENIDOS.SP]
+Tabla de Contenidos
+===================  
+  
+  - [Introducción]
+  - [Teclas de Función]
+  - [Menú de Configuración]
+  - [Fichero de Configuración]
+  - [Menú de Disco]
+  - [Esquemas de Teclado]
+  - [Seleccionar Idioma]
+  - ...
+  - [Acerca de la Ayuda]
+#[TECLAS DE FUNCIóN.SP]
+Teclas de función
+=================
+
+ F1  Ayuda [Introducción]
+ Shift+F1  Llamada al "hack menu" (o a la NMIROM)
+ F2  Cambiar entre emulacion a tiempo real e FPS ilimitados
+ Shift+F2  Cambiar entre las velocidads de CPU 1x, 3x and 24x
+ F3  [Insertar Disco]
+ F4  Activa y desactiva el sonido [Sonido Activado]
+ Shift+F4  Cambiar las teclas de cursor como joystick 0
+ F5  [Cargar Snapshot] (volcado de memoria)
+ F6  [Guardar Snapshot]
+ F7  [Menú de Configuración]
+ F8  Resetear CPC
+ F9  Detiene el CPC (hasta un clic de ratón)
+ F10 Menú de Depuración
+ F11 Toggle fullscreen mode
+ F12 Salir de CPCEMU
+
+Otras teclas:
+ - ALT a la izquierda: COPY en el CPC
+
+ - Teclado numérico: Simula el Joystick 0 si "Bloq-Num" esta desactivado,
+    de lo contrario simula las teclas de función del CPC.
+
+#[___EMULACIóN.SP]
+___Emulación - Opciones para controlar la emulación
+  [Retardo Emulación]
+  [Velocidad Emulación]
+  [Frecuencia Interrupción]
+  [Reanudar Interrupción]
+  [Tiempo Real]
+
+[Menú de Configuración]
+#[___PANTALLA.SP]
+___Pantalla - Opciones para controlar la pantalla
+  [Monitor Color]
+  [Actualizar Multimodo]
+  [Cambio Paleta]
+  [Desplazar Pantalla]
+  [Modo Video]
+  [Posición VSYNC]
+
+[Menú de Configuración]
+#[___SONIDO.SP]
+___Sonido - Opciones para controlar el sonido
+  [Sonido Activado]
+  [Dispositivo Sonido]
+  [Retardo SB]
+  [Retardo0 SB]
+  [Buffer DMA SB]
+  [Vel Muestreo SB]
+  [SB Estéreo]
+
+[Menú de Configuración]
+#[___CONTROL.SP]
+___Control - Opciones para los dispositivos de entrada
+  (teclado, joystick, ratón)
+  [Calibrar JOY0]
+  [Calibrar JOY1]
+  [Teclas de cursor como Joystick 0]
+  [Idioma Teclado]
+  [Ratón Activado]
+
+[Menú de Configuración]
+#[___OPCIONES PPI.SP]
+___PPI - Opciones para el Puerto B del PPI 
+  [Fabricante]
+  [PPI 50Hz]
+  [PPI Señal Expansión]
+
+[Menú de Configuración]
+#[___MISCELáNEA.SP]
+___Miscelánea - Opciones varias
+  [AMSDOS Desactivado]
+  [AMSDOS Acelerado]
+  [Máscara Ruptura]
+  [EMS Activada]
+  [Idioma]
+  [Desvío Cinta]
+
+[Menú de Configuración]
+#[MENú DE CONFIGURACIóN.SP]
+Menú de Configuración
+=====================
+
+  Submenus:
+  [___Emulación]
+  [___Pantalla]
+  [___Sonido]
+  [___Control]
+  [___Opciones PPI]
+  [___Miscelánea]
+
+AMSDOS Desactivado      [AMSDOS Desactivado]
+AMSDOS Acelerado        [AMSDOS Acelerado]
+Máscara Ruptura         [Máscara Ruptura]
+Monitor Color           [Monitor Color]
+Fabricante              [Fabricante]
+Modelo CPC              [Modelo CPC]
+Retardo Emulación       [Retardo Emulación]
+Velocidad Emulación     [Velocidad Emulación]
+Frecuencia Interrupción [Frecuencia Interrupción]
+Reanudar Interrupción   [Reanudar Interrupción]
+Teclas de cursor como Joystick 0 [Teclas de cursor como Joystick 0]
+Idioma Teclado          [Idioma Teclado]
+Idioma                  [Idioma]
+Tipo Ratón              [Tipo Ratón]
+Ratón Activado          [Ratón Activado]
+Actualizar Multimodo    [Actualizar Multimodo]
+Cambio Paleta           [Cambio Paleta]
+PPI 50Hz                [PPI 50Hz]
+PPI Señal Expansión     [PPI Señal Expansión]
+Tamaño RAM              [Tamaño RAM]
+Tipo de ampliación de la RAM [Tipo de ampliación de la RAM]
+Tiempo Real             [Tiempo Real]
+Retardo SB              [Retardo SB]
+Retardo0 SB             [Retardo0 SB]
+Buffer DMA SB           [Buffer DMA SB]
+Vel Muestreo SB         [Vel Muestreo SB]
+SB Estéreo              [SB Estéreo]
+Desplazar Pantalla      [Desplazar Pantalla]
+Mostrar Configuración   [Mostrar Configuración]
+Dispositivo Sonido      [Dispositivo Sonido]
+Sonido Activado         [Sonido Activado]
+Desvío Cinta            [Desvío Cinta]
+Modo Video              [Modo Video]
+Posición VSYNC          [Posición VSYNC]
+Cargar Configuración    [Cargar Configuración]
+Reiniciar Emulación     [Reiniciar Emulación]
+Guardar Configuración   [Guardar Configuración]
+Fichero de Pokes        [Fichero de Pokes]
+Shell al DOS            [Shell al DOS]
+Continuar               [Continuar]
+
+Consulta también el [Fichero de Configuración]
+#[FICHERO DE CONFIGURACIóN.SP]
+Fichero de Configuración
+========================
+
+ENDIF                   [#ENDIF]
+IFCPC                   [#IFCPC]
+AMSDOS_DISABLED         [AMSDOS Desactivado]
+AMSDOS_SPEEDUP          [AMSDOS Acelerado]
+COLOUR_SCREEN           [Monitor Color]
+COMPANY_NAME            [Fabricante]
+CPC_TYPE                [Modelo CPC]
+DATA_FILE               [Fichero de Datos]
+DRIVE_A                 [Unidad A]
+DRIVE_A_AUTOSTART       [Autoarranque]
+DRIVE_A_SIDE            [Seleccionar Cara]
+DRIVE_A_WRITEPROT       [Protección contra Escritura]
+DRIVE_B                 [Unidad B]
+DRIVE_B_AUTOSTART       [Autoarranque]
+DRIVE_B_SIDE            [Seleccionar Cara]
+DRIVE_B_WRITEPROT       [Protección contra Escritura]
+HELP_FILE               [Fichero de Ayuda]
+JOY0_CURSOR_KEYS        [Teclas de cursor como Joystick 0]
+KBD_LANGUAGE            [Idioma Teclado]
+LANGUAGE                [Idioma]
+M4_enabled           
+M4_SD_PATH           
+M4_SD_MODE
+MOUSE_ENABLED           [Ratón Activado]
+MOUSE_TYPE              [Tipo Ratón]
+POKE_DATABASE           [Fichero de Pokes]
+PPI_50HZ                [PPI 50Hz]
+PPI_EXP_SIGNAL          [PPI Señal Expansión]
+PRINTER                 [Impresora]
+RAM_SIZE                [Tamaño RAM]
+RAM_TYPE                [Tipo de ampliación de la RAM]
+REALTIME                [Tiempo Real]
+ROM_BLOCK               [Bloque ROM]
+ROM_PATH                [Path ROM]
+SB_SAMPLE_RATE          [Vel Muestreo SB]
+SHOW_CONFIG             [Mostrar Configuración]
+SNAPSHOT                [Snapshot]
+SNA_SIZE                [Dimensión del Snapshot]
+SOUND_ENABLED           [Sonido Activado]
+TAPE_BYPASS             [Desvío Cinta]
+TAPE_PATH               [Path Cinta]
+TMP_PATH                [Path TMP]
+VIDEO_MODE              [Modo Video]
+
+  Consulta también el [Menú de Configuración]
+#[#ENDIF.SP,#IFCPC.SP]
+-#IFCPC, #ENDIF
+  Instrucciones de control para la configuración condicional dependiendo
+  del CPC deseado:
+    #IFCPC <modelo de CPC> ... #ENDIF
+  Para <modelo de CPC> los cuatro tipos de [Modelo de CPC] son válidos.
+  Por lo tanto, sólo se necesita un fichero de configuración para todos
+  los CPCs. Los ficheros batch CPC464.BAT, CPC664.BAT y CPC6128.BAT
+  seleccionan el modelo deseado mediante parámetros en la línea de
+  comandos.
+  
+[Fichero de Configuración]
+#[AMSDOS DESACTIVADO.SP]
+AMSDOS Desactivado (0)          (AMSDOS_DISABLED)
+  Desactiva el AMSDOS.
+  Util si quieres cargar programas de cinta sin tener que poner la
+  instruccion '|TAPE' cada vez.
+  
+[Menú de Configuración]
+[Fichero de Configuración]
+#[AMSDOS ACELERADO.SP]
+AMSDOS Acelerado (1)            (AMSDOS_SPEEDUP)
+  Modificación en la ROM del AMSDOS para acelerar los accesos al disco..
+  Esto se consigue minimizando los tiempos de espera para el motor
+  de la unidad de disco, que no son necesarios en el emulador.
+  
+[Menú de Configuración]
+[Fichero de Configuración]
+#[MáSCARA RUPTURA.SP]
+Máscara Ruptura (3)             (BREAK_MASK)
+  Sólo para propósitos de depuración.
+  b0 = 1 -> mostrar errores en la emulacion del Z80 (lento)
+  b1 = 1 -> mostrar errores en la emulacion del Z80 (rápido)
+  b2 = 1 -> mostrar errores de puerto
+  Con 3, los errores de puerto son ignorados.
+  
+[Menú de Configuración]
+[Fichero de Configuración]
+#[MONITOR COLOR.SP]
+Monitor Color (1)               (COLOUR_SCREEN)
+  Emulación de monitor en fósforo verde o en color mediante cambio
+  de paleta.
+  
+[Menú de Configuración]
+[Fichero de Configuración]
+#[FABRICANTE.SP]
+Fabricante (7)                  (COMPANY_NAME)
+  El nombre del fabricante que aparece en la pantalla de inicio.
+  0 = Isp
+  1 = Triumph
+  2 = Saisho
+  3 = Solavox
+  4 = Awa
+  5 = Schneider
+  6 = Orion
+  7 = Amstrad
+  
+[Menú de Configuración]
+[Fichero de Configuración]
+#[MODELO CPC.SP]
+Modelo CPC (0..5)               (CPC_TYPE)
+  Define el modelo de CPC deseado
+  0 = CPC 464
+  1 = CPC 664
+  2 = CPC 6128
+  3 = CPC 464+ (?)
+  4 = CPC 6128+ (?)
+  5 = KC compact (CPC 6128)
+  6 = desconocido
+  Para usar los modelos del 3 al 5 debes especificar antes, en el fichero
+  CPCEMU.CFG, las imágenes ROM.
+  
+[Menú de Configuración]
+[Fichero de Configuración]
+#[FICHERO DE DATOS.SP]
+DATA_FILE = "<path+nombre de fichero>" (".\CPCEMU.DAT")   (Fichero de Datos)
+  Especifica el fichero de datos para CPCEMU.
+  
+[Fichero de Configuración]
+#[UNIDAD A.SP]
+DRIVE_A = "<path+nombre de fichero>"    (Unidad A)
+  Path donde se encuentran las imágenes de disco.
+  Si se especifica un nombre de fichero junto al path, éste se insertará
+  automáticamente en la unidad A.
+  
+[Fichero de Configuración]
+[Menú de Disco]
+#[UNIDAD B.SP]
+DRIVE_B = "<path+nombre de fichero>"    (Unidad B)
+  Lo mismo que [Unidad A], pero para la unidad B.
+  
+[Fichero de Configuración]
+[Menú de Disco]
+#[EMS ACTIVADA.SP]
+EMS Activada (1)                (EMS_ENABLED)
+  Activa la memoria EMS (Expanded Memory System).
+  Muy recomendada para obtener una emulación rápida.
+  En caso contrario se usa la memoria convencional.
+  
+[Menú de Configuración]
+[Fichero de Configuración]
+#[RETARDO EMULACIóN.SP]
+Retardo Emulación (1)           (EMULATION_DELAY)
+  Ralentiza la emulación.
+    0   = sin retardo
+    100 = algún retardo
+    ...
+    
+[Menú de Configuración]
+[Fichero de Configuración]
+#[VELOCIDAD EMULACIóN.SP]
+Velocidad Emulación (1)         (EMULATION_SPEED)
+    0   = emulación del Z80 lenta
+    1   = emulación del Z80 rápida
+    
+[Menú de Configuración]
+[Fichero de Configuración]
+#[FICHERO DE AYUDA.SP]
+HELP_FILE = "<path+nombre de fichero>" (".\CPCEMU.HLP") (Fichero de Ayuda)
+  Especifica el path y nombre del fichero de ayuda.
+  
+[Fichero de Configuración]
+#[FRECUENCIA INTERRUPCIóN.SP]
+Frecuencia Interrupción (300)   (INTERRUPT_FREQUENCY)
+  Frecuencia a la que que se generan las interrupciones.
+  
+[Menú de Configuración]
+[Fichero de Configuración]
+#[REANUDAR INTERRUPCIóN.SP]
+Reanudar Interrupción (1)       (INTERRUPT_RESUME)
+  Reanuda las interrupciones "olvidadas".
+  Imposible sin EMS, puesto que el movimiento de bloques de memoria consume
+  demasiado tiempo.
+  Nota:
+  Parece ser que CP/M Plus funciona solamente teniendo EMS y ¡con esta
+  opción = 0!
+  
+[Menú de Configuración]
+[Fichero de Configuración]
+#[CALIBRAR JOY0.SP]
+Calibrar JOY0                   (JOY0_CALIBRATE)
+  Calibra el joystick del PC.
+  Necesario para joysticks analógicos.
+  Si tienes dos joysticks debes calibrar el segundo con [Calibrar JOY1].
+  Si vas usar el joystick frecuentemente es mejor que te apuntes estos
+  valores y los escribas en el fichero de configuración con:
+  
+  JOY0_CALIBRATE = <xcen>, <ycen>, <xdead>, <ydead>
+  Esta palabra clave requiere 4 valores. Debes especificarlos todos
+  siempre. Poniendo los 4 valores a cero significa que no está
+  calibrado.
+  
+[Menú de Configuración]
+[Fichero de Configuración]
+#[CALIBRAR JOY1.SP]
+Calibrar JOY1                   (JOY1_CALIBRATE)
+  Lo mismo que [Calibrar JOY0], pero para el segundo joystick.
+  
+[Menú de Configuración]
+[Fichero de Configuración]
+#[TECLAS DE CURSOR COMO JOYSTICK 0.SP]
+Teclas de cursor como Joystick(0) (0)
+JOY0_CURSOR_KEYS = 0,1,2
+
+  0: Apagado.
+  1: Las teclas de cursor actúan como primer joystick.
+  2: El joystick en pantalla actúa como las teclas del
+     cursor y el botón de disparo actúa como COPY.
+ 
+[Menú de Configuración]
+[Fichero de Configuración]
+#[IDIOMA TECLADO.SP]
+Idioma Teclado (0)              (KBD_LANGUAGE)
+  Esquemas de teclado para otros países.
+  0 = UK
+  1 = GR, Teclado "estilo Alemán". Por desgracia es imposible conseguir
+      un teclado completamente Alemán.
+  2 = FR, Teclado "estilo Francés".Por desgracia es imposible conseguir
+      un teclado completamente Francés.
+  3 = SP, Teclado "estilo Español".Por desgracia es imposible conseguir
+      un teclado completamente Español.
+      
+[Menú de Configuración]
+[Fichero de Configuración]
+#[IDIOMA.SP]
+Idioma (0)                      (LANGUAGE)
+  Idioma para los mensajes de ayuda.
+    0=UK (Inglés)
+    1=GR (Alemán)
+    2=FR (Francés)
+    3=SP (Español)
+  Cámbialo con [Seleccionar Idioma].
+  Consulta también [Idioma Teclado]
+  
+[Menú de Configuración]
+[Fichero de Configuración]
+#[TIPO RATóN.SP]
+Tipo Ratón (0)              (MOUSE_TYPE)
+  0 = apagado (Joystick)
+  1 = AMX
+  2 = Reisware/Gerdes
+  3 = Symbiface II (PS/2)
+  
+[Menú de Configuración]
+[Fichero de Configuración]
+#[RATóN ACTIVADO.SP]
+Ratón Activado (1)              (MOUSE_ENABLED)
+  Activa el uso del ratón en los menús.
+  
+[Menú de Configuración]
+[Fichero de Configuración]
+#[ACTUALIZAR MULTIMODO.SP]
+Actualizar Multimodo (0)        (MULTIMODE_UPDATE)
+  Util para los programas que usan simultáneamente varios modos en pantalla.
+  CPCEMU intenta manejarlo correctamente.
+  Por defecto esta opción está desactivada porque no funciona adecuadamente
+  en todos los casos.
+  
+[Menú de Configuración]
+[Fichero de Configuración]
+#[CAMBIO PALETA.SP]
+Cambio Paleta (1)               (PALETTE_CHANGE)
+  Permite cambios de paleta.
+  Si algunos juegos parpadean demasiado desactiva esta opción.
+  Los cambios de paleta serán suprimidos.
+  Esta opción se pone a 1 con cada reset de hardware pulsando F8.
+  Sugerencia:
+  Prueba a pulsar F2 dos veces si los colores son completamente erróneos.
+  
+[Menú de Configuración]
+[Fichero de Configuración]
+#[PPI 50HZ.SP]
+PPI 50Hz (1)                    (PPI_50HZ)
+  El CPC es capaz de funcionar a
+    0 - 60 Hz, o
+    1 - 50 Hz (el usado en Alemania, Francia)
+  Cuando se produce un reset se verifica el bit 4 del puerto B del PPI,
+  y el CRTC se inicializa adecuadamente.
+  Déjalo en 50 Hz.
+  Consulta también [PPI Señal Expansión]
+  y [Fabricante].
+  
+[Menú de Configuración]
+[Fichero de Configuración]
+#[PPI SEÑAL EXPANSIóN.SP]
+PPI Señal Expansión (1)         (PPI_EXP_SIGNAL)
+  Algunas tarjetas de expansión activan esta señal.
+  Algunas tarjetas de expansión activan esta señal.
+  En el CPC 464 está activada cuando tiene conectada una unidad de disco.
+  En el CPC 6128 está siempre activada.
+  Consulta también [PPI 50Hz]
+  y [Fabricante].
+  
+[Menú de Configuración]
+[Fichero de Configuración]
+#[IMPRESORA.SP]
+PRINTER = "<path+nombre de fichero>"    (Impresora)
+  Fichero de impresora para capturar todos las datos dirigidos a la
+  impresora.
+  Este fichero se borra cada vez que se inicia la emulación.
+  Al salir del emulador puedes imprimirlo con
+  'COPY <nombre de fichero> prn:'.
+  Puedes usar la impresora directamente con PRINTER="prn".
+  
+[Fichero de Configuración]
+#[TAMAÑO RAM.SP]
+Tamaño RAM (64 ó 128)           (RAM_SIZE)
+  Tamaño de la RAM en KB en tiro de 64 KB.
+  Los valores posibles :
+  - 64 a 4160 por l'ampliación dk'tronics/Jarek
+  - 64 a 576 por l'ampliación Vortex
+
+[Menú de Configuración]
+[Fichero de Configuración]
+#[TIPO DE AMPLIACIóN DE LA RAM.SP]
+Tipo de ampliación de la RAM (0)           (RAM_TYPE)
+  Los valores posibles :
+  0 : dk'tronics/Jarek
+  1 : Vortex
+
+[Menú de Configuración]
+[Fichero de Configuración]
+#[TIEMPO REAL.SP]
+Tiempo Real (0)                 (REALTIME)
+  CPC en tiempo real o CPC lo más rápido posible.
+  El CPC en tiempo real cuenta los ciclos de las instrucciones, e inserta
+  estados de espera para ralentizar la emulación si ésta es demasiado
+  rápida comparada con el CPC original.
+  Sólo es útil en un 486DX2/66 o superior.
+  
+[Menú de Configuración]
+[Fichero de Configuración]
+#[BLOQUE ROM.SP]
+ROM_BLOCK <número de ROM>, "<nombre de fichero>", <posición de ROM>
+  Indica qué ROM ha de cargarse y dónde.
+  - <número de ROM> es el número asignado a la ROM.
+     0       : ROM de primer plano (p.ej. BASIC)
+     1 - 251 : ROMs de segundo plano. (p.ej. AMSDOS lleva el número 7.)
+         255 : ROM baja
+  - <filename> fichero-ROM en el directorio [ROM_PATH].
+  - <nombre de fichero> fichero ROM que se encuentra en el directorio
+    [Path ROM]
+
+  - <posición de ROM> normalmente es 0. Si un fichero contiene más de una
+    ROM, ésta es la posición de la ROM deseada 0, 1, 2, ...
+      ROM_BLOCK = 255, "CPC6128.ROM", 0
+      ROM_BLOCK = 0  , "CPC6128.ROM", 1
+    La ROM baja y la ROM de primer plano se cargan una después de la
+    otra desde el mismo fichero.
+    
+[Fichero de Configuración]
+#[PATH ROM.SP]
+ROM_PATH = "<path>" (".\ROM")   (Path ROM)
+  Path de las imágenes ROM
+  Las ROMs se definen con [Bloque ROM].
+  
+[Fichero de Configuración]
+#[RETARDO SB.SP]
+Retardo SB (35)                 (SB_DELAY)
+  Retardo para la tarjeta Soundblaster.
+  Especifica el tiempo de retardo después de un acceso a la tarjeta
+  de sonido para escritura.
+  Para acelerar la salida de audio puedes probar con 0, pero no funciona
+  con todas las tarjetas.
+  Consulta también [Retardo0 SB]
+  
+[Menú de Configuración]
+[Fichero de Configuración]
+#[RETARDO0 SB.SP]
+Retardo0 SB (6)                 (SB_DELAY0)
+  Otro retardo para la tarjeta de sonido SoundBlaster.
+  No deberías cambiarlo.
+  Este retardo no se usa con el sonido digital de la soundblaster.
+  Consulta también [Retardo SB]
+  
+[Menú de Configuración]
+[Fichero de Configuración]
+#[BUFFER DMA SB.SP]
+Buffer DMA SB (128)
+SB_DMA_BUF = 8..255             (Buffer DMA SB)
+  Especifica el tamaño del buffer para el sonido digital de la
+  Soundblaster.
+  
+[Menú de Configuración]
+[Fichero de Configuración]
+#[VEL MUESTREO SB.SP]
+Vel Muestreo SB (0)
+SB_SAMPLE_RATE = 0..1           (Vel Muestreo SB)
+  Especifica el ratio de muestreo para el sonido digital de la
+  Soundblaster.
+  0=22kHz, 1=44kHz, 2=48kHz, 3=62,5kHz
+  
+[Menú de Configuración]
+[Fichero de Configuración]
+#[SB ESTÉREO.SP]
+SB Estéreo (0)
+SB_STEREO = 0..1                (SB Estéreo)
+  Activa o desactiva el sonido estéreo.
+  
+[Menú de Configuración]
+[Fichero de Configuración]
+#[DESPLAZAR PANTALLA.SP]
+Desplazar Pantalla (0)             (SCREEN_OFFSET)
+  Numero de líneas que debería desplazarse la pantalla del CPC.
+  Se consigue el mismo efecto pulsando las teclas <Re Pág> y <Av Pág>.
+  
+[Menú de Configuración]
+[Fichero de Configuración]
+#[MOSTRAR CONFIGURACIóN.SP]
+Mostrar Configuración (1)       (SHOW_CONFIG)
+  Permite que se muestre la configuración cuando se arranca el emulador.
+  
+[Menú de Configuración]
+[Fichero de Configuración]
+#[SNAPSHOT.SP]
+SNAPSHOT = "<path+nombre de fichero>" (".\SNAP")    (Snapshot)
+  Path para los snapshots
+  Si se especifica un fichero snapshot, éste se cargará automáticamente.
+  
+[Fichero de Configuración]
+#[DISPOSITIVO SONIDO.SP]
+Dispositivo Sonido (1 o dispositivo máximo)    (SOUND_DEVICE)
+  Especifica el dispositivo para la salida de sonido:
+  0 = ninguno
+  1 = Altavoz interno del PC
+  2 = Soundblaster (Pro), sonido FM
+  3 = Soundblaster (Pro), sonido digital, gracias a Ulrich Doewich
+  4 = GUS (Gravis Ultrasound), gracias a Ulrich Doewich
+
+  Asegúrate de activar el sonido con [Sonido Activado].
+  
+[Menú de Configuración]
+[Fichero de Configuración]
+#[SONIDO ACTIVADO.SP]
+Sonido Activado (1)             (SOUND_ENABLED)
+  Activa el sonido.
+  Tambien puede hacerse pulsando F4. [Teclas de Función]
+  Selecciona el dispositivo de sonido con [Dispositivo Sonido].
+  
+[Menú de Configuración]
+[Fichero de Configuración]
+#[DESVíO CINTA.SP]
+Desvío Cinta (1)                (TAPE_BYPASS)
+  Es necesario que este activado si quieres usar "cintas".
+  
+[Menú de Configuración]
+[Fichero de Configuración]
+#[PATH CINTA.SP]
+TAPE_PATH = "<path>" (".\TAPE")    (Path Cinta)
+  Indica el path de los ficheros de cinta.
+  
+[Fichero de Configuración]
+#[PATH TMP.SP]
+TMP_PATH = "<path>" (".\TMP")      (Path TMP)
+  Especifica el path para ficheros temporales.
+  
+[Fichero de Configuración]
+#[MODO VIDEO.SP]
+Modo Video (0)                  (VIDEO_MODE)
+  Especifica el modo de video de la tarjeta VGA.
+  0 = 640x200x16 (por defecto)
+  1 = 640x350x16
+  2 = 640x480x16
+  y si tu tarjeta tiene BIOS VESA, principalmente:
+  3 = 800x600x16
+  4 = 1024x768x16
+  5 = 1280x1024x16
+  ...
+
+  AVISO:
+  ¡Usa modos de vídeo >= 3 sólo si tu monitor soporta esas resoluciones!
+  ¡Si ves que hace unos ruidos raros desactiva ese modo inmediatamente!
+  De todas formas, esto podría pasar sólo en monitores antiguos.
+  
+[Menú de Configuración]
+[Fichero de Configuración]
+#[POSICIóN VSYNC.SP]
+Posición VSYNC (5)              (VSYNC_POSITION)
+  Posición de la sincronización vertical.
+  En el emulador el bit VSYNC se activa durante el intervalo de una
+  interrupción. Hay 6 interrupciones durante un ciclo de actualización de
+  la pantalla, por lo que los valores posibles están comprendidos entre
+  0 y 5.
+  
+[Menú de Configuración]
+[Fichero de Configuración]
+#[CARGAR CONFIGURACIóN.SP]
+Cargar Configuración
+  Carga un fichero de configuración guardado con [Guardar Configuración].
+  Algunas opciones pueden no tener efecto hasta que elijas
+  [Reiniciar Emulación].
+  "CPCEMU -c <fichero configuración>" iniciará CPCEMU con esa configuración.
+  
+[Menú de Configuración]
+[Selección de Ficheros]
+#[REINICIAR EMULACIóN.SP]
+Reiniciar Emulación
+  Puedes reiniciar la emulación con nuevos valores después de cargar
+  un fichero de configuración con [Cargar Configuración].
+  
+[Menú de Configuración]
+#[GUARDAR CONFIGURACIóN.SP]
+Guardar Configuración
+  Guarda la configuración actual.
+  Ten en cuenta que no puedes sobreescribir el fichero de configuración
+  maestro CPCEMU.CFG.
+  Consulta también [Cargar Configuración].
+  
+[Menú de Configuración]
+[Selección de Ficheros]
+#[FICHERO DE POKES.SP]
+POKE_DATABASE = "<path+nombre de fichero>" (".\CPCEMU.DBF")
+  (Fichero de pokes)
+  Fichero de pokes para vidas infinitas u otros trucos para los juegos.
+  Puedes ampliar la lista (CPCEMU.DBF) añadiendo tus propios pokes.
+  
+[Menú de Configuración]
+[Fichero de Configuración]
+#[SHELL AL DOS.SP]
+Shell al DOS
+  Abre un shell de DOS con mucha memoria libre.
+  Las partes correspondientes a CPCEMU son intercambiadas automáticamente.
+  Puedes salir del shell con 'exit'.
+  
+[Menú de Configuración]
+#[CONTINUAR.SP]
+Continuar
+  Acepta los valores introducidos y continúa con la emulación.
+  Puedes realizar lo mismo pulsando <INTRO> en cualquier línea que
+  tenga un valor.
+  
+[Menú de Configuración]
+#[MENú DE DISCO.SP]
+Menú de Disco
+=============  
+  
+  [Insertar Disco]
+  [Número de Unidad]
+  [Seleccionar Cara]
+  [Protección contra Escritura]
+  [Autoarranque]
+#[INSERTAR DISCO.SP]
+Insertar Disco
+  Selecciona una imagen de disco con [Selección de Ficheros], que será
+  insertado con la cara [Seleccionar Cara]
+  en la unidad [Número de Unidad].
+  El disco se puede insertar con [Protección contra Escritura].
+  
+[Menú de Disco]
+#[NúMERO DE UNIDAD.SP]
+Número de Unidad
+[Unidad A]
+[Unidad B]
+  En esta unidad será insertado el disco.
+  
+[Menú de Disco]
+#[SELECCIONAR CARA.SP]
+Seleccionar Cara
+DRIVE_A_SIDE = 0,1    (Unidad A Cara)
+DRIVE_B_SIDE = 0,1    (Unidad B Cara)
+  En los formatos de doble cara cuando se selecciona la cara 1, se inserta
+  la cara (B).
+  
+[Fichero de Configuración]
+[Menú de Disco]
+#[PROTECCIóN CONTRA ESCRITURA.SP]
+Protección contra Escritura
+DRIVE_A_WRITEPROT = 0,1    (Unidad A Protección contra Escritura)
+DRIVE_B_WRITEPROT = 0,1    (Unidad B Protección contra Escritura)
+  La imagen de disco se inserta protegida contra escritura, por tanto
+  es de sólo lectura.
+  Esto viene bien si la imagen de disco está en un soporte de sólo lectura
+  (p.ej. CD-ROM).
+  
+[Fichero de Configuración]
+[Menú de Disco]
+#[AUTOARRANQUE.SP]
+Autoarranque
+DRIVE_A_AUTOSTART = 0,1    (Unidad A Autoarranque)
+DRIVE_B_AUTOSTART = 0,1    (Unidad B Autoarranque)
+  Cuando se inserta una imagen de disco se ejecuta automáticamente el
+  primer programa BASIC que haya en el disco. Si existe DISC.BAS en el
+  disco será éste el que se ejecute.
+  Puedes utilizar la orden |DIR del AMSDOS para mirar cuál el el primer
+  programa BASIC.
+  
+[Fichero de Configuración]
+[Menú de Disco]
+#[CARGAR SNAPSHOT.SP]
+Cargar Snapshot
+  Carga un snapshot guardado con [Guardar Snapshot].
+  
+[Selección de Ficheros]
+#[GUARDAR SNAPSHOT.SP]
+Guardar Snapshot
+  Guarda la configuración completa del CPC emulado. Esto incluye los
+  registros de la CPU, la memoria, ...
+  Con [DIMENSIóN DEL SNAPSHOT] se guarda un volcado de memoria de 128KB
+  o todo la memoria del CPC en lugar de 64KB.
+  Consulta también [DIMENSIóN DEL SNAPSHOT]
+  
+[Selección de Ficheros]
+#[DIMENSIóN DEL SNAPSHOT.SP]
+Dimensión del Snapshot (0)
+SNA_SIZE = 0,1,2
+
+  0: Selecciona el formato de snapshot de 64KB.
+  1: Selecciona el formato de snapshot de 128KB.
+  2: Selecciona todo la memoria del CPC.
+  Guarda el snapshot con [Guardar Snapshot].
+
+  Consulta también [Guardar Snapshot]
+
+[Fichero de Configuración]
+#[SELECCIóN DE FICHEROS.SP]
+Selección de Ficheros
+=====================
+
+  Controles de teclado:
+  - <INICIO> = primer fichero
+  - <FIN>    = último fichero
+  - <Re Pág / Av Pág> : para moverse por páginas
+  - <INTRO> : acepta el fichero seleccionado
+  - <ESC> : cancela
+  Letras alfanuméricas = seleccionar nombres directamente
+
+  Control de ratón:
+  botón izquierdo = seleccionar
+  botón derecho   = sólo mover (aceptar con "[ok]")
+  "[]" = <Re Pág>
+  "[]" = <Av Pág> (si hay más ficheros)
+  "[<]" = <Cursor izquierda>
+  "[>]" = <Cursor derecha>
+  "[ok]" = <Intro>
+  "[help]" = F1 (muestra la ayuda)
+  "[ş]" = <ESC>
+
+  ".." = directorio anterior
+  "[A]", "[B]", ... = unidades disponibles
+
+  "*.ZIP" = archivos ZIP, mostrados como directorios.
+  Los ficheros seleccionados se descomprimen automáticamente.
+  (PKUNZIP debe estar disponible en el path de búsqueda del DOS,
+  ¡o en el directorio de CPCEMU!)
+
+
+
+  La selección de ficheros se usa en
+    [Menú de Disco]
+    [Cargar Snapshot]
+    [Guardar Snapshot]
+    Cargar Cinta, Guardar Cinta, Catálogo
+    [Cargar Configuración]
+    [Guardar Configuración]
+#[ESQUEMAS DE TECLADO.SP]
+Esquemas de Teclado
+================  
+
+  [UK_KEYBOARD_LAYOUT]
+  [GR_KEYBOARD_LAYOUT]
+  [FR_KEYBOARD_LAYOUT]
+  [SP_KEYBOARD_LAYOUT]
+#[SP_KEYBOARD_LAYOUT.SP]
+Esquema de teclado Español usado por CPCEMU:
+
+ÕÍÍÍ¸ ÕÍÍÍÍÍÍÍÍÍÍÍÍ¸ ÕÍÍÍÍÍÍÍÍÍÍÍÍ¸ ÕÍÍÍÍÍÍÍÍÍÍÍÍ¸ ÕÍÍÍÍÍÍÍÍÍ¸
+³ESC³ ³AYU³PAN³DIS³SND³ ³CAR³GUA³CFG³RST³ ³PAL³DEP³F11³SAL³ ³IMP³BLQ³PAU³
+ÔÍÍÍ¾ ÔÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍ¾ ÔÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍ¾ ÔÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍ¾ ÔÍÍÍÏÍÍÍÏÍÍÍ¾
+ÕÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¸  ÕÍÍÍÍÍÍÍÍÍ¸
+³º ª³1 !³2 "³3 #³4 $³5 %³6 &³7 /³8 (³9 )³0 =³' ?³¡ ¿³<---³  ³INS³INI³REP³
+ÔÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÍ¾  ’ÍÍÍØÍÍÍØÍÍÍ‘
+ÕÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¸  ³SUP³FIN³AVP³
+³TAB ³ Q ³ W ³ E ³ R ³ T ³ Y ³ U ³ I ³ O ³ P ³@ |³[ {³ I ³  ÔÍÍÍÏÍÍÍÏÍÍÍ¾
+’ÍÍÍÍØÍÍÍØÍÍÍØÍÍÍØÍÍÍØÍÍÍØÍÍÍØÍÍÍØÍÍÍØÍÍÍØÍÍÍØÍÍÍØÍÍÍ‘ N ³  C P C - E M U
+³BLQM³ A ³ S ³ D ³ F ³ G ³ H ³ J ³ K ³ L ³: *³; +³] }³ T ³
+’ÍÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÏÍÍÍÏÍÍÍ‘      ÕÍÍÍ¸
+³MAY³< >³ Z ³ X ³ C ³ V ³ B ³ N ³ M ³, <³. >³/ ?³  MAYUS ³      ³ARR³
+’ÍÍÍØÍÍÍÏÍÍÏÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÍÏÍÍÏÍÍÏÍÍÍÍÍÍÍ‘  ÕÍÍÍØÍÍÍØÍÍÍ¸
+³CTL³     ³COPY³   E  S  P  A  C  I  O   ³COPY³      ³CTL³  ³IZQ³ABA³DER³
+ÔÍÍÍ¾     ÔÍÍÍÍÏÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÏÍÍÍÍ¾      ÔÍÍÍ¾  ÔÍÍÍÏÍÍÍÏÍÍÍ¾
+
+[Teclados en Español]
+#[TECLADOS EN ESPAÑOL.SP]
+El teclado en Español de PC:
+
+-----   ----------------- ----------------- ----------------- -------------
+|ESC|   |F1 |F2 |F3 |F4 | |F5 |F6 |F7 |F8 | |F9 |F10|F11|F12| |IMP|BLQ|PAU|
+-----   ----------------- ----------------- ----------------- -------------
+------------------------------------------------------------- ------------- -----------------
+|ª º|! 1|" 2|· 3|$ 4|% 5|& 6|/ 7|( 8|) 9|= 0|? '|¿ ¡| <---- | |INS|INI|PGU| |NUM| / | * | - |
+|-----------------------------------------------------------| |-----------| |---------------|
+|TAB  | Q | W | E | R | T | Y | U | I | O | P |^ `|* +|  I  | |SUP|FIN|PGD| | 7 | 8 | 9 |   |
+|------------------------------------------------------| N  | ------------- |-----------| + |
+|BLQMAY| A | S | D | F | G | H | J | K | L |Ñ ñ|— ‹|Ç ç| T  |               | 4 | 5 | 6 |   |
+|-----------------------------------------------------------|     -----     |---------------|
+|MAYS|< >| Z | X | C | V | B | N |  M|; ,|: .|_ -|  MAYUS   |     |ARR|     | 1 | 2 | 3 | I |
+|-----------------------------------------------------------| ------------- |-----------| N |
+|CTRL |   | ALT |   E  S  P  A  C  I  O    |ALTGR|    |CTRL | |IZQ|ABA|DER| |   0   | . | T |
+-------   ----------------------------------------    ------- ------------- -----------------
+
+(é = 130 ; à = 133 ; ç = 135 ; è = 138 ; ù = 151 ; µ = 230 ; £ = 156)
+( = 252 ; ² = 253 ; ñ = 164 ; Ñ = 165)                              
+
+El teclado en Español de CPC:
+
+-------------------------------------------------------------------------
+|ESC|! 1|" 2|# 3|$ 4|% 5|& 6|' 7|( 8|) 9|_ 0|= -|P ^|CLR|DEL|f7 |f8 |f9 |
+|-----------------------------------------------------------------------|
+|TAB  | Q | W | E | R | T | Y | U | I | O | P || @|* [| RET |f4 |f5 |f6 |
+|------------------------------------------------------|    |-----------|
+|CAPS  | A | S | D | F | G | H | J | K | L |Ñ ñ|; :|+ ]|    |f1 |f2 |f3 |
+|-----------------------------------------------------------------------|
+|SHIFT   | Z | X | C | V | B | N | M |< ,|> .|? /|` \|SHIFT |f0 |UP | . |
+|-----------------------------------------------------------------------|
+|CONTROL | COPY |         S  P  A  C  E         |   ENTER   |LE |DW |RI |
+-------------------------------------------------------------------------
+
+(à = 64 ; ç = 92 ; é = 123 ; ù = 124 ; è = 125)
+
+#[ACERCA DE LA AYUDA.SP]
+Acerca de la Ayuda
+==================
+
+  El fichero CPCEMU.HLP contiene la ayuda en línea en varios idiomas.
+  Actualmente CPCEMU soporta 4 idiomas:
+  UK - Inglés
+  GR - Alemán
+  FR - Francés
+  SP - Español
+
+  un TEMA en el idioma "LL" es introducido por "#[TEMA.LL]" en la primera
+  columna de una línea. Observa se deben usar mayúsculas para los temas.
+  También es posible tener un tema para varios idiomas, p.ej.
+  "#[TEMA.UK,TEMA.GR]".
+
+  Las referencias se denotan simplemente como "[Referencia]". Pueden
+  mezclarse mayúsculas y minúsculas. Si no estan entre comillas, se pueden
+  seleccionar y obtener un tema asociado.
+  Este tema asociado se encuentra buscando en el fichero de ayuda el tema
+  "REFERENCIA.LL" con "LL"=idioma seleccionado.
+  Si no encuentra el "REFERENCIA.LL", el primer "REFERENCIA.xx" es elegido
+  (normalmente xx=UK); si éste tampoco existe, aparece el mesaje de error
+  "Tema no encontrado".
+  Si existe más de una referencia en una sola línea, se elige la primera
+  referencia. 
+
+  Hay "temas" predefinidos [ENGLISH], [GERMAN], [FRENCH], [SPANISH] para
+  seleccionar un idioma.
+
+  La mayoría de las referencias están en el fichero de mensajes CPCEMU.MSG.
+
+#[EOF]

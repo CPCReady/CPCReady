@@ -81,6 +81,7 @@ if [[ $1 != 464 && $1 != 664 && $1 != 6128 ]]; then
 fi
 
 change_model "$1" "$PWD"
+change_model_cpcemu "$1" "$PWD"
 PRINT "OK" "Changed to Model CPC $1"
 ready
 

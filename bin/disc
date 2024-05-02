@@ -82,7 +82,7 @@ if [ -e "$DISC" ]; then
         read -p "Already exists a disk image named '$DISC'. Do you want to add another one? (y/n): " respuesta
         echo
         case $respuesta in
-            [Yy]* ) create_dsk "$1"; change_disc "$1" "$PWD"; break;;
+            [Yy]* ) create_dsk "$1"; change_disc "$1" "$PWD"; change_disc_cpcemu "$1" "$PWD";break;;
             [Nn]* ) exit;;
             * ) echo "Please respond with 'y' or 'n'.";;
         esac
@@ -93,6 +93,7 @@ else
     ## Change disk image if exists environment file
     if [ -f "$CONFIG_FILE" ]; then
         change_disc "$1" "$PWD"
+        change_disc_cpcemu "$1" "$PWD"
     fi
 fi
 
