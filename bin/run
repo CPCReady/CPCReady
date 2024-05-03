@@ -84,7 +84,7 @@ function rvm_run {
 check_env_file
 
 ## Cargamos archivo de variables
-source "$CONFIG_FILE"
+source "$CONFIG_CPCREADY"
 
 PRINT "TITLE" "Retro Virtual Machine"
 

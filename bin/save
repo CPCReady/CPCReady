@@ -63,7 +63,7 @@ esac
 check_env_file
 
 ## Cargamos archivo de variables
-source "$CONFIG_FILE"
+source "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY"
 
 ## Show logo
 CPCREADY

@@ -62,7 +62,7 @@ esac
 check_env_file
 
 ## Cargamos archivo de variables
-source "$CONFIG_FILE"
+source "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY"
 
 ## Show logo
 CPCREADY
@@ -76,25 +76,29 @@ if [ "$#" -ne 1 ]; then
     exit 0
 fi
 
-if [ -e "$DISC" ]; then
-    while true; do
-        echo
-        read -p "Already exists a disk image named '$DISC'. Do you want to add another one? (y/n): " respuesta
-        echo
-        case $respuesta in
-            [Yy]* ) create_dsk "$1"; change_disc "$1" "$PWD"; change_disc_cpcemu "$1" "$PWD";break;;
-            [Nn]* ) exit;;
-            * ) echo "Please respond with 'y' or 'n'.";;
-        esac
-    done
-else
+# if [ -e "$OUT_DISC/$DISC" ]; then
+#     while true; do
+#         echo
+#         read -p "Already exists a disk image named '$DISC'. Do you want to add another one? (y/n): " respuesta
+#         echo
+#         case $respuesta in
+#             [Yy]* ) create_dsk "$1"; change_disc "$1" "$PWD"; 
+#                     change_disc_cpcemu "$1" "$PWD";
+#                     break;;
+#             [Nn]* ) exit;;
+#             * ) echo "Please respond with 'y' or 'n'.";;
+#         esac
+#     done
+# else
     ## Create disk image
-    create_dsk "$1"
+create_dsk "$OUT_DISC/$1"
     ## Change disk image if exists environment file
-    if [ -f "$CONFIG_FILE" ]; then
-        change_disc "$1" "$PWD"
-        change_disc_cpcemu "$1" "$PWD"
-    fi
-fi
+    # if [ -f "$CONFIG_CPCREADY" ]; then
+        # change_disc "$1" "$PWD"
+        # change_disc_cpcemu "$1" "$PWD"
+configuration "$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" DRIVE_A "$PWD/$OUT_DISC/$1"
+configuration "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" DISC $1
+    # fi
+# fi
 
 ready

@@ -61,7 +61,7 @@ esac
 check_env_file
 
 ## Cargamos archivo de variables
-source "$CONFIG_FILE"
+source "$CONFIG_CPCREADY"
 
 ## Show logo
 CPCREADY
@@ -80,8 +80,24 @@ if [[ $1 != 464 && $1 != 664 && $1 != 6128 ]]; then
     PRINT "ERROR" "Bad command"
 fi
 
-change_model "$1" "$PWD"
-change_model_cpcemu "$1" "$PWD"
+case $1 in
+    "464")
+        MODEL=0
+        ;;
+    "664")
+        MODEL=1
+        ;;
+    "6128")
+        MODEL=2
+        ;;
+    *)
+        PRINT ERROR "CPC model $1 is not supported."
+        ;;
+esac
+
+configuration "$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" CPC_TYPE $MODEL
+configuration "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" MODEL $1
+
 PRINT "OK" "Changed to Model CPC $1"
 ready
 

@@ -62,7 +62,7 @@ esac
 check_env_file
 
 ## Cargamos archivo de variables
-source "$CONFIG_FILE"
+source "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY"
 
 ## Show logo
 CPCREADY
@@ -81,7 +81,7 @@ if [[ $1 != 0 && $1 != 1 && $1 != 2 ]]; then
     PRINT "ERROR" "Bad command"
 fi
 
-change_mode "$1" "$PWD"
+configuration "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" MODE $1
 
 PRINT "OK" "Changed Screen Mode $1"
 ready

@@ -41,7 +41,9 @@ BOLD="$(tput bold)"
 IN_BAS="src"
 OUT="out/M4Board"
 OUT_DISC="out/disc"
-CONFIG_FILE=".CPCReady"
+PATH_CONFIG_PROJECT="cfg"
+CONFIG_CPCREADY=".CPCReady"
+CONFIG_CPCEMU="cpcemu.cfg"
 
 function generar_rvm {
 
@@ -118,9 +120,9 @@ function ready {
 ## Función para verificar si existe el archivo
 ## .CPCReady en el directorio actual
 function check_env_file {
-   if [ ! -f "$CONFIG_FILE" ]; then
+   if [ ! -f "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" ]; then
       echo
-      PRINT "ERROR" "El archivo $CONFIG_FILE no existe en este directorio."
+      PRINT "ERROR" "El archivo $PATH_CONFIG_PROJECT/$CONFIG_CPCREADY no existe en este directorio."
    fi
 }
 
@@ -167,53 +169,104 @@ function check_env_file {
 
 ## cambios en el archivo .CPCReady valor MODE
 ## $1 : value mode
-function change_mode {
-   sed -i.bak "s/^MODE=.*$/MODE=$1/" "$2/$CONFIG_FILE"
-   rm "$2/$CONFIG_FILE.bak"
-}
+# function change_mode {
+#    sed -i.bak "s/^MODE=.*$/MODE=$1/" "$2/$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY"
+#    rm "$2/$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY.bak"
+# }
 
-## cambios en el archivo .CPCReady valor DISC
-## $1 : value disc
-function change_disc {
-   sed -i.bak "s/^DISC=.*$/DISC=$1/" "$2/$CONFIG_FILE"
-   rm "$2/$CONFIG_FILE.bak"
-}
+# ## cambios en el archivo .CPCReady valor DISC
+# ## $1 : value disc
+# function change_disc {
+#    sed -i.bak "s/^DISC=.*$/DISC=$1/" "$2/$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY"
+#    rm "$2/$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY.bak"
+# }
 
-## cambios en el archivo .cpcemu.cfg valor DRIVE_A
-## $1 : value disc
-function change_disc_cpcemu {
-   sed -i.bak "s/^DRIVE_A=.*$/DRIVE_A=$1/" "$2/cpcemu.cfg"
-   rm "$2/cpcemu.cfg.bak"
-}
+# ## cambios en el archivo .cpcemu.cfg valor DRIVE_A
+# ## $1 : value disc
+# function change_disc_cpcemu {
+#    PATH_DISCO="$PWD/$OUT_DISC"
+#    sed -i.bak "s/^DRIVE_A=.*$/DRIVE_A=\"$(printf '%s\n' "$PATH_DISCO" | sed 's/[\/&]/\\&/g')\/$(printf '%s\n' "$1" | sed 's/[\/&]/\\&/g')\"/" "$2/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU"
+#    rm "$2/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU.bak"
+# }
 
-## cambios en el archivo .CPCReady valor MODEL
-## $1 : value disc
-function change_model {
-   sed -i.bak "s/^MODEL=.*$/MODEL=$1/" "$2/$CONFIG_FILE"
-   rm "$2/$CONFIG_FILE.bak"
-}
+# function change_disc_in_config_files {
+#    PATH_ESCAPED=$(printf '%s\n' "$1" | sed 's/[\&/]/\\&/g')
+#    project=$(basename "$PATH_ESCAPED")
+#    PATH_DSK="$PATH_ESCAPED/$OUT_DISC/$project.dsk"
+#    sed -i.bak 's/^DRIVE_A=.*$/DRIVE_A='"\"$PATH_DSK\""'/' "$PATH_ESCAPED/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU"
+#    rm "$PATH_ESCAPED/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU.bak"
+# }
 
-## cambios en el archivo .cpcemu valor CPC_TYPE
-## $1 : value disc
-function change_model_cpcemu {
-   case $1 in
-      "464")
-         MODEL="0"
-         ;;
-      "664")
-         MODEL="1"
-         ;;
-      "6128")
-         MODEL="2"
-         ;;
-      *)
-         PRINT ERROR "CPC model $1 is not supported."
-         ;;
-   esac
 
-   sed -i.bak "s/^CPC_TYPE=.*$/CPC_TYPE=$MODEL/" "$2/cpcemu.cfg"
-   rm "$2/cpcemu.bak"
-}
+
+
+# ## cambios en el archivo .cpcemu.cfg valor M4_SD_PATH
+# ## $1 : path
+# function change_m4_path_in_config_files {
+#    PATH_M4="$1/$OUT"
+#    PATH_M4_escaped=$(printf '%s\n' "$PATH_M4" | sed 's/[\&/]/\\&/g')
+#    sed -i.bak 's/^M4_SD_PATH=.*$/M4_SD_PATH='"\"$PATH_M4_escaped\""'/' "$1/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU"
+#    rm "$1/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU.bak"
+# }
+
+# ## cambios en el archivo CONFIG_CPCREADY y CONFIG_CPCEMU valor MODEL
+# ## $1 : value _model
+# function change_model_in_config_files {
+
+#    case $1 in
+#       "464")
+#          MODEL="0"
+#          ;;
+#       "664")
+#          MODEL="1"
+#          ;;
+#       "6128")
+#          MODEL="2"
+#          ;;
+#       *)
+#          PRINT ERROR "CPC model $1 is not supported."
+#          ;;
+#    esac
+
+#    sed -i.bak "s/^CPC_TYPE=.*$/CPC_TYPE=$MODEL/" "$2/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU"
+#    sed -i.bak "s/^MODEL=.*$/MODEL=$1/" "$2/$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY"
+#    rm "$2/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU.bak"
+#    rm "$2/$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY.bak"
+
+# }
+
+
+
+
+
+# ## cambios en el archivo .CPCReady valor MODEL
+# ## $1 : value disc
+# function change_model {
+#    sed -i.bak "s/^MODEL=.*$/MODEL=$1/" "$2/$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY"
+#    rm "$2/$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY.bak"
+# }
+
+# ## cambios en el archivo .cpcemu valor CPC_TYPE
+# ## $1 : value disc
+# function change_model_cpcemu {
+#    case $1 in
+#       "464")
+#          MODEL="0"
+#          ;;
+#       "664")
+#          MODEL="1"
+#          ;;
+#       "6128")
+#          MODEL="2"
+#          ;;
+#       *)
+#          PRINT ERROR "CPC model $1 is not supported."
+#          ;;
+#    esac
+
+#    sed -i.bak "s/^CPC_TYPE=.*$/CPC_TYPE=$MODEL/" "$2/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU"
+#    rm "$2/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU.bak"
+# }
 
 
 function create_dsk {
