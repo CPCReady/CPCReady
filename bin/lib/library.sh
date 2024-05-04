@@ -272,10 +272,11 @@ function check_env_file {
 function create_dsk {
     local DSK_IMAGE="$1"
     TAG=$(basename "$1")
-    PRINT "TAG" "$TAG"
+   #  PRINT "TAG" "$TAG"
     if iDSK "$DSK_IMAGE" -n > /dev/null 2>&1; then
-        PRINT "OK" "Disk image created successfully."
+        echo -e "Drive A: $DISC"
     else
+        echo -e "Drive A: $DISC"
         PRINT "ERROR" "There was an error creating the disk image."
     fi
 }
@@ -315,45 +316,84 @@ function rm_comments {
 #    echo "%*s%s%*s\n" $espacios '' "${YELLOW}${BOLD}$texto" $espacios ''
 #    echo "${RED}════════════════════════════════════════"
 #    echo
-# }
+# }█
 
-# function model_cpc{
-# case $1 in
-#     6128)
-# echo """ 
-# Amstrad 128K Microcomputer    (v3)
-# ©1985 Amstrad Consumer Electronics plc
-#         and Locomotive Software Ltd.
+function model_cpc {
+case $1 in
+    6128)
+echo """ 
+ Amstrad 128K Microcomputer    (v3)
+ ©1985 Amstrad Consumer Electronics plc
+         and Locomotive Software Ltd.
 
-# BASIC 1.1
+ BASIC 1.1
 
-# Ready
-# █${NORMAL}"""
-#         ;;
-#     664)
-# echo """ 
-# Amstrad 64K Microcomputer    (v2)
-# ©1984 Amstrad Consumer Electronics plc
-#         and Locomotive Software Ltd.
+Ready
+${NORMAL}"""
+        ;;
+    664)
+echo """ 
+ Amstrad 64K Microcomputer    (v2)
+ ©1984 Amstrad Consumer Electronics plc
+         and Locomotive Software Ltd.
 
-# BASIC 1.1
+ BASIC 1.1
 
-# Ready
-# █${NORMAL}"""
-#         ;;
-#     464)
-# echo """ 
-# Amstrad 64K Microcomputer    (v1)
-# ©1984 Amstrad Consumer Electronics plc
-#         and Locomotive Software Ltd.
+Ready
+${NORMAL}"""
+        ;;
+    464)
+echo """ 
+ Amstrad 64K Microcomputer    (v1)
+ ©1984 Amstrad Consumer Electronics plc
+         and Locomotive Software Ltd.
 
-# BASIC 1.0
+ BASIC 1.0
 
-# Ready
-# █${NORMAL}"""
-#         ;;
-# esac
-# }
+Ready
+${NORMAL}"""
+        ;;
+    m46128)
+echo """ 
+ Amstrad 128K Microcomputer    (v3)
+ ©1985 Amstrad Consumer Electronics plc
+         and Locomotive Software Ltd.
+
+ BASIC 1.1
+
+ M4 Board v2.0.6
+
+Ready
+${NORMAL}"""
+;;
+    m4664)
+echo """ 
+ Amstrad 64K Microcomputer    (v2)
+ ©1984 Amstrad Consumer Electronics plc
+         and Locomotive Software Ltd.
+
+ BASIC 1.1
+
+ M4 Board v2.0.6
+
+Ready
+${NORMAL}"""
+        ;;
+    m4464)
+echo """ 
+ Amstrad 64K Microcomputer    (v1)
+ ©1984 Amstrad Consumer Electronics plc
+         and Locomotive Software Ltd.
+
+ BASIC 1.0
+
+ M4 Board v2.0.6
+
+Ready
+${NORMAL}"""
+        ;;
+esac
+}
 
 function CPCREADY {
 
@@ -378,30 +418,30 @@ function PRINT {
    exit_type="$1"
    case "$exit_type" in
       "OK")
-         echo "${WHITE}${BOLD}  → ${GREEN}${BOLD}$2${NORMAL}"
+         echo "${WHITE}${BOLD}→ ${GREEN}${BOLD}$2${NORMAL}"
          ;;
       "ERROR")
-         echo "${WHITE}${BOLD}  → ${RED}${BOLD}$2${NORMAL}"
+         echo "${WHITE}${BOLD}→ ${RED}${BOLD}$2${NORMAL}"
          echo -e "\n${RED}${BOLD}    ****************************"
          echo "${RED}${BOLD}    *          ERROR           *"
          echo "${RED}${BOLD}    ****************************${NORMAL}"
          exit 1
          ;;
       "ERROR_NO_EXIT")
-         echo "${WHITE}${BOLD}  → ${RED}${BOLD}$2${NORMAL}"
+         echo "${WHITE}${BOLD}→ ${RED}${BOLD}$2${NORMAL}"
          echo -e "\n${RED}${BOLD}    ****************************"
          echo "${RED}${BOLD}    *          ERROR           *"
          echo "${RED}${BOLD}    ****************************${NORMAL}"
          ;;
       "INFO")
-         echo "${WHITE}${BOLD}  → ${BLUE}${BOLD}$2${NORMAL}"
+         echo "${WHITE}${BOLD}→ ${BLUE}${BOLD}$2${NORMAL}"
          ;;
       "WARNING")
-         echo "${WHITE}${BOLD}  → ${YELLOW}${BOLD}$2${NORMAL}"
+         echo "${WHITE}${BOLD}→ ${YELLOW}${BOLD}$2${NORMAL}"
          ;;
       "TAG")
          echo
-         echo " ${WHITE}${BOLD}[$2]"
+         echo "${WHITE}${BOLD}[$2]${NORMAL}"
          echo
          ;;
       "TITLE")

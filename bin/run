@@ -63,6 +63,9 @@ check_env_file
 ## Cargamos archivo de variables
 source "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY"
 
+## Show logo
+CPCREADY
+
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     CPCEMU="$CPCREADY/bin/linux/cpcemu/cpcemu"
     RVM="$CPCREADY/bin/linux/cpcemu/cpcemu"
@@ -76,29 +79,35 @@ fi
 # Convertir el valor de $1 a minúsculas
 param=$(echo "$1" | tr '[:upper:]' '[:lower:]')
 
+# comprobamos si se pasa parametro 2 que es la imagen de disco
+# si no se pasa se coge por defecto la variable $DISC
+if [ -n "$2" ]; then
+    IMAGE="$2"
+else
+    IMAGE="$DISC"
+fi
+
 # Comprobar si el valor es "m4" o "rvm"
 if [[ "$param" == "m4" || "$param" == "rvm" ]]; then
     # Realizar acciones específicas para "m4" y "disc"
     if [[ "$param" == "m4" ]]; then
-        PRINT "TITLE" "CPCEMU M4 Board"
-        echo
-        PRINT "OK" "Image executed in CPCEMU with M4 Board."
+        model_cpc m4$MODEL
+        PRINT "OK" "Emulator: CPCEmu."
+        PRINT "OK" "Project execute in SD."
         $CPCEMU -f -c "$PWD/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" > /dev/null 2>&1 &
     elif [[ "$param" == "rvm" ]]; then
-        if [ ! -e "$OUT_DISC/$DISC" ]; then
-            PRINT "ERROR" "$1 not found."
-            exit 1
+        if [ ! -e "$OUT_DISC/$IMAGE" ]; then
+            PRINT "ERROR" "$OUT_DISC/$IMAGE not found."
         fi
-        PRINT "TITLE" "Retro Virtual Machine"
-        echo
-        PRINT "OK" "run command: disc.bas."
-        $RVM -b=cpc$MODEL -i "$OUT_DISC/$DISC" -c='run"disc\n' > /dev/null 2>&1 &
+        model_cpc $MODEL
+        PRINT "OK" "Emulator: RetroVirtualMachine."
+        PRINT "OK" "DISC: $DISC"
+        PRINT "OK" "run\"disc.bas"
+        $RVM -b=cpc$MODEL -i "$OUT_DISC/$IMAGE" -c='run"disc\n' > /dev/null 2>&1 &
     fi    
 else
    echo
    PRINT "ERROR" "Bad command"
 fi
 
-PRINT "OK" "CPC model where $MODEL runs."
-PRINT "OK" "DISC Image $DISC."
-PRINT "TITLE" "Successfully executed image."
+ready

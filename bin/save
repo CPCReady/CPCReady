@@ -74,8 +74,10 @@ mkdir -p "$OUT_DISC"
 
 PATH_DISC="$OUT_DISC/$DISC"
 
-PRINT "TITLE" "Create disk image with project files."
+model_cpc $MODEL
+
 ## Create image disk
+PRINT "TAG" "DISC"
 create_dsk "$PATH_DISC"
 ## Generate disk image for all files
 if [ $# -eq 0 ]; then
@@ -111,8 +113,5 @@ else
         ## add amsdos header
         ## amsdos "$OUT/$file" >/dev/null 2>&1; PRINT "OK" "Added amsdos header to the file." || PRINT "ERROR" "There was an error adding the amsdos header to the file."
 fi
-
-# banner "Generated disk image successfully"
-PRINT "TITLE" "Generated disk image successfully"
 
 ready

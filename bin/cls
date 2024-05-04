@@ -57,7 +57,7 @@ esac
 check_env_file
 
 ## Cargamos archivo de variables
-source "$CONFIG_CPCREADY"
+source "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY"
 
 clear
 

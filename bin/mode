@@ -67,7 +67,7 @@ source "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY"
 ## Show logo
 CPCREADY
 
-PRINT "TAG" "Screen Mode"
+model_cpc $MODEL
 
 ## Chequeamos si el parámetro es vacío
 if [ -z "$1" ]; then
@@ -82,6 +82,6 @@ if [[ $1 != 0 && $1 != 1 && $1 != 2 ]]; then
 fi
 
 configuration "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" MODE $1
-
-PRINT "OK" "Changed Screen Mode $1"
+clear
 ready
+# PRINT "OK" "Changed Screen Mode $1"

@@ -61,17 +61,17 @@ esac
 check_env_file
 
 ## Cargamos archivo de variables
-source "$CONFIG_CPCREADY"
+source "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY"
 
 ## Show logo
 CPCREADY
 
-PRINT "TAG" "CPC Model"
+
 
 ## Check if the parameter is empty
 if [ -z "$1" ]; then
-    PRINT "INFO" "The current model is $MODEL"
-    ready
+    model_cpc $MODEL
+    echo "█"
     exit 0
 fi
 
@@ -98,8 +98,9 @@ esac
 configuration "$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" CPC_TYPE $MODEL
 configuration "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" MODEL $1
 
-PRINT "OK" "Changed to Model CPC $1"
-ready
+clear
+model_cpc $1
+echo "█"
 
 
 

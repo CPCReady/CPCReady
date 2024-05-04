@@ -67,11 +67,13 @@ source "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY"
 ## Show logo
 CPCREADY
 
-PRINT "TAG" "DISC Project"
+model_cpc $MODEL
 
 # Check if exactly one parameter is provided
 if [ "$#" -ne 1 ]; then
-    PRINT "INFO" "The current value of DISC project is $DISC"
+    # PRINT "INFO" "The current value of DISC project is $DISC"
+    # echo -e "CAT\n"
+    echo "Drive A: $DISC"
     ready
     exit 0
 fi
