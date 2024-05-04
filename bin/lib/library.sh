@@ -42,8 +42,8 @@ IN_BAS="src"
 OUT="out/M4Board"
 OUT_DISC="out/disc"
 PATH_CONFIG_PROJECT="cfg"
-CONFIG_CPCREADY=".CPCReady"
-CONFIG_CPCEMU="cpcemu.cfg"
+CONFIG_CPCREADY="CPCReady.cfg"
+CONFIG_CPCEMU="CPCEmu.cfg"
 
 function generar_rvm {
 

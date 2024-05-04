@@ -33,15 +33,13 @@ source $(dirname "$0")/lib/library.sh
 function show_help {
 
     CPCREADY
-    echo "Run the disk image in the RVM emulator."
+    echo "Run Files in CPCEmu M4 Board or Image DISC."
     echo 
     echo "Use: $(basename "$0") [option]"
     echo "  -h, --help     Show this help message."
     echo "  -v, --version  Show version this software."
     echo "Option:"
-    echo "  [parameter]  Execute BAS File in RetroVirtualMachine."
-    echo "               If the parameter is empty, RVM is executed"
-    echo "               only with the DSK image."
+    echo "  [parameter]  [M4, DISC]"
     ready
 }
 
@@ -84,25 +82,48 @@ function rvm_run {
 check_env_file
 
 ## Cargamos archivo de variables
-source "$CONFIG_CPCREADY"
+source "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY"
 
-PRINT "TITLE" "Retro Virtual Machine"
+# Convertir el valor de $1 a minúsculas
+param=$(echo "$1" | tr '[:upper:]' '[:lower:]')
 
-## Check if the disk image exists
-if [ ! -e "$DISC" ]; then
-    PRINT "ERROR" "$1 not found."
-    exit 1
-fi
-
-## Execute RVM according to the passed parameter
-if [ -z "$1" ]; then
-    rvm_run "$DISC" "$MODEL"
+# Comprobar si el valor es "m4" o "disc"
+if [[ "$param" == "m4" || "$param" == "disc" ]]; then
+    # Realizar acciones específicas para "m4" y "disc"
+    if [[ "$param" == "m4" ]]; then
+        # Cambiamos configuracion en CPCEMU para que no carge el disco 
+        # automaticamente al arrancar el emulador
+        configuration "$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" DRIVE_A_AUTOSTART 0
+        # Creamos autoexec.bas para m4, para que arranque nuestro script
+        echo "RUN\"DISC.BAS\"" > "$OUT/autoexec.bas"
+    elif [[ "$param" == "disc" ]]; then
+        # Check if the disk image exists
+        if [ ! -e "$OUT_DISC/$DISC" ]; then
+            PRINT "ERROR" "$1 not found."
+            exit 1
+        fi
+        # Configuramos emulador para que arranque el desde disco si existe DISC.BAS
+        configuration "$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" DRIVE_A_AUTOSTART 1
+    fi    
 else
-    ## check if file exists
-    if [ ! -e "$IN_BAS/$1" ]; then
-        PRINT "ERROR" "$1 not found."
-    fi
-    rvm_run "$DISC" "$MODEL" "$1"
+   echo
+   PRINT "ERROR" "Bad command"
 fi
+
+
+PRINT "TITLE" "CPCEmu in $1"
+
+
+# exit
+# ## Execute RVM according to the passed parameter
+# if [ -z "$1" ]; then
+#     rvm_run "$DISC" "$MODEL"
+# else
+#     ## check if file exists
+#     if [ ! -e "$IN_BAS/$1" ]; then
+#         PRINT "ERROR" "$1 not found."
+#     fi
+#     rvm_run "$DISC" "$MODEL" "$1"
+# fi
 
 PRINT "TITLE" "Successfully executed image in RVM"
