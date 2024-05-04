@@ -406,7 +406,7 @@ function PRINT {
          ;;
       "TITLE")
          echo
-         echo "${BLUE}${BOLD} [${YELLOW}${BOLD}$2${BLUE}${BOLD}] -----------------------${NORMAL}"
+         echo -e "${BLUE}${BOLD} [${YELLOW}${BOLD}$2${BLUE}${BOLD}] -----------------------${NORMAL}"
          ;;
    esac   
 }

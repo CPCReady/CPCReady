@@ -1,0 +1,3 @@
+-b=cpc464
+-i sample/test.dsk
+-c='run"disc\n'

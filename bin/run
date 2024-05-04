@@ -33,13 +33,13 @@ source $(dirname "$0")/lib/library.sh
 function show_help {
 
     CPCREADY
-    echo "Run Files in CPCEmu M4 Board or Image DISC."
+    echo "Run Files in Emulator"
     echo 
     echo "Use: $(basename "$0") [option]"
     echo "  -h, --help     Show this help message."
     echo "  -v, --version  Show version this software."
     echo "Option:"
-    echo "  [parameter]  [M4, DISC]"
+    echo "  [parameter]  [M4, RVM]"
     ready
 }
 
@@ -56,27 +56,6 @@ case $1 in
         ;;
 esac
 
-## Funcion que ejecuta retrovirtualmachine con el dsk
-## $1 : Nombre del DSK 
-## $2 : Tipo de cpc
-## $3 : comando a ejecutar en el cpc
-function rvm_run {
-   rvm="$CPCREADY/bin/osx/rvm.app/Contents/MacOS/rvm"
-   CPC_MACHINE="cpc$2"
-   PRINT "TAG" "$1"
-   PRINT "OK" "CPC model where $2 runs."
-   if [ -z "$3" ]; then
-    #   $rvm -i "$1" -b="$CPC_MACHINE" &> /dev/null &
-      generar_rvm "$DISC" "$MODEL"
-      PRINT "OK" "Image executed in RVM without run command."
-   else
-      CPC_COMMAND="RUN\"$3"
-    #   $rvm -i "$1" -b="$CPC_MACHINE" -c="$CPC_COMMAND" &> /dev/null &
-      generar_rvm "$DISC" "$MODEL" "$CPC_COMMAND"
-      PRINT "OK" "Image run in RVM with run\""$3"\" command"
-   fi
-}
-
 ## Chequeamos si existe el archivo de variables.
 ## si no existe salimos con error
 check_env_file
@@ -84,46 +63,42 @@ check_env_file
 ## Cargamos archivo de variables
 source "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY"
 
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    CPCEMU="$CPCREADY/bin/linux/cpcemu/cpcemu"
+    RVM="$CPCREADY/bin/linux/cpcemu/cpcemu"
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    CPCEMU="$CPCREADY/bin/osx/CPCemuMacOS.app/Contents/MacOS/CPCemuMacOS"
+    RVM="$CPCREADY/bin/osx/rvm.app/Contents/MacOS/rvm"
+else
+    PRINT ERROR "$OSTYPE Operating system NOT supported."
+fi
+
 # Convertir el valor de $1 a minúsculas
 param=$(echo "$1" | tr '[:upper:]' '[:lower:]')
 
-# Comprobar si el valor es "m4" o "disc"
-if [[ "$param" == "m4" || "$param" == "disc" ]]; then
+# Comprobar si el valor es "m4" o "rvm"
+if [[ "$param" == "m4" || "$param" == "rvm" ]]; then
     # Realizar acciones específicas para "m4" y "disc"
     if [[ "$param" == "m4" ]]; then
-        # Cambiamos configuracion en CPCEMU para que no carge el disco 
-        # automaticamente al arrancar el emulador
-        configuration "$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" DRIVE_A_AUTOSTART 0
-        # Creamos autoexec.bas para m4, para que arranque nuestro script
-        echo "RUN\"DISC.BAS\"" > "$OUT/autoexec.bas"
-    elif [[ "$param" == "disc" ]]; then
-        # Check if the disk image exists
+        PRINT "TITLE" "CPCEMU M4 Board"
+        echo
+        PRINT "OK" "Image executed in CPCEMU with M4 Board."
+        $CPCEMU -f -c "$PWD/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" > /dev/null 2>&1 &
+    elif [[ "$param" == "rvm" ]]; then
         if [ ! -e "$OUT_DISC/$DISC" ]; then
             PRINT "ERROR" "$1 not found."
             exit 1
         fi
-        # Configuramos emulador para que arranque el desde disco si existe DISC.BAS
-        configuration "$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" DRIVE_A_AUTOSTART 1
+        PRINT "TITLE" "Retro Virtual Machine"
+        echo
+        PRINT "OK" "run command: disc.bas."
+        $RVM -b=cpc$MODEL -i "$OUT_DISC/$DISC" -c='run"disc\n' > /dev/null 2>&1 &
     fi    
 else
    echo
    PRINT "ERROR" "Bad command"
 fi
 
-
-PRINT "TITLE" "CPCEmu in $1"
-
-
-# exit
-# ## Execute RVM according to the passed parameter
-# if [ -z "$1" ]; then
-#     rvm_run "$DISC" "$MODEL"
-# else
-#     ## check if file exists
-#     if [ ! -e "$IN_BAS/$1" ]; then
-#         PRINT "ERROR" "$1 not found."
-#     fi
-#     rvm_run "$DISC" "$MODEL" "$1"
-# fi
-
-PRINT "TITLE" "Successfully executed image in RVM"
+PRINT "OK" "CPC model where $MODEL runs."
+PRINT "OK" "DISC Image $DISC."
+PRINT "TITLE" "Successfully executed image."

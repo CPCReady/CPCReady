@@ -96,7 +96,7 @@ create_dsk "$OUT_DISC/$1"
     # if [ -f "$CONFIG_CPCREADY" ]; then
         # change_disc "$1" "$PWD"
         # change_disc_cpcemu "$1" "$PWD"
-configuration "$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" DRIVE_A "$PWD/$OUT_DISC/$1"
+# configuration "$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" DRIVE_A "$PWD/$OUT_DISC/$1"
 configuration "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" DISC $1
     # fi
 # fi

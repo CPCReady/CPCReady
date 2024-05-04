@@ -158,7 +158,8 @@ PRINT OK "Configurate CPC Model $cpc_model"
 configuration "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" M4_SD_PATH "$PWD/$project_name/$OUT"
 PRINT OK "Configurate M4 Board Directory $OUT"
 
-configuration "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" DRIVE_A "$PWD/$project_name/$OUT_DISC/$project_name.dsk"
+configuration "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" DRIVE_A "$PWD/$project_name/$OUT_DISC"
+configuration "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" DRIVE_B "$PWD/$project_name/$OUT_DISC"
 configuration "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" DISC "$project_name.dsk"
 PRINT OK "Configurate DISC Directory $OUT_DISC"
 
@@ -170,7 +171,7 @@ if [ "$AMSTRAD_COLORS" = "S" ]; then
 fi
 
 configuration "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" MODE 1
-# configuration "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" TEST "$TEST"
+
 PRINT OK "Configure test execution with $TEST"
 
 ## Create image disk file
