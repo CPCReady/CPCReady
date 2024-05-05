@@ -41,6 +41,7 @@ BOLD="$(tput bold)"
 IN_BAS="src"
 OUT="out/M4Board"
 OUT_DISC="out/disc"
+OUT_TAPE="out/tape"
 PATH_CONFIG_PROJECT="cfg"
 CONFIG_CPCREADY="CPCReady.cfg"
 CONFIG_CPCEMU="CPCEmu.cfg"
@@ -412,32 +413,27 @@ echo "Ready" >&2
 # echo "█" >&2
 echo "${NORMAL}"
 }
-
+#→
 function PRINT {
 
    exit_type="$1"
    case "$exit_type" in
       "OK")
-         echo "${WHITE}${BOLD}→ ${GREEN}${BOLD}$2${NORMAL}"
+         echo "${WHITE}${BOLD}* ${GREEN}${BOLD}$2${NORMAL}"
          ;;
       "ERROR")
-         echo "${WHITE}${BOLD}→ ${RED}${BOLD}$2${NORMAL}"
-         echo -e "\n${RED}${BOLD}    ****************************"
-         echo "${RED}${BOLD}    *          ERROR           *"
-         echo "${RED}${BOLD}    ****************************${NORMAL}"
+         # echo -e "${WHITE}${BOLD}***********${NORMAL}"
+         echo -e "${WHITE}${BOLD}** ${RED}${BOLD}ERROR ${WHITE}${BOLD}** \n${RED}${BOLD}$2${NORMAL}"
          exit 1
          ;;
       "ERROR_NO_EXIT")
-         echo "${WHITE}${BOLD}→ ${RED}${BOLD}$2${NORMAL}"
-         echo -e "\n${RED}${BOLD}    ****************************"
-         echo "${RED}${BOLD}    *          ERROR           *"
-         echo "${RED}${BOLD}    ****************************${NORMAL}"
+         echo -e "${WHITE}${BOLD}** ${RED}${BOLD}ERROR ${WHITE}${BOLD}** \n${RED}${BOLD}$2${NORMAL}"
          ;;
       "INFO")
-         echo "${WHITE}${BOLD}→ ${BLUE}${BOLD}$2${NORMAL}"
+         echo "${WHITE}${BOLD}* ${BLUE}${BOLD}$2${NORMAL}"
          ;;
       "WARNING")
-         echo "${WHITE}${BOLD}→ ${YELLOW}${BOLD}$2${NORMAL}"
+         echo "${WHITE}${BOLD}* ${YELLOW}${BOLD}$2${NORMAL}"
          ;;
       "TAG")
          echo

@@ -122,6 +122,7 @@ PRINT "TAG" "Directory"
 mkdir -p "$project_name/$IN_BAS"
 mkdir -p "$project_name/$OUT"
 mkdir -p "$project_name/$OUT_DISC"
+mkdir -p "$project_name/$OUT_TAPE"
 mkdir -p "$project_name/$PATH_CONFIG_PROJECT"
 PRINT "OK" "Create the $project_name directory."
 
@@ -155,9 +156,11 @@ configuration "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" CPC_TYPE 
 configuration "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" MODEL $cpc_model
 PRINT OK "Configurate CPC Model $cpc_model"
 
+configuration "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" PRINTER "$PWD/$project_name/$PATH_CONFIG_PROJECT/PRN"
 configuration "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" M4_SD_PATH "$PWD/$project_name/$OUT"
 PRINT OK "Configurate M4 Board Directory $OUT"
 
+configuration "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" TAPE_PATH "$PWD/$project_name/$OUT_TAPE"
 configuration "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" DRIVE_A "$PWD/$project_name/$OUT_DISC"
 configuration "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" DRIVE_B "$PWD/$project_name/$OUT_DISC"
 configuration "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" DISC "$project_name.dsk"
