@@ -2,7 +2,8 @@
     "workbench.colorCustomizations": {
       "terminal.foreground": "#00ff0d",
       // "terminal.foreground": "#d9ff00",
-      "terminal.background": "#000000",
+      "terminal.background": "#000000"
   },
-
+  "terminal.integrated.shell.windows": "amstrad",
+  // "terminal.integrated.shellArgs.windows": ["/K", "C:\\Program Files\\cmder\\vscode.bat"]
 }

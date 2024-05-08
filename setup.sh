@@ -83,6 +83,22 @@ else
     PRINT WARNING "Please install unix2dos on your system to continue."
 fi
 
+# Si la version de python es correcta instalamos la consola
+# Obtener la versión de Python instalada
+python_version=$(python3 -V 2>&1)
+
+# Extraer la versión principal y secundaria
+version_major=$(echo "$python_version" | cut -d ' ' -f 2 | cut -d '.' -f 1)
+version_minor=$(echo "$python_version" | cut -d ' ' -f 2 | cut -d '.' -f 2)
+
+# Verificar si la versión es 3.10 o superior
+if [ "$version_major" -eq 3 ] && [ "$version_minor" -ge 10 ]; then
+    pip3 install tools/console-0.1.0-py3-none-any.whl --break-system-packages --force-reinstall
+else
+    echo "Python 3.10 o superior no está instalado."
+fi
+
+
 PRINT TAG "Installation"
 
 echo -e "\nexport CPCREADY=$PWD" >> "$HOME/.bashrc"

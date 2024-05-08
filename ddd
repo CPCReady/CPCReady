@@ -1,0 +1,51 @@
+{
+    "workbench.colorTheme": "GitHub Dark",
+    "terminal.integrated.automationProfile.linux": {},
+    "terminal.integrated.automationProfile.osx": {},
+    "terminal.integrated.profiles.osx": {
+        "amstrad": {
+            "path": "amstrad",
+            "args": [
+                "-l"
+            ],
+            "icon": "terminal-bash"
+        },
+        "bash": {
+            "path": "bash",
+            "args": [
+                "-l"
+            ],
+            "icon": "terminal-bash"
+        },
+        "zsh": {
+            "path": "zsh",
+            "args": [
+                "-l"
+            ]
+        },
+        "fish": {
+            "path": "fish",
+            "args": [
+                "-l"
+            ]
+        },
+        "tmux": {
+            "path": "tmux",
+            "icon": "terminal-tmux"
+        },
+        "pwsh": {
+            "path": "pwsh",
+            "icon": "terminal-powershell"
+        },
+        "bash (2)": {
+            "path": "/opt/homebrew/bin/bash"
+        }
+    },
+    "terminal.integrated.defaultProfile.osx": "zsh",
+    "workbench.iconTheme": "material-icon-theme",
+    "terminal.integrated.fontSize": 13,
+    "editor.fontFamily": "MesloLGS NF",
+    "files.autoSave": "afterDelay",
+    "editor.fontSize": 14,
+    "git.autofetch": true
+}

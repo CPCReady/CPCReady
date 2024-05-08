@@ -329,8 +329,7 @@ echo """
 
  BASIC 1.1
 
-Ready
-${NORMAL}"""
+Ready${NORMAL}"""
         ;;
     664)
 echo """ 
@@ -340,8 +339,7 @@ echo """
 
  BASIC 1.1
 
-Ready
-${NORMAL}"""
+Ready${NORMAL}"""
         ;;
     464)
 echo """ 
@@ -351,8 +349,7 @@ echo """
 
  BASIC 1.0
 
-Ready
-${NORMAL}"""
+Ready${NORMAL}"""
         ;;
     m46128)
 echo """ 
@@ -364,8 +361,7 @@ echo """
 
  M4 Board v2.0.6
 
-Ready
-${NORMAL}"""
+Ready${NORMAL}"""
 ;;
     m4664)
 echo """ 
@@ -377,8 +373,7 @@ echo """
 
  M4 Board v2.0.6
 
-Ready
-${NORMAL}"""
+Ready${NORMAL}"""
         ;;
     m4464)
 echo """ 
@@ -390,8 +385,7 @@ echo """
 
  M4 Board v2.0.6
 
-Ready
-${NORMAL}"""
+Ready${NORMAL}"""
         ;;
 esac
 }
