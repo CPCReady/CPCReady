@@ -1,9 +1,22 @@
 {
     "workbench.colorCustomizations": {
-      "terminal.foreground": "#00ff0d",
-      // "terminal.foreground": "#d9ff00",
-      "terminal.background": "#000000"
+      "terminal.foreground": "#d9ff00",
+      "terminal.background": "#000080",
   },
-  "terminal.integrated.shell.windows": "amstrad",
-  // "terminal.integrated.shellArgs.windows": ["/K", "C:\\Program Files\\cmder\\vscode.bat"]
+  "terminal.integrated.profiles.osx": {
+    "amstrad": {
+        "path": "${env:CPCREADY}/bin/amstrad",
+        "args": [
+            "${workspaceFolder}/test/prueba2"
+        ],
+        "icon": "terminal-bash"
+    }
+},
+"terminal.integrated.defaultProfile.osx": "amstrad",
+"terminal.integrated.tabs.title": "${process}",
+"workbench.iconTheme": "material-icon-theme",
+"terminal.integrated.fontSize": 13,
+"terminal.integrated.letterSpacing":3,
+"terminal.integrated.tabs.description":"AMSTRAD"
+
 }
