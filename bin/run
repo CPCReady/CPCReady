@@ -50,34 +50,12 @@ function show_help {
     echo "               ​of the EMULATOR and DISC environment variables are taken."
 }
 
-# Function to check if a value is in a list
-isEmulator() {
-    local value="$1"
-    value=$(echo "$1" | tr '[:upper:]' '[:lower:]')
-    export $EMULATOR="$value"
-    shift
-    for element; do
-        [[ "$element" == "$value" ]] && return 0
-    done
-    return 1
-}
-
 ## Chequeamos si existe el archivo de variables.
 ## si no existe salimos con error
 check_env_file
 
 ## Cargamos archivo de variables
 source "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY"
-
-if [[ -z "$EMULATOR" ]]; then
-    export EMULATOR="rvm"
-fi
-
-
-# Default values
-
-EMULATOR="$EMULATOR"
-DSK="$DISC"
 
 # Check if the help parameter is provided
 # Process command line options
@@ -90,24 +68,6 @@ while [[ "$#" -gt 0 ]]; do
         -h|--help)
             show_help
             exit 0
-            ;;
-        -e|--emulator)
-            if [[ -z "$2" ]]; then
-                PRINT "ERROR" "Missing argument for option $1" >&2
-            fi
-            if ! isEmulator "$2" "${emulators[@]}"; then
-                PRINT "ERROR" "The emulator value must be one of ${emulators[*]}" >&2
-            fi
-            value=$(echo "$2" | tr '[:upper:]' '[:lower:]')
-            EMULATOR="$value"
-            shift 2
-            ;;
-        -d|--dsk)
-            if [[ -z "$2" ]]; then
-                PRINT "ERROR" "Missing argument for option $1" >&2
-            fi
-            DSK="$2"
-            shift 2
             ;;
         *) echo "Invalid option: $1" >&2; exit 1 ;;
     esac
@@ -123,20 +83,19 @@ else
     PRINT ERROR "$OSTYPE Operating system NOT supported."
 fi
 
-# Comprobar si el valor es "m4" o "rvm"
-# if [[ "$EMULATOR" == "m4" || "$EMULATOR" == "rvm" ]]; then
-    # Realizar acciones específicas para "m4" y "disc"echo
+EMULATOR=$(echo "$EMULATOR" | tr '[:upper:]' '[:lower:]')
+
 echo
 if [[ "$EMULATOR" == "m4" ]]; then
     PRINT "OK" "Emulator: CPCEmu."
     PRINT "OK" "Project execute in SD."
     $CPCEMU -f -c "$PWD/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" > /dev/null 2>&1 &
 elif [[ "$EMULATOR" == "rvm" ]]; then
-    if [ ! -e "$OUT_DISC/$DSK" ]; then
-        PRINT "ERROR" "$OUT_DISC/$DSK not found."
+    if [ ! -e "$OUT_DISC/$DISC" ]; then
+        PRINT "ERROR" "$OUT_DISC/$DISC not found."
     fi
     PRINT "OK" "Emulator: RetroVirtualMachine."
     PRINT "OK" "DISC: $DISC"
     PRINT "OK" "run\"disc.bas"
-    $RVM -b=cpc$MODEL -i "$OUT_DISC/$DSK" -c='run"disc\n' > /dev/null 2>&1 &
+    $RVM -b=cpc$MODEL -i "$OUT_DISC/$DISC" -c='run"disc\n' > /dev/null 2>&1 &
 fi    

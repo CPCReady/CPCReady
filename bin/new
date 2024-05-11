@@ -68,7 +68,7 @@ fi
 
 while true; do
     echo
-    read -p "${BLUE}${BOLD}  Project's name: ${NORMAL}" project_name
+    read -p "${BLUE}${BOLD} Project's name: ${NORMAL}" project_name
 
     # Reemplazar espacios por guiones bajos
     project_name=${project_name// /_}
@@ -84,7 +84,7 @@ while true; do
     fi
 done
 while true; do
-    read -p "${BLUE}${BOLD}  CPC Model (464, 6128, or 664): ${NORMAL}" cpc_model
+    read -p "${BLUE}${BOLD} CPC Model (464, 664, or 6128): ${NORMAL}" cpc_model
 
     case $cpc_model in
         464|6128|664)
@@ -93,14 +93,23 @@ while true; do
         *)
             echo
             PRINT "ERROR_NO_EXIT" "Invalid CPC Model. Please choose either 464, 664, or 6128."
-            ready
             echo
             ;;
     esac
 done
 
+
 while true; do
-    read -p "${BLUE}${BOLD}  Apply native Amstrad CPC colors to the Visual Studio Code terminal? (y/n): " respuesta
+    read -p "${BLUE}${BOLD} Run test in (M4 / RVM)?: " respuesta
+    case "$respuesta" in
+        [Mm]4*|[Bb]oard*)  TEST="M4";break;;
+        [Rr][Vv][Mm]*) TEST="RVM";break;;
+        *) echo "${RED}${BOLD} Please respond with 'M4' or 'DISC'.";;
+    esac
+done
+
+while true; do
+    read -p "${BLUE}${BOLD} Apply native Amstrad CPC colors to the Visual Studio Code terminal? (y/n): " respuesta
     case $respuesta in
         [Yy]* ) AMSTRAD_COLORS="S";break;;
         [Nn]* ) AMSTRAD_COLORS="N";break;;
@@ -108,14 +117,6 @@ while true; do
     esac
 done
 
-# while true; do
-#     read -p "${BLUE}${BOLD}  Los test se realizarán en (M4 / DISC): " respuesta
-#     case "$respuesta" in
-#         [Mm]4*|[Bb]oard*)  TEST="M4";break;;
-#         [Dd][Ii][Ss][Cc]*) TEST="DISC";break;;
-#         *) echo "${RED}${BOLD}  Please respond with 'M4' or 'DISC'.";;
-#     esac
-# done
 
 ## Create the project directory
 PRINT "TAG" "Directory"
@@ -169,11 +170,18 @@ PRINT OK "Configurate DISC Directory $OUT_DISC"
 # creamos vscode para cambios de color de la terminal.
 if [ "$AMSTRAD_COLORS" = "S" ]; then
     mkdir -p "$project_name/.vscode"
-    cp -r "$CPCREADY/cfg/templates/settings.json" "$project_name/.vscode/settings.json"
+    if [[ "$OSTYPE" == "linux-gnu" ]]; then
+        cp -r "$CPCREADY/cfg/templates/settings.linux.json" "$project_name/.vscode/settings.json"
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        cp -r "$CPCREADY/cfg/templates/settings.osx.json" "$project_name/.vscode/settings.json"
+    else
+        PRINT ERROR "$OSTYPE Operating system NOT supported."
+    fi
     PRINT "OK" "Apply colors to the Vscode terminal."
 fi
 
 configuration "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" MODE 1
+configuration "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" EMULATOR $TEST
 
 PRINT OK "Configure test execution with $TEST"
 
