@@ -36,14 +36,12 @@ function show_help {
     echo "Clear console."
     echo 
     echo "Use: $(basename "$0")"
-    ready
 }
 
 ## Check if the help parameter is provided
 case $1 in
     -v|--version)
         show_version
-        ready
         exit 0
         ;;
     -h|--help)

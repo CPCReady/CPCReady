@@ -41,14 +41,12 @@ function show_help {
     echo "  [parameter]  Screen Mode. Options values [0,1,2]."
     echo "               If the parameter is empty, shows the"
     echo "               current value."
-    ready
 }
 
 # Check if the help parameter is provided
 case $1 in
     -v|--version)
         show_version
-        ready
         exit 0
         ;;
     -h|--help)
@@ -64,15 +62,10 @@ check_env_file
 ## Cargamos archivo de variables
 source "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY"
 
-## Show logo
-CPCREADY
-
-model_cpc $MODEL
-
 ## Chequeamos si el parámetro es vacío
 if [ -z "$1" ]; then
-    PRINT "INFO" "The current value is $MODE"
-    ready
+    echo
+    PRINT "OK" "Screen Mode is $MODE"
     exit 0
 fi
 
@@ -83,5 +76,4 @@ fi
 
 configuration "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" MODE $1
 clear
-ready
-# PRINT "OK" "Changed Screen Mode $1"
+PRINT "OK" "Changed Screen Mode $1"

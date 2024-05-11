@@ -40,14 +40,12 @@ function show_help {
     echo "  [parameter] Amstrad CPC Models. Options values [464,664,6128]."
     echo "              If the parameter is empty, shows the"
     echo "              current value."
-    ready
 }
 
 ## Check if the help parameter is provided
 case $1 in
     -v|--version)
         show_version
-        ready
         exit 0
         ;;
     -h|--help)
@@ -63,20 +61,17 @@ check_env_file
 ## Cargamos archivo de variables
 source "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY"
 
-## Show logo
-CPCREADY
-
-
 
 ## Check if the parameter is empty
 if [ -z "$1" ]; then
+    clear
     model_cpc $MODEL
-    echo "█"
     exit 0
 fi
 
 ## Check correct parameter
 if [[ $1 != 464 && $1 != 664 && $1 != 6128 ]]; then
+    echo
     PRINT "ERROR" "Bad command"
 fi
 
@@ -100,7 +95,7 @@ configuration "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" MODEL $1
 
 clear
 model_cpc $1
-echo "█"
+
 
 
 

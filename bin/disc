@@ -41,14 +41,12 @@ function show_help {
     echo "  [parameter]  Name of disc image to create."
     echo "               If the parameter is empty, shows the"
     echo "               current value."
-    ready
 }
 
 # Check if the help parameter is provided
 case $1 in
     -v|--version)
         show_version
-        ready
         exit 0
         ;;
     -h|--help)
@@ -64,17 +62,11 @@ check_env_file
 ## Cargamos archivo de variables
 source "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY"
 
-## Show logo
-CPCREADY
-
-model_cpc $MODEL
-
 # Check if exactly one parameter is provided
 if [ "$#" -ne 1 ]; then
     # PRINT "INFO" "The current value of DISC project is $DISC"
     # echo -e "CAT\n"
-    echo "Drive A: $DISC"
-    ready
+    echo -e "\nDrive A: $DISC"
     exit 0
 fi
 
@@ -93,6 +85,7 @@ fi
 #     done
 # else
     ## Create disk image
+echo
 create_dsk "$OUT_DISC/$1"
     ## Change disk image if exists environment file
     # if [ -f "$CONFIG_CPCREADY" ]; then
@@ -103,4 +96,4 @@ configuration "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" DISC $1
     # fi
 # fi
 
-ready
+

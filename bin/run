@@ -28,6 +28,7 @@
 
 ## Bash Include files
 source $(dirname "$0")/lib/library.sh
+
 # Allowed values for the emulator parameter
 emulators=("m4" "rvm")
 
@@ -47,7 +48,6 @@ function show_help {
     echo "               --dsk "
     echo "               If no default parameters are passed, the values ​"
     echo "               ​of the EMULATOR and DISC environment variables are taken."
-    ready
 }
 
 # Function to check if a value is in a list
@@ -69,10 +69,6 @@ check_env_file
 ## Cargamos archivo de variables
 source "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY"
 
-## Show logo
-CPCREADY
-
-
 if [[ -z "$EMULATOR" ]]; then
     export EMULATOR="rvm"
 fi
@@ -89,7 +85,6 @@ while [[ "$#" -gt 0 ]]; do
     case "$1" in
         -v|--version)
             show_version
-            ready
             exit 0
             ;;
         -h|--help)
@@ -130,9 +125,9 @@ fi
 
 # Comprobar si el valor es "m4" o "rvm"
 # if [[ "$EMULATOR" == "m4" || "$EMULATOR" == "rvm" ]]; then
-    # Realizar acciones específicas para "m4" y "disc"
+    # Realizar acciones específicas para "m4" y "disc"echo
+echo
 if [[ "$EMULATOR" == "m4" ]]; then
-    model_cpc m4$MODEL
     PRINT "OK" "Emulator: CPCEmu."
     PRINT "OK" "Project execute in SD."
     $CPCEMU -f -c "$PWD/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" > /dev/null 2>&1 &
@@ -140,15 +135,8 @@ elif [[ "$EMULATOR" == "rvm" ]]; then
     if [ ! -e "$OUT_DISC/$DSK" ]; then
         PRINT "ERROR" "$OUT_DISC/$DSK not found."
     fi
-    model_cpc $MODEL
     PRINT "OK" "Emulator: RetroVirtualMachine."
     PRINT "OK" "DISC: $DISC"
     PRINT "OK" "run\"disc.bas"
     $RVM -b=cpc$MODEL -i "$OUT_DISC/$DSK" -c='run"disc\n' > /dev/null 2>&1 &
 fi    
-# else
-#    echo
-#    PRINT "ERROR" "Bad command"
-# fi
-
-ready

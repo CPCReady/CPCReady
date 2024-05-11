@@ -327,9 +327,7 @@ echo """
  ©1985 Amstrad Consumer Electronics plc
          and Locomotive Software Ltd.
 
- BASIC 1.1
-
-Ready${NORMAL}"""
+ BASIC 1.1${NORMAL}"""
         ;;
     664)
 echo """ 
@@ -337,9 +335,7 @@ echo """
  ©1984 Amstrad Consumer Electronics plc
          and Locomotive Software Ltd.
 
- BASIC 1.1
-
-Ready${NORMAL}"""
+ BASIC 1.1${NORMAL}"""
         ;;
     464)
 echo """ 
@@ -347,9 +343,7 @@ echo """
  ©1984 Amstrad Consumer Electronics plc
          and Locomotive Software Ltd.
 
- BASIC 1.0
-
-Ready${NORMAL}"""
+ BASIC 1.0${NORMAL}"""
         ;;
     m46128)
 echo """ 
@@ -359,9 +353,7 @@ echo """
 
  BASIC 1.1
 
- M4 Board v2.0.6
-
-Ready${NORMAL}"""
+ M4 Board v2.0.6${NORMAL}"""
 ;;
     m4664)
 echo """ 
@@ -371,9 +363,7 @@ echo """
 
  BASIC 1.1
 
- M4 Board v2.0.6
-
-Ready${NORMAL}"""
+ M4 Board v2.0.6"""
         ;;
     m4464)
 echo """ 
@@ -383,9 +373,7 @@ echo """
 
  BASIC 1.0
 
- M4 Board v2.0.6
-
-Ready${NORMAL}"""
+ M4 Board v2.0.6${NORMAL}"""
         ;;
 esac
 }

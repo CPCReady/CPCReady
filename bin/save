@@ -42,14 +42,12 @@ function show_help {
     echo "  [parameter] Amstrad CPC Models. Options values [464,664,6128]."
     echo "              If the parameter is empty, shows the"
     echo "              current value."
-    ready
 }
 
 ## Check if the help parameter is provided
 case $1 in
     -v|--version)
         show_version
-        ready
         exit 0
         ;;
     -h|--help)
@@ -65,16 +63,11 @@ check_env_file
 ## Cargamos archivo de variables
 source "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY"
 
-## Show logo
-CPCREADY
-
 ## Crete folder out
 mkdir -p "$OUT"
 mkdir -p "$OUT_DISC"
 
 PATH_DISC="$OUT_DISC/$DISC"
-
-model_cpc $MODEL
 
 ## Create image disk
 PRINT "TAG" "DISC"
@@ -114,4 +107,3 @@ else
         ## amsdos "$OUT/$file" >/dev/null 2>&1; PRINT "OK" "Added amsdos header to the file." || PRINT "ERROR" "There was an error adding the amsdos header to the file."
 fi
 
-ready

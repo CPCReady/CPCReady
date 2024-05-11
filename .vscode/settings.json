@@ -5,7 +5,7 @@
   },
   "terminal.integrated.profiles.osx": {
     "amstrad": {
-        "path": "${env:CPCREADY}/bin/amstrad",
+        "path": "${env:CPCREADY}/bin/console",
         "args": [
             "${workspaceFolder}/test/prueba2"
         ],
@@ -16,7 +16,7 @@
 "terminal.integrated.tabs.title": "${process}",
 "workbench.iconTheme": "material-icon-theme",
 "terminal.integrated.fontSize": 13,
-"terminal.integrated.letterSpacing":3,
+"terminal.integrated.letterSpacing":1,
 "terminal.integrated.tabs.description":"AMSTRAD"
 
 }
