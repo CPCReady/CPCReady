@@ -39,15 +39,10 @@ function show_help {
     echo "Run Files in Emulator"
     echo 
     echo "Use: $(basename "$0") [option]"
-    echo "  -e, --emulator Emulator type [M4, RVM]"
-    echo "  -d, --dsk      Disk image name."
     echo "  -h, --help     Show this help message."
     echo "  -v, --version  Show version this software."
     echo "Option:"
     echo "  [parameter]  --emulator [M4, RVM]"
-    echo "               --dsk "
-    echo "               If no default parameters are passed, the values ​"
-    echo "               ​of the EMULATOR and DISC environment variables are taken."
 }
 
 ## Chequeamos si existe el archivo de variables.

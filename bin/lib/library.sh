@@ -446,3 +446,44 @@ function previus_version {
     grep -qF -- "$line" "$file"
 }
 
+# Verificamos el valor de mode
+function evaluaMode {
+   # Lista de valores
+   lista=("1" "2" "0")
+   # Bucle para iterar sobre todos los elementos de la lista
+   for elemento in "${lista[@]}"; do
+      if [[ "$elemento" == "$1" ]]; then
+         return
+      fi
+   done
+   echo
+   PRINT ERROR "Screen mode $1 not supported"
+}
+
+# Verificamos el valor de emulator
+function evaluaEmulator {
+   # Lista de valores
+   lista=("rvm" "RVM" "m4" "M4")
+   # Bucle para iterar sobre todos los elementos de la lista
+   for elemento in "${lista[@]}"; do
+      if [[ "$elemento" == "$1" ]]; then
+         return
+      fi
+   done
+   echo
+   PRINT ERROR "Emulator Software $1 not supported"
+}
+
+# Verificamos el valor de Model
+function evaluaCPCModel {
+   # Lista de valores
+   lista=("464" "664" "6128")
+   # Bucle para iterar sobre todos los elementos de la lista
+   for elemento in "${lista[@]}"; do
+      if [[ "$elemento" == "$1" ]]; then
+         return
+      fi
+   done
+   echo
+   PRINT ERROR "CPC Model $1 not supported"
+}

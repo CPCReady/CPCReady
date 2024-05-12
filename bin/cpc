@@ -64,16 +64,14 @@ source "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY"
 
 ## Check if the parameter is empty
 if [ -z "$1" ]; then
+    evaluaCPCModel $MODEL
     clear
     model_cpc $MODEL
     exit 0
 fi
 
-## Check correct parameter
-if [[ $1 != 464 && $1 != 664 && $1 != 6128 ]]; then
-    echo
-    PRINT "ERROR" "Bad command"
-fi
+# Comprobamos Modelo CPC
+evaluaCPCModel $1
 
 case $1 in
     "464")

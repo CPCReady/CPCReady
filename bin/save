@@ -39,9 +39,7 @@ function show_help {
     echo "  -h, --help     Show this help message."
     echo "  -v, --version  Show version this software."
     echo "Option:"
-    echo "  [parameter] Amstrad CPC Models. Options values [464,664,6128]."
-    echo "              If the parameter is empty, shows the"
-    echo "              current value."
+    echo "  [parameter] "
 }
 
 ## Check if the help parameter is provided
