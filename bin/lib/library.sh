@@ -275,9 +275,11 @@ function create_dsk {
     TAG=$(basename "$1")
    #  PRINT "TAG" "$TAG"
     if iDSK "$DSK_IMAGE" -n > /dev/null 2>&1; then
-        echo -e "Drive A: $DISC"
+      IMAGE=$(basename "$DSK_IMAGE")
+      PRINT OK "Drive A: $IMAGE"
+      #   echo -e "Drive A: $DISC"
     else
-        echo -e "Drive A: $DISC"
+      #   echo -e "Drive A: $DISC"
         PRINT "ERROR" "There was an error creating the disk image."
     fi
 }

@@ -67,9 +67,20 @@ mkdir -p "$OUT_DISC"
 
 PATH_DISC="$OUT_DISC/$DISC"
 
-## Create image disk
-PRINT "TAG" "DISC"
-create_dsk "$PATH_DISC"
+if [[ "$EMULATOR" == "rvm" ]]; then
+    ## Create image disk
+    PRINT "TAG" "DISC"
+    create_dsk "$PATH_DISC"
+fi
+
+if [[ "$EMULATOR" == "m4" ]]; then
+    ## Create image disk
+    PRINT "TAG" "M4 Board"
+    rm -rf "$OUT"
+    mkdir -p "$OUT"
+    PRINT OK "Delete SD path"
+fi
+
 ## Generate disk image for all files
 if [ $# -eq 0 ]; then
     ## Add files BAS to disk image
@@ -82,7 +93,9 @@ if [ $# -eq 0 ]; then
             ## convert unix2dos
             unix2dos "$OUT/$file" >/dev/null 2>&1; PRINT "OK" "Converting file to DOS format." || PRINT "ERROR" "There was a problem converting the file to DOS format."
             ## add file to dsk image
-            add_ascii_dsk "$PATH_DISC" "$OUT/$file"
+            if [[ "$EMULATOR" == "rvm" ]]; then
+                add_ascii_dsk "$PATH_DISC" "$OUT/$file"
+            fi
             ## add amsdos header
             ## amsdos "$OUT/$file" >/dev/null 2>&1; PRINT "OK" "Added amsdos header to the file." || PRINT "ERROR" "There was an error adding the amsdos header to the file."
         fi
@@ -100,7 +113,10 @@ else
         ## convert unix2dos
         unix2dos "$OUT/$file" >/dev/null 2>&1; PRINT "OK" "Converting file to DOS format." || PRINT "ERROR" "There was a problem converting the file to DOS format."
         ## add file to dsk image
-        add_ascii_dsk "$PATH_DISC" "$OUT/$file"
+        if [[ "$EMULATOR" == "rvm" ]]; then
+            add_ascii_dsk "$PATH_DISC" "$OUT/$file"
+        fi
+
         ## add amsdos header
         ## amsdos "$OUT/$file" >/dev/null 2>&1; PRINT "OK" "Added amsdos header to the file." || PRINT "ERROR" "There was an error adding the amsdos header to the file."
 fi
