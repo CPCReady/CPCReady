@@ -66,9 +66,19 @@ jobs:
         path: bin/configuration
 
     - name: compile amstrad-console
+      if: ${{ matrix.os == 'macos-latest' }}
       run: |
         cd tools/amstrad-console
         pip3 install poetry --break-system-packages
+        poetry version ${{ steps.extract_version.outputs.version }}
+        poetry install
+        poetry build
+
+    - name: compile amstrad-console
+      if: ${{ matrix.os == 'ubuntu-latest' }}
+      run: |
+        cd tools/amstrad-console
+        pip3 install poetry
         poetry version ${{ steps.extract_version.outputs.version }}
         poetry install
         poetry build
