@@ -11,7 +11,7 @@ test/*
 .secret
 .env
 bin/configuration
-bin/iDSK
+bin/tools/iDSK
 bin/lib/console-1.0.0-py3-none-any.whl
 .gitignore
 build.sh
