@@ -39,6 +39,20 @@ jobs:
         echo "Version: $VERSION"
         echo "::set-output name=version::$VERSION"
 
+    - name: Download jq linux
+      if: ${{ matrix.os == 'ubuntu-latest' }}
+      run: |
+        cd bin/tools
+        wget https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-linux-amd64 -O jq
+        chmod 777 jq
+
+    - name: Download jq mac
+      if: ${{ matrix.os == 'mac-latest' }}
+      run: |
+        cd bin/tools
+        wget https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-macos-amd64 -O jq
+        chmod 777 jq
+
     - name: Download Retrovirtualmachine linux
       if: ${{ matrix.os == 'ubuntu-latest' }}
       run: |
@@ -50,7 +64,6 @@ jobs:
         rm -rf rvm.app
         rm -rf CPCemuMacOS.app
         chmod 777 RetroVirtualMachine
-
     - name: Download Retrovirtualmachine mac
       if: ${{ matrix.os == 'macos-latest' }}
       run: |
