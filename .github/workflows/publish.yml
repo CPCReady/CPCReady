@@ -127,16 +127,23 @@ jobs:
     #     tag: v${{ steps.extract_version.outputs.version }}
     #     overwrite: true
     #     body: "dsfasdffasd"
-    - name: Create release
-      id: create_release
-      uses: actions/create-release@v1
+    - name: Get Changelog Entry
+      id: changelog_reader
+      uses: mindsers/changelog-reader-action@v2
       with:
-        tag_name: v${{ steps.extract_version.outputs.version }}
-        release_name: CPCReady ${{ steps.extract_version.outputs.version }}
-        body: |
-          CPCReady Release ${{ steps.extract_version.outputs.version }}
-        draft: false
-        prerelease: false
+        validation_level: warn
+        version: ${{ steps.extract_version.outputs.version }}
+        path: GHANGELOG.md
+
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ${{ matrix.artifact_name }}
+        asset_name: ${{ matrix.asset_name }}
+        tag: v${{ steps.extract_version.outputs.version }}
+        overwrite: true
+        body: ${{ steps.changelog_reader.outputs.changes }}
 
     # - name: Upload artifact
     #   uses: actions/upload-artifact@v2
