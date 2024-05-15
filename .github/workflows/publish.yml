@@ -63,7 +63,7 @@ jobs:
     - name: upload configurations
       uses: actions/upload-artifact@v4
       with:
-        name: configuration-${{ matrix.asset_name }}
+        name: configuration-${{ matrix.os }}
         path: bin/configuration
 
     - name: compile amstrad-console
@@ -91,7 +91,7 @@ jobs:
     - name: upload amstrad console
       uses: actions/upload-artifact@v4
       with:
-        name: console--${{ matrix.asset_name }}-${{ steps.extract_version.outputs.version }}-py3-none-any.whl
+        name: console--${{ matrix.os }}-${{ steps.extract_version.outputs.version }}-py3-none-any.whl
         path: bin/lib/console-${{ steps.extract_version.outputs.version }}-py3-none-any.whl
 
     - name: make idsk
@@ -109,7 +109,7 @@ jobs:
     - name: upload amstrad console
       uses: actions/upload-artifact@v4
       with:
-        name: bin/iDSK-${{ matrix.asset_name }}
+        name: bin/iDSK-${{ matrix.os }}
         path: bin/iDSK
   
     # - name: Create zip file
