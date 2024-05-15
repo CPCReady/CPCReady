@@ -68,7 +68,7 @@ jobs:
     - name: compile amstrad-console
       run: |
         cd tools/amstrad-console
-        pip3 install poetry
+        pip3 install poetry --break-system-packages
         poetry version ${{ steps.extract_version.outputs.version }}
         poetry install
         poetry build
