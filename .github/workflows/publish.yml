@@ -59,6 +59,7 @@ jobs:
       run: |
         cp tools/configuration/dist/configuration bin/configuration
         chmod 777 bin/configuration
+        ls -l bin
 
     - name: upload configurations
       uses: actions/upload-artifact@v4
@@ -87,6 +88,7 @@ jobs:
     - name: move amstrad-console
       run: |
         cp tools/amstrad-console/dist/console-${{ steps.extract_version.outputs.version }}-py3-none-any.whl bin/lib/console-${{ steps.extract_version.outputs.version }}-py3-none-any.whl
+        ls -l bin/lib
 
     - name: upload amstrad console
       uses: actions/upload-artifact@v4
@@ -105,6 +107,7 @@ jobs:
       run: |
         cp tools/IDSK+/bin/iDSK bin/iDSK
         chmod 777 bin/iDSK
+        ls -l bin
 
     - name: upload amstrad console
       uses: actions/upload-artifact@v4
