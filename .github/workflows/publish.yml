@@ -60,7 +60,8 @@ jobs:
         cp tools/configuration/dist/configuration bin/configuration
         chmod 777 bin/configuration
 
-    - uses: actions/upload-artifact@v4
+    - name: upload configurations
+      uses: actions/upload-artifact@v4
       with:
         name: configuration-${{ matrix.asset_name }}
         path: bin/configuration
@@ -87,6 +88,12 @@ jobs:
       run: |
         cp tools/amstrad-console/dist/console-${{ steps.extract_version.outputs.version }}-py3-none-any.whl bin/lib/console-${{ steps.extract_version.outputs.version }}-py3-none-any.whl
 
+    - name: upload amstrad console
+      uses: actions/upload-artifact@v4
+      with:
+        name: console--${{ matrix.asset_name }}-${{ steps.extract_version.outputs.version }}-py3-none-any.whl
+        path: bin/lib/console-${{ steps.extract_version.outputs.version }}-py3-none-any.whl
+
     - name: make idsk
       run: |
         cd tools/IDSK+
@@ -99,6 +106,12 @@ jobs:
         cp tools/IDSK+/bin/iDSK bin/iDSK
         chmod 777 bin/iDSK
 
+    - name: upload amstrad console
+      uses: actions/upload-artifact@v4
+      with:
+        name: bin/iDSK-${{ matrix.asset_name }}
+        path: bin/iDSK
+  
     # - name: Create zip file
     #   run: zip -r ${{ matrix.artifact_name }}.zip . -x "*.git*" "*.github*" "*.devcontainer*" "*.vscode*"
 
