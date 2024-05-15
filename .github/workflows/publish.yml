@@ -18,11 +18,11 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
-            artifact_name: configuration
-            asset_name: configuration-linux-amd64
+            artifact_name: CPCReady
+            asset_name: CPCReady-linux-amd64
           - os: macos-latest
-            artifact_name: configuration
-            asset_name: configuration-macos-amd64
+            artifact_name: CPCReady
+            asset_name: CPCReady-macos-amd64
 
     steps:
     - name: Checkout code
@@ -32,9 +32,12 @@ jobs:
       if: ${{ matrix.os == 'ubuntu-latest' }}
       run: sudo apt-get install zip
 
-    - name: Get version
-      id: get-version
-      run: echo "::set-output name=version::$(cat VERSION)"
+    - name: Extract version from VERSION file
+      id: extract_version
+      run: |
+        VERSION=$(cat VERSION)
+        echo "Version: $VERSION"
+        echo "::set-output name=version::$VERSION"
 
     # - uses: actions/download-artifact@v4
     #   with:
@@ -47,18 +50,28 @@ jobs:
         ls -l tools/${{ matrix.artifact_name }}
 
     - name: Create zip file
-      run: zip -r CPCReady-${{ steps.get-version.outputs.version }}.zip . -x "*.git*" "*.github*" "*.devcontainer*" "*.vscode*"
+      run: zip -r ${{ matrix.asset_name }}.zip . -x "*.git*" "*.github*" "*.devcontainer*" "*.vscode*"
 
-    - name: Create release
-      id: create_release
-      uses: actions/create-release@v1
+
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v2
       with:
-        tag_name: ${{ steps.get-version.outputs.version }}releas
-        release_name: CPCReady ${{ steps.get-version.outputs.version }}
-        body: |
-          CPCReady Release ${{ steps.get-version.outputs.version }}
-        draft: false
-        prerelease: false
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ${{ matrix.artifact_name }}
+        asset_name: ${{ matrix.asset_name }}
+        tag: v${{ steps.extract_version.outputs.version }}
+        overwrite: true
+        body: "dsfasdffasd"
+    # - name: Create release
+    #   id: create_release
+    #   uses: actions/create-release@v1
+    #   with:
+    #     tag_name: ${{ steps.get-version.outputs.version }}releas
+    #     release_name: CPCReady ${{ steps.get-version.outputs.version }}
+    #     body: |
+    #       CPCReady Release ${{ steps.get-version.outputs.version }}
+    #     draft: false
+    #     prerelease: false
 
     # - name: Upload artifact
     #   uses: actions/upload-artifact@v2
