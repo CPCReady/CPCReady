@@ -7,6 +7,8 @@ NOTAS.TXT
 BASURA/*
 test/*
 .develop
+.secret
+.env
 # C extensions
 *.so
 .DS_Store
