@@ -91,7 +91,7 @@ jobs:
     - name: upload amstrad console
       uses: actions/upload-artifact@v4
       with:
-        name: console--${{ matrix.os }}-${{ steps.extract_version.outputs.version }}-py3-none-any.whl
+        name: console-${{ matrix.os }}-${{ steps.extract_version.outputs.version }}-py3-none-any.whl
         path: bin/lib/console-${{ steps.extract_version.outputs.version }}-py3-none-any.whl
 
     - name: make idsk
