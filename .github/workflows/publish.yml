@@ -52,6 +52,8 @@ jobs:
     - name: Create zip file
       run: zip -r ${{ matrix.asset_name }}.zip . -x "*.git*" "*.github*" "*.devcontainer*" "*.vscode*"
 
+    - name: Create zip file
+      run: ls -l
 
     - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v2
