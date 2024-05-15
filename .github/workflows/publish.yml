@@ -28,8 +28,9 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    # - name: Install zip
-    #   run: sudo apt-get install zip
+    - name: Install zip
+      if: ${{ matrix.os == 'ubuntu-latest' }}
+      run: sudo apt-get install zip
 
     - name: Get version
       id: get-version
@@ -45,25 +46,19 @@ jobs:
         curl -sSL -o tools/${{ matrix.artifact_name }} https://github.com/CPCReady/configuration/releases/download/v1.0.0/${{ matrix.asset_name }}
         ls -l tools/${{ matrix.artifact_name }}
 
+    - name: Create zip file
+      run: zip -r CPCReady-${{ steps.get-version.outputs.version }}.zip . -x "*.git*" "*.github*" "*.devcontainer*" "*.vscode*"
 
-    - name: Bump version and push tag
-      uses: anothrNick/github-tag-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        REPO_OWNER: destroyer
-    # - name: Create zip file
-    #   run: zip -r CPCReady-${{ steps.get-version.outputs.version }}.zip . -x "*.git*" "*.github*" "*.devcontainer*" "*.vscode*"
-
-    # - name: Create release
-    #   id: create_release
-    #   uses: actions/create-release@v1
-    #   with:
-    #     tag_name: ${{ steps.get-version.outputs.version }}releas
-    #     release_name: CPCReady ${{ steps.get-version.outputs.version }}
-    #     body: |
-    #       CPCReady Release ${{ steps.get-version.outputs.version }}
-    #     draft: false
-    #     prerelease: false
+    - name: Create release
+      id: create_release
+      uses: actions/create-release@v1
+      with:
+        tag_name: ${{ steps.get-version.outputs.version }}releas
+        release_name: CPCReady ${{ steps.get-version.outputs.version }}
+        body: |
+          CPCReady Release ${{ steps.get-version.outputs.version }}
+        draft: false
+        prerelease: false
 
     # - name: Upload artifact
     #   uses: actions/upload-artifact@v2
