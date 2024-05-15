@@ -1,0 +1,170 @@
+#!/usr/bin/perl -w
+# CPC464/664/6128 - start selected CPC (depends on filename)
+# Marco Vieth, 15.12.2001
+# with additions by Rainer Loritz, 20.12.2001
+#
+# 0.01  15.12.2001 first tests
+# 0.02  20.12.2001 cfg file in home dir (env variable HOME), is a bit more secure than global /tmp file, but could also get improved (but not without effective uid)
+#                  env variable CPCEMU_BASEDIR to chdir to if no constant path is set below (for system installation)
+#                  exec() instead of system() (and separated args from command)
+#
+
+use 5.004;
+use strict;
+
+use Getopt::Std;
+
+$::g_debug = 0;
+
+# can be set manually by sysadmin, otherwise CPCEMU_BASEDIR will be used
+# if CPCEMU_BASEDIR is unset, the current directory will be used
+$::cpcemu_basedir = '';
+
+
+#
+# IO_File - replacement for new IO::File("name", "mode")
+#
+# call it the traditional way: IO_File("<fname") or similar.
+sub IO_File($) {
+  #printf STDERR "fast_IO_File: '@_'\n";
+  # open my $fh, "@_" or return undef(); # only possible with perl 5.6.0
+  local *FH; # to be compatible with Perl 5.004...
+  open (FH, "@_") or return undef();
+  return *FH;
+}
+
+
+sub select_language($) {
+  my($cfgfile) = @_;
+
+  print << "END2";
+  CPCEMU v1.6 -- Mini Setup
+
+  Language
+  0  English
+  1  German
+  2  French
+  3  Spanish
+
+  (Your choice will be put into file $cfgfile)
+END2
+
+  my $ch = "";
+  while ($ch !~ /^[0123]/) {
+    $ch = getc(STDIN);
+  }
+  return $ch;
+}
+
+
+sub copy_until_pattern($$@) {
+  my($inf, $outf, @patterns) = @_;
+  my $pattern = join("|", @patterns);
+ 
+  if ($::g_debug > 1) { print STDERR "copy_until_pattern: pattern='$pattern'\n"; }
+  if ($pattern ne "") {
+    while (<$inf>) {
+      if (/$pattern/) {
+        if ($::g_debug > 1) { print STDERR "Pattern found in: $_"; }
+        return $_;
+      }
+      if (defined $outf) {
+        print $outf ($_);
+      }
+    }
+  } else {
+    if ($::g_debug > 1) { print STDERR "Copy rest of file.\n"; }
+    while (<$inf>) { if (defined $outf) { print $outf ($_); } }
+  }
+  return(defined($_) ? $_ : "");
+}
+
+
+sub create_cfgfile($) {
+  my($cfgfile) = @_;
+  my $lang = select_language($cfgfile);
+
+  # my @patterns = qw(\bKBD_LANGUAGE \bLANGUAGE);
+  my @patterns = qw(\bLANGUAGE); # we just look for LANGUAGE...
+  my %replacements = ();
+  my $src = "./cpcemu.cfg";
+  my $inf = IO_File("<$src") || (warn("WARNING: $!: '$src'\n"), return undef);
+  my $outf = IO_File(">$cfgfile") || (warn("WARNING: $!: '$cfgfile'\n"), return undef);
+  while ((my $tmp_line = copy_until_pattern($inf, $outf, @patterns)) ne "") {
+    foreach (@patterns) {
+      if ($tmp_line =~ /$_/) {
+        $tmp_line =~ s/($_\s*=\s*)\d+/$1$lang/;
+        if ($::g_debug > 1) { print STDERR "DEBUG: pattern='$_', new line='$tmp_line'\n"; }
+        $replacements{$_}++;
+        print $outf $tmp_line;
+        last;
+      }
+    }
+  }
+
+  # add tokens with are not found...
+  foreach (@patterns) {
+    if (!$replacements{$_}) {
+      if ($::g_debug > 1) { print STDERR "DEBUG: appending pattern '$_'\n"; }
+      print $outf $_, ' = ', $lang, "\n";
+    }
+  }
+  close($inf);
+  close($outf);
+  return 1;
+}
+
+
+sub main() {
+  my %opts = (
+   'd' => '0',
+  );
+
+  if (!getopts("fhd:", \%opts) or exists($opts{'h'})) {
+    require File::Basename;  # load dynamically for help
+    print STDERR "Usage: ", File::Basename::basename($0), " [options]\n";
+    print STDERR "-h       : help\n";
+    print STDERR "-d level : debug level (0=off, 1=normal, >1=extended)\n";
+    print STDERR "\n";
+    exit 1;
+  }
+ 
+  $::g_debug = $opts{'d'};
+ 
+  if ($::g_debug > 0) {
+    printf STDERR "DEBUG: Debugging switched on.\n";
+  }
+
+  $::cpcemu_basedir=$ENV{'CPCEMU_BASEDIR'} if (!$::cpcemu_basedir);
+  chdir($::cpcemu_basedir) if ($::cpcemu_basedir);
+
+  my ($cpc1) = ($0 =~ /(\d+)$/); # get number form filename
+  if (!defined $cpc1) {
+    $cpc1 = 6128;
+  }
+  my $cpctype = ($cpc1 == 464) ? 0 : ($cpc1 == 664) ? 1 : 2;
+  my $tmpdir = $ENV{'HOME'};
+# ** no getuid() ?!? why?!? **
+#  my @pw=getpwuid(getuid());
+#  my $tmpdir=$pw[7];
+  my $cfgfile = "$tmpdir/.cpcemu.cfg";
+#  if (! -r $cfgfile) {
+#    if (!create_cfgfile($cfgfile)) { return 1; }
+#  }
+
+  $ENV{'LD_LIBRARY_PATH'} = '.';
+#  my @arg = ("-c","$cfgfile","-t","$cpctype", @ARGV);
+  my @arg = ("-t","$cpctype", @ARGV);
+  print "Calling './cpcemu @arg' ...\n";
+  exec('./cpcemu',@arg);
+#  my $rc = $?;
+#  return $rc;
+}
+
+#########
+
+exit(main());
+
+#########
+
+#end
