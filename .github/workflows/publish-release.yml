@@ -54,7 +54,7 @@ jobs:
       if: ${{ matrix.os == 'macos-latest' }}
       run: |
         cd emulators
-        curl -o CPCemuMacOS.app.zip https://cpc-emu.org/Release/2022-08-13/CPCemuMacOS.app-2.5.zip
+        curl https://cpc-emu.org/Release/2022-08-13/CPCemuMacOS.app-2.5.zip
         unzip RCPCemuMacOS.app.zip
         rm CPCemuMacOS.app.zip    
         rm -rf cpcemu
