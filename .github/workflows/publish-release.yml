@@ -39,16 +39,25 @@ jobs:
         echo "Version: $VERSION"
         echo "::set-output name=version::$VERSION"
 
-    - name: Download Release
+    - name: Download Retrovirtualmachine linux
       if: ${{ matrix.os == 'ubuntu-latest' }}
       run: |
-        cd bin/lib
+        cd emulators
         wget https://static.retrovm.org/release/beta1/linux/x64/RetroVirtualMachine.2.0.beta-1.r7.linux.x64.zip -O RetroVirtualMachine.zip
         unzip RetroVirtualMachine.zip
         rm RetroVirtualMachine.zip
         rm cheatsheet.pdf
         rm -rf rvm.app
         rm -rf CPCemuMacOS.app
+
+    - name: Download Retrovirtualmachine mac
+      if: ${{ matrix.os == 'macos-latest' }}
+      run: |
+        cd emulators
+        curl -o CPCemuMacOS.app.zip https://cpc-emu.org/Release/2022-08-13/CPCemuMacOS.app-2.5.zip
+        unzip RCPCemuMacOS.app.zip
+        rm CPCemuMacOS.app.zip    
+        rm -rf cpcemu
 
     - name: compile configurations
       run: |
