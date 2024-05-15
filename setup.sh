@@ -80,7 +80,6 @@ fi
 if which unix2dos >/dev/null; then
     PRINT OK "unix2dos installed on your system"
 else
-    PRINT ERROR_NO_EXIT "unix2dos is not installed on your system."
     PRINT WARNING "Please install unix2dos on your system to continue."
 fi
 

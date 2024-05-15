@@ -57,6 +57,8 @@ esac
 ## Show logo
 CPCREADY
 
+JQ="$CPCREADY/bin/tools/jq"
+
 PRINT "TITLE" "Create New Project."
 
 if [ -e ./"$CONFIG_CPCREADY" ]; then
@@ -184,6 +186,20 @@ configuration "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" MODE 1
 configuration "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" EMULATOR $TEST
 
 PRINT OK "Configure test execution with $TEST"
+
+if which amstrad >/dev/null; then
+    PRINT OK "Activate Amstrad console for Visual Studio Code."
+else
+    if [[ "$OSTYPE" == "linux-gnu" ]]; then
+        "$JQ" 'del(.["terminal.integrated.defaultProfile.linux", "terminal.integrated.profiles.linux"])' settings.json > temp.json && mv temp.json settings.json
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        "$JQ" 'del(.["terminal.integrated.defaultProfile.linux", "terminal.integrated.profiles.linux"])' settings.json > temp.json && mv temp.json settings.json
+    else
+        PRINT ERROR "$OSTYPE Operating system NOT supported."
+    fi    
+    PRINT WARNING "There is no Amstrad Console on the system."
+    PRINT WARNING "Disabled the Amstrad Console for Visual Studio Code."
+fi
 
 ## Create image disk file
 create_dsk "$PWD/$project_name/$OUT_DISC/$project_name.dsk"
