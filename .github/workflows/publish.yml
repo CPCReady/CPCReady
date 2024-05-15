@@ -66,7 +66,7 @@ jobs:
         name: configuration-${{ matrix.os }}
         path: bin/configuration
 
-    - name: compile amstrad-console
+    - name: compile amstrad-console mac
       if: ${{ matrix.os == 'macos-latest' }}
       run: |
         cd tools/amstrad-console
@@ -75,7 +75,7 @@ jobs:
         poetry install
         poetry build
 
-    - name: compile amstrad-console
+    - name: compile amstrad-console linux
       if: ${{ matrix.os == 'ubuntu-latest' }}
       run: |
         cd tools/amstrad-console
@@ -112,8 +112,8 @@ jobs:
         name: iDSK-${{ matrix.os }}
         path: bin/iDSK
   
-    # - name: Create zip file
-    #   run: zip -r ${{ matrix.artifact_name }}.zip . -x "*.git*" "*.github*" "*.devcontainer*" "*.vscode*"
+    - name: Create zip file
+      run: zip -r ${{ matrix.artifact_name }}.zip . -x "*.git*" "*.github*" "*.devcontainer*" "*.vscode*" "tools"
 
     # - name: Create zip file
     #   run: ls -R
@@ -127,16 +127,16 @@ jobs:
     #     tag: v${{ steps.extract_version.outputs.version }}
     #     overwrite: true
     #     body: "dsfasdffasd"
-    # - name: Create release
-    #   id: create_release
-    #   uses: actions/create-release@v1
-    #   with:
-    #     tag_name: ${{ steps.get-version.outputs.version }}releas
-    #     release_name: CPCReady ${{ steps.get-version.outputs.version }}
-    #     body: |
-    #       CPCReady Release ${{ steps.get-version.outputs.version }}
-    #     draft: false
-    #     prerelease: false
+    - name: Create release
+      id: create_release
+      uses: actions/create-release@v1
+      with:
+        tag_name: v${{ steps.extract_version.outputs.version }}
+        release_name: CPCReady ${{ steps.extract_version.outputs.version }}
+        body: |
+          CPCReady Release ${{ steps.extract_version.outputs.version }}
+        draft: false
+        prerelease: false
 
     # - name: Upload artifact
     #   uses: actions/upload-artifact@v2
