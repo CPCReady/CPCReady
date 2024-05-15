@@ -113,8 +113,9 @@ jobs:
 
     - name: move configurations
       run: |
-        cp tools/IDSK+/bin/iDSK bin/iDSK
-        chmod 777 bin/iDSK
+        mkdir -p bin/tools
+        cp tools/IDSK+/bin/iDSK bin/tools/iDSK
+        chmod 777 bin/tools/iDSK
         ls -l bin
 
     - name: upload amstrad console
