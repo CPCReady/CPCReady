@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "console"
+version = "1.0.0"
+description = ""
+authors = ["destroyer <destroyer.dcf@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+prompt-toolkit = "^3.0.43"
+python-dotenv = "^1.0.1"
+configparser = "^7.0.0"
+
+[tool.poetry.scripts]
+amstrad     = "console.main:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

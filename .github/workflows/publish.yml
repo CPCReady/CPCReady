@@ -44,26 +44,66 @@ jobs:
     #     name: configuration-linux-amd64
     #     path: tools
     #     repository: CPCReady/configuration
-    - name: Download Release
+    # - name: Download Release
+    #   run: |
+    #     curl -sSL -o bin/configuration https://github.com/CPCReady/configuration/releases/download/v1.0.0/configuration-${{ matrix.asset_name }}
+    #     ls -l tools
+
+    - name: compile configurations
       run: |
-        curl -sSL -o tools/${{ matrix.artifact_name }} https://github.com/CPCReady/configuration/releases/download/v1.0.0/${{ matrix.asset_name }}
-        ls -l tools/${{ matrix.artifact_name }}
+        cd tools/configuration
+        mkdir dist
+        gcc src/configuration.c -o dist/configuration
 
-    - name: Create zip file
-      run: zip -r ${{ matrix.artifact_name }}.zip . -x "*.git*" "*.github*" "*.devcontainer*" "*.vscode*"
+    - name: move configurations
+      run: |
+        cp tools/configuration/dist/configuration bin/configuration
+        chmod 777 bin/configuration
 
-    - name: Create zip file
-      run: ls -l
-
-    - name: Upload binaries to release
-      uses: svenstaro/upload-release-action@v2
+    - uses: actions/upload-artifact@v4
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: ${{ matrix.artifact_name }}.zip
-        asset_name: ${{ matrix.asset_name }}.zip
-        tag: v${{ steps.extract_version.outputs.version }}
-        overwrite: true
-        body: "dsfasdffasd"
+        name: configuration-${{ matrix.asset_name }}
+        path: bin/configuration
+
+    - name: compile amstrad-console
+      run: |
+        cd tools/amstrad-console
+        pip3 install poetry
+        poetry version ${{ steps.extract_version.outputs.version }}
+        poetry install
+        poetry build
+
+    - name: move amstrad-console
+      run: |
+        cp tools/amstrad-console/dist/console-${{ steps.extract_version.outputs.version }}-py3-none-any.whl bin/lib/console-${{ steps.extract_version.outputs.version }}-py3-none-any.whl
+
+    - name: make idsk
+      run: |
+        cd tools/IDSK+
+        mkdir bin
+        make clean
+        make
+
+    - name: move configurations
+      run: |
+        cp tools/IDSK+/bin/iDSK bin/iDSK
+        chmod 777 bin/iDSK
+
+    # - name: Create zip file
+    #   run: zip -r ${{ matrix.artifact_name }}.zip . -x "*.git*" "*.github*" "*.devcontainer*" "*.vscode*"
+
+    # - name: Create zip file
+    #   run: ls -R
+
+    # - name: Upload binaries to release
+    #   uses: svenstaro/upload-release-action@v2
+    #   with:
+    #     repo_token: ${{ secrets.GITHUB_TOKEN }}
+    #     file: ${{ matrix.artifact_name }}.zip
+    #     asset_name: ${{ matrix.asset_name }}.zip
+    #     tag: v${{ steps.extract_version.outputs.version }}
+    #     overwrite: true
+    #     body: "dsfasdffasd"
     # - name: Create release
     #   id: create_release
     #   uses: actions/create-release@v1
