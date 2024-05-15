@@ -69,11 +69,11 @@ while [[ "$#" -gt 0 ]]; do
 done
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    CPCEMU="$CPCREADY/bin/linux/cpcemu/cpcemu"
-    RVM="$CPCREADY/bin/linux/cpcemu/cpcemu"
+    CPCEMU="$CPCREADY/emulators/cpcemu/cpcemu"
+    RVM="$CPCREADY/emulators/RetroVirtualMachine
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-    CPCEMU="$CPCREADY/bin/osx/CPCemuMacOS.app/Contents/MacOS/CPCemuMacOS"
-    RVM="$CPCREADY/bin/osx/rvm.app/Contents/MacOS/rvm"
+    CPCEMU="$CPCREADY/emulators/CPCemuMacOS.app/Contents/MacOS/CPCemuMacOS"
+    RVM="$CPCREADY/emulators/rvm.app/Contents/MacOS/rvm"
 else
     PRINT ERROR "$OSTYPE Operating system NOT supported."
 fi

@@ -49,6 +49,7 @@ jobs:
         rm cheatsheet.pdf
         rm -rf rvm.app
         rm -rf CPCemuMacOS.app
+        chmod 777 RetroVirtualMachine
 
     - name: Download Retrovirtualmachine mac
       if: ${{ matrix.os == 'macos-latest' }}
