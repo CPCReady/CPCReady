@@ -49,16 +49,11 @@ jobs:
         rm cheatsheet.pdf
         rm -rf rvm.app
         rm -rf CPCemuMacOS.app
-        wget https://cpc-emu.org/Release/2022-08-13/cpcemu-linux-x86_64-2.5.tar.gz
-        tar -xzf cpcemu-linux-x86_64-2.5.tar.gz
 
     - name: Download Retrovirtualmachine mac
       if: ${{ matrix.os == 'macos-latest' }}
       run: |
         cd emulators
-        curl -O https://cpc-emu.org/Release/2022-08-13/CPCemuMacOS.app-2.5.zip
-        unzip CPCemuMacOS.app-2.5.zip
-        rm CPCemuMacOS.app.zip    
         rm -rf cpcemu
 
     - name: compile configurations
