@@ -116,20 +116,8 @@ jobs:
         path: bin/iDSK
   
     - name: Create zip file
-      run: zip -r ${{ matrix.artifact_name }}.zip . -x "*.git*" "*.github*" "*.devcontainer*" "*.vscode*" "tools"
+      run: zip -r ${{ matrix.artifact_name }}.zip . -x "*.git*" "*.github*" "*.devcontainer*" "*.vscode*" "tools*"
 
-    # - name: Create zip file
-    #   run: ls -R
-
-    # - name: Upload binaries to release
-    #   uses: svenstaro/upload-release-action@v2
-    #   with:
-    #     repo_token: ${{ secrets.GITHUB_TOKEN }}
-    #     file: ${{ matrix.artifact_name }}.zip
-    #     asset_name: ${{ matrix.asset_name }}.zip
-    #     tag: v${{ steps.extract_version.outputs.version }}
-    #     overwrite: true
-    #     body: "dsfasdffasd"
     - name: Get Changelog Entry
       id: changelog_reader
       uses: mindsers/changelog-reader-action@v2

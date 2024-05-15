@@ -10,9 +10,14 @@ test/*
 .secrets
 .secret
 .env
+bin/configuration
+bin/iDSK
+bin/lib/console-1.0.0-py3-none-any.whl
+.gitignore
 # C extensions
 *.so
 .DS_Store
+build.sh
 # Distribution / packaging
 .Python
 build/
