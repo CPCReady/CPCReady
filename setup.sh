@@ -68,13 +68,19 @@ if [[ -f "$HOME/.zshrc" ]]; then
 fi
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    BIN_PATH="$PWD/bin:$PWD/bin/tools"
+    BIN_PATH="\"$PWD/bin:$PWD/bin/tools\""
     PRINT OK "$OSTYPE Supported operating system."
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-    BIN_PATH="$PWD/bin:$PWD/bin/tools"
+    BIN_PATH="\"$PWD/bin:$PWD/bin/tools\""
     PRINT OK "$OSTYPE Supported operating system."
 else
     PRINT ERROR "$OSTYPE Operating system NOT supported."
+fi
+
+if which unix2dos >/dev/null; then
+    PRINT OK "unix2dos installed on your system"
+else
+    PRINT WARNING "Please install unix2dos on your system to continue."
 fi
 
 if which unix2dos >/dev/null; then

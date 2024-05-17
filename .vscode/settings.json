@@ -7,7 +7,7 @@
     "amstrad": {
         "path": "${env:CPCREADY}/bin/console",
         "args": [
-            "${workspaceFolder}/test/prueba2"
+            "${workspaceFolder}/test/prueba"
         ],
         "icon": "terminal-bash"
     }
