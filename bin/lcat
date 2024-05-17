@@ -1,1 +1,77 @@
-ls -lh | awk '{prefix = ($1 ~ /^d/) ? ">" : " "; printf "%s%-18s %8s\n", prefix, $9, $5;}' | tr '[:lower:]' '[:upper:]' 
+#!/bin/bash
+##------------------------------------------------------------------------------
+##
+##        ██████╗██████╗  ██████╗██████╗ ███████╗ █████╗ ██████╗ ██╗   ██╗
+##       ██╔════╝██╔══██╗██╔════╝██╔══██╗██╔════╝██╔══██╗██╔══██╗╚██╗ ██╔╝
+##       ██║     ██████╔╝██║     ██████╔╝█████╗  ███████║██║  ██║ ╚████╔╝ 
+##       ██║     ██╔═══╝ ██║     ██╔══██╗██╔══╝  ██╔══██║██║  ██║  ╚██╔╝  
+##       ╚██████╗██║     ╚██████╗██║  ██║███████╗██║  ██║██████╔╝   ██║   
+##        ╚═════╝╚═╝      ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═════╝    ╚═╝   
+##
+##-----------------------------LICENSE NOTICE------------------------------------
+##  This file is part of CPCReady Basic programation.
+##  Copyright (C) 2024 Destroyer
+##
+##  This program is free software: you can redistribute it and/or modify
+##  it under the terms of the GNU Lesser General Public License as published by
+##  the Free Software Foundation, either version 3 of the License, or
+##  (at your option) any later version.
+##
+##  This program is distributed in the hope that it will be useful,
+##  but WITHOUT ANY WARRANTY; without even the implied warranty of
+##  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+##  GNU Lesser General Public License for more details.
+##
+##  You should have received a copy of the GNU Lesser General Public License
+##  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+##------------------------------------------------------------------------------
+##  Bash Include files
+source $(dirname "$0")/lib/library.sh
+
+## Function to display help message
+function show_help {
+    CPCREADY
+    echo "List files."
+    echo 
+    echo "Use: $(basename "$0") [option]"
+    echo "  -h, --help     Show this help message."
+    echo "  -v, --version  Show version this software."
+}
+
+## Check if the help parameter is provided
+case $1 in
+    -v|--version)
+        show_version
+        exit 0
+        ;;
+    -h|--help)
+        show_help
+        exit 0
+        ;;
+esac
+
+## Chequeamos si existe el archivo de variables.
+## si no existe salimos con error
+check_env_file
+
+## Cargamos archivo de variables
+source "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY"
+
+## list files dsk
+if [[ "$EMULATOR" == "rvm" ]]; then
+    total_KB=$(iDSK $OUT_DISC/$DISC -l | sed -e 's/://g' -e 's/ Ko/K/g' | awk '{sum += $3} END {print sum}')
+    free_KB=$((178 - total))
+    echo -e "Drive A: $DISC"
+    exit_result=$(iDSK $OUT_DISC/$DISC -l | sed -e 's/://g' -e 's/ Ko/K/g')
+    if [[ ! "$exit_result" =~ "Fichier image non supporter" ]]; then
+        echo "$exit_result"
+    fi
+    echo -e "\n${free_KB}K free"
+    exit 0
+fi
+
+## list files M4Board
+if [[ "$EMULATOR" == "m4" ]]; then
+    dir "$OUT"
+    exit 0
+fi

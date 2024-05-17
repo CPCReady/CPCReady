@@ -70,7 +70,7 @@ done
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     CPCEMU="$CPCREADY/emulators/cpcemu/cpcemu"
-    RVM="$CPCREADY/emulators/RetroVirtualMachine
+    RVM="$CPCREADY/emulators/RetroVirtualMachine"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     CPCEMU="$CPCREADY/emulators/CPCemuMacOS.app/Contents/MacOS/CPCemuMacOS"
     RVM="$CPCREADY/emulators/rvm.app/Contents/MacOS/rvm"
