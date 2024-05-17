@@ -72,6 +72,23 @@ jobs:
         cd emulators
         rm -rf cpcemu
 
+    - name: compile dir
+      run: |
+        cd tools/dir
+        mkdir dist
+        gcc src/dir.c -o dist/dir
+  
+    - name: move dir
+      run: |
+        cp tools/dir/dist/dir bin/dir
+        chmod 777 bin/dir
+  
+    - name: upload dir
+      uses: actions/upload-artifact@v4
+      with:
+        name: dir-${{ matrix.os }}
+        path: bin/dir
+
     - name: compile configurations
       run: |
         cd tools/configuration

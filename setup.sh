@@ -89,6 +89,12 @@ else
     PRINT WARNING "Please install unix2dos on your system to continue."
 fi
 
+if which jq >/dev/null; then
+    PRINT OK "jq installed on your system"
+else
+    PRINT WARNING "Please install jq on your system to continue."
+fi
+
 # Si la version de python es correcta instalamos la consola
 # Obtener la versión de Python instalada
 python_version=$(python3 -V 2>&1)
