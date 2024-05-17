@@ -489,3 +489,37 @@ function evaluaCPCModel {
    echo
    PRINT ERROR "CPC Model $1 not supported"
 }
+
+check_83_files_path() {
+    local path=$1
+
+    # Find all files and directories
+    find "$path" | while read -r entry; do
+        # Get the base name of the entry
+        base_name=$(basename "$entry")
+        
+        if [ -d "$entry" ]; then
+            # Check directory name length
+            if [ ${#base_name} -gt 8 ]; then
+                echo "Directory name does not support more than 8 characters.: $entry"
+                exit 1
+            fi
+        elif [ -f "$entry" ]; then
+            # Check file name and extension length
+            file_name="${base_name%.*}"
+            extension="${base_name##*.}"
+            
+            if [ ${#file_name} -gt 8 ]; then
+                echo "File name does not support more than 8 characters.: $entry"
+                exit 1
+            fi
+            
+            if [ "$file_name" != "$base_name" ] && [ ${#extension} -gt 3 ]; then
+                echo "File extension name does not support more than 8 characters.: $entry"
+                exit 1
+            fi
+        fi
+    done
+    
+    return 0
+}

@@ -59,6 +59,8 @@ source "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY"
 
 ## list files dsk
 if [[ "$EMULATOR" == "rvm" ]]; then
+    ## chequeamos nomenclatura
+    check_83_files_path $OUT_DISC
     total_KB=$(iDSK $OUT_DISC/$DISC -l | sed -e 's/://g' -e 's/ Ko/K/g' | awk '{sum += $3} END {print sum}')
     free_KB=$((178 - total))
     echo -e "Drive A: $DISC"
@@ -72,6 +74,8 @@ fi
 
 ## list files M4Board
 if [[ "$EMULATOR" == "m4" ]]; then
+    ## chequeamos nomenclatura
+    check_83_files_path $OUT
     dir "$OUT"
     exit 0
 fi

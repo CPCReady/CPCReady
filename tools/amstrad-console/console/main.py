@@ -118,6 +118,15 @@ def main():
                     elif main_command == "ABOUT":
                         functions.about()
                         print_formatted_text(HTML('\nReady'), style=style)
+                    elif main_command == "LCAT":
+                        os.system("lcat")
+                        print_formatted_text(HTML('\nReady'), style=style)
+                    elif main_command == "CAT":
+                        os.system("lcat")
+                        print_formatted_text(HTML('\nReady'), style=style)
+                    elif main_command == "DIR":
+                        os.system("lcat")
+                        print_formatted_text(HTML('\nReady'), style=style)
                     else:
                         functions.executeCommand(command)
                         print_formatted_text(
