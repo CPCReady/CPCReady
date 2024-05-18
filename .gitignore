@@ -13,7 +13,7 @@ test/*
 bin/configuration
 bin/tools/iDSK
 bin/lib/console-1.0.0-py3-none-any.whl
-bin/dir
+bin/dir*
 .gitignore
 build.sh
 # C extensions
