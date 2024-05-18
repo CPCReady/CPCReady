@@ -57,8 +57,6 @@ esac
 ## Show logo
 CPCREADY
 
-JQ="$CPCREADY/bin/tools/jq"
-
 PRINT "TITLE" "Create New Project."
 
 if [ -e ./"$CONFIG_CPCREADY" ]; then
@@ -191,9 +189,9 @@ if which amstrad >/dev/null; then
     PRINT OK "Activate Amstrad console for Visual Studio Code."
 else
     if [[ "$OSTYPE" == "linux-gnu" ]]; then
-        "$JQ" 'del(.["terminal.integrated.defaultProfile.linux", "terminal.integrated.profiles.linux"])' settings.json > temp.json && mv temp.json settings.json
+        jq 'del(.["terminal.integrated.defaultProfile.linux", "terminal.integrated.profiles.linux"])' settings.json > temp.json && mv temp.json settings.json
     elif [[ "$OSTYPE" == "darwin"* ]]; then
-        "$JQ" 'del(.["terminal.integrated.defaultProfile.linux", "terminal.integrated.profiles.linux"])' settings.json > temp.json && mv temp.json settings.json
+        jq 'del(.["terminal.integrated.defaultProfile.linux", "terminal.integrated.profiles.linux"])' settings.json > temp.json && mv temp.json settings.json
     else
         PRINT ERROR "$OSTYPE Operating system NOT supported."
     fi    

@@ -59,6 +59,8 @@ def status_toolbar():
         logo_text = "128K ORDENADOR PERSONAL"
     elif functions.readKey(CONFIG_CPCREADY, "MODEL") == "664" or  functions.readKey(CONFIG_CPCREADY, "MODEL") == "464":
         logo_text = "64K COLOUR PERSONAL COMPUTER"
+    else:
+        logo_text = "SYSTEM NOT SUPPORTED"
         
     return HTML(
         "<red> </red><green> </green><blue> </blue> <b>AMSTRAD <i>" + logo_text + " </i> "

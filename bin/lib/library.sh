@@ -501,8 +501,7 @@ check_83_files_path() {
         if [ -d "$entry" ]; then
             # Check directory name length
             if [ ${#base_name} -gt 8 ]; then
-                echo "Directory name does not support more than 8 characters.: $entry"
-                exit 1
+               PRINT ERROR "Directory name does not support more than 8 characters.: $entry"
             fi
         elif [ -f "$entry" ]; then
             # Check file name and extension length
@@ -510,13 +509,11 @@ check_83_files_path() {
             extension="${base_name##*.}"
             
             if [ ${#file_name} -gt 8 ]; then
-                echo "File name does not support more than 8 characters.: $entry"
-                exit 1
+               PRINT ERROR "File name does not support more than 8 characters.: $entry"
             fi
             
             if [ "$file_name" != "$base_name" ] && [ ${#extension} -gt 3 ]; then
-                echo "File extension name does not support more than 8 characters.: $entry"
-                exit 1
+               PRINT ERROR "File extension name does not support more than 8 characters.: $entry"
             fi
         fi
     done

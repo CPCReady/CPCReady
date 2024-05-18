@@ -54,19 +54,17 @@ source "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY"
 
 # Check if the help parameter is provided
 # Process command line options
-while [[ "$#" -gt 0 ]]; do
-    case "$1" in
-        -v|--version)
-            show_version
-            exit 0
-            ;;
-        -h|--help)
-            show_help
-            exit 0
-            ;;
-        *) echo "Invalid option: $1" >&2; exit 1 ;;
-    esac
-done
+## Check if the help parameter is provided
+case $1 in
+    -v|--version)
+        show_version
+        exit 0
+        ;;
+    -h|--help)
+        show_help
+        exit 0
+        ;;
+esac
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     CPCEMU="$CPCREADY/emulators/cpcemu/cpcemu"
@@ -82,6 +80,7 @@ EMULATOR=$(echo "$EMULATOR" | tr '[:upper:]' '[:lower:]')
 
 echo
 if [[ "$EMULATOR" == "m4" ]]; then
+    check_83_files_path "$OUT"
     PRINT "OK" "Emulator: CPCEmu."
     PRINT "OK" "Project execute in SD."
     $CPCEMU -f -c "$PWD/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" > /dev/null 2>&1 &
@@ -89,8 +88,16 @@ elif [[ "$EMULATOR" == "rvm" ]]; then
     if [ ! -e "$OUT_DISC/$DISC" ]; then
         PRINT "ERROR" "$OUT_DISC/$DISC not found."
     fi
+    # Si no pasamos argumento ejecutamos DISC.BAS
+
+    if [ -z "$1" ]; then
+        BAS_FILE="DISC.BAS"
+    else
+        BAS_FILE="$1"
+    fi
+
     PRINT "OK" "Emulator: RetroVirtualMachine."
     PRINT "OK" "DISC: $DISC"
-    PRINT "OK" "run\"disc.bas"
-    $RVM -b=cpc$MODEL -i "$OUT_DISC/$DISC" -c='run"disc\n' > /dev/null 2>&1 &
+    PRINT "OK" "run\"$BAS_FILE\""
+    $RVM -b=cpc$MODEL -i "$OUT_DISC/$DISC" -c='run"'$BAS_FILE'\n' > /dev/null 2>&1 &
 fi    
