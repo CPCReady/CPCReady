@@ -55,7 +55,7 @@ if [[ -f "$HOME/.bashrc" ]]; then
     if previus_version "$HOME/.bashrc"; then
         PRINT ERROR "There is a previous version of CPCReady installed on the system. ($HOME/.bashrc) "
     else
-        PRINT OK "There is no previous version installed ($HOME/.bashrc)"
+        PRINT OK "There is not previous version installed ($HOME/.bashrc)"
     fi
 fi
 
@@ -63,15 +63,13 @@ if [[ -f "$HOME/.zshrc" ]]; then
     if previus_version "$HOME/.zshrc"; then
         PRINT ERROR "There is a previous version of CPCReady installed on the system. ($HOME/.zshrc)"
     else
-        PRINT OK "There is no previous version installed ($HOME/.zshrc)"
+        PRINT OK "There is not previous version installed ($HOME/.zshrc)"
     fi
 fi
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    BIN_PATH="\"$PWD/bin:$PWD/bin/tools\""
     PRINT OK "$OSTYPE Supported operating system."
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-    BIN_PATH="\"$PWD/bin:$PWD/bin/tools\""
     PRINT OK "$OSTYPE Supported operating system."
 else
     PRINT ERROR "$OSTYPE Operating system NOT supported."
@@ -119,12 +117,22 @@ else
 fi
 
 PRINT TAG "Installation"
+cat <<EOF >> ~/.bashrc
 
-echo -e "\nexport CPCREADY=$PWD" >> "$HOME/.bashrc"
-echo -e "export PATH=\$PATH:$BIN_PATH" >> "$HOME/.bashrc"
+export CPCREADY="$PWD"
+export PATH="\$PATH:$PWD/bin:$PWD/bin/tools"
+
+EOF
+
 PRINT OK "Install in Bash Shell."
-echo -e "\nexport CPCREADY=$PWD" >> "$HOME/.zshrc"
-echo -e "export PATH=\$PATH:$BIN_PATH" >> "$HOME/.zshrc"
+
+cat <<EOF >> ~/.zshrc
+
+export CPCREADY="$PWD"
+export PATH="\$PATH:$PWD/bin:$PWD/bin/tools"
+
+EOF
+
 PRINT OK "Install in Zsh Shell."
 
 PRINT TITLE "Successful installation of CPCReady on your system."

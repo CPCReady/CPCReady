@@ -406,11 +406,11 @@ function PRINT {
          echo "${WHITE}${BOLD}* ${GREEN}${BOLD}$2${NORMAL}"
          ;;
       "ERROR")
-         echo -e "${WHITE}${BOLD}* ${RED}${BOLD}ERROR: $2${NORMAL}"
+         echo "${WHITE}${BOLD}* ${RED}${BOLD}ERROR: $2${NORMAL}"
          exit 1
          ;;
       "ERROR_NO_EXIT")
-         echo -e "${WHITE}${BOLD}* ${RED}${BOLD}ERROR: $2${NORMAL}"
+         echo "${WHITE}${BOLD}* ${RED}${BOLD}ERROR: $2${NORMAL}"
          ;;
       "INFO")
          echo "${WHITE}${BOLD}* ${BLUE}${BOLD}$2${NORMAL}"
@@ -425,7 +425,7 @@ function PRINT {
          ;;
       "TITLE")
          echo
-         echo -e "${BLUE}${BOLD}[${YELLOW}${BOLD}$2${BLUE}${BOLD}] -----------------------${NORMAL}"
+         echo "${BLUE}${BOLD}[${YELLOW}${BOLD}$2${BLUE}${BOLD}] -----------------------${NORMAL}"
          ;;
    esac   
 }
@@ -443,7 +443,7 @@ function PRINT {
 
 # Función para verificar si una línea existe en un archivo
 function previus_version {
-    local line="export CPCREADY=$PWD"
+    local line="export CPCREADY=\"$PWD\""
     local file="$1"
     grep -qF -- "$line" "$file"
 }
