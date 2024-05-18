@@ -58,21 +58,21 @@ jobs:
         echo "Version: $VERSION"
         echo "::set-output name=version::$VERSION"
 
-    - name: Download jq linux
-      if: ${{ matrix.os == 'ubuntu-latest' }}
-      run: |
-        mkdir -p bin/tools
-        cd bin/tools
-        wget https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-linux-amd64 -O jq
-        chmod 777 jq
+    # - name: Download jq linux
+    #   if: ${{ matrix.os == 'ubuntu-latest' }}
+    #   run: |
+    #     mkdir -p bin/tools
+    #     cd bin/tools
+    #     wget https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-linux-amd64 -O jq
+    #     chmod 777 jq
 
-    - name: Download jq mac
-      if: ${{ matrix.os == 'mac-latest' }}
-      run: |
-        mkdir -p bin/tools
-        cd bin/tools
-        wget https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-macos-amd64 -O jq
-        chmod 777 jq
+    # - name: Download jq mac
+    #   if: ${{ matrix.os == 'mac-latest' }}
+    #   run: |
+    #     mkdir -p bin/tools
+    #     cd bin/tools
+    #     wget https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-macos-amd64 -O jq
+    #     chmod 777 jq
 
     - name: Download Retrovirtualmachine linux
       if: ${{ matrix.os == 'ubuntu-latest' }}
@@ -105,7 +105,7 @@ jobs:
     - name: upload dir
       uses: actions/upload-artifact@v4
       with:
-        name: dir-${{ matrix.os }}
+        name: dir-${{ matrix.os }}-${{ matrix.arch }}
         path: bin/dir
 
     - name: compile configurations
@@ -122,7 +122,7 @@ jobs:
     - name: upload configurations
       uses: actions/upload-artifact@v4
       with:
-        name: configuration-${{ matrix.os }}
+        name: configuration-${{ matrix.os }}-${{ matrix.arch }}
         path: bin/configuration
 
     - name: compile amstrad-console mac
@@ -151,7 +151,7 @@ jobs:
     - name: upload amstrad console
       uses: actions/upload-artifact@v4
       with:
-        name: console-${{ matrix.os }}-${{ steps.extract_version.outputs.version }}-py3-none-any.whl
+        name: console-${{ matrix.os }}-${{ matrix.arch }}-${{ steps.extract_version.outputs.version }}-py3-none-any.whl
         path: bin/lib/console-${{ steps.extract_version.outputs.version }}-py3-none-any.whl
 
     - name: make idsk
@@ -171,7 +171,7 @@ jobs:
     - name: upload amstrad console
       uses: actions/upload-artifact@v4
       with:
-        name: iDSK-${{ matrix.os }}
+        name: iDSK-${{ matrix.os }}-${{ matrix.arch }}
         path: bin/iDSK
   
     - name: Create zip file
