@@ -78,19 +78,22 @@ fi
 if which unix2dos >/dev/null; then
     PRINT OK "unix2dos installed on your system"
 else
-    PRINT WARNING "Please install unix2dos on your system to continue."
-fi
-
-if which unix2dos >/dev/null; then
-    PRINT OK "unix2dos installed on your system"
-else
-    PRINT WARNING "Please install unix2dos on your system to continue."
+    PRINT WARNING "Please install dos2unix on your system to continue."
+    exit 1
 fi
 
 if which jq >/dev/null; then
     PRINT OK "jq installed on your system"
 else
     PRINT WARNING "Please install jq on your system to continue."
+    exit 1
+fi
+
+if which pip3 >/dev/null; then
+    PRINT OK "pip3installed on your system"
+else
+    PRINT WARNING "Please install pip3 on your system to continue."
+    exit 1
 fi
 
 # Si la version de python es correcta instalamos la consola
