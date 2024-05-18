@@ -1,14 +1,14 @@
 name: publish-release
 
-# on:
-#   push:
-#     branches:
-#       - 51-add-cpcemu
-
 on:
-  pull_request:
+  push:
     branches:
-      - main
+      - 51-add-cpcemu
+
+# on:
+#   pull_request:
+#     branches:
+#       - main
 
 jobs:
   publish-release:
@@ -16,13 +16,32 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
+        os: [ubuntu-latest, macos-latest]
+        arch: [amd64, arm64]
         include:
           - os: ubuntu-latest
+            arch: amd64
+            platform: linux/amd64
             artifact_name: CPCReady
             asset_name: CPCReady-linux-amd64
+          - os: ubuntu-latest
+            arch: arm64
+            platform: linux/arm64
+            artifact_name: CPCReady
+            asset_name: CPCReady-linux-arm64
           - os: macos-latest
+            arch: amd64
+            platform: darwin/amd64
             artifact_name: CPCReady
             asset_name: CPCReady-macos-amd64
+      # matrix:
+      #   include:
+      #     - os: ubuntu-latest
+      #       artifact_name: CPCReady
+      #       asset_name: CPCReady-linux-amd64
+      #     - os: macos-latest
+      #       artifact_name: CPCReady
+      #       asset_name: CPCReady-macos-amd64
 
     steps:
     - name: Checkout code
