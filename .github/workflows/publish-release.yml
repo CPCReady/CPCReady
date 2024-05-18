@@ -1,14 +1,14 @@
 name: publish-release
 
-# on:
-#   push:
-#     branches:
-#       - 51-add-cpcemu
-
 on:
-  pull_request:
+  push:
     branches:
-      - main
+      - 51-add-cpcemu
+
+# on:
+#   pull_request:
+#     branches:
+#       - main
 
 jobs:
   publish-release:
