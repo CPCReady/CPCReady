@@ -50,6 +50,7 @@ NORMAL=$'\033[0;39;49m'
 BOLD="$(tput bold)"
 
 ## VARIABLES PROYECTOS
+
 IN_BAS="src"
 OUT="out/M4Board"
 OUT_DISC="out/disc"
@@ -116,8 +117,6 @@ EOF
 
 function show_version {
    CPCREADY
-   # VERSION=$(cat $CPCREADY/VERSION)
-   # echo "${BOLD}${YELLOW}v$VERSION${NORMAL}"
 }
 
 ## Funcion que pinta Ready de amstrad
@@ -393,21 +392,16 @@ esac
 }
 
 function CPCREADY {
-
-echo
-VERSION=$(cat $CPCREADY/VERSION)
-if [ -z "$1" ]; then
+   echo
+   VERSION=$(cat $TEMPLATE_DIR/VERSION)
    echo "${WHITE}Software Developer Kit    (v$VERSION)"
-else
-   echo "${WHITE}Amstrad $MODEL Microcomputer    (v$VERSION)"
-fi
-echo "${WHITE}╔═╗╔═╗╔═╗  ┌──────────┐"
-echo "${WHITE}║  ╠═╝║    │ ${NORMAL}${RED}██ ${GREEN}██ ${BLUE}██${NORMAL} │"
-echo "${WHITE}╚═╝╩  ╚═╝  └──────────┘"
+   echo "${WHITE}╔═╗╔═╗╔═╗  ┌──────────┐"
+   echo "${WHITE}║  ╠═╝║    │ ${NORMAL}${RED}██ ${GREEN}██ ${BLUE}██${NORMAL} │"
+   echo "${WHITE}╚═╝╩  ╚═╝  └──────────┘"
 
-echo "Ready" >&2
-# echo "█" >&2
-echo "${NORMAL}"
+   echo "Ready" >&2
+   # echo "█" >&2
+   echo "${NORMAL}"
 }
 #→
 function PRINT {
@@ -454,11 +448,11 @@ function PRINT {
 # }
 
 # Función para verificar si una línea existe en un archivo
-function previus_version {
-    local line="export CPCREADY=\"$PWD\""
-    local file="$1"
-    grep -qF -- "$line" "$file"
-}
+# function previus_version {
+#     local line="export CPCREADY=\"$PWD\""
+#     local file="$1"
+#     grep -qF -- "$line" "$file"
+# }
 
 # Verificamos el valor de mode
 function evaluaMode {
