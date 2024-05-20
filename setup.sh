@@ -27,8 +27,13 @@
 ##  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ##------------------------------------------------------------------------------
 
-## Bash Include files
-source bin/lib/library.sh
+# Obtener la ruta del directorio del script
+SCRIPT_DIR=$(dirname "$0")
+
+# Leer el contenido del archivo VERSION
+VERSION=$(cat "$SCRIPT_DIR/VERSION")
+
+source "$SCRIPT_DIR/bin/lib/library.sh"
 
 ## show version
 show_version

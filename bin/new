@@ -102,8 +102,8 @@ done
 while true; do
     read -p "${BLUE}${BOLD} Run test in (M4 / RVM)?: " respuesta
     case "$respuesta" in
-        [Mm]4*|[Bb]oard*)  TEST="M4";break;;
-        [Rr][Vv][Mm]*) TEST="RVM";break;;
+        [Mm]4*|[Bb]oard*)  TEST="m4";break;;
+        [Rr][Vv][Mm]*) TEST="rvm";break;;
         *) echo "${RED}${BOLD} Please respond with 'M4' or 'DISC'.";;
     esac
 done
