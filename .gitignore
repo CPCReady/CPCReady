@@ -1,3 +1,10 @@
+# CPCReady config
+bin/configuration
+bin/iDSK
+libexec/console-1.0.0-py3-none-any.whl*
+bin/dir*
+share/settings.json
+libexec/local
 # Byte-compiled / optimized / DLL files
 .idea
 __pycache__/

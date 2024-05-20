@@ -26,7 +26,17 @@
 ##  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ##------------------------------------------------------------------------------
 
-## Colors for ANSI terminal
+
+## VARIABLES SDK CPCREADY
+
+if [ ! -f "local" ]; then
+  HOMEBREW_PREFIX=$(brew --prefix)
+else
+  HOMEBREW_PREFIX=$CPCREADY
+fi
+TEMPLATE_DIR="$HOMEBREW_PREFIX/share"
+
+## VARIABLES COLORES
 
 RED=$'\033[0;31;49m'
 GREEN=$'\033[38;5;040m'
@@ -38,6 +48,8 @@ YELLOW=$'\033[0;33;49m'
 WHITE=$'\033[0;37;49m'
 NORMAL=$'\033[0;39;49m'
 BOLD="$(tput bold)"
+
+## VARIABLES PROYECTOS
 IN_BAS="src"
 OUT="out/M4Board"
 OUT_DISC="out/disc"
