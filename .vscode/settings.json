@@ -3,9 +3,12 @@
       "terminal.foreground": "#d9ff00",
       "terminal.background": "#000080",
   },
+  "terminal.integrated.env.osx": {
+    "HOMEBREW_PREFIX": "/Users/destroyer/Github/CPCReady/CPCReady"
+  },
   "terminal.integrated.profiles.osx": {
     "amstrad": {
-        "path": "${env:CPCREADY}/bin/console",
+        "path": "console-amstrad",
         "args": [
             "${workspaceFolder}/test/prueba"
         ],

@@ -29,12 +29,21 @@
 
 ## VARIABLES SDK CPCREADY
 
-if [ ! -f "local" ]; then
-  HOMEBREW_PREFIX=$(brew --prefix)
+# if [ ! -f "local" ]; then
+#   HOMEBREW_PREFIX=$(brew --prefix)
+# else
+#   HOMEBREW_PREFIX=$CPCREADY
+# fi
+
+PATH_VERSION_FILE="$HOMEBREW_PREFIX/share/VERSION"
+
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+   TEMPLATE_CPCEMU="$HOMEBREW_PREFIX/libexec/cpcemu/cpcemu0.cfg"
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+   TEMPLATE_CPCEMU="$HOMEBREW_PREFIX/libexec/CPCemuMacOS.app/Contents/Resources/cpcemu0.cfg"
 else
-  HOMEBREW_PREFIX=$CPCREADY
+   PRINT ERROR "$OSTYPE Operating system NOT supported."
 fi
-TEMPLATE_DIR="$HOMEBREW_PREFIX/share"
 
 ## VARIABLES COLORES
 
@@ -58,61 +67,6 @@ OUT_TAPE="out/tape"
 PATH_CONFIG_PROJECT="cfg"
 CONFIG_CPCREADY="CPCReady.cfg"
 CONFIG_CPCEMU="CPCEmu.cfg"
-
-function generar_rvm {
-
-    local DISC="$1"
-    local MODEL="$2"
-    local COMMAND="$3\n"
-
-    # Definir la cadena de texto con la variable a sustituir
-    read -r -d '' rvm << EOF
-
-<html>
-  <head>
-    <script src='https://cdn.rvmplayer.org/rvmplayer.cpc$MODEL.0.1.0.min.js'></script>
-    <style>
-      body {
-        background-color: rgb(7, 7, 7);
-      }
-      h1 {
-        text-align: center;
-        color: white;
-      }
-      .container {
-        background-color: black;
-        color: white;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 800px;
-        height: 600px;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>$DISC</h1>
-    <div class='container'></div>
-    <script>
-      const c=document.querySelector('.container')
-      rvmPlayer_cpc$MODEL(c,{
-        disk: {
-          type: 'dsk',
-          url: '$DISC',
-        },
-        command: '$COMMAND',
-        warpFrames: 20*50,
-        videoMode: 'hd'
-      })
-    </script>
-  </body>
-</html>
-EOF
-
-    # Escribir el contenido final en un archivo
-    echo "%s\n" "$rvm" > rvm.html
-}
 
 
 function show_version {
@@ -393,7 +347,7 @@ esac
 
 function CPCREADY {
    echo
-   VERSION=$(cat $TEMPLATE_DIR/VERSION)
+   VERSION=$(cat $PATH_VERSION_FILE)
    echo "${WHITE}Software Developer Kit    (v$VERSION)"
    echo "${WHITE}╔═╗╔═╗╔═╗  ┌──────────┐"
    echo "${WHITE}║  ╠═╝║    │ ${NORMAL}${RED}██ ${GREEN}██ ${BLUE}██${NORMAL} │"
@@ -525,4 +479,99 @@ check_83_files_path() {
     done
     
     return 0
+}
+
+function template_rvm {
+
+    local DISC="$1"
+    local MODEL="$2"
+    local COMMAND="$3\n"
+
+    # Definir la cadena de texto con la variable a sustituir
+    read -r -d '' rvm << EOF
+
+<html>
+  <head>
+    <script src='https://cdn.rvmplayer.org/rvmplayer.cpc$MODEL.0.1.0.min.js'></script>
+    <style>
+      body {
+        background-color: rgb(7, 7, 7);
+      }
+      h1 {
+        text-align: center;
+        color: white;
+      }
+      .container {
+        background-color: black;
+        color: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 800px;
+        height: 600px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>$DISC</h1>
+    <div class='container'></div>
+    <script>
+      const c=document.querySelector('.container')
+      rvmPlayer_cpc$MODEL(c,{
+        disk: {
+          type: 'dsk',
+          url: '$DISC',
+        },
+        command: '$COMMAND',
+        warpFrames: 20*50,
+        videoMode: 'hd'
+      })
+    </script>
+  </body>
+</html>
+EOF
+
+    # Escribir el contenido final en un archivo
+    echo "%s\n" "$rvm" > rvm.html
+}
+
+function template_settings {
+    local SYSTEM="$1"
+    local SETTINGS_PATH="$2"
+    read -r -d '' settings << EOF
+{
+  "workbench.colorCustomizations": {
+    "terminal.foreground": "#d9ff00",
+    "terminal.background": "#000080"
+},
+"terminal.integrated.profiles.$SYSTEM": {
+  "amstrad": {
+      "path": "console-amstrad",
+      "args": [
+          "${workspaceFolder}"
+      ],
+      "icon": "terminal-bash"
+  }
+},
+"terminal.integrated.defaultProfile.$SYSTEM": "amstrad",
+"terminal.integrated.fontSize": 13
+}
+
+EOF
+
+    echo "$settings" > "$SETTINGS_PATH"
+}
+
+function template_bas {
+    local BAS_PATH="$1"
+    read -r -d '' BAS << EOF
+1' AMSTRAD BASIC EXAMPLE CPCREADY
+10 CLS
+20 PRINT "HELLO WORLD WITH CPCREADY"
+30 GOTO 20
+
+EOF
+
+    echo "$BAS" > "$BAS_PATH"
 }
