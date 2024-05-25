@@ -27,7 +27,7 @@
 ##------------------------------------------------------------------------------
 
 ## Bash Include files
-source $HOMEBREW_PREFIX/libexec/library.sh
+source $HOMEBREW_PREFIX/lib/amstrad-lib.sh
 
 # Allowed values for the emulator parameter
 emulators=("m4" "rvm")
@@ -67,11 +67,11 @@ case $1 in
 esac
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    CPCEMU="$HOMEBREW_PREFIX/libexec/cpcemu/cpcemu"
-    RVM="$HOMEBREW_PREFIX/libexec/RetroVirtualMachine"
+    CPCEMU="$HOMEBREW_PREFIX/share/CPCReady/cpcemu/cpcemu"
+    RVM="$HOMEBREW_PREFIX/share/CPCReady/RetroVirtualMachine"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-    CPCEMU="$HOMEBREW_PREFIX/libexec/CPCemuMacOS.app/Contents/MacOS/CPCemuMacOS"
-    RVM="$HOMEBREW_PREFIX/libexec/rvm.app/Contents/MacOS/rvm"
+    CPCEMU="$HOMEBREW_PREFIX/share/CPCReady/CPCemuMacOS.app/Contents/MacOS/CPCemuMacOS"
+    RVM="$HOMEBREW_PREFIX/share/CPCReady/rvm.app/Contents/MacOS/rvm"
 else
     PRINT ERROR "$OSTYPE Operating system NOT supported."
 fi

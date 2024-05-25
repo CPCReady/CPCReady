@@ -30,6 +30,25 @@
 
 source $HOMEBREW_PREFIX/libexec/library.sh
 
+# Obtener la versión de Python 3
+PYTHON_VERSION=$(python3 --version 2>&1)
+
+# Verifica si el comando python3 se ejecutó correctamente
+if [ $? -ne 0 ]; then
+  echo "Python 3 no está instalado."
+  exit 1
+fi
+
+# Extraer la versión de la salida
+PYTHON_VERSION=$(echo $PYTHON_VERSION | awk '{print $2}')
+
+# La versión mínima requerida
+REQUIRED_VERSION="3.9"
+
+# Comparar versiones
+compare_versions $PYTHON_VERSION $REQUIRED_VERSION
+result=$?
+
 cd $1
 
 if [ ! -f "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" ]; then
@@ -37,6 +56,14 @@ if [ ! -f "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" ]; then
     echo
     read -n 1 -r -s -p $'Press enter to continue...\n'
 else
-    amstrad
+    if [ $result -eq 2 ]; then
+        echo ""
+        PRINT ERROR_NO_EXIT "Python 3.9 or higher is not installed. Current version:: $PYTHON_VERSION"
+        PRINT ERROR_NO_EXIT "Amstrad Console requires version 3.9 or higher to work."
+        echo
+        read -n 1 -r -s -p $'Press enter to continue...\n'
+        exit
+    fi
 fi
 
+ amstrad
