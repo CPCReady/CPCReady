@@ -27,7 +27,7 @@
 ##------------------------------------------------------------------------------
 
 ## Bash Include files
-source $(dirname "$0")/lib/library.sh
+source $HOMEBREW_PREFIX/libexec/library.sh
 
 # Function to display help message
 function show_help {
@@ -64,36 +64,13 @@ source "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY"
 
 # Check if exactly one parameter is provided
 if [ "$#" -ne 1 ]; then
-    # PRINT "INFO" "The current value of DISC project is $DISC"
-    # echo -e "CAT\n"
     echo -e "\nDrive A: $DISC"
     exit 0
 fi
 
-# if [ -e "$OUT_DISC/$DISC" ]; then
-#     while true; do
-#         echo
-#         read -p "Already exists a disk image named '$DISC'. Do you want to add another one? (y/n): " respuesta
-#         echo
-#         case $respuesta in
-#             [Yy]* ) create_dsk "$1"; change_disc "$1" "$PWD"; 
-#                     change_disc_cpcemu "$1" "$PWD";
-#                     break;;
-#             [Nn]* ) exit;;
-#             * ) echo "Please respond with 'y' or 'n'.";;
-#         esac
-#     done
-# else
-    ## Create disk image
 echo
 create_dsk "$OUT_DISC/$1"
-    ## Change disk image if exists environment file
-    # if [ -f "$CONFIG_CPCREADY" ]; then
-        # change_disc "$1" "$PWD"
-        # change_disc_cpcemu "$1" "$PWD"
-# configuration "$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" DRIVE_A "$PWD/$OUT_DISC/$1"
 configuration "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" DISC $1
-    # fi
-# fi
+
 
 
