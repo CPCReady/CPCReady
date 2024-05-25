@@ -29,12 +29,6 @@
 
 ## VARIABLES SDK CPCREADY
 
-# if [ ! -f "local" ]; then
-#   HOMEBREW_PREFIX=$(brew --prefix)
-# else
-#   HOMEBREW_PREFIX=$CPCREADY
-# fi
-
 PATH_VERSION_FILE="$HOMEBREW_PREFIX/share/VERSION"
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
