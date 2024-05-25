@@ -27,7 +27,7 @@
 ##------------------------------------------------------------------------------
 
 ## Bash Include files
-source $(dirname "$0")/lib/library.sh
+source $HOMEBREW_PREFIX/libexec/library.sh
 
 # Function to display help message
 function show_help {
