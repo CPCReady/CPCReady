@@ -54,8 +54,5 @@ esac
 ## si no existe salimos con error
 check_env_file
 
-## Cargamos archivo de variables
-# source "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY"
-
 clear
 
