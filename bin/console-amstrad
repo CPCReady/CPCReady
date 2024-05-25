@@ -28,7 +28,7 @@
 
 ## Bash Include files
 
-source "$CPCREADY/bin/lib/library.sh"
+source $HOMEBREW_PREFIX/libexec/library.sh
 
 cd $1
 
