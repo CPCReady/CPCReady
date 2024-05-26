@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+
+
 #define MAX_LINE 256
 
 int is_numeric(const char *s) {

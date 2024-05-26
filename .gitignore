@@ -1,10 +1,4 @@
 # CPCReady config
-bin/configuration
-bin/iDSK
-libexec/console-1.0.0-py3-none-any.whl*
-bin/dir*
-share/settings.json
-libexec/local
 # Byte-compiled / optimized / DLL files
 .idea
 __pycache__/
@@ -17,10 +11,7 @@ test/*
 .secrets
 .secret
 .env
-bin/configuration
 bin/tools/iDSK
-bin/lib/console-1.0.0-py3-none-any.whl
-bin/dir*
 .gitignore
 build.sh
 # C extensions
