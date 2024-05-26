@@ -1,8 +1,12 @@
 #!/bin/bash
 
 # Nombre del workflow a ejecutar
-workflow_name="build.yml"
-
+workflow_name="publish.yml"
+    if [ -d "$COMPILE_DIST" ]; then
+    # Si el directorio existe, elimínalo
+        rm -rf "$COMPILE_DIST"
+        print_ok "Delete temporal files: $FILENAME"
+    fi
 # Lanzar la compilación
 gh workflow run $workflow_name
 
@@ -35,11 +39,4 @@ else
   exit 1
 fi
 
-
-# Paso 1: Crear la nueva release
-gh release create v1.0.0 --notes "Primera versión estable" --title "Release v1.0.0"
-
-# Esto devolverá el ID de la nueva release, por ejemplo: 123456
-
-# Paso 2: Subir el artefacto a la nueva release
-gh release upload 123456 mi_artefacto.zip
+gh run download $run_id --dir bin
