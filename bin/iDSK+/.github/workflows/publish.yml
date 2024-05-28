@@ -2,6 +2,14 @@ name: publish
 
 on:
   workflow_dispatch:
+    inputs:
+      version:
+        description: version to compile
+        required: true
+      release:
+        description: si se crea release
+        required: false
+        default: 'false'
 
 # on:
 #   pull_request:
@@ -33,27 +41,26 @@ jobs:
     - name: Extract version from VERSION file
       id: extract_version
       run: |
-        VERSION=$(cat VERSION)
+        VERSION=${{ github.event.inputs.version }}
         echo "Version: $VERSION"
         echo "::set-output name=version::$VERSION"
-
+        
     - name: make idsk
       run: |
-        [ -d "bin" ] && rm -r "bin"
+        [ -d "bin" ] && rm -rf "bin"
         mkdir bin
         make clean
         make
         
-
     - name: upload amstrad console
       uses: actions/upload-artifact@v4
       with:
         name: iDSK-${{ matrix.os }}
         path: bin/iDSK
   
-
     - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v2
+      if: ${{ github.event.inputs.release == 'true' }}
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: bin/${{ matrix.artifact_name }}

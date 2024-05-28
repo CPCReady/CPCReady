@@ -1,5 +1,7 @@
 # CPCReady config
 # Byte-compiled / optimized / DLL files
+Emuladores
+Emuladores/*
 .idea
 __pycache__/
 *.py[cod]
