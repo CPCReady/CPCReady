@@ -51,7 +51,13 @@ jobs:
         mkdir bin
         make clean
         make
-        
+    - name: Calculate SHA-256
+      id: sha256
+      run: |
+        SHA256_HASH=$(sha256sum downloaded_file | awk '{ print $1 }')
+        echo "SHA-256: $SHA256_HASH"
+        echo "::set-output name=sha256::$SHA256_HASH"
+      shell: bash        
     - name: upload amstrad console
       uses: actions/upload-artifact@v4
       with:
