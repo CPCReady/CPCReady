@@ -11,13 +11,9 @@ on:
         required: false
         default: 'false'
 
-# on:
-#   pull_request:
-#     branches:
-#       - main
-
 jobs:
   publish-release:
+    if: github.ref == 'refs/heads/pepe'
     permissions: write-all 
     runs-on: ${{ matrix.os }}
     strategy:
