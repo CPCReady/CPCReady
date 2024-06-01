@@ -3,6 +3,7 @@
 Emuladores
 Emuladores/*
 .idea
+bin/iDSK+/bin/*
 __pycache__/
 *.py[cod]
 *$py.class
