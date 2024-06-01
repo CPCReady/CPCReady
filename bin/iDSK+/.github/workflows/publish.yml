@@ -1,0 +1,76 @@
+name: publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: version to compile
+        required: true
+      release:
+        description: si se crea release
+        required: false
+        default: 'false'
+
+# on:
+#   pull_request:
+#     branches:
+#       - main
+
+jobs:
+  publish-release:
+    permissions: write-all 
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            artifact_name: iDSK
+            asset_name: iDSK-linux-amd64
+          - os: macos-latest
+            artifact_name: iDSK
+            asset_name: iDSK-macos-amd64
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install zip
+      if: ${{ matrix.os == 'ubuntu-latest' }}
+      run: sudo apt-get install zip
+
+    - name: Extract version from VERSION file
+      id: extract_version
+      run: |
+        VERSION=${{ github.event.inputs.version }}
+        echo "Version: $VERSION"
+        echo "::set-output name=version::$VERSION"
+        
+    - name: make idsk
+      run: |
+        [ -d "bin" ] && rm -rf "bin"
+        mkdir bin
+        make clean
+        make
+    - name: Calculate SHA-256
+      id: sha256
+      run: |
+        SHA256_HASH=$(sha256sum downloaded_file | awk '{ print $1 }')
+        echo "SHA-256: $SHA256_HASH"
+        echo "::set-output name=sha256::$SHA256_HASH"
+      shell: bash        
+    - name: upload amstrad console
+      uses: actions/upload-artifact@v4
+      with:
+        name: iDSK-${{ matrix.os }}
+        path: bin/iDSK
+  
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v2
+      if: ${{ github.event.inputs.release == 'true' }}
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: bin/${{ matrix.artifact_name }}
+        asset_name: ${{ matrix.asset_name }}
+        tag: v${{ steps.extract_version.outputs.version }}
+        overwrite: true
+        body: "new version"
