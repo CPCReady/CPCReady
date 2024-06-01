@@ -6,6 +6,7 @@ Emuladores/*
 bin/iDSK+/bin/*
 __pycache__/
 *.py[cod]
+CPCReady-*.tar.gz
 *$py.class
 NOTAS.TXT
 BASURA/*
