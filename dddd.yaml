@@ -11,6 +11,9 @@ on:
         required: false
         default: 'false'
 
+
+https://api.github.com/repos/CPCReady/sdk/releases/1.0.0/comments
+
 jobs:
   calculate_sha256:
     runs-on: ubuntu-latest
