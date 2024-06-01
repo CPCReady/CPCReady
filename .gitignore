@@ -1,6 +1,7 @@
 # CPCReady config
 # Byte-compiled / optimized / DLL files
 Emuladores
+dist/*
 Emuladores/*
 .idea
 bin/iDSK+/bin/*
