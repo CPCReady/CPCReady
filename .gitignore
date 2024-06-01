@@ -1,12 +1,26 @@
+# CPCReady config
 # Byte-compiled / optimized / DLL files
+Emuladores
+Emuladores/*
 .idea
+bin/iDSK+/bin/*
 __pycache__/
 *.py[cod]
 *$py.class
+NOTAS.TXT
+BASURA/*
+test/*
 .develop
+.secrets
+.secret
+.env
+bin/tools/iDSK
+.gitignore
+build.sh
 # C extensions
 *.so
 .DS_Store
+build.sh
 # Distribution / packaging
 .Python
 build/

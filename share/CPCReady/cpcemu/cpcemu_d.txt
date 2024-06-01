@@ -1,0 +1,3832 @@
+
+    ######+  ########++      ######+   ########+  ####    ####++  ##++     ##++
+  ##++++++   ##+++++##++   ##++++++    ##++++++   ##+##  ##+##++  ##++     ##++
+ ##++        ##++   ##++  ##++         ##+++      ##++ ##++ ##++  ##++     ##++
+ ##++        ########++   ##++         ########+  ##++ +++  ##++  ##++     ##++
+ ##++        ##++++++     ##++         ##++++++   ##++      ##++  ##++     ##++
+  ##++       ##++          ##++        ##++       ##++      ##++  ##++     ##++
+    ######+  ##++            ######+   ########+  ##++      ##++   #########++
+    +++++++  ++++            +++++++   +++++++++  ++++      ++++   ++++++++++
+
+                                                                      v2.4
+
+
+                                  D O K U M E N T A T I O N
+
+
+                                     (c) Marco Vieth 2001
+
+
+    DIESE ANLEITUNG ENTHÄLT NOCH NICHT DURCHGEHEND ALLE NEUEN INFORMATIONEN 
+    ÜBER DIE VERSIONEN 1.7 BIS 2.4.
+
+
+-------------------------------------------------------------------------------
+
+
+
+
+Inhaltsverzeichnis:
+
+       1.  Einführung
+           1.1  Hinweise zur Benutzung dieser Dokumentation
+           1.2  Copyright, Gewährleistungen
+           1.3  Was ist ein CPC ?
+           1.4  Was bietet CPCEMU ?
+
+       2.  Installation von CPCEMU
+           2.1  Dateien im CPCEMU-Paket
+           2.2  Voraussetzungen und Installation
+           2.3  Tips zum Speicher und zur Soundkarte
+             2.3.1  Verwenden Sie EMS-Speicher
+             2.3.2  Setzen Sie die BLASTER-Umgebung
+             2.3.3  Setzen Sie die ULTRASND-Umgebung
+
+       3.  Unterschiede zum Original
+           3.1  Tastatur
+           3.2  Laden von Programmen, Menüs
+             3.2.1  Laden von Diskette, Menüs
+               - Das Disketten-Wechsel-Menü
+               - Das Datei-Auswahl-Menü
+             3.2.2  Laden von und Speichern auf Kassette
+             3.2.3  Laden und Speichern von Snapshots
+
+       4.  Ändern der Konfiguration
+           4.1  Das Setup-Menü
+           4.2  Die Konfigurations-Datei
+           4.3  Kommandozeilen-Parameter
+
+       5.  Datenübertragung CPC <-> PC
+           5.1  Diskette als Medium
+             5.1.1  Das Diskettentransferprogramm CPCTRANS
+             5.1.2  Das Formatier- und Kopierprogramm 22DISK von SYDEX
+           5.2  Parallele Schnittstelle
+             - Der parallele Adapter
+           5.3  Serielle Schnittstelle
+           5.4  Sonstige Möglichkeiten
+
+       6.  Bezugsquellen, Hilfe bei Problemen, Danksagungen
+           6.1  CPC Software, woher bekommen ?
+           6.2  Neuigkeiten, Erfahrungsaustausch
+           6.3  Wenn Sie Fragen oder Anregungen haben
+           6.4  Andere Amstrad CPC Emulatoren
+           6.5  Pläne für weitere CPCEMU-Versionen
+           6.6  Danksagungen
+           6.7  Geschützte Warenzeichen
+
+       7.  Interne Informationen zu CPCEMU
+           "Black Box", d.h. mit separatem Inhaltsverzeichnis
+
+
+       Anhang:
+
+       A.1  Glossar
+       A.2  Literaturverzeichnis
+       A.3  Index
+
+
+---------------------------
+
+
+
+
+
+1.  Einführung
+**************
+
+
+Willkommen im Reich der Emulatoren!
+
+Was, Sie wollen wissen, was CPCEMU ist?  Und was man mit dem merkwürdigen
+Programm anfangen kann, welches bei gelber Schrift auf blauem Grund nach
+jeder Eingabe immer "Syntax Error" schreibt?
+
+Also, um Ihnen langes Suchen zu ersparen:
+        CPCEMU emuliert einen Amstrad CPC 464, 664 oder 6128 mit zahlreichen
+        Erweiterungen. Das Programm bildet also die Funktionsweise der
+        älteren Amstrad-Computer auf Ihrem neuen PC nach.
+
+
+Was das für einen Zweck hat?
+Nun ja, wenn Sie das nicht schon wissen, benötigen Sie CPCEMU nicht.
+Hier noch ein paar Gründe:
+        - Nostalgie (och, wie schön war doch mein CPC ...)
+        - Bessere Performance gegenüber dem Original
+        - Bessere Entwicklungsumgebung
+        - z.B. zum Erlernen/Trainieren der Z80 Assemblersprache
+        - Spielen
+        - Arbeiten (ja, ein CPC reicht normalerweise für Textverarbeitung)
+        - [                                  ] <- hier können Sie weitere
+                                                  Gründe eintragen.
+
+
+
+
+1.1  Hinweise zur Benutzung dieser Dokumentation
+================================================
+
+
+  Sie sollten zuerst die On-Line-Hilfe ausprobieren (F1), wenn Sie dann
+  tiefergehende oder genauere Informationen wollen, können Sie dieses
+  lesen...
+
+
+  Ich habe versucht, die Dokumentation übersichtlich zu gestalten. Falls Sie
+  (nach mehrmaligem Lesen?) doch noch Fragen haben, setzen Sie sich einfach
+  mit mir in Verbindung. Natürlich dürfen Sie das auch, wenn Ihnen alles
+  klar ist. Siehe Kapitel 6 (Bezugsquellen, ...).
+
+  Im Kapitel 1 (Einführung) beschreibe ich Grundlagen zur
+  Dokumentation, zum Copyright und zum CPC allgemein.
+
+  Im Kapitel 2 (Installation) geht es dann endlich los. Sie erfahren, wie
+  man CPCEMU installiert und startet.
+
+  In Kapitel 3 (Unterschiede zum Original) führe ich einige Besonderheiten
+  auf, die Sie beachten müssen, wenn Sie einen richtigen CPC kennen und
+  den Emulator benutzen möchten. Dabei werde ich vor allem auf die Tastatur,
+  Disketten, Kassetten und Snapshots eingehen.
+
+  In Kapitel 4 (Ändern der Konfiguration) beschreibe ich, wie Sie CPCEMU an
+  Ihre Bedürfnisse anpassen und vielleicht doch noch Ihr Lieblingsprogramm
+  zum Laufen bringen können.
+
+  Kapitel 5 (Datenübertragung CPC <-> PC) sollten Sie lesen, wenn Sie noch
+  zahlreiche alte CPC Programme besitzen und nicht wissen, wie Sie diese auf
+  den PC bekommen. In diesem Kapitel werden die dafür vorhandenen
+  Zusatzprogramme beschrieben.
+
+  In Kapitel 6 (Bezugsquellen, Hilfe bei Problemen) verrate ich Ihnen, wie
+  Sie immer die neuste Version bekommen können und an wen Sie sich bei Fragen
+  wenden dürfen.
+
+  Kapitel 7 (Interne Informationen zu CPCEMU) ist für Profis gedacht.
+  Der "offizielle" Teil ist vor diesem Kapitel vorbei, denn hier kommt
+  das "Letzte".
+  Falls Sie wissen möchten, wie man so einen Emulator programmiert und was
+  man dabei beachten muß. Außerdem wird hier das in CPCEMU eingebaute
+  Debug-Menü erklärt, mit dem Sie *jederzeit* den Prozessor und den Speicher
+  analysieren können. Nur-Anwender sollten dieses Kapitel überspringen,
+  wenigstens beim ersten Lesen.
+
+  Im Anhang A.1 gibt es dann noch ein Glossar, mit Beschreibungen der
+  wichtigsten Fachbegriffe, außerdem in A.2 ein Literaturverzeichnis
+  und in A.3 einen Index.
+
+
+
+1.2  Copyright, Gewährleistungen
+================================
+
+  Die DOS-Version von CPCEMU wurde entwickelt von (siehe auch Abschnitt 6.3):
+
+         Marco Vieth
+         Auf dem Ükern 4
+         D-33165 Lichtenau
+         Germany
+
+  Die Versionen für die anderen Betriebssysteme (z.B. Linux und Windows)
+  wurden auf der Basis der DOS-Version entwickelt von:
+
+         Rainer Loritz
+         Rosenbachweg 4/Whg. 1
+         D-37075 Göttingen
+
+  CPCEMU ist Freeware, d.h. Sie dürfen das Programm *unentgeltlich* an
+  Freunde und Bekannte weitergeben. Betreibern von Mailboxen ist es erlaubt,
+  CPCEMU in Ihre Programmsammlungen zum "Downloaden" aufzunehmen.
+  Shareware-Händler dürfen dieses Programm mit in Ihren Bestand aufnehmen,
+  sofern sie von den Kunden nur eine geringe Kopiergebühr verlangen.
+  Die Verbreitung darf nur in dem Archiv CPCEMUxx.xxx erfolgen.
+  Im Gegensatz zu Public Domain bedeutet Freeware nicht, das das Programm
+  "frei" ist und jeder damit machen kann was er will, sondern das Copyright
+  bleibt bei uns!
+
+  Gewährleistung:
+  Wir lehnen jegliche Gewährleistung ausdrücklich ab. Schäden, die durch
+  dieses Programm am Computer oder sonstwo entstehen, gehen zu Lasten des
+  Benutzers.
+  Auch gehen wir keinerlei Verpflichtung bzgl. Updates ein, obwohl wir
+  normalerweise möglichst schnell versuchen, aufgetretene Fehler zu beseitigen.
+
+
+  Wenn Sie von dem Programm begeistert sind, können Sie uns unterstützen.
+  Wir sind für jede Rückmeldung und jeden Verbesserungsvorschlag dankbar.
+  Auch finanzielle Unterstützung lehnen wir natürlich nicht ab.
+  Siehe Kapitel 6 (Bezugsquellen, ...)
+
+
+
+1.3  Was ist ein CPC ?
+======================
+
+  Falls Sie schon wissen, was ein CPC ist, gehen Sie einfach zum
+  nächsten Abschnitt über (1.4  Was bietet CPCEMU ?).
+
+
+
+
+  Sie sind noch da?
+
+  Hier soll nicht der CPC "auseinandergenommen" werden, sondern ich gebe nur
+  eine grobe geschichtliche Beschreibung, damit Sie eine Vorstellung davon
+  haben, was ein CPC überhaupt ist.
+
+
+  CPC ist die Abkürzung für Colour Personal Computer.
+  Computer dieser Modellreihe wurden ab 1984 von der englischen Firma Amstrad
+  hergestellt und von Schneider in Deutschland vertrieben.
+  Es war die Zeit der Homecomputer Commodore C64, Sinclair Spectrum,
+  Atari 800XL, ..., als der CPC 464 auf den Markt kam.
+  Er hatte genausoviel RAM wie der Commodore C64 (nämlich 64 KB),
+  ein eingebautes Kassettenlaufwerk und Locomotive BASIC 1.0.
+  Es folgte der CPC 664 mit eingebautem 3" Diskettenlaufwerk und leicht
+  erweitertem Locomotive BASIC 1.1.
+  1985 kam dann der CPC 6128 mit 128 KB RAM und ansonsten gleichen
+  Merkmalen wie der CPC 664 auf den Markt.
+  Die 3" Disketten waren zwar sündhaft teuer, dafür aber stabiler als die
+  damals gängigen 5.25" Disketten (etwa wie die heutigen 3.5").
+  Außerdem war eine deutliche Geschwindigkeitssteigerung im Vergleich zur
+  Kassette zu bemerken, nicht wie beim C64...
+  Alle drei Modelle wurden wahlweise mit Farb- oder Grünmonitor ausgeliefert,
+  wobei das Computernetzteil im Monitor integriert war.
+  Inzwischen gab es noch 2-3 andere Modelle (die CPC+ Modelle), darauf werde
+  ich aber nicht eingehen.
+  Das BASIC war mit etwa 178 Befehlen leistungsfähig und schnell. Man konnte
+  damit Grafik, Sound und sogar Interruptbehandlung programmieren, ohne
+  auf PEEKs und POKEs ausweichen zu müssen.
+  Das Softwareangebot hat sich im Laufe der Jahre auch stark erweitert.
+
+
+
+
+1.4  Was bietet CPCEMU ?
+========================
+
+  Es folgt eine Kurzübersicht darüber, was CPCEMU bietet. Erst im Laufe
+  der Dokumentation wird erklärt, was das alles bedeutet.
+
+  CPC-Grafik in 3 Bildschirmmodi (X x Y x Farben):
+    DOS:
+       Modus 0: 180x200x16
+       Modus 1: 320x200x4
+       Modus 2: 640x200x2
+       (Mit VESA-BIOS kann diese Grafik in einer Auflösung von 640x400x16
+        bis 1280x1024x16 dargestellt werden, abhängig von Ihrem Monitor
+        und Ihrer Grafikkarte.)
+    Non-DOS:
+       Die Fenstergroesse bzw. Bildschirmaufloesung (im Vollbildmodus)
+       wird dynamisch angepaßt.
+
+  Sound
+    DOS: 
+       wahlweise über PC-Lautsprecher, Soundblaster (3 Kanal + Geräusche,
+       Stereo), Soundblaster (3 Kanal FM, Stereo)
+       oder Gravis UltraSound (3 Kanal + Geräusche, Stereo)
+    Non-DOS:
+       Ausgabe über Soundkarte (treiberabhängig) in Stereo
+
+  Speicher:
+       ROM: OS, BASIC, AMSDOS, bis zu circa 13 Zusatzroms (mit EMS)
+       RAM: 64KB, 128KB, bis zu 576KB Dk'tronics kompatibles RAM (mit EMS)
+    (Non-DOS: kein EMS nötig)
+
+  Diskette: Spezielle Disketten-Abbilder, mit der Endung .DSK
+
+  Kassette: Normale Dateien unter DOS, z.B. CPC BASIC- und Binärdateien
+       mit den Endungen .BAS bzw .BIN .
+
+  Snapshots: Es lassen sich Schnappschüsse von laufenden Programmen
+       erzeugen, um sie später wieder fortsetzen zu können. Schnappschüsse
+       haben normalerweise die Endung .SNA .
+
+  Geschwindigkeit:
+    DOS:
+       Auf einem 386/33 mit EMS-Speicher ist CPCEMU normalerweise
+       schneller als das Original. Durch einen Echtzeit-Modus kann der
+       Emulator auf exakte CPC-Geschwindigkeit abgebremst werden.
+       Dieser Echtzeit-Modus funktioniert aber erst richtig auf einem
+       486DX2/66.
+    Non-DOS:
+       Entscheidend ist die Qualität der Grafikkarte und ihrer Treiber.
+       Im Framebufferbetrieb ist die Geschwindigkeit wesentlich niedriger.
+       Grundsätzlich wird eine höhere CPU-Leistung benötigt als unter
+       DOS, da wesentlich mehr Betriebssystem-Overhead zu bewältigen
+       ist. Für Originalgeschwindigkeit werden _ca._ 200-300 MHz (CISC)
+       benötigt. Exakte Tests wurden bis jetzt nicht durchgeführt.
+
+
+
+
+2.  Installation von CPCEMU
+***************************
+
+In diesem Kapitel erfahren Sie, was Sie für CPCEMU benötigen, wie Sie
+das Programm installieren und starten. Außerdem gebe ich in Abschnitt 2.3
+kurz Tips zum Speicher und zur Soundkarte.
+Umkonfigurationen werden erst später im Kapitel 4 (Konfiguration)
+beschrieben.
+
+
+
+2.1  Dateien im CPCEMU-Paket
+============================
+
+  Sie haben das CPCEMUxx.xxx-Paket mit den folgenden Dateien erhalten:
+  (In Klammern steht das Verzeichnis, in dem die Datei nach der Installation
+  steht.)
+
+  COPYMATE.ROM   ein ROM mit einem Kopierprogramm (ROM)
+ *CPC464.BAT     startet einen CPC 464
+  CPC464.ROM     das ROM (Firmware+BASIC) eines CPC 464 (ROM)
+ *CPC6128.BAT    dito, nur CPC 6128
+  CPC6128.ROM    (ROM)
+ *CPC6128P.BAT   dito, nur CPC 6128 plus
+ *CPC664.BAT     dito, nur CPC 664
+  CPC664.ROM     (ROM)
+  CPCADOS.ROM    das AMSDOS für alle CPCs (ROM)
+  CPCEMU.CFG     die Konfigurationsdatei für alle CPCs (oder CPCEMU0.CFG)
+  CPCEMU.DAT     Daten-Datei für CPCEMU
+  CPCEMU.DBF     Datenbank mit Pokes
+  CPCEMU.EXE     der Emulator
+  CPCEMU.HLP     die On-Line-Hilfe, erscheint bei F1
+  CPCEMU.MSG     Die Meldungsdatei (unbedingt notwendig)
+  CPCEMU_D.TXT   deutsche Dokumentation (diese Datei)
+  CPCEMU_E.TXT   englische Dokumentation
+  CPCEMU_F.TXT   französische Dokumentation
+  CPCEMU_S.TXT   spanische Dokumentation
+  CPCPARA.BAS    Locomotive-BASIC-Programm für parallelen Adapter (UTILITY)
+  CPCPD1.DSK     ein Disketten-Abbild mit Beispiel-Public-Domain (DISC)
+  CPCREC.BAS     Locomotive-BASIC-Programm zum Empfangen (UTILITY)
+  CPCT0.BAT      Batch-Datei zu CPCTRANS.EXE (Beispiel) (UTILITY)
+  CPCTRANS.CFG   Konfigurationsdatei für CPCTRANS (UTILITY)
+  CPCTRANS.EXE   Transfer von Disketten-Abbildern (UTILITY)
+  CPMDISKS.DEF   Datei mit Formatdefinitionen für 22DISK (UTILITY)
+  DESCRIPT.ION   Beschreibungsdatei für 4DOS
+  FILE_ID.DIZ    Paket-Beschreibung für BBS (Mailboxen)
+  INSTALL.BAT    Installationsdatei
+ *KCC.BAT        startet einen KC compact
+  PCPARA.EXE     Die PC-Seite für den parallelen Adapter (UTILITY)
+  README_D.TXT   deutsches Liesmich
+  README_E.TXT   englisches Liesmich
+  README_F.TXT   französisches Liesmich
+  README_S.TXT   spanisches Liesmich
+  ROMGET.BAS     Locomotive-BASIC-Programm zum Abspeichern von ROMs (UTILITY)
+  SNA2GIF.EXE    ein Snapshot nach GIF-Konverter: CPC-Bilder abspeichern
+  unter unixartigen Betriebssystemen (z.B. Linux) zusätzlich:
+  cpc464         startet einen CPC 464
+  cpc664         startet einen CPC 664
+  cpc6128        startet einen CPC 6128
+
+  (* nur in den DOS- und Windows-Versionen enthalten)
+
+  Es sind auch die orginalen Amstrad-ROMs dabei.
+  Die Firmware ist Copyright von Locomotive Software, das BASIC ist
+  Copyright von Amstrad.
+  Amstrad und Locomotive haben mir erlaubt, die ROMs dabeizulegen.
+
+
+
+2.2  Voraussetzungen und Installation
+=====================================
+
+  Sie benötigen mindestens (nach oben wie immer keine Grenzen)
+  - PC AT 386 mit VGA-Grafikkarte
+  - ALTERNATIV ENTWEDER:
+    MS-DOS, möglichst mit EMS,  oder
+    Novell DOS (DRDOS)  oder
+    Windows 95 (oder 3.1) DOS-Box  oder
+    OS/2 2.x DOS-Box.
+    ODER:
+    Linux mit glibc (libc6)
+    ODER:
+    Windows 95,98,ME,NT oder 2000 (XP nicht offiziell unterstützt)
+    ODER:
+    andere Betriebssysteme (noch nicht unterstützt)
+  - Falls Sie Programme aus ZIP-Archiven starten wollen, brauchen Sie zum
+    Entpacken das Programm PKUNZIP in Ihrem DOS-Suchpfad.
+    Für Linux ist "unzip" in den meisten Distributionen enthalten.
+
+
+  Die Installation selbst ist ganz einfach:
+  Kopieren Sie das Archiv CPCEMUxx.xxx auf Ihre Festplatte und entpacken es
+  z.B. durch 'PKUNZIP CPCEMUxx.ZIP'. Rufen Sie INSTALL.BAT auf, um ein paar
+  Unterverzeichnisse zu erzeugen. Danach starten Sie einfach CPC464.BAT,
+  CPC664.BAT oder CPC6128.BAT, je nachdem, was für einen CPC Sie am liebsten
+  mögen. Beim ersten Start werden Sie nach der gewünschten Sprache gefragt.
+  Antworten Sie mit "1" für Deutsch oder wählen eine andere Sprache.
+  (Die Konfiguration wird im TMP-Verzeichnis als CPCEMU.CFG abgelegt.)
+  Nach der Konfiguration erscheint der wohlbekannte CPC Eröffnungsbildschirm
+  mit gelber Schrift auf blauem Grund.
+  Mit F12 verlassen Sie den Emulator wieder.
+  Mit F1 erreichen Sie die On-Line-Hilfe.
+  Am besten probieren Sie das jetzt sofort einmal aus, und lesen anschließend
+  hier weiter ...
+
+
+
+  Vielleicht war Ihnen der CPC doch nicht so wohlbekannt, weil dort "Amstrad"
+  anstatt "Schneider" in der Einschaltmeldung stand. Um das zu ändern, müssen
+  Sie sich allerdings bis Kapitel 4 (Ändern der Konfiguration) gedulden.
+  Dort wird auch beschrieben, wie Sie eine "deutschere" Tastatur einstellen
+  können.
+
+  Falls irgendwelche schwerwiegenden Fehler beim Start auftreten, landen
+  Sie im sogenannten Debug-Menü, welches Sie mit 'q' <RETURN> wieder
+  verlassen können.
+  In solchen Fällen ist es manchmal nützlich, den Initialisierungsvorgang
+  in eine Datei umzuleiten, z.B. durch 'CPCEMU > INIT.TXT'. Dann können
+  Sie sich später das Problem in aller Ruhe ansehen.
+
+
+
+
+2.3  Tips zum Speicher und zur Soundkarte (nur DOS-Version)
+===========================================================
+
+
+  Hier zwei Tips, falls Sie eine besonders schnelle Emulation haben wollen
+  oder Ihre Soundkarte nicht erkannt wird.
+  Falls Sie Windows 95 mit Standardeinstellungen benutzen, brauchen Sie
+  sich darum keine Gedanken zu machen. Windows 95 bietet für DOS-Boxen
+  automatisch EMS und die BLASTER-Umgebungsvariable bei Soundblaster-Karten.
+
+
+  2.3.1  Verwenden Sie EMS-Speicher
+  ---------------------------------
+
+    Sie sollten auf Ihrem PC möglichst echten oder emulierten EMS-Speicher
+    haben (EMS=Expanded Memory System). Dadurch wird die Emulation besonders
+    unter BASIC erheblich beschleunigt.  Simuliertes EMS ist zu langsam.
+    Alles was Sie dazu brauchen, ist ein EMM (Expanded Memory Manager) nach
+    dem LIM 4.0 Standard (LIM EMS 4.0).
+    Beim Start des Emulators wird dann "EMS xxx Bytes ok." angezeigt.
+    Falls dort nicht "Sorry, using conventional memory" steht, dann
+    wird EMS benutzt.
+
+    Beispiel unter OS/2 2.x (Einstellungen im Setup des Fensters):
+        EMS_FRAME_LOCATION = auto
+        EMS_HIGH_OS_MAP_REGION = 32     (oder mehr)
+        EMS_LOW_OS_MAP_REGION = 0       (oder mehr)
+
+    Beispiel unter DOS in der CONFIG.SYS-Datei:
+        DEVICE=C:\DOS\HIMEM.SYS
+        DEVICE=C:\DOS\EMM386.EXE 1024
+        ...
+
+
+  2.3.2  Setzen Sie die BLASTER-Umgebung
+  --------------------------------------
+
+    Damit CPCEMU Ihre Soundblaster-Soundkarte benutzt, müssen Sie die
+    BLASTER-Umgebungsvariable entsprechend setzen. Starten Sie dazu das
+    Programm 'SET-ENV.EXE' (oder 'SBTEST.EXE'), das dem Softwarepaket Ihrer
+    Soundkarte beiliegen sollte. Oder schreiben Sie in Ihre AUTOEXEC.BAT
+    die folgende Zeile, eventuell leicht modifiziert:
+        SET BLASTER=A220 I7 D1 T3
+
+        Mit folgender Bedeutung:
+        A setzt die Basis-Adresse (0x220)
+        I setzt die Interrupt-Nummer IRQ (7)
+        D setzt den DMA-Kanal (1)
+        T setzt die Version der Soundkarte:
+          1 : Soundblaster 1.0/1.5
+          2 : Soundblaster Pro
+          3 : Soundblaster 2.0/2.5
+          4 : Soundblaster Pro 3/Pro 4.0
+          5 : Soundblaster Pro (Microchannel)
+          6 : Soundblaster 16
+
+    Bei den Versionen 2, 4, 5 und 6 erfolgt die Soundausgabe in Stereo.
+
+    Es gibt noch einige zusätzliche Parameter, die aber ignoriert werden:
+      H setzt den 16-Bit-DMA-Kanal für 16-Bit Karten
+      M setzt die Basis-Adresse des Soundblaster-Mixers (224)
+      P setzt die Port-Adresse für MIDI (330)
+
+
+    Wenn Sie keinen Sound hören, nehmen Sie A388 (anstatt A220). Dieses
+    funktioniert für die Media Vision Pro Audio Spectrum 16 und vielleicht
+    auch anderen Soundkarten, die Soundblaster-Emulation verwenden.
+    (Joe Cotroneo)
+
+
+
+
+  2.3.3  Setzen der ULTRASND-Umgebung:
+  ------------------------------------
+
+    Um Sound auf Ihrer GUS (Gravis Ultrasound Classic / Max / ACE) zu hören,
+    müssen Sie die ULTRASND-Umgebungsvariable entsprechend setzen.
+    Ihre AUTOEXEC.BAT Datei sollte die folgende Zeile enthalten:
+      SET ULTRASND=220,1,1,11,7
+
+    Mit der Bedeutung (in der entsprechenden Reihenfolge):
+
+        220 ist die Basis-Adresse (0x220)
+          1 ist der GUS DMA-Kanal
+          1 ist der SoundBlaster DMA-Kanal
+         11 ist der GUS IRQ
+          7 ist der SoundBlaster IRQ
+
+    Wichtig sind die Basis-Adresse und der GUS IRQ. Alle anderen Werte
+    müssen aber auch angegeben werden.
+
+
+
+
+3.  Unterschiede zwischen CPC und CPCEMU
+****************************************
+
+In diesem Kapitel erläutere ich einige Besonderheiten, die CPCEMU vom
+Original unterscheiden. Da wäre zunächst die Tastatur, insbesondere die
+Belegung der Funktionstasten, dann das Laden von Diskette und Kassette.
+
+
+
+3.1  Tastatur
+=============
+
+  Vielleicht ist Ihnen bei den ersten Experimenten schon aufgefallen, daß
+  manche Tasten andere Zeichen auf dem Bildschirm hervorrufen.
+  Das muß so sein! Um eine "deutschere" Tastaturbelegung zu bekommen,
+  gedulden Sie sich bis Kapitel 4 (Konfiguration von CPCEMU).
+  Außerdem haben Sie vielleicht bemerkt, daß die PC Funktionstasten nicht
+  den CPC Funktionstasten entsprechen und "wirres Zeug" aufrufen.
+  Vielleicht suchen Sie auch schon vergeblich die COPY Taste.
+  Ich versichere Ihnen, es sind wirklich alle Tasten vom CPC irgendwo
+  vorhanden.
+  Hier wird das Geheimnis gelüftet:
+
+  - ALT, ALTgr  : COPY auf dem CPC {DOS}
+    ALT links {Non-DOS}
+
+  - PAUSE-Taste : hält den PC an, bis sie erneut gedrückt wird. Falls also
+    die PC-Funktionstasten nicht mehr reagieren, haben Sie vielleicht die
+    PAUSE-Taste gedrückt. {nur DOS}
+
+  - Keypad (Zehnerblock) : Je nach Zustand von "NUM-LOCK" erfüllt das Keypad
+    verschiedene Funktionen. Bei "NUM-LOCK an" erreichen Sie die CPC-
+    Funktionstasten, sonst können Sie Joystickbewegungen ausführen.
+    Wollen Sie einen analogen PC-Joystick benutzen, erfordert das eine
+    Konfiguration und Sie müssen sich bis Kapitel 4 (Ändern der
+    Konfiguration) gedulden.
+
+  - PrintScreen/Druck : erzeugt einen Screenshot ("screenshot.bmp") {nur Non-DOS}
+
+  Der Vollständigkeit halber sei noch erwähnt:
+  - Bild hoch/runter: Verschiebt den gesamten CPC Bildschirm
+    (Fragen Sie mich nicht, wofür das gut sein soll.)
+
+  Und natürlich die Funktionstasten:
+  F1  : Die Online-Hilfe-Taste. Zu Beginn vielleicht die wichtigste Taste
+        überhaupt.
+  F2  : Wechsel zwischen CPC-Bildschirm (Standard-Sicht) und Meldungs-
+        Bildschirm (der mit dem roten Rahmen). Auf diesem Bildschirm werden
+        manchmal Kontrollmeldungen angezeigt. {nur DOS}
+  F3  : Einlegen einer Diskette, siehe Abschnitt 3.2.1
+  F4  : Soundausgabe ein/aus
+  F5  : Laden eines Snapshots (Schnappschusses), siehe Abschnitt 3.2.3
+  F6  : Speichern eines Snapshots, siehe Abschnitt 3.2.3
+  F7  : Setup-Menü, siehe Abschnitt 4.1
+  F8  : Hard-Reset, wie eine Reset-Taste am CPC. Benutzen Sie diese Taste,
+        falls CTRL+SHIFT+ESC nicht mehr funktioniert.
+  F9  : Farbänderungen erlauben/verbieten.
+  F10 : Debug-Menü, wird im Kapitel 7 (Interne Informationen zu CPCEMU)
+        erläutert. Falls Sie einmal aus Versehen darin landen, drücken Sie
+        'r' für R)un oder 'q' für Q)uit.
+  F11 : reserviert für zukünftige Verwendung {Vollbildmodus, nur in Non-DOS}
+  F12 : sofortiger Abbruch des Emulators
+
+
+
+
+3.2  Laden von Programmen, Menüs
+================================
+
+  In diesem Abschnitt erfahren Sie, wie Sie Programme von Diskette, Kassette
+  oder aus Snapshots (Schnappschüssen) laden. Natürlich werden auch
+  die entsprechenden Funktionen zum Abspeichern erklärt.
+  Im folgenden Abschnitt wird zusätzlich erklärt, wie Sie in den Menüs
+  Optionen ändern und auswählen.
+
+
+
+  3.2.1  Laden von Diskette, Menüs
+  --------------------------------
+
+    Normalerweise ist nach dem Start des Emulators das sogenannte AMSDOS
+    (Amstrad DOS) aktiv, d.h. alle Befehle zum Laden/Speichen sprechen die
+    Diskette an.
+    Sie brauchen nicht immer eine richtige CPC-Diskette in Ihr PC-Laufwerk
+    legen, abgesehen davon, daß Sie vielleicht nur 3" CPC-Disketten haben.
+    Um eine vernünftige Geschwindigkeit zu erreichen, befinden sich die
+    CPC-Disketten in sogenannten Disketten-Abbildern. Diese Dateien
+    dürfen sich irgendwo auf der Festplatte (oder auch einer High-Density-
+    Diskette) befinden.
+
+    Hier einige BASIC-AMSDOS-Befehle:
+    - CAT <RETURN> : Es erscheint der Katalog
+
+    - Durch 'RUN"<Dateiname>"'  laden und starten Sie ein Programm.
+      Sie dürfen die letzten Anführungsstriche auch weglassen. Dieser Befehl
+      funktioniert sowohl für BASIC-Programme mit der Endung .BAS als auch
+      für die meisten binären Programme mit der Endung .BIN .
+
+      Hier eine einfache Möglichkeit, ein Programm zu starten:
+      1. Tippen Sie den Dateinamen ein, z.B.  'DISC', *nicht* <RETURN>
+      2. Halten Sie die CTRL-Taste fest und drücken Sie Cursor-links
+      (dadurch wandert der Cursor in die 1. Spalte)
+      3. Halten Sie die CTRL-Taste immer noch fest und drücken sie die ENTER-
+      Taste auf dem Zehnerblock
+      (es erscheint RUN"DISC   und das Programm wird gestartet)
+
+    - LOAD"<Dateiname>" lädt ein Programm, ohne es zu starten.
+      BASIC-Programme lassen sich dann mit LIST auflisten und durch RUN
+      starten. Binäre Programme lassen sich in den meisten Fällen nicht mit
+      LOAD laden. Versuchen Sie, vorher einen MEMORY-Befehl anzugeben, z.B.
+      'MEMORY &1fff'.
+
+    - SAVE"<Dateiname>" speichert ein BASIC-Programm. Für Binärdateien sind
+      mehrere Parameter nötig, z.B. speichert
+      'SAVE"<Dateiname>",b,&c000,&4000' den Bildschirminhalt.
+
+    - MERGE"<Dateiname>" gibt es auch noch und fügt ein BASIC-Programm an
+      ein schon im Speicher vorhandenes an.
+
+
+    Speziell vom AMSDOS werden noch folgende Erweiterungs-Befehle angeboten,
+    die durch einen senkrechten Strich eingeleitet werden:
+    - |A, |B zur Wahl des Laufwerks (geht auch mit |DRIVE,0 bzw. 1)
+    - |DIR,"<Dateimuster>" zum Anzeigen des Inhaltsverzeichnisses.
+      Wichtig: Auf einem CPC 464 folgendes eingeben:
+           a$="<Dateimuster>" : |DIR,@a$
+    - |ERA,"<Dateiname>" zum Löschen einer Datei.
+      Wichtig: Auf einem CPC 464 folgendes eingeben:
+           a$="<Dateiname>" : |ERA,@a$
+    - |REN,"<neuer Name>","<alter Name>" zum Umbenennen einer Datei.
+      Wichtig: Auf einem CPC 464 folgendes eingeben:
+           a$="<neuer Name>" : b$="<alter Name>" : |REN,@a$,@b$
+    - |TAPE  um auf Kassette umzuschalten, wird im nächsten Abschnitt
+      erläutert.
+    - |DISC  um auf Diskette umzuschalten.
+    Es gibt auch noch ein paar andere Befehle, die nicht so wichtig sind.
+
+
+
+    Das Disketten-Wechsel-Menü
+    --------------------------
+
+    Bisher konnten Sie immer nur eine Diskette benutzen, nämlich diejenige,
+    die schon die ganze Zeit im Laufwerk "liegt". Um eine andere
+    Diskette einzulegen, drücken Sie F3. Es erscheint das Menü
+
+                     Diskette einlegen
+                     Laufwerks-Nummer   0
+                     Disketten-Seite    0
+                     Schreibschutz      0
+                     Autostart          1
+
+    Mit den Cursortasten <hoch/runter> wählen Sie eine Zeile aus. Sie
+    können dazu auch direkt Buchstaben eingeben (zurück mit <DEL>).
+    Ändern Sie Zahlen durch <Cursor links/rechts> oder durch Direkteingabe.
+    <RETURN> in einer beliebigen Zeile (z.B. in der ersten)
+    übernimmt die Änderungen, durch <ESC> würden sie verworfen.
+    "Laufwerks-Nummer" ist das gewünschte Laufwerk (0=A, 1=B);
+    "disketten-Seite" ist ein Seitenauswahl-Schalter für doppelseitige
+    Formate, bei einseitigen Formaten hat er keine Auswirkung.
+    Mit "Schreibschutz" versehen Sie die Diskette mit einem Schreibschutz
+    (0=Nein, 1=Ja, mit Schreibschutz).
+    Falls "Autostart" aktiv ist, wird das erste BASIC-Programm auf der
+    Diskette nach dem Einlegen automatisch gestartet (alternativ DISC.BAS).
+
+
+
+    Das Datei-Auswahl-Menü
+    ----------------------
+
+    Drücken Sie <RETURN>, dann erscheint ein Disketten-Inhaltsverzeichnis.
+    Wählen Sie eine neue Diskette aus, mit den Methoden, wie oben
+    beschrieben.
+    Falls schon eine Diskette im Laufwerk liegt, brauchen Sie diese nicht
+    vorher herauszunehmen, wie im richtigen Leben. Das passiert hier
+    automatisch. Unten auf dem Bildschirm wird so eine Diskette aber
+    angezeigt.
+    Es werden immer höchstens 15 Dateinamen auf einmal angezeigt, bei mehr
+    Dateinamen steht unten "[]".
+    - <POS1> geht zum ersten Dateinamen, <ENDE> zum letzten
+    - <Bild hoch/runter> blättert seitenweise durch die Dateinamen
+    - <RETURN> übernimmt den angewählten Dateinamen, <ESC> bricht ab.
+    Auch hier wählen Sie die Namen direkt an, wenn Sie Anfangsbuchstaben
+    drücken.
+
+    Falls Sie die Maussteuerung bevorzugen, bedeutet "[]" <Bild hoch>,
+    "[]" <Bild runter>, "[<]" <Cursor links>, "[>]" <Cursor rechts> und
+    [ok] ist <Return>. "[þ]" ist <ESC>.
+    Um eine Zeile zu markieren, benutzen Sie die rechte Maustaste.
+
+    ".." ist das Eltern-Verzeichnis; [A], [B], ... sind die verfügbaren
+    Laufwerke. Bitte wählen Sie nur Diskettenlaufwerke, wenn auch eine
+    Diskette darin liegt, ansonsten kann es zu Komplikationen kommen.
+
+    Es ist auch möglich, Disketten aus ZIP-Archiven einzulegen. Dazu wählen
+    Sie ein ZIP-Archiv mit <RETURN>, worauf das Inhaltsverzeichnis wie ein
+    normales Verzeichnis angezeigt wird. Wählen Sie dann eine Datei aus
+    einem ZIP-Verzeichnis, wird sie automatisch in eine temporäre Datei
+    entpackt. Dazu benötigen Sie das Programm PKUNZIP im CPCEMU-Verzeichnis
+    oder im DOS-Suchpfad. Die temporären Dateien werden automatisch gelöscht,
+    sobald sie nicht mehr gebraucht werden. Etwaige Änderungen werden
+    *nicht* an dem ZIP-Archiv durchgeführt. Wenn Sie also auf einer Diskette
+    aus einem Archiv etwas speichern und anschließend eine andere einlegen,
+    ist der neue Inhalt wieder weg. Wenn Sie Disketten in Archiven ändern
+    wollen, entpacken Sie diese vor dem Start von CPCEMU.
+
+
+    Wie Sie selber Disketten-Abbilder erzeugen, erfahren Sie im
+    Kapitel 5 (Datenübertragung CPC <-> PC).
+
+
+
+
+  3.2.2  Laden von und Speichern auf Kassette
+  -------------------------------------------
+
+    Was ist überhaupt eine Kassette für CPCEMU?
+    Nun, Dateien auf Kassette sind irgendwelche Dateien in den normalen
+    DOS-Verzeichnissen. Nach dem Befehl '|TAPE' sprechen die BASIC-Befehle
+    zum Laden/Speichern die Kassette an. Aber nur diejenigen, die nicht mit
+    "|" beginnen. So können Sie also die im
+    vorherigen Abschnitt beschriebenen
+    Befehle CAT, RUN", LOAD", SAVE", MERGE" auf die Kassette anwenden.
+    Hier dürfen Sie sogar den Dateinamen weglassen, es erscheint dann das
+    Dateiauswahl-Menü, welches Sie schon aus dem letzten Abschnitt kennen.
+    Bei SAVE"" können Sie entweder eine bestehende Datei überschreiben oder
+    in der letzten Zeile bei "(new name)" einen neuen Namen eingeben.
+
+    Natürlich können Sie auch hier Programme aus ZIP-Archiven laden,
+    das Speichern wird ignoriert.
+
+    So eine schöne Kassette haben Sie nur mit dem Emulator.
+
+
+
+  3.2.3  Laden und Speichern von Snapshots
+  ----------------------------------------
+
+    Snapshots sind Schnappschüsse, in denen nicht nur der aktuelle
+    Speicherinhalt, sondern auch die internen Zustände der anderen
+    Hardwarebausteine festgehalten werden, z.B. von der CPU.
+    Zu jeder Zeit können Sie das laufende Programm als Snapshot abspeichern
+    und später wieder laden, um es an genau der Stelle fortzusetzen, wo es
+    abgebrochen wurde.
+    Mit F6 speichern Sie ein Snapshot. Sie legen dabei fest, ob
+    es ein 64K oder ein 128K Snapshot sein soll. 128K Snapshots sind
+    natürlich nur sinnvoll, wenn auch die zweite Speicherbank benutzt wird.
+    Setzen Sie in dem Fall "128K Snapshot = 1", wobei 1=Ja bedeutet.
+
+    Die Dateiauswahl erfolgt wie schon bei Diskette beschrieben, mit den
+    zusätzlichen Kommentaren zur Kassette (3.2.1 und 3.2.2).
+
+    Später können Sie ein Snapshot mit F5 wieder laden.
+
+
+
+
+
+4.  Ändern der Konfiguration
+****************************
+
+In diesem Kapitel erfahren Sie, wie Sie CPCEMU an Ihre Bedürfnisse anpassen
+können. Es werden sowohl das Setup-Menü als auch die Konfigurationsdatei
+und die Kommandozeilen-Parameter beschrieben.
+
+
+
+4.1  Das Setup-Menü
+===================
+
+  Dieses ist die einfachste Methode, Einstellungen von CPCEMU zu ändern.
+  Fast alle Einstellungen lassen sich im Setup-Menü ändern und auch
+  abspeichern.
+  Nur wenn sie Pfade ändern oder zusätzliche ROMs benutzen wollen,
+  müssen Sie sich mit der Konfigurationsdatei vertraut machen, die ich
+  im Abschnitt 4.2 beschreibe.
+
+  Wie bei der Beschreibung der Tastatur schon angedeutet, erreichen Sie das
+  Setup-Menü mit der Funktionstaste F7.
+  Es erscheint ein umfangreiches Menü, welches in mehrere Abschnitte
+  unterteilt ist:
+
+
+       Menüpunkt:                  Wert:  Kurze Beschreibung:
+  -----------------------------------------------------------------------
+       ___Emulation
+       Emulations-Verzögerung      0
+       Emulations-Geschwindigkeit  1
+       Interrupt-Frequenz          300
+       Interrupts nachholen        1
+       Echtzeit                    0
+
+       ___Bildschirm
+       Farb-Bildschirm             1
+       Multimodes auffrischen      0
+       Paletten-Änderung           1
+       Bildschirm-Verschiebung     0
+       Video-Modus                 0
+       VSYNC-Position              5
+
+       ___Sound
+       Sound erlaubt               1
+       Sound-Ausgabegerät          2
+       SB-Verzögerung              35
+       SB-Verzögerung0             6
+       SB-DMA-Puffer               128
+       SB-Sampling-Rate            0
+       SB-Stereo                   0
+
+       ___Steuerung
+       Joy0 kalibrieren
+       Joy1 kalibrieren
+       Tastatur-Layout             1
+       Maus erlaubt                1
+
+       ___PPI-Einstellungen
+       Firmenname                  7
+       PPI_50Hz                    1
+       PPI_EXP_Signal              1
+
+       ___Sonstiges
+       AMSDOS abgeschaltet         0
+       AMSDOS-Beschleunigung       1
+       Unterbrechungs-Maske        3
+       EMS erlaubt                 1
+       Sprache                     1
+       Kassetten-Umleitung         1
+       CPC-Typ                     2
+
+       Lade Konfiguration
+       Neustart der Emulation
+       Speichere Konfiguration
+       Poke-Datenbank
+       DOS-Shell
+       Fortsetzen
+
+
+  Die Menüpunkte wählen Sie genauso an, wie schon bei 3.2.1 (Laden von
+  Diskette) beschrieben. Sie sind auch in der Online-Hilfe beschreiben.
+
+
+  Emulations-Verzögerung
+    Mit dieser Option bremsen Sie die Emulation ab, falls sie zu schnell
+    ist. 0 bedeutet keine Verzögerung, 100 ist eine geringe Verzögerung,
+    300 entsprechend mehr.
+
+  Emulations-Geschwindigkeit
+    Geschwindigkeit der Emulation.
+    0 = langsame Z80-Emulation
+    1 = schnelle Z80-Emulation {nur DOS}
+
+  Interrupt-Frequenz
+    Hiermit ändern Sie die Frequenz, mit der Interrupts
+    (Unterbrechnugen) generiert werden. Auf einem richtigen CPC sind das
+    immer 300 Hertz.  Wenn Sie diesen Wert erhöhen, laufen die meisten
+    Programme schneller ab, es bleibt aber weniger Rechenzeit zwischen den
+    Interrupts übrig. Falls Sie einen langsameren Rechner besitzen, ist es
+    bei manchen Programmen sinnvoll, diesen Wert zu verringern,
+    vielleicht auf 100 bis 200. Mögliche Werte sind 18 bis etwa 600.
+    Weitere Informationen finden Sie im Kapitel 7.
+
+  Interrupts nachholen
+    Noch so eine Option, die man nicht erklären kann, ohne weiter auszuholen.
+    Lassen Sie sie am besten so, wie sie ist.
+    Ohne EMS (Expanded Memory) ist sie auf 0, d.h. Interrupts können schon
+    mal vergessen werden. Das ist natürlich nicht wünschenswert,
+    aber bei 1 würde die Emulation zu langsam.
+    Mit EMS ist diese Option = 1, d.h. es wird versucht, keine Interrupts
+    auszulassen.
+    Wichtig:
+    CP/M Plus scheint nur mit EMS und trotzdem ausgeschalteter Option
+    zu laufen !
+    Weitere Informationen finden Sie im Kapitel 7.
+
+  Echtzeit
+    Aktiviert den Echtzeit-Modus, bei dem der Emulator Warteschleifen
+    einlegt, um so schnell wie ein richtiger CPC zu sein.
+
+  Farbbildschirm
+    Emulation eines Grün- oder Farbmonitors, indem die Farbpalette
+    angepaßt wird.
+
+  Multimodes auffrischen
+    Falls Programme mehrere Bildschirmmodi gleichzeitig auf dem Bildschirm
+    verwenden, sollten Sie diese Option anschalten. Dann versucht CPCEMU,
+    Bildschirmmodus-Änderungen auch anzuzeigen.
+
+    Standardmäßig ist diese Option ausgeschaltet, da sie nicht immer richtig
+    funktioniert. {DOS}
+
+  Paletten-Änderung
+    Falls Sie diese Option auf 0 setzen, werden Farben nicht mehr geändert.
+    Das ist sinnvoll, wenn Sie vor lauter Farbflimmern nichts mehr erkennen.
+    Bei einem Hardware-Reset durch die Funktionstaste F8 wird diese
+    Option automatisch wieder gesetzt.
+    Tip: Wenn Sie Farbänderungen verboten haben und völlig falsche Farben
+    dargestellt werden, drücken Sie einfach 2 mal F2.
+
+  Bildschirm-Verschiebung
+    Gibt die Anzahl der Zeilen an, um die der Bildschirm verschoben werden
+    soll. Diese Option wird normalerweise nicht benötigt.
+    Den gleichen Effekt können Sie auch mit den Tasten <Bild hoch> und
+    <Bild runter> erreichen. Mögliche Werte reichen von 0=keine Verschiebung
+    bis etwa 25 Zeilen Verschiebung.
+
+  Video-Modus {nur DOS}
+    Video-Modus der VGA-Karte setzen.
+      0 = 640x200x16 (Standard)
+      1 = 640x350x16
+      2 = 640x480x16
+      und falls Sie ein VESA-BIOS besitzen, meistens:
+      3 = 800x600x16
+      4 = 1024x768x16
+      5 = 1280x1024x16
+      ...
+    WARNUNG:
+    Schalten Sie Modi >= 3 nur ein, wenn Ihr Monitor diese unterstützt!
+    Falls er merkwürdige Geräusche von sich gibt, sofort ausschalten!
+    Dieses sollte aber nur bei älteren Monitoren passieren.
+
+  VSYNC-Position
+    Diesen Wert brauchen Sie normalerweise nicht zu verändern, es kann aber
+    auch nichts Schlimmes passieren, wenn Sie es dennoch tun.
+    Bei einem Monitor erfolgt einmal pro Bildaufbau der vertikale
+    Strahlenrücklauf. Während dieser Zeit ist normalerweise ein bestimmtes
+    Bit gesetzt, das sogenannte VSYNC-Bit (vertical synchronisation).
+    Hiermit bestimmen Sie die Position, an der dieses Bit gesetzt
+    sein soll. Mögliche Werte sind 0 bis 5 .
+    Weitere Informationen finden Sie im Kapitel 7.
+
+  Sound erlaubt
+    Schaltet die Soundausgabe ein/aus, wobei 1=ein, 0=aus bedeutet.
+    Stattdessen können Sie auch die Funktionstaste F4 drücken.
+
+  Sound-Ausgabegerät {nur DOS}
+    Setzt das Sound-Ausgabegerät.
+      0 = keines
+      1 = PC-Lautsprecher
+      2 = Soundblaster (Pro), FM-Sound
+      3 = Soundblaster (Pro), digitaler Sound, dank Ulrich Doewich
+      4 = GUS (Gravis Ultrasound), dank Ulrich Doewich
+
+  SB-Verzögerung {nur DOS}
+    Setzt eine Verzögerungszeit, die nach jedem Schreibzugriff auf
+    die Soundkarte gewartet wird. Bei geringeren Werten (z.B. 0) wird die
+    Soundausgabe beschleunigt. Falls Probleme mit Ihrer Soundkarte auftreten
+    sollten, lassen Sie diesen Wert auf 35.
+
+  SB-Verzögerung0 {nur DOS}
+    Eine andere Verzögerungszeit für die Soundblaster-Karte.
+    Lassen Sie diese auf 6.
+
+  SB-DMA-Puffer {nur DOS}
+    Setzt die DMA-Puffergröße für digitalen Soundblaster-Sound.
+
+  SB-Sampling-Rate
+    Setzt die Sampling-Rate für digitalen Soundblaster-Sound.
+    0=22kHz, 1=44kHz
+
+  SB-Stereo {nur DOS}
+    Setzt die Stereo-Option.
+
+  Joystick 0 kalibrieren {nur DOS}
+    Sie kennen es sicher von anderen Programmen, daß Sie einen analogen
+    PC Joystick zuerst kalibrieren müssen. Wählen Sie diesen Menüpunkt mit
+    <RETURN>,  bewegen Sie dann den Joystick erst nach links oben, dann nach
+    rechts unten.
+    Es werden einige Parameter angezeigt. Falls Sie den Joystick immer
+    betriebsbereit haben wollen, übernehmen Sie diese Parameter in die
+    sogenannte Konfigurationsdatei (siehe nächster Abschnitt).
+    Sie müssen die Kalibrierung allerdings wiederholen, wenn Sie z.B.
+    die Taktfrequenz ändern.
+
+  Joystick 1 kalibrieren {nur DOS}
+    Wie "Joystick 0 kalibrieren", nur für Joystick 1.
+
+  Tastaturlayout
+    Mit dieser Option wählen Sie eine andere Tastaturbelegung.
+    0 = UK, d.h. Normaleinstellung
+    1 = GR, also "deutschere" Tastatur. Es ist leider nicht möglich,
+        eine vollständig deutsche Tastenbelegung zu haben, da man Zeichen
+        mit SHIFT nicht in Zeichen ohne SHIFT umwandeln kann.
+        Auf jeden Fall sind aber 'Z' und 'Y' vertauscht, zusätzlich ein
+        paar sonstige Zeichen.
+    2 = FR, also "französischere" Tastatur.also "französischere" Tastatur. Nachdem ich eine "deutschere"
+        Tastenbelegung eingeführt hatte, wollten die Franzosen natürlich
+        auch eine eigene haben. Hier gibt es die gleichen Probleme wie
+        bei der deutschen.
+    3 = SP, also "spanischere" Tastatur.
+
+  Maus erlaubt
+    Erlaubt die Benutzung einer Maus zur Menüauswahl.
+
+  Firmenname
+    Firmenname auf dem Eröffnungsbildschirm.
+    0 = Isp
+    1 = Triumph
+    2 = Saisho
+    3 = Solavox
+    4 = Awa
+    5 = Schneider
+    6 = Orion
+    7 = Amstrad
+
+  PPI 50Hz {bisher nur DOS}
+    Der CPC wird mit
+      0 - 60 Hz, oder mit
+      1 - 50 Hz (Standard in Deutschland,Frankreich)
+    betrieben werden.
+    Dazu wird bei einem Reset das Bit 4 des Port B PPI abgefragt und der
+    CRTC entsprechend initialisiert.
+    Sollte auf 50 Hz bleiben.
+
+  PPI EXP-Signal
+    Erweiterungskarten können dieses Signal setzen.
+    Beim CPC 464 normalerweise gesetzt, wenn eine Floppy angeschlossen ist.
+    Beim CPC 6128 immer gesetzt.
+
+  AMSDOS verboten
+    Verbietet die Initialisierung des AMSDOS. Das ist sinnvoll, wenn Sie
+    viele Programme von Kassette laden möchten, ohne vorher immer den
+    Befehl '|TAPE' eingeben zu müssen.
+    Natürlich könnten Sie auch einfach die entsprechende ROM_BLOCK-Zeile
+    mit dem AMSDOS-ROM kommentieren (mit ROM_BLOCK legen Sie die zu
+    ladenden ROMs fest), dann wäre aber gar kein AMSDOS ROM mehr vorhanden.
+    So bleibt es für bestimmte Befehle noch erreichbar.
+
+  AMSDOS-Beschleunigung
+    Erlaubt eine AMSDOS-ROM-Modifikation, bei der Diskettenzugriffe
+    beschleunigt werden. Dies wird durch Minimieren der Motor-Wartezeiten
+    erreicht, die für den Emulator natürlich unnötig sind.
+
+  Unterbrechungs-Maske
+    Nur für Debugging-Zwecke. Durch die Maske in der Konfigurationsdatei
+    (3) werden Fehlermeldungen bei unzulässigen Befehlen unterdrückt.
+    Ändern Sie diesen Wert möglichst nicht!
+
+  EMS erlaubt {nur DOS}
+    Erlaubt der Benutzung von EMS-Speicher (Expanded Memory System).
+    Falls kein EMS-Speicher vorhanden ist oder zu wenig zur Verfügung steht,
+    wird automatisch konventioneller Speicher benutzt.
+    Weitere Informationen zur EMS-Speichernutzung finden Sie in 2.3.1 und
+    im Kapitel 7.
+
+  Sprache
+    Sprache, in der Hilfstexte angezeigt werden.
+    Möglich sind
+      0=UK (Englisch)
+      1=GR (Deutsch)
+      2=FR (Französisch)
+      3=SP (Spanisch)
+
+  Kassetten-Umleitung)
+    Falls Sie die "Kassette" verwenden möchten, muß diese Option auf
+    "YES" stehen.
+    Weitere Informationen zum TAPE-Bypass finden Sie im Kapitel 7.
+
+  CPC-Typ
+    Setzt den gewünschten CPC-Typ
+    0 = CPC 464
+    1 = CPC 664
+    2 = CPC 6128
+    3 = CPC 464+ (?)
+    4 = CPC 6128+ (?)
+    5 = KC compact
+    Um die Typen 3 bis 5 zu benutzen, müssen Sie zuerst entsprechende
+    ROM-Abbilder in CPCEMU.CFG eintragen.
+
+  Zeige Konfiguration
+
+  Lade Konfiguration
+    Läd eine Konfigurations-Datei, welche mit "Save_Configuration"
+    abgespeichert wurde. Manche Parameter wirken erst, wenn Sie
+    "Restart_Emulation" wählen.
+
+  Neustart der Emulation
+    Wenn Sie eine Konfiguration mittels "Load_Configuration" geladen
+    haben, können Sie den Emulator mit diesen Werten neu starten.
+
+  Speichere Konfiguration
+    Speichert die aktuelle Konfiguration.
+    Die Haupt-Konfiguration "CPCEMU.CFG" läßt sich nicht überschreiben.
+
+  Poke-Datenbank
+    Falls Sie gerade ein Spiel spielen und nicht weiterkommen, wählen
+    Sie diesen Menüpunkt. Falls das Spiel sich in der Übersicht befindet,
+    wählen Sie es aus und Sie bekommen eine Erleichterung, zum Beispiel
+    unendliche Leben.
+    Sie können die Liste (CPCEMU.DBF) auch um eigene Pokes erweitern.
+    Der Aufbau der Datei steht in Kapitel 7.
+
+  DOS-Shell {nur DOS}
+    Öffnet eine DOS-Shell mit viel freiem Speicher, die Sie durch Eingabe
+    von 'EXIT' wieder verlassen können.
+
+  Fortsetzen
+    Werte übernehmen und Programm fortsetzen.
+    Die geänderten Werte werden übernommen und die Emulation wird
+    fortgesetzt. Den gleichen Effekt bekommen Sie auch, wenn Sie auf
+    einem beliebigen Menüpunkt (mit Zahl) <RETURN> drücken.
+
+
+
+
+
+4.2  Konfigurationsdatei
+========================
+
+  Mit einer Konfigurationsdatei können Sie CPCEMU auch konfigurieren.
+  Beim Start liest CPCEMU standardmäßig die Konfigurationsdatei CPCEMU.CFG.
+  Beachten Sie, daß diese Datei im TMP-Verzeichnis steht, falls Sie CPCEMU
+  mit einer CPCxxx.BAT Datei starten. Das ermöglicht benutzerdefinierte
+  Konfigurationen, auch wenn CPCEMU auf einer CD-ROM ist.
+  Der Aufbau dieser Datei soll jetzt beschrieben werden, so daß Sie selber
+  leicht z.B. eigene ROMs einbinden können, die Tastatur dauerhaft
+  umstellen können, ...
+
+  Werfen wir einmal einen Blick in die CPCEMU.CFG Datei:
+
+    ;CPCEMU.CFG - The Configuration File for CPCEMU (v1.5)
+    ;Marco Vieth, 20.11.1997
+    ;
+    ;standard configuration for CPC 464, 664, 6128, 464+, 6128+, KC compact
+    ;
+    SHOW_CONFIG=0       ;should the configuration be displayed?
+    CPC_TYPE = 2        ;CPC 6128, if no command line parameter -t
+    ...
+
+
+  Schon an diesen paar Zeilen läßt sich der einfache Aufbau erkennen:
+  Kommentare beginnen mit einem Semikolon (";").
+  Optionen werden geändert, indem ein Schlüsselwort (hier
+  SHOW_CONFIG, ROM_PATH) gefolgt von "=" gefolgt von einem <Wert> stehen.
+  <Wert> kann je nach Schlüsselwort eine Zeichenkette
+  oder auch ein numerischer Wert sein. Numerische Werte können nicht nur
+  in dezimaler Form, sondern auch in hexadezimaler ("0x") oder binärer ("%")
+  Zahlendarstellung angegeben werden.
+
+  Sie brauchen also nur die Bedeutung der Schlüsselwörter zu kennen, um
+  die Optionen leicht mit einem Texteditor an Ihre Bedürfnisse anzupassen.
+
+  Die meisten Schlüsselwörter kennen Sie schon aus dem Setup-Menü. Sie
+  müssen allerdings in Englisch angegeben werden.
+  Zuerst eine alphabetische Übersicht, dann Erklärungen zu
+  den speziellen:
+
+  #ENDIF
+  #IFCPC
+  AMSDOS_DISABLED     AMSDOS abschalten
+  AMSDOS_SPEEDUP      AMSDOS-Beschleunigung
+  BREAK_MASK          Unterbrechungs-Maske
+  COLOUR_SCREEN       Farbbildschirm
+  COMPANY_NAME        Firmenname
+  CPC_TYPE            CPC-Typ
+  DATA_FILE           Datendatei
+  DRIVE_A             Laufwerk A
+  DRIVE_A_AUTOSTART   Laufwerk A: Autostart
+  DRIVE_A_SIDE        Laufwerk A: Seite
+  DRIVE_A_WRITEPROT   Laufwerk A: Schreibschutz
+  DRIVE_B             Laufwerk B
+  DRIVE_B_AUTOSTART   Laufwerk B: Autostart
+  DRIVE_B_SIDE        Laufwerk B: Seite
+  DRIVE_B_WRITEPROT   Laufwerk b: Schreibschutz
+  EMS_ENABLED         EMS erlaubt
+  EMULATION_DELAY     Emulations-Verzögerung
+  EMULATION_SPEED     Emulations-Geschwindigkeit
+  HELP_FILE           Hilfs-Datei
+  INTERRUPT_FREQUENCY Interrupt-Frequenz
+  INTERRUPT_RESUME    Interrupts nachholen
+  JOY0_CALIBRATE      Joystick 0 kalibrieren
+  JOY1_CALIBRATE      Joystick 1 kalibrieren
+  KBD_LANGUAGE        Tastatur-Layout
+  LANGUAGE            Sprache
+  MOUSE_ENABLED       Maus erlaubt
+  MULTIMODE_UPDATE    Multimodes sofort auffrischen
+  PALETTE_CHANGE      Palettenänderungen
+  POKE_DATABASE       Poke-Datenbank
+  PPI_50HZ            PPI-50Hz-Bit
+  PPI_EXP_SIGNAL      PPI-Expansions-Signal-Bit
+  PRINTER             Drucker
+  RAM_SIZE            RAM-Größe
+  REALTIME            Echtzeit-CPC
+  ROM_BLOCK           ROM-Block
+  ROM_PATH            ROM-Pfad
+  SB_DELAY            Soundblaster-Verzögerung
+  SB_DELAY0           Soundblaster-Verzögerung 0
+  SB_DMA_BUF          Soundblaster-DMA-Puffergröße
+  SB_SAMPLE_RATE      Soundblaster-Sampling-Rate
+  SB_STEREO           Soundblaster-Stereo
+  SCREEN_OFFSET       Bildschirm-Verschiebung
+  SHOW_CONFIG         Zeige Konfiguration
+  SNAPSHOT            Schnappschuß
+  SOUND_DEVICE        Sound-Ausgebegerät
+  SOUND_ENABLED       Soundausgabe erlaubt
+  TAPE_BYPASS         Kassetten-Umleitung
+  TAPE_PATH           Kassetten-Pfad
+  TMP_PATH            Temporäres Verzeichnis
+  VIDEO_MODE          Video-Modus
+  VSYNC_POSITION      Vertikale Sync-Position
+
+
+  - #ENDIF, #IFCPC
+    Diese Steuerbefehle ermöglichen eine bedingte Konfiguration je nach
+    gewünschtem CPC:
+      #IFCPC <CPC-Typ> ... #ENDIF
+    Als <CPC-Typ> sind alle 4 Typen wie bei "CPC_TYPE" zulässig.
+    Somit kommen Sie mit einer Konfigurationsdatei für alle CPCs aus.
+    In den Batch-Dateien CPC464.BAT, CPC664.BAT, CPC6128.BAT wird der
+    gewünschte CPC durch Kommandozeilen-Parameter gewählt. Diese werden im
+    nächsten Abschnitt beschrieben.
+
+  - DATA_FILE = "<Pfad+Dateiname>"
+    Setzt die Daten-Datei (CPCEMU.DAT).
+
+  - DRIVE_A = "<Pfad+Dateiname>"
+    Setzt den Pfad, wo sich die Disketten-Abbilder befinden.
+    Geben Sie als Pfad einen Dateinamen an, wird diese "Diskette" beim
+    Start des Emulators automatisch in Laufwerk A "gelegt".
+    Im Abschnitt 3.2.1 habe ich das Laden von und Speichern auf Diskette
+    beschrieben.
+
+  - DRIVE_A_AUTOSTART
+    Startet automatisch das erste BASIC-Programm, wenn ein Disketten-Abbild
+    eingelegt wird. Alternativ wird DISC.BAS gestartet, falls vorhanden.
+    Mit dem AMSDOS-Befehl |DIR können Sie schauen, welches das erste
+    BASIC-Programm ist.
+
+  - DRIVE_A_SIDE
+    Bei doppelseitigen Formaten kann mit dieser Option die Seite 1 (B)
+    gewählt werden.
+
+  - DRIVE_A_WRITEPROT
+    Das Disketten-Abbild wird schreibgeschützt eingelegt.
+    Das ist sinnvoll, wenn es nicht modifiziert werden soll oder sich auf
+    einem Nur-Lese-Medium (z.B. CD-ROM) befindet.
+
+  - DRIVE_B = "<Pfad+Dateiname>"
+    Ist das gleiche wie DRIVE_A, nur für Laufwerk B.
+
+  - DRIVE_B_AUTOSTART
+    Ist das gleiche wie DRIVE_A_AUTOSTART, nur für Laufwerk B.
+
+  - DRIVE_B_SIDE
+    Ist das gleiche wie DRIVE_A_SIDE, nur für Laufwerk B.
+
+  - DRIVE_B_WRITEPROT
+    Ist das gleiche wie DRIVE_A_WRITEPROT, nur für Laufwerk B.
+
+  - JOY0_CALIBRATE = <xcen>, <ycen>, <xdead>, <ydead>
+    Hier geben Sie eine Joystick-Kalibrierung für Ihren Analog-Joystick an.
+    Benutzen Sie die Werte, die nach der Joystick-Kalibrierung
+    im Setup-Menü angezeigt werden (siehe Abschnitt 4.1).
+    Dies ist ein Schlüsselwort, dem 4 Werte zugewiesen werden, diese
+    müssen Sie auch immer angeben. Vier Nullen bedeutet nicht kalibriert.
+
+  - JOY1_CALIBRATE = <xcen>, <ycen>, <xdead>, <ydead>
+    Genauso wie JOY0_CALIBRATE.
+
+  - POKE_DATABASE = "<Pfad+Dateiname>"
+    Setzt die Poke-Datenbank-Datei (CPCEMU.DBF).
+
+  - PRINTER = "<Pfad+Dateiname>"
+    Hier legen Sie eine Drucker-Datei fest, in die
+    Druckerausgaben umgeleitet werden. Beim jedem Start des Emulators wird
+    sie gelöscht. Nachdem Sie den Emulator verlassen haben, schicken Sie
+    diese Datei mit 'COPY <Dateiname> prn:' zu Ihrem Drucker.
+    Bei PRINTER="prn" wird ohne Druckerdatei auf dem Drucker ausgedruckt.
+    Bei PRINTER="" wird die parallele Schnittstelle LPT1 direkt
+    angesprochen.
+
+  - ROM_BLOCK = <ROM-Nummer>, "<Dateiname>", <ROM-Position>
+    Beschreibt, was für ein ROM geladen werden soll.
+    Sie müssen diese Zeile für jedes zu ladende ROM wiederholen.
+    Jedes ROM besitzt dabei eine Größe von 0x4000 Bytes.
+    Die maximale Anzahl der ROMs ist etwa 20, wenn Sie EMS-Speicher haben.
+    - <ROM-Nummer> ist die Nummer die das ROM bekommen soll,
+      d.h., mit der es durch 'OUT &DF00,num' ausgewählt wird.
+      0         = Vordergrund-ROM (z.B. BASIC)
+      1 - 251   = Hintergrund-ROMs. Auf einem CPC 664/6128 werden
+                  die ROMs 1-15 bei einem Reset automatisch
+                  initialisiert (bei einem CPC 464 nur 1-7).
+                  Das AMSDOS ROM hat immer die Nummer 7.
+      255       = Lower-ROM (z.B. OS, hat nur im Emulator diese
+                  Nummer.)
+    - <Dateiname> ist die Datei, in der sich das ROM-Abbild im
+      Verzeichnis ROM_PATH befindet.
+    - <ROM-Position> ist die Positon des ROMs innerhalb der Datei,
+      0 bedeutet 0.ROM, 1 bedeutet 1.ROM, usw...
+      Es ist also möglich, mehrere ROMs in einer Datei zu haben.
+      Bei den Einträgen
+          ROM_BLOCK =   255, "CPC6128.ROM", 0
+          ROM_BLOCK =   0  , "CPC6128.ROM", 1
+      befinden sich also Lower-ROM und Vordergrund-ROM direkt nacheinander
+      in derselben Datei.
+
+  - ROM_PATH = "<Pfadname>"
+    Setzt den Pfad, wo sich die ROM-Abbilder befinden, aus denen CPCEMU
+    beim Start die ROMs liest. Die Konfigurationsdatei setzt das
+    Verzeichnis .\ROM .
+    Die ROMs selber werden mit dem Schlüsselwort ROM_BLOCK festgelegt.
+
+  - SNAPSHOT = "<Pfad+Dateiname>"
+    Setzt den Pfad, wo sich die Snapshots befinden.
+    Geben Sie als Pfad einen Dateinamen an, wird dieser Snapshot automatisch
+    gestartet.
+    Im Abschnitt 3.2.3 habe ich das Laden und Speichern von Snapshots
+    beschrieben.
+
+  - TAPE_PATH = "<Pfadname>"
+    Setzt den Pfad, wo sich die "Kassetten"-Dateien befinden. Die
+    Konfigurationsdatei setzt das Verzeichnis ".\TAPE".
+    Im Abschnitt 3.2.2 habe ich das Laden von und Speichern auf Kassette
+    beschrieben.
+
+  - TMP_PATH = "<Pfadname>"
+    Setzt den Pfad, in dem CPCEMU temporäre Dateien erzeugt. Dieser wird
+    hauptsächlich benötigt, wenn Sie aus einem ZIP-Archiv Dateien auswählen
+    und CPCEMU diese mit PKUNZIP entpackt.
+
+
+
+
+4.3  Kommandozeilen-Parameter
+=============================
+
+  Wie bei vielen anderen Programmen üblich, können Sie auch bei CPCEMU
+  Kommandozeilen-Parameter angeben. Zur Zeit sind jedoch nur einige wenige
+  möglich.
+
+  Rufen Sie CPCxxx.BAT einfach mit den folgenden Optionen auf:
+       /f : startet die schnelle Emulation (Standardeinstellung)
+       /s : startet eine langsame Emulation, die Sie normalerweise nicht
+            benötigen.
+       /d : startet den Debug-Modus, sehen Sie im Kapitel 7 nach.
+       /x : verbietet EMS Benutzung
+       /c <Datei> : gibt eine andere Konfigurationsdatei an, falls nicht
+            die Standard-Datei CPCEMU.CFG benutzt werden soll.
+            Siehe vorherigen Abschnitt.
+       /t <type> : definiert den gewünschten CPC 464, 664, 6128, CPC 464+,
+                   CPC 6128+ oder KC compact  durch  /t 0 bis /t 5.
+       /h : zeigt einen Hilfsbildschirm an
+
+  Wenn Sie eine unbekannte Option angeben, wird automatisch "/d" verwendet.
+  Anstatt dem "/" können Sie auch das UNIX-übliche "-" verwenden.
+
+
+
+
+
+
+5.  Datenübertragung CPC <-> PC
+*******************************
+
+Was nützt Ihnen der schönste Emulator, wenn Sie keine Programme dafür
+haben oder keine Möglichkeit sehen, die Programme von Ihrem CPC zum
+PC zu bekommen?
+Im Kapitel 6 (Bezugsquellen) sind auch einige Quellen aufgeführt, wo
+Sie CPC-Software bekommen können.
+In diesem Kapitel soll es darum gehen, wie Sie eigene CPC-Software auf
+den PC transferieren.
+Für die verschiedenen Möglichkeiten (Diskette, über parallele oder
+serielle Schnittstelle) werden auch Hilfsprogramme vorgestellt.
+
+
+
+5.1  Diskette als Medium
+========================
+
+  Dies ist meistens die einfachste und schnellste Möglichkeit, die
+  CPC-Software auf den PC zu bekommen.
+  Sie brauchen dazu nur einen CPC mit Zweitlaufwerk in richtiger Größe.
+  Richtige Größe bedeutet dabei, daß die Disketten von der Größe her
+  in Ihr PC-Laufwerk passen müssen. Ansonsten könnten Sie versuchen,
+  ein 3" Laufwerk an den PC anzuschließen.
+  Der PC wird dann mit einem Zusatzprogramm überredet, die
+  CPC-Diskettenformate zu lesen.
+  Dieses Zusatzprogramm heißt CPCTRANS.
+
+
+  5.1.1  Das Diskettentransferprogramm CPCTRANS
+  ---------------------------------------------
+
+    Ich habe CPCTRANS geschrieben, um Disketten-Abbilder aus
+    CPC-Disketten zu erstellen. Es werden sowohl die normalen CPC-Formate
+    als auch das doppelseitige VORTEX-Format gelesen.
+    CPCTRANS ist nicht dafür gedacht, kopiergeschützte Formate zu übertragen!
+    Wenn Sie CPCTRANS ohne Parameter aufrufen, erhalten Sie eine kurze
+    Übersicht.
+    Rufen Sie CPCTRANS ähnlich wie den DOS COPY-Befehl auf:
+    'CPCTRANS <Quelle> <Ziel> <Optionen>'.
+    Beispiele:
+    'CPCTRANS B: DISK1.DSK' kopiert die Diskette im Laufwerk B in
+    das Disketten-Abbild DISK1.DSK. Falls diese nicht existiert,
+    wird sie neu erzeugt.
+    'CPCTRANS DISK1.DSK B:' kopiert das Disketten-Abbild zurück
+    auf die Diskette im Laufwerk B.
+
+    Der erste Befehl funktioniert nur für das DATA-Format.
+    Für andere Formate müssen Sie eine Option angeben:
+      /f 0    : DATA-Format (Standard)
+      /f 1    : DATA-Format, doppelseitig
+      /f 2    : SYSTEM-Format
+      /f 3    : SYSTEM-Format, doppelseitig
+      /f 4    : VORTEX-Format, doppelseitig
+      /f 5    : unbekannt, CPCTRANS versucht es selber zu erkennen.
+      /f 6    : +3DOS
+    Beachten Sie das Leerzeichen zwischen "/f" und der Zahl.
+    Beim doppelseitigen DATA- und SYSTEM-Format wählen Sie die Seite A oder B
+    im Disketten-Menü (3.2.1).
+
+    Beim Zurückschreiben eines Disketten-Abbildes muß die Diskette
+    schon mit dem richtigen Format formatiert sein! Dazu können Sie
+    22DISK benutzen, was im nächsten Abschnitt beschrieben wird.
+
+    Wollen Sie die B-Seite einer Diskette kopieren, wählen Sie Seite B
+    durch die Option "/s 1".
+    Durch 'CPCTRANS B: DISK1.DSK /s 1' wird also nur die B-Seite der
+    Diskette kopiert, mit 'CPCTRANS DISK1.DSK B: /s 1' wird sie wieder
+    zurückgeschrieben.
+
+    Durch die Option '/v' schalten Sie "verify" ein, d.h. es wird
+    überprüft, ob die Daten korrekt kopiert wurden. Das ist zwar ein
+    bißchen langsamer, erhöht aber die Sicherheit.
+
+    Mit der Option '/t <Anzahl>' geben Sie an, wieviele Spuren (tracks)
+    kopiert werden sollen. Normalerweise werden immer 40 Spuren kopiert,
+    nur beim VORTEX-Format sind es 80.
+
+    Eine Besonderheit ist die Option '/q' (Quick-Format). Hiermit
+    formatieren Sie ein Disketten-Abbild, anstatt den Inhalt
+    einer Diskette hineinzukopieren.
+    Trotzdem müssen Sie als ersten Parameter ein gültiges Laufwerk angeben,
+    auch wenn es nicht benutzt wird.
+    Beispiel:
+    'CPCTRANS a: SYSTEM.DSK /f 2 /q' formatiert SYSTEM.DSK als
+    SYSTEM-Format-Diskette.
+
+
+
+  5.1.2  Das Formatier- und Kopierprogramm 22DISK von SYDEX
+  ---------------------------------------------------------
+
+    Dieses Programm ist als Shareware erhältlich. Durch geeignete
+    Definitionen können Sie sämtliche CP/M-Formate benutzen!
+    Leider sind gerade die CPC-Formate in der Prüfversion von 22DISK nicht
+    enthalten. Deshalb habe ich diese Formate in der Datei CPMDISKS.DEF
+    definiert. Sie befindet sich auch im UTILITY-Verzeichnis.
+    Was können Sie mit 22DISK machen?
+    Sie können einzelne Dateien zwischen DOS und den Fremdformaten hin- und
+    herkopieren, Disketten formatieren und so weiter.
+    Kopieren Sie die CPC-Dateien einfach in das TAPE-Verzeichnis, und
+    lesen Sie im Abschnitt 3.2.2 nach, wie Sie Programme von Kassette laden.
+
+
+
+5.2  Parallele Schnittstelle
+============================
+
+  Falls Sie noch einen CPC ohne Zweitlaufwerk besitzen, haben Sie die
+  Möglichkeit, den Datentransfer über die parallele Schnittstelle zu
+  tätigen.
+  Ursprünglich hatte Gilles Molinari diese Idee und auch Turbo-Pascal
+  Programme dazu geschrieben. Nur gehören Sie vielleicht zu den Benutzern,
+  die keinen Turbo-Pascal Compiler auf den CPC haben, somit könnten Sie
+  damit nicht viel anfangen. Ich habe sie deshalb in Locomotive-BASIC
+  umgeschrieben und durch die zusätzliche Richtung PC->CPC ergänzt.
+  Es ist also möglich, Programme vom CPC zum PC und umgekehrt zu übertragen!
+  CPC und PC werden dabei an den Druckerschnittstellen gekoppelt.
+  Wenn Sie einen CPC 6128 haben und sich die Anschlüsse mal genauer ansehen,
+  werden Sie feststellen, daß Sie mit einem parallelen PC-Druckerkabel die
+  beiden Computer hervorragend verbinden können!  Doch tun Sie es noch nicht,
+  lesen Sie erst weiter.
+  Wenn Sie einen Amstrad CPC 6128 ohne Centronics-Buchse oder einen
+  CPC 464/664 haben, benutzen Sie das Diagramm am Ende des Abschnitts.
+
+  Zwei kleine Hürden müssen Sie überwinden:
+  1. Einen kleinen Adapter bauen
+  2. Ein kurzes Programm in den CPC eintippen
+
+  Warten Sie!   Blättern Sie nicht gleich weiter!
+
+  Beide Schritte sind ganz einfach, denn
+  1. geht auch OHNE LÖTEN    und
+  2. ist wirklich ziemlich kurz (etwa 30 Zeilen BASIC)
+
+  Zu 2.
+  Das Programm, was Sie brauchen, heißt CPCREC.BAS und befindet sich im
+  UTILITY-Verzeichnis. Es ist in ASCII-Form abgespeichert, so daß Sie
+  es problemlos ausdrucken und in Ihren CPC eintippen können.
+  Es erfüllt in etwa die Aufgabe eines dünnen Seiles, das Sie durch ein
+  Rohr schicken, um ein dickes Tau nachziehen zu können.
+  Das dünne Seil ist hier CPCREC.BAS und empfängt (receive) Programme
+  vom PC. Mit diesem "Progrämmchen" holen Sie das Programm CPCPARA.BAS
+  (das dicke Tau) auf Ihren CPC. Damit können Sie sowohl Programme
+  empfangen als auch senden. CPCREC.BAS brauchen Sie dann nicht mehr.
+  Auf der PC-Seite haben Sie die ganze Zeit PCPARA.EXE.
+  Natürlich sind auch diese beiden Programme im UTILITY-Verzeichnis.
+
+
+  Doch bevor Sie CPCREC.BAS eintippen, kommen wir zu 1.
+
+
+  Der parallele Adapter
+  ---------------------
+
+  Sie brauchen also einen Adapter zwischen dem PC-Druckerkabel und dem
+  PC-Druckeranschluß.
+  Am einfachsten geht das mit einer RS-232 Wiring-Box, die einen 25pin
+  D-Sub Stecker und eine 25pin D-Sub Buchse hat. Durch Stecken von
+  kurzen Drahtbrücken realisieren Sie damit beliebige Verbindungen zwischen
+  den beiden Seiten. Normalerweise wird so eine Box - wie ihr Name
+  schon sagt - zur Anpassung von RS-232 Schnittstellen benutzt. Serielle
+  Verbindungen scheinen nämlich nie auf Anhieb zu funktionieren.
+  Bei unserem Adapter benutzen Sie die Box einfach "andersherum", d.h.
+  der Stecker kommt an den PC, in die Buchse kommt dann das PC-Druckerkabel.
+
+  Stecken wir die Box eben zusammen:
+
+        Stecker für den PC-                Buchse für das Drucker-
+        Druckeranschluß (links):           kabel (rechts):
+
+               Pin 2     ---------------       Pin 11
+               Pin 10    ---------------       Pin 8
+               Pin 11    ---------------       Pin 1
+               Pin 12    ---------------       Pin 7
+               Pin 13    ---------------       Pin 6
+               Pin 15    ---------------       Pin 5
+               Pin 19    ---------------       Pin 19
+
+
+  Wie Sie sehen, brauchen Sie nicht alle 25 Drahtbrücken sondern nur 7.
+  Meine Wiring-Box habe ich bei einem Elektronik-Versand für 13 DM bekommen.
+
+  Sie können es natürlich auch günstiger haben, indem Sie eine sogenannte
+  Jumper-Box verwenden, bei der Sie die Drahtbrücken festlöten müssen.
+  Diese sollte etwa 7 DM kosten.
+  Noch günstiger sind Stecker, Buchse, Adapter-Gehäuse und ein paar Drähte.
+  Das hat mich etwa 3 DM gekostet.
+
+
+  Sie haben jetzt mit dem Adapter die beiden Computer verbunden und das
+  "Progrämmchen" CPCREC.BAS in den CPC eingetippt.
+  Wie geht es nun weiter?
+
+  1. Auf dem CPC:  CPCREC.BAS starten (nachdem Sie es abgespeichert haben)
+  2. Auf dem PC :  'PCPARA /s CPCPARA.BAS' starten.
+
+  Jetzt wird es kritisch, denn wenn auf dem PC keine Fehler gemeldet werden,
+  ist alles gut verlaufen, das Programm ist auf dem CPC.
+  Falls der PC überhaupt nichts sendet und nur eine Fehlermeldung ausgibt,
+  ist die Verbindung wahrscheinlich nicht in Ordnung.
+  Falls er etwas sendet ("Sending block xx"), aber zwischendurch Fehler
+  auftreten, ist Ihr PC vielleicht zu schnell oder zu langsam. Die Richtung
+  PC->CPC ist nämlich ziemlich zeitkritisch.
+  Auf meinem 386/33 darf ich kein EMS installiert haben, sonst ist es zu
+  langsam. Auf einem besonders schnellen Computer könnte es aber nötig
+  Sein, die Taktfrequenz herunterzuschalten. Benutzen Sie es unter DOS,
+  nicht unter OS/2 oder Windows.
+
+  Wenn es überhaupt nicht klappen sollte, benachrichtigen Sie mich.
+  In der Zwischenzeit könnten Sie das etwas längere CPCPARA.BAS eintippen,
+  die Richtung CPC->PC funktioniert nämlich immer, auch unter OS/2, da das
+  nicht viel anders ist als ausdrucken. Der PC spielt dabei den Drucker.
+
+  Ich nehme an, daß Sie jetzt CPCPARA.BAS auf Ihrem CPC haben.
+  Übertragen Sie Dateien vom CPC zum PC folgendermaßen:
+  1. Auf dem PC:  'PCPARA /r'  eingeben.
+  2. Auf dem CPC: CPCPARA starten, Menüpunkt S)end wählen, und nacheinander
+     die zu übertragenden Dateien eingeben. (Rufen Sie 'PCPARA /r' für jede
+     zu übertragende Datei erneut auf, CPCPARA hingegen läuft in einer
+     Endlosschleife.)
+
+
+  Sie benutzen also PCPARA folgendermaßen:
+  - PCPARA /r : startet PCPARA im Empfangsmodus
+  - PCPARA /s <Datei> : sendet die <Datei> zum CPC, falls Sie als
+    Datei 'TRM:' angeben, bekommen Sie ein Terminal.
+
+  Bei den meisten Programmen im UTILITY-Verzeichnis bekommen Sie übrigens
+  eine Übersicht über die Optionen, wenn Sie nur den Dateinamen eingeben.
+
+
+  WARNUNG:
+  Auch wenn der Aufbau ganz simpel ist, kann ich doch nicht
+  garantieren, daß Sie dabei nicht irgend etwas kaputtmachen. Wenn z.B.
+  nachher Ihr CPC-Druckerport defekt ist, dann ist das schade und wohl
+  eher ein dummer Zufall. Wahrscheinlich wäre er auch dann kaputtgegangen,
+  wenn Sie nur Ihren Drucker angeschlossen hätten.
+  Ich kenne z.B. einen ehemaligen CPC-Benutzer, dessen Tastatur mal nicht
+  mehr funktionierte. Nach der Reperatur sagte man ihm, er dürfe den
+  Joystick auch nicht bei angeschaltetem Computer einstöpseln!
+  (Also ich mache das immer ?!?)
+  Also:
+  Der Adapter wurde nicht nur von mir schon mehrfach erfolgreich nachgebaut.
+  Und auch Benutzer, die "mal vergessen" haben, den Adapter zwischen der
+  Verbindung anzubringen, berichten von keinen Problemen.
+
+
+
+  Diagramme von David Chapeau, falls Ihr CPC keinen Centronics-Anschuß hat:
+
+   34 <- - - - - - - - 18      \
+   ______________________      |
+  |   ________________   |     |
+  |  |________________|  |   - | ---> Buchse für CPC-Druckeranschluß
+  |______________________|     |
+                               |
+   17 < - - - - - - - - 1      |
+                               |
+     ||||||||||||||||||        |
+     ||||||||||||||||||        \
+     ||||||||||||||||||         >   "CPC 464/664 nach DMP 2160"-Kabel
+     ||||||||||||||||||        /
+     ||||||||||||||||||        |
+                               |
+   1 - - - - - - - - > 18      |
+  ________________________     |
+  \    ______________    /     |
+   \  |______________|  /    - | ---> Centronics-Stecker
+    \__________________/       |
+                               |
+   19 - - - - - - - -> 36      /
+
+
+
+   18 < - - - - - - - - 1      \
+  ________________________     |
+  \    ______________    /     |
+   \  |______________|  /    - | ---> Centronics-Buchse
+    \__________________/       |
+                               |
+   36 <- - - - - - - - 19      |
+                               |
+     ||||||||||||||||||        |
+     ||||||||||||||||||        \
+     ||||||||||||||||||         >   PC Parallel Adapter
+     ||||||||||||||||||        /
+     ||||||||||||||||||        |
+                               |
+   1 - - - - - - - - > 13      |
+  ________________________     |
+  \  ..................  /     |
+   \  ................  /    - | ---> Sub-D Stecker zum PC (LPT1)
+    \__________________/       |
+                               |
+   14 - - - - - - - -> 25      /
+
+
+   13 < - - - - - - - - 1      \
+  ________________________     |
+  \  ..................  /     |
+   \  ................  /    - | ---> Sub-D Buchse
+    \__________________/       |
+                               |
+   25 <- - - - - - - - 14      |
+                               |
+     ||||||||||||||||||        |
+     ||||||||||||||||||        \
+     ||||||||||||||||||         >   RS-232 "Wiring-Box"
+     ||||||||||||||||||        /
+     ||||||||||||||||||        |
+                               |
+   1 - - - - - - - - > 13      |
+  ________________________     |
+  \  ..................  /     |
+   \  ................  /    - | ---> Sub-D Stecker zum PC (LPT1)
+    \__________________/       |
+                               |
+   14 - - - - - - - -> 25      /
+
+
+
+   Drucker    Centronics   Centronics      Sub-D        Sub-D        Sub-D
+   (Buchse)    (Stecker)    (Buchse)     (Stecker)    (Buchse)     (Stecker)
+
+      1 ---------  1            1 ---------  1           11 ---------  2
+            .                         .                   8 --------- 10
+            .                         .                   1 --------- 11
+            .                         .                   7 --------- 12
+     17 --------- 17           14 --------- 14            6 --------- 13
+     18 --------- 19           19 --------- 19            5 --------- 15
+            .                  21 --------- 20           19 --------- 19
+            .                  23 --------- 21
+            .                  25 --------- 22
+     34 --------- 35           27 --------- 23
+                               29 --------- 24
+                               30 --------- 25
+                               31 --------- 16
+                               32 --------- 15
+                               33 --------- 18
+                               36 --------- 17
+
+
+
+  Übertragungsgeschwindigkeit CPCPARA -> PCPARA (v1.1):
+
+  Mit der eingebauten Statistik wurden folgende Übertrangungsraten
+  für einen 0x4000 Byte-Block vom CPC zum PC gemessen:
+
+  Quelle auf dem CPC:           Bytes/s:        bit/s:
+  -----------------------------------------------------------
+  Datei von Diskette:           1600            12800
+
+  Block aus dem Speicher:       2240            17920
+
+  Block aus Speicher,keine Int. 2445            19560
+  (poke &b941,&c9 auf CPC 6128)
+
+  Das Senden eines Blocks wurde in BASIC folgendermaßen realisiert:
+  defstr a:a="test.$$$":call sstr,@a
+  a=string$(&80):for i=1 to &80:call sstr,@a:next:call sbyte,0:stop
+
+
+  Weitere Informationen zum parallelen Adapter finden Sie im Kapitel 7.
+
+
+
+
+5.3  Serielle Schnittstelle
+===========================
+
+
+  Falls Sie eine serielle Schnittstelle am CPC haben, können Sie die
+  Daten natürlich auch seriell übertragen.
+
+
+
+5.4  Sonstige Möglichkeiten
+===========================
+
+  Es gibt auch abenteuerlichere Methoden, an seine Software zu kommen.
+
+  - 3" Diskettenlaufwerk an den PC anschließen. Manche (ältere) Modelle
+    sollen direkt an den 5.25"-Anschluß passen.
+
+  - Mit Hilfe des Spectrum+3 (oder so) die 3" Disketten einlesen, in das
+    Spectrum-Format konvertieren und mit einem Hilfsprogramm auf den PC
+    übertragen. Dieses Hilfsprogramm soll dem Spectrum-Emulator Z80 von
+    Gerton Lunter beiliegen.
+
+  - Als es noch nötig war, irgendwie an die ROMs zu kommen, hat mir ein
+    Benutzer von seiner Methode berichtet:
+    Er hat den ROM-Chip aus dem CPC ausgebaut und anstatt des VGA-BIOS in
+    seine Grafikkarte eingesetzt. Mit einem kleinen Programm konnte er
+    dann den Inhalt auslesen.
+
+  - Vielleicht finden Sie noch Ihre eigene Methode?
+
+
+
+
+
+6.  Bezugsquellen, Hilfe bei Problemen, Danksagungen
+****************************************************
+
+In diesem Kapitel erfahren Sie, woher Sie CPC-Software beziehen können und
+an wen Sie sich bei weiteren Fragen wenden können.
+Außerdem erwähne ich noch einige andere Amstrad-Emulatoren.
+
+
+6.1  Sie möchten CPC Software ?
+===============================
+
+  Kein Problem. Wenn Sie Internet-Zugang oder ein Modem haben.
+  Wie für die Spectrum-Emulatoren gibt es mittlerweile auch für den
+  (oder die) CPC-Emulator(en) "anonyme" Archive, von denen Sie per FTP,
+  oder WWW Software bekommen können.
+
+
+  FTP
+  ---
+
+  - ftp.nvg.unit.no : /pub/cpc, Arnt Gulbrandsen hat das Archiv
+    bereitgestellt und Noel Llopis verwaltet es;
+    ROMs, CPC-Programme, Emulatoren.
+    Eines der größten Archive mit CPC-Programmen.
+    Eigene Programme können Sie unter /pub/cpc/incoming ablegen.
+
+  - sunshine.informatik.uni-wuerzburg.de:/pub/joscho/cpcemu
+    Ein Mirror von ftp.nvg.unit.no. Fragen, Bemerkungen und Ergänzungen
+    richten Sie bitte an joscho@informatik.uni-wuerzburg.de.
+    Wenn Sie Verbindungsprobleme nach Norwegen haben, können Sie es hier
+    versuchen.
+
+  - ftp://ftp.lip6.fr/pub/amstrad, dank an Remy Card,
+    ftp://ftp.lip6.fr/pub/amstrad/frontend/menu.htm (HTML-Frontend)
+    Alle Fragen zu diesem Archiv richten Sie bitte an
+    roussin@genesis8.frmug.org.
+    Alle Dateien kommen von 'Genesis the 8bit generation BBS' (siehe unten).
+
+  - ftp.demon.co.uk:/pub/cpm, dank Paul Martin
+    Hauptsächlich Amstrad CP/M-Programme.
+    Paul Martin ist bereit, Ihnen seine "CP/M Plus ROMs" zuzuschicken,
+    falls Sie das originale Amstrad CP/M Plus haben.
+    Sie müssen das natürlich irgendwie beweisen.
+
+  - oak.oakland.edu : /Simtel/msdos/emulator/cpcemu15.zip
+
+  - Weitere Simtel-Mirrors:
+    ftp.ibp.fr : /pub3/pc/SimTel/msdos/emulator/
+    ftp.demon.co.uk : /simtel/msdos.
+    ftp.uni-paderborn.de
+
+
+  WWW
+  ---
+
+  - http://andercheran.aiind.upv.es/~amstrad
+    and an UK mirror: http://www.dcs.warwick.ac.uk/~divine/~amstrad/
+
+  - ...und viele weitere, die ich hier nicht aufführen möchte, da sie sich
+    dauernd ändern
+
+
+
+  BBS
+  ---
+
+
+  - Aspects 2:250/107 : +44 617920260, England
+
+  - Genesis the 8bit generation (2:320/220) : +33 1 53 95 32 43
+    (modem/ISDN) & 44 (modem), Paris (FRANCE), sysop : Emmanuel Roussin.
+
+  - ZNODE 51 : + 49 89 961 45 75, Deutschland, von 15:00 to 3:00 CET (MEZ),
+    bis V32b, CPC-Programme
+
+  - ...und einige mehr
+
+
+
+6.2  Sie möchten immer auf dem laufenden bleiben ?
+==================================================
+
+
+  Sie möchten immer die neuste Version von CPCEMU haben?
+  Sie möchten informiert werden, wenn eine neue veröffentlicht wird?
+
+  Mittlerweile gibt es eine eigene CPC-Newsgruppe!
+  Sie heißt
+
+     comp.sys.amstrad.8bit.
+
+  Dort finden Diskussionen rund um den CPC (und eben auch CPCEMU) statt.
+  Hier können Sie natürlich ganz unverbindlich Ihre Erfahrungen austauschen.
+
+  Es ist auch ein FAQ (frequently asked questions, häufig gestellte Fragen)
+  zu dieser Newsgroup verfügbar
+  (ftp://ftp.lip6.fr/pub/amstrad/amstrad.htm, FAQ in HTML).
+
+
+  Falls Sie keine Möglichkeit haben, die Newsgruppe zu lesen, schreiben
+  Sie mir kurz eine E-Mail. Meine Adresse steht im nächsten Abschnitt.
+  Mit normaler Post können Sie bei mir (oder bei David, siehe unten)
+  natürlich auch nachfragen, aber nicht das Rückporto vergessen.
+  Falls Sie mir eine Anerkennung zukommen lassen haben, fühle ich mich
+  normalerweise verpflichtet, Ihnen mindestens 1 bis 2 Mal die neuste
+  Version zukommen zu lassen.
+
+
+
+6.3  Wenn Sie Fragen oder Anregungen haben
+==========================================
+
+
+  Dann wenden Sie sich direkt an mich:
+
+       Marco Vieth
+       Auf dem Ükern 4
+       D-33165 Lichtenau
+       Germany
+
+       Tel./Fax: 05292/1366
+
+       Internet: cpcemu@hotmail.com
+                 (ali@uni-paderborn.de  nur gültig bis 1.10.98)
+
+       Wie Sie vielleicht schon wegen der Internet-Adresse vermuten,
+       habe ich Informatik an der Uni Paderborn studiert. Ich habe
+       das Studium im Frühjahr 1997 abgeschlossen und leiste jetzt
+       Zivildienst.
+
+
+
+  Falls Sie Englisch sprechen oder schreiben, können Sie sich
+  auch an David Cantrell wenden:
+
+       David Cantrell
+       116, London Road
+       Bexhill-on-sea
+       East Sussex
+       TN39 4AA
+       England
+
+       Phone: +44-1424-221015
+
+       Internet: david@diablo.eimages.co.uk
+                 ftp://ftp.eimages.co.uk/users/davidc/cpc/
+                 http://www.ThePentagon.com/NukeEmUp/uaug
+
+
+  David hat mir angeboten, mich bei der "Flut von Anfragen" zu unterstützen.
+  Er hat das Firmware-Manual für den CPC eingescannt und überarbeitet,
+  so daß es jetzt jedem in einer elektronischen Form zur Verfügung steht.
+
+
+  Ich akzeptiere jede Form von Unterstützung, ob ideell oder finanziell.
+  (30 DM bis 50 DM wären angemessen.)
+  Normalerweise ist auf die Post (wenigstens) soviel Verlaß, daß Geldscheine
+  in zugeklebten Briefen auch ankommen.
+  (Die "Unglücksfälle", die manchmal bei "Wie bitte ?" vorgestellt werden,
+   sind hoffentlich nur die Ausnahme. Wenn z.B. ein Güterwaggon vollbeladen
+   mit Postsendungen monatelang in einem Ausbesserungswerk vergessen
+   wurde ...)
+  Falls Sie den bargeldlosen Zahlungsverkehr bevorzugen:
+    Marco Vieth, Sparkasse Paderborn, BLZ: 47250101, Kto.Nr: 54111091
+
+  Auch wenn Sie mir kein Geld schicken, beantworte und berücksichtige ich
+  normalerweise alle Ihre Fragen und Anregungen (und David sicher auch).
+
+
+
+6.4  Andere Amstrad CPC Emulatoren
+==================================
+
+  Noch Anfang 1994 hätte ich gesagt, CPCEMU ist der einzige Emulator für den
+  Amstrad CPC. Mittlerweile sind mir jedoch drei andere bekannt:
+
+  - SIMCPC:
+    Vermutlich der erste CPC-Emulator überhaupt.
+    CPC-Emulator für PC/XT/AT   (c) 1989, 90 by GHE, Aachen
+    Nur schwarzweiß, aber mit zusätzlichen ROMs;
+    insgesamt nur eine "Bierlaune".
+
+  - CPC2PCxx:
+    Wird seit Oktober 1993 von Paco Lopez aus Spanien entwickelt.
+    Ist jetzt auf einigen Archiven verfügbar. Ist vollständig im Protected
+    Mode und benutzt dasselbe Disketten-Format wie CPCEMU.
+
+  - CPE:
+    In Entwickung von Bernd Schmidt aus Aachen. Durch einen speziellen
+    50 Hertz Bildschirm-Modus werden einige Farbbalken exakt nachgebildet.
+    Außerdem werden Multi-Modes und Overscan unterstützt.
+    Mit einer Spezialversion im 256-Farben-Modus werden exakte Farbbalken
+    mit mehr als 50 Hertz dargestellt.
+    Mittlerweile gibt es die Version v5.2.
+
+
+
+6.5  Pläne für weitere CPCEMU-Versionen
+=======================================
+
+  - Overscan
+  - Bessere Multi-Modes
+  - Bildschirm zentrieren in höheren Auflösungen
+  - Schnelles Hardware-Scrolling
+  - wählbare Bildschirmvergrößerung
+  - auf amerikanischen Tastaturen fehlt "<>", ALTgr
+  - Expansions-Port des CPC nachbilden
+  - direktes Laden von CPC-Disketten
+  - Laden von CPC-Kassetten über die Druckerschnittstelle oder über
+    eine Soundblaster-Karte
+  - Übertragen von Disketten mit dem parallelen Adapter
+  - Änderung der Soundblaster-Lautstärke
+  - Digiblaster-Emulation
+  - Joystick-Tasten selber definieren
+  - Maus als Joystick benutzen
+  - automatische Erkennung von .SNA und .DSK
+
+
+  Vielleicht wird es nie eingebaut, da ich erst einmal meine Diplomarbeit
+  schreiben muß und nebenbei ein wenig "richtig" arbeite...
+
+
+
+6.6  Danksagungen
+=================
+
+  - Besonderen Dank an Jürgen Weber, der mir nicht nur sehr viele Tips
+    gegeben und Verbesserungsvorschläge gemacht hat, sondern vor allem die
+    schnelle Z80-Emulation aus seinem CP/M-Emulator ZSIM beigesteuert hat.
+
+                  Jürgen G. Weber
+                  Wiesentalstraße 1
+                  74523 Schwäbisch Hall
+                  Federal Republic of Germany
+
+                  Email: weberj@dia.informatik.uni-stuttgart.de
+
+
+  - Außerdem Dank an Bernd Schmidt. Da Bernd einen eigenen Emulator schreibt,
+    standen wir oft vor denselben Problemen. Nur wer selber versucht, einen
+    solchen Emulator zu schreiben, kann ermessen, welche Details überall
+    Probleme bereiten. Es gibt eben keine Dokumentation zum CPC, in der die
+    gesamte Spezifikation enthalten ist. Das meiste muß durch Probieren
+    herausgefunden werden.
+
+  - Dank an Ulrich Doewich, der die Sound-Ausgabe für Gravis UltraSound
+    eingebaut und die englische Dokumentation dorchgelesen hat.
+    Ulrich entwickelte ein ähnliches Tool wie CPCTRANS. Halten Sie Ausschau
+    nach CPDREAD, dem "Copy-Protected-Disk-Reader", der auch
+    kopiergeschützte Disketten lesen kann.
+
+  - Dank an Emmanuel Roussin für seinen unermüdlichen Einsatz für
+    den CPC. Er hat wesentlich bei der Erstellung der Newsgruppe
+    mitgewirkt und mir monatelang sein Multiface II geliehen, damit
+    ich es doch in den Emulator einbaue.
+
+  - Dank auch an Arnt Gulbrandsen, aus dessen JPP-Quellcode ich die
+    Ideen für den Keyboard-Handler und die Joystickabfrage bekam.
+    JPP ist übrigens ein sehr guter Spectrum-Emulator.
+
+  - Dank an Martin Zacho für die Joystick Routine.
+
+  - Dank an Fernando J. Echevarrieta Fernandez, der als erster
+    herausfand, daß Version v0.8 keinen CPC 664 emulierte.
+
+  - Dank an Gilles Molinari für das Transferprogramm für den parallelen
+    Adapter.
+
+  - Dank an Paul Martin, der die englische Dokumentation zu Version 1.0
+    korrigiert hat.
+
+  - Dank an Mark Haigh-Hutchinson, der durchgesetzt hat, daß Spiele der
+    Firma Vortex nun legal in einem Archiv verfügbar sein dürfen.
+
+  - Dank an Martin Young für seine außergewöhnlichen Ideen, einen Z80 zu
+    emulieren.
+
+  - Dank an Linh Hsiesh für zahlreiche Verbesserungsvorschläge, wovon die
+    meisten mittlerweile realisiert sein dürften.
+
+  - Dank an Fred Harris für den Brief, den er wegen der ROMs an AMSTRAD
+    geschrieben hatte.
+
+  - Dank an Amstrad, insbesondere an Cliff Lawson, daß ich das BASIC-ROM
+    benutzen darf. Natürlich bleibt das Copyright bei Amstrad.
+
+        Amstrad plc, Brentwood House,
+        169 Kings Road, Brentwood,
+        Essex CM14 4EF
+
+  - Dank an Richard Clayton von Locomotive, daß ich das Firmware-ROM benutzen
+    darf. Natürlich bleibt das Copyright bei Locomotive Software.
+
+  - Und Dank an die vielen anderen Benutzer, die mir Verbesserungs-
+    vorschläge geschrieben haben oder sonstige Ideen hatten. Ohne sie
+    wäre CPCEMU vermutlich nicht einmal bis Version 1.0 gekommen.
+
+
+
+6.7  Geschützte Warenzeichen
+============================
+
+  CP/M, CP/M 2.2 und DRDOS sind von Digital Research,
+  MS-DOS ist von Microsoft,
+  IBM PC, PC-XT, PC-AT und OS/2 sind von International Business Machines,
+
+  CPC, AMSDOS sind von Amstrad,
+  BORLAND C, TASM (Turbo Assembler) sind von Borland,
+  22DISK ist von SYDEX
+  Soundblaster ist von Creative Labs
+  ...
+
+
+
+------------------------------------------------------------------------------
+
+
+
+
+7.  Interne Informationen zu CPCEMU
+***********************************
+
+
+Dieses Kapitel soll ein paar Hintergrundinformationen liefern und die
+Frage beantworten, WARUM muß ich jetzt dies und das machen.
+Auch wird das leistungsfähige Debug-Menü erklärt und die Datenformate
+zu den Disketten-Abbildern und den Snapshots aufgeführt.
+Ich gebe hier also Informationen, die Sie als Anwender von CPCEMU
+nicht unbedingt wissen müssen. Allerdings können sie manchmal ganz
+nützlich sein.
+Ich habe diese Informationen absichtlich an das Ende, noch nach den
+geschützten Warenzeichen gesetzt, damit die relative "relative
+Bedeutungslosigkeit" deutlich wird.
+Wenn Sie keinen Spaß an unverständlichen Sätzen und unstrukturierten
+Informationen haben, dann lesen Sie nicht weiter!
+
+
+
+WARNUNG: Weiterlesen auf eigene Gefahr!
+
+
+
+
+
+7.1  Inhaltsverzeichnis zu Kapitel 7
+====================================
+
+  7.2  Interne Übersicht über die Leistungsmerkmale von CPCEMU
+    7.2.1  Die Z80-CPU (Der Prozessor)
+    7.2.2  Das Gate-Array (Der "Hilfsprozessor")
+    7.2.3  Das PAL (Programmable Logic Array)
+    7.2.4  Der CRTC 6845 (Cathode Ray Tube Controller)
+    7.2.5  Die PIO 8255 (Programmable Input-Output)
+    7.2.6  Der PSG (Programmable Sound Generator)
+    7.2.7  Der FDC (Floppy Disc Controller)
+    7.2.8  Die Centronics-Druckerschnittstelle
+
+  7.3  Das Debug-Menü
+    - Aufbau des Debug-Menüs
+    - Vorbemerkungen
+    - Übersicht über die Kommandos
+    - Registermanipulationen
+
+  7.4  Die Speicherverwaltung
+    7.4.1  Noch einmal zur EMS-Konfiguration
+    7.4.2  Realisierung des Bankings
+
+  7.5  ROM-Modifikationen
+    7.5.1  ROM-Bypass für die Kassette
+    7.5.2  Modifikationen am AMSDOS-ROM
+
+  7.6  Verschiedenes
+    7.6.1  Noch einmal:  Die Konfigurationsdatei
+    7.6.2  Der parallele Adapter
+      - Richtung CPC->PC
+      - Richtung PC->CPC
+    7.6.3  CPCTRANS
+
+  7.7  Aufbau einiger CPCEMU-Dateien
+    7.7.1  Disketten-Abbilder
+      - Der Disketten-Informationsblock
+      - Der Spur-Informationsblock
+    7.7.2  Snapshot-Dateien
+    7.7.3  AMSDOS-Header
+    7.7.4  Poke-Datenbank
+
+  7.8  Interne History
+
+
+
+
+
+7.2  Interne Übersicht über die Leistungsmerkmale von CPCEMU
+============================================================
+
+
+  Wie kompatibel ist CPCEMU wirklich?
+
+
+
+  7.2.1  Die Z80-CPU (Der Prozessor)
+  ----------------------------------
+
+  + Es werden alle Z80-Befehle emuliert, auch sogenannte illegale Befehle.
+    Es gibt eine langsame Z80-Emulation in C und eine schnelle Emulation in
+    Assembler von Jürgen Weber.
+    Durch die COCPU-Technik, bei der jeder Befehl von den beiden
+    Emulationsarten gleichzeitig ausgeführt wird und danach die Register
+    verglichen werden,
+    wurden zahlreiche Fehler gefunden. Natürlich wurde dies nur während der
+    Programmentwicklung benutzt. Die langsame Z80-Emulation können Sie vom
+    Debug-Menü aus aktivieren.
+  + Nur dem Emulator bekannte Zusatzbefehle der Form ED FC xx, darunter auch
+    der User-Break   ED FC FC  USER &BCFC.
+
+  - kein exaktes Timing der Befehle aber Zeit-Kalibrierung im Ectzeit-Modus
+
+
+
+  7.2.2  Das Gate-Array (Der "Hilfsprozessor")
+  --------------------------------------------
+
+  + alle 32 Farben des CPC (27 verschiedene)
+  + alle 3 Bildschirmmodi (X x Y x Farben):
+        Modus 0 = 160x200x16
+        Modus 1 = 320x200x4
+        Modus 2 = 640x200x2
+  + einfache Multi-Modes
+  + ROM-Banking (16KB OS, 16KB BASIC, 16KB AMSDOS, und sonstige Zusatzroms)
+
+  - Farbbalken flimmern
+
+
+
+  7.2.3  Das PAL (Programmable Logic Array)
+  -----------------------------------------
+
+  Das PAL ist zwar logisch über die gleiche Adresse wie das Gate-Array zu
+  programmieren, hardwaretechnisch aber davon getrennt.
+
+  + RAM-Banking (128 KB, bis zu 576 KB), mit EMS oder konventionellem
+    Speicher.
+    Mit emuliertem EMS ist es recht flott, da die die Umschaltung per
+    Hardware geschieht. Sie können eine Dk'tronics kompatible
+    Speichererweiterung mit bis zu 576 KB RAM benutzen.
+
+  - Ohne EMS ist RAM Banking sehr langsam, da Speicherblöcke vertauscht
+    werden müssen. Außerdem haben Sie ohne EMS höchstens 128 KB RAM zur
+    Verfügung.
+
+
+
+  7.2.4  Der CRTC 6845 (Cathode Ray Tube Controller)
+  --------------------------------------------------
+
+  + Bildschirmstart, -offset für Hardware-Scrolling
+  + verschiedene Bildschirmgrößen von 0x0 bis 80x25 mittels
+    CRTC-Register 1 und 6
+  + unterschiedliche Zeichengrößen (1..7) mit CRTC-Register 9
+  + für Multi-Modes werden noch einige andere Register benötigt.
+
+  - Overscan wird noch nicht unterstützt.
+
+
+  7.2.5  Die PIO 8255 (Programmable Input-Output)
+  -----------------------------------------------
+
+  + Keyboard (über den PSG)
+  + VSYNC-Emulation: Bit zwischen zwei Interrupts während des Bildaufbaus
+    gesetzt, die Position legen Sie fest.
+  + Kassetten besonders schnell durch ROM-Bypass der den Zugriff auf
+    beliebige DOS-Dateien ermöglicht.
+
+  - VSYNC-Bit ist zu lange gesetzt
+  - Kassetten-Bits werden nicht emuliert, somit können Sie die meisten
+    Kassetten-Kopierprogramme nicht einsetzen, die direkt auf die Ports
+    zugreifen.
+
+
+  7.2.6  Der PSG AY 3-8912 (Programmable Sound Generator)
+  -------------------------------------------------------
+
+  + Entweder über den PC Lautsprecher (schrecklich, da 3 Kanäle auf
+    einen gemischt werden müssen und die Lautstärke nicht geändert
+    werden kann), eine GUS-Soundkarte oder eine Soundblaster-Karte.
+    Von der Soundblaster-Karte wird entweder der digitale Teil benutzt,
+    was perfekten Sound mit Geräuschen ergibt oder nur der Adlib-kompatible
+    FM-Teil ohne Geräusche.
+
+  - keine Digital-Sounds möglich oder zu langsam.
+
+
+  7.2.7  Der FDC 765 (Floppy Disc Controller)
+  -------------------------------------------
+
+  + Alle notwendigen FDC-Kommandos, um die Laufwerke A und B zu
+    steuern (dazu gehören Sektor lesen/schreiben, Spur suchen/formatieren,
+    Sektor-ID lesen, ...)
+    Sehr flexible Disketten-Formate (bis zu 18 Sektoren pro Spur).
+    Darunter auch doppelseitige Formate, z.B. VORTEX.
+
+  - Komplizierte kopiergeschützte Formate werden intern nicht verarbeitet.
+
+
+
+  7.2.8  Die Centronics-Druckerschnittstelle
+  ------------------------------------------
+
+  + Druckerausgabe auch mit 8-Bit-Druckerpatch, wird auf die durch
+    PRINTER definierte Datei umgeleitet.
+
+
+
+
+7.3  Das Debug-Menü
+===================
+
+  Von sowas hätte ich damals auf dem CPC nur geträumt!
+  Es wird der komplette CPU-Zustand des Z80 angezeigt und Sie können ihn
+  modifizieren. Der Speicher kann "gedumped",
+  disassembliert oder modifiziert werden, Speicherauszüge
+  (Programme) lassen sich laden oder speichern.
+  Und das Interessanteste:
+  Sie können die Code-Ausführung im Single-Step-Mode verfolgen!
+  (Ähnlich wie bei einem richtigen Debugger).
+
+
+  Aufbau des Debug-Menüs
+  ----------------------
+
+  R)un T)race S)tep  A)ssem D)ump I)nput  L)oad saV)e  fiN)d  F)ast Q)uit
+  AF=0000 BC=0000 DE=0000 HL=0000 IX=0000 IY=0000 SP=0000 PC=0000 IR=0000
+  AF'=0000 BC'=0000 DE'=0000 HL'=0000 IFF1=0 IFF2=0 IMD=0  NZ NC PO P
+  0000 : 01 89 7F       LD BC,&7F89
+  -f->
+
+  In der ersten Zeile werden die verfügbaren Kommandos angezeigt
+  (die Großbuchstaben). In den beiden nächsten Zeilen
+  stehen die aktuellen Inhalte der Register. Darunter steht der
+  disassemblierte aktuelle Befehl an Position PC.
+  In der letzten Zeile wartet ein Prompt auf Ihre Eingabe.
+  ('f' zeigt an, daß Sie gerade die Fast-CPU benutzen.)
+
+
+  Vorbemerkungen
+  --------------
+
+  In eckige Klammern eingeschlossene Parameter sind optional [opt.].
+  Zahleneingaben alle hexadezimal, z.B. <Adresse> = 0000 bis ffff.
+  "<ret>" zeigt an, daß Sie in einem speziellen Modus sind und
+  <RETURN> drücken sollen, um fortzufahren. <String><RETURN>
+  verläßt diesen Modus (d.h. z.B. b<RETURN>).
+  Kommandos bestehen aus einem Buchstaben, meistens gefolgt von
+  einer optionalen Adresse. Zwischen Kommando-Buchstabe und
+  dieser Adresse muß dann ein Leerzeichen oder Tab stehen.
+  Ohne Angabe einer Adresse wird als Standard-Wert PC (Programmzähler)
+  angenommen.
+
+
+  Übersicht über die Kommandos
+  ----------------------------
+
+  R)un:
+  r [<Adresse>] : startet die Emulation ab PC oder der optional
+    angegebenen Adresse.
+    Beispiele:
+    -f-> r      startet die Emulation ab PC
+    -f-> r 100  setzt PC auf 0x100 und startet die Emulation
+
+  T)race (Trace into):
+  t [<Adresse>] : führt wirklich nur den aktuellen Befehl aus,
+    mit <RETURN> den nächsten;  <string><RETURN> beendet den
+    Trace-Modus.
+    Alle Einzelschrittbefehle werden von der Slow-CPU ausgeführt
+    (selbst wenn "-f->" angezeigt wird), da in der Fast-CPU kein
+    Zähler mehr existiert.
+  S)tep (Step over):
+  s [<Adresse>] : führt den aktuellen Befehl aus, eigentlich
+    alle Befehle, bis PC auf dem direkt nachfolgenden Befehl
+    steht, was z.B. bei einem 'Ret' recht lange dauern kann.
+    In diesem Fall hilft (wie immer) F10.
+    Alle Einzelschrittbefehle werden von der Slow-CPU ausgeführt
+    (selbst wenn "-f->" angezeigt wird), da in der Fast-CPU kein
+    Zähler mehr existiert.
+
+  A)ssemble (eigentlich Disassemble):
+  a [<Adresse>] : disassembliert die nächsten 16 Befehle, mit
+    <RETURN> die nächsten; <string><RETURN> beendet den
+    Disassemble-Modus.
+
+  D)ump:
+  d [<Adresse>] : zeigt einen Hex-Ascii-Speicherauszug der nächsten
+    256 Bytes ab PC oder Adresse an, <RETURN> die nächste Seite;
+    <string><RETURN> beendet den Dump-Modus.
+
+  I)nput (Speicherstellen modifizieren):
+  i [<Adresse>] : zeigt die Speicherstelle mit aktuellem Inhalt an,
+    der durch <RETURN> bestätigt oder durch <hexzahl><RETURN>
+    verändert werden kann. Verlassen wird der Input-Modus mit
+    einer ungültigen Zahl, z.B. -1<RETURN>.
+
+  L)oad (Laden eines Speicherbereichs):
+  l [<Adresse>]  : fragt nach dem Dateinamen <Name> und lädt dann
+    die Datei <Name> aus dem Verzeichnis TAPE_PATH nach <Adresse>
+    Ein AMSDOS-Header wird erkannt.
+    Siehe Anhang "Aufbau des AMSDOS-Headers".
+    Falls Sie bei dem Dateinamenprompt nur <RETURN> eingeben,
+    erscheint das schon bekannte Dateiauswahl-Menü.
+    Beispiele:
+    -f-> l<RETURN> demo<RETURN>         :
+        lädt Datei 'demo' an den aktuellen PC
+    -f-> l a000<RETURN> myprog<RETURN>  :
+        lädt Datei 'myprog' nach 0xA000
+
+  saV)e (Speichern eines Speicherbereichs):
+  v [<Adresse>]  : fragt nach dem Dateinamen <Name> und der Länge
+    des Speicherbereichs. Dieser wird dann ab <Adresse> (oder eben PC)
+    abgespeichert, und zwar im Verzeichnis TAPE_PATH als Binärdatei,
+    d.h. mit AMSDOS-Header.
+    Siehe Anhang "Aufbau des AMSDOS-Headers".
+    Beispiel:
+    -f-> v<RETURN> demo<RETURN> 4000<RETURN>    :
+        speichert "demo" ab PC mit der Länge 0x4000.
+
+  fiN)d (Suchen einer Bytefolge):
+  n : Wie bei I)nput muß zuerst eine Bytefolge eingegeben werden, nach der
+    gesucht werden soll. Dabei kann '??' (oder '?') als Platzhalter
+    für ein beliebiges Byte eingesetzt werden. Das macht natürlich nur
+    Sinn innerhalb einer Bytefolge.
+    Es werden dann die gerade aktiven 64KB Speicher durchsucht und alle
+    Adressen ausgegeben, wo diese Bytefolge beginnt.
+
+  F)ast (Z80-Emulationsart wählen):
+  f : Wechselt zwischen der schnellen Z80-Emulation (entwickelt in
+    Assembler von Jürgen Weber, Standardeinstellung) und der
+    langsamen (in C geschriebenen).
+    Das Prompt-Symbol wechselt dann zwischen "-f->" für schnell
+    (fast) und "-s->" für langsam (slow).
+    Alle r, s, t-Kommandos beziehen sich dann auf die gewählte
+   Z80-Emulationsart.
+
+  Q)uit (Beenden des Programms):
+  q : beendet den Emulator.
+
+
+  Registermanipulationen
+  ----------------------
+
+  Neben den Buchstabenkommandos gibt es auch Befehle zum Setzen
+  der Register mit der Syntax:          '<Register>=<Hex-Wert>'
+  Beispiele:
+    - af=345    : setzt Register AF auf 0x0345
+    - pc=a000   : setzt Programmzähler auf 0xA000
+
+
+  Sie können auch einfach '<Register><Leerzeichen><Hex-Wert>' schreiben
+  Alle Z80-Register lassen sich verändern, also
+  AF, BC, DE, HL, IX, IY, SP, PC, IR, AF', BC', DE', HL',
+  zusätzlich IFF1, IFF2 und IMD.
+
+
+
+
+
+
+7.4  Die Speicherverwaltung
+===========================
+
+
+  7.4.1  Noch einmal zur EMS-Konfiguration
+  ----------------------------------------
+
+    Sie brauchen einen Expanded Memory Manager nach dem LIM 4.0 Standard
+    (LIM EMS 4.0). Dieser Memory-Manager muß sogenannte erweiterte EMS-Seiten
+    bieten. CPCEMU benötigt 6 solcher Seiten an zusammenhängenden Adressen.
+
+    Unter OS/2 2.x wurde Ihnen vorgeschlagen, die folgenden Einstellungen
+    zu benutzen:
+
+        EMS_FRAME_LOCATION = auto
+        EMS_HIGH_OS_MAP_REGION = 32     (oder mehr)
+        EMS_LOW_OS_MAP_REGION = 0       (oder mehr)
+
+
+    Was bedeuten die Einstellungen?
+    Die Low-Region bezeichnet EMS-Seiten im konventionellen Speicher.
+    Falls CPCEMU dortige EMS-Seiten benutzen soll, müssen mindestens
+    6*16KB = 84KB vorhanden sein.
+
+    Die High-Region bezeichnet EMS-Seiten im Speicher oberhalb von
+    640K, der zum Standard-Rahmen von 64KB hinzugenommen wird,
+    muß also mindestens 2*16KB = 32KB sein.
+
+
+    Unter DOS wurde Ihnen vorgeschlagen, folgende Zeilen in CONFIG.SYS
+    zu benutzen:
+        DEVICE=C:\DOS\HIMEM.SYS
+        DEVICE=C:\DOS\EMM386.EXE 1024
+        ...
+
+    Die 1024 kann auch vergrößert oder verkleinert werden, je nach
+    Hauptspeicher Ihres Rechners.
+
+    Erläuterungen:
+    EMM386 bietet zahlreiche zusätzliche Seiten im konventionellen
+    Speicher. Die Untergrenze dieser Seiten kann mit der Option
+    /B=<Segment> geändert werden (Standard ist 4000).
+    Mit /P<Nummer>=<Segment> soll es auch möglich sein, einzelnen
+    physikalischen Seiten andere Segmente zuzuweisen.
+
+
+
+  7.4.2  Realisierung des Bankings
+  --------------------------------
+
+
+    Banking wird auf einigen Heimcomputern benutzt, die RAM und ROM
+    an der gleichen Adresse haben. Lesezugriffe adressieren das ROM,
+    Schreibzugriffe das RAM.
+    Der Amstrad CPC hat 64K RAM und 16K ROM im Bereich 0-3FFF und
+    ein weiteres ROM an C000-FFFF:
+
+        0 RAM 0000-3fff
+        1 RAM 4000-7fff
+        2 RAM 8000-bfff
+        4 RAM c000-ffff
+        L ROM 0000-3fff
+        U ROM c000-ffff
+
+    Die wesentliche Idee ist, verschiedene Segmente zum Lesen und
+    Schreiben zu haben.
+    Bei jedem Lesezugriff wird ein Lese-Offset zu der gewünschten
+    Adresse addiert, das gleiche wird mit einem Schreib-Offset
+    für das Schreiben gemacht.
+
+
+                   Zustand 0                  Zustand 1
+
+        block 5   M       L   c                   0       <
+        block 4   M    W  C   c                   C   c    | vertauscht beim
+        block 3   M    W  8 b c                W  8 a c    | Zustands-
+        block 2   M    W  4 b c                W  4 a c    | wechsel
+        block 1   M    W  0 b                  W  L a c   <
+        block 0   M       U b                  W  U a
+
+
+    (M = konventioneller Speicher oder physikalische EMS-Seiten)
+
+    a = Lrom ei, Urom ei
+    b = Lrom di, Urom ei
+    c = Lrom ei, Urom di
+    W = Lrom di, Urom di
+
+    Um zwischen den beiden Zuständen zu wechsen, müssen nur die
+    '0' und 'L' Blöcke vertauscht werden.
+    Für RAM Banking muß eine neue '0' mit der alten vertauscht
+    werden. UROM Auswahl geschieht durch Kopieren des neuen ROMs
+    nach 'U'.
+
+    Mit EMS Speicher wird das gesamte Banking von der Hardware
+    (oder deren Emulation) übernommen. Dieses erhöht die
+    Geschwindigkeit besonders in BASIC und CP/M Plus.
+    Jetzt verstehen Sie, warum 6 zusammenhängende physikalische
+    EMS-Seiten notwendig sind und der Standard-Rahmen mit 4 Seiten
+    nicht reicht.
+
+
+
+
+7.5  ROM-Modifikationen
+=======================
+
+
+  7.5.1  ROM-Bypass für die Kassette
+  ----------------------------------
+
+    Nach dem Befehl '|TAPE', oder wenn Sie das AMSDOS-ROM ausgeschaltet
+    haben, wird die "Kassette" angesprochen. Kassettenzugriffe werden
+    dabei in Dateizugriffe auf die einzelnen Dateien eines speziellen
+    Verzeichnisses umgeleitet.
+    Realisiert wird diese Umleitung mittels eines "ROM-Bypass".
+
+    Durch 'TAPE_BYPASS=1' schalten Sie den ROM-Bypass der TAPE-Vektoren
+    ein. Falls ein bekanntes ROM vom CPC 464/664/6128 gefunden wurde,
+    wird das ROM automatisch modifiziert.
+    Der Bypass ist nötig, wenn Sie Kassetten-Dateien benutzen möchten.
+
+    Es wurden Spezialbefehle eingeführt, die eine bestimmte
+    Funktion des Emulators aufrufen. Diese Befehle werden direkt
+    in das ROM eingetragen, so daß das Patchen der RAM-Vektoren
+    auch weiterhin möglich ist.
+    Als Befehle wurden eingeführt:
+    ED FC xx  USER &BCxx        (nur gültig für einige RAM-Vektoren)
+    Entspricht einem Call-Befehl zu einer internen Funktion,
+    wobei für xx folgende Werte gültig sind:
+        65      :       CASSETTE INIT (BC65)
+        77      :       CASSETTE IN OPEN (BC77)
+        7A      :       CASSETTE IN CLOSE
+        7D      :       CASSETTE IN ABANDON
+        80      :       CASSETTE IN CHAR
+        83      :       CASSETTE IN DIRECT
+        86      :       CASSETTE RETURN
+        89      :       CASSETTE TEST EOF
+        8C      :       CASSETTE OUT OPEN
+        8F      :       CASSETTE OUT CLOSE
+        92      :       CASSETTE OUT ABANDON
+        95      :       CASSETTE OUT CHAR
+        98      :       CASSETTE OUT DIRECT
+        9B      :       CASSETTE CATALOG
+
+    Zusätzlich gibt es noch den User-Break-Befehl
+    ED FC FC  USER &BCFC , der die Emulation sofort anhält.
+
+
+
+  7.5.2  Modifikationen am AMSDOS-ROM
+  -----------------------------------
+
+    - Durch 'AMSDOS_DISABLE=1' verbieten Sie die Initialisierung des AMSDOS.
+      Dann werden die
+      Kassetten-kompatiblen Befehle nicht von AMSDOS gepatched.
+      (Es werden also weiterhin die TAPE-Vektoren verwendet.)
+      Das ist nötig, wenn ein Programm zwischendurch das AMSDOS-
+      ROM initialisiert, aber ohne |TAPE-Befehl von Kassette
+      weiterladen soll.
+      (Realisiert durch 'POKE &CCF2,&18: POKE &CCF3,&05' im
+      AMSDOS-ROM.)
+      Die Sektorbefehle bleiben unbeeinflußt, sie gehen immer
+      auf Diskette.
+
+    - 'AMSDOS_SPEEDUP=1' führt eine AMSDOS-ROM-Modifikation durch, bei
+      der die Motor-Wartezeiten minimiert werden, um einen
+      schnelleren Disk-Zugriff zu ermöglichen.
+      (Die Sachen werden ja von DOS gesteuert, somit brauchen wir
+      die Warteschleifen nicht.)
+      (Folgende Speicherstellen im AMSDOS-ROM werden verändert:
+        POKE &C5D4,&01  :'Zeit für Motor-Hochlauf
+        POKE &C5D8,&01  :'Zeit bei Spur-Formatieren
+        POKE &C5D9,&01  :'kürzer warten
+        POKE &C5DA,&01  :'kürzer warten
+        POKE &C602,&01  :'nur 1 Versuch bei Fehler
+        POKE &C784,&01  :'schnelles Spur suchen
+        POKE &C7E2,&01  :'schnelles Spur suchen )
+
+
+
+
+
+7.6  Verschiedenes
+==================
+
+
+
+  7.6.1  Noch einmal:  Die Konfigurationsdatei
+  --------------------------------------------
+
+    Wie Sie vielleicht noch wissen, werden Kommentare durch ein
+    Semikolon ';' eingeleitet, der Rest der Zeile wird dann ignoriert.
+    Blanks, Tabs, Newlines, ';' dienen als Trennsymbole und können
+    beliebig zwischen Schlüsselwörtern und Werten eingesetzt werden.
+    Die meisten Definitionen besitzen die syntaktische Form
+    <Schlüsselwort> '=' <Wert> {T}
+    Dabei ist {T} eine Folge von mindestens einem Trennsymbol.
+    Beispiel:
+      ROM_PATH = ".\ROM"
+
+    Eine <Zahl> kann dezimal, hexadezimal (0x) oder binär (%) angegeben
+    werden.
+    <Pfad-Name> darf bis zu 80 Zeichen,
+    <Dateiname> darf bis zu 20 Zeichen lang sein.
+
+    Hier noch einige Ergänzungen zu ausgewählten Schlüsselwörtern:
+
+    BREAK_MASK = <Zahl>         (3)
+      Nur für Debugging-Zwecke.
+      Einige Ereignisse unterbrechen die normale Emulation. Mit
+      dieser Maske verbieten Sie solche Ereignisse.
+      Nicht unüberlegt verändern!
+      Lassen Sie alle Bits gesetzt, bis auf diejenigen, deren
+      Ereignisse Sie verbieten wollen.
+      b2 = 0 -> verbietet Anzeigen von Port-Fehlern (mit 3)
+      Die Bedeutung der Bits kann sich in Zukunft ändern!
+
+
+
+
+
+
+  7.6.2  Der parallele Adapter
+  ----------------------------
+
+    Zuerst einmal der Aufbau des Adapters, jetzt mit Funktionsweise:
+
+    PC  D-SUB   Cent.   CPC             Funktion
+    --------------------------------    ---------------------------
+    GND    19 ---- 19   GND             GND
+    BUSY   11 <--- 1    -STROBE         Synchro (Daten verfügbar)
+    -ACK   10 <--- 8    D6              |
+    PE     12 <--- 7    D5              | Daten
+    SELECT 13 <--- 6    D4              |
+    -ERROR 15 <--- 5    D3              |
+    D0      2 ---> 11   BUSY            Synchro (empfangsbereit)
+
+
+    Richtung CPC->PC
+    ----------------
+
+    Für diese Richtung ist der Adapter normalerweise gedacht. Im Prinzip
+    funktioniert das Senden auf dem CPC genauso, wie das Ausdrucken auf
+    einen Drucker. Wenn der PC Nicht-BUSY anlegt, legt der CPC ein
+    Nibble (Teil eines Bytes auf 4 Bits) auf den Port, setzt STROBE als
+    Zeichen, daß etwas da ist und löscht es danach wieder. Der PC braucht
+    also nur BUSY zu löschen (mittels D0), auf STROBE zu warten (über BUSY)
+    dann das Nibble übernehmen (über die Einabeleitungen Drucker->PC)
+    und BUSY zu setzen.
+    Frage: Warum kann man denn nicht 8 Bits auf einmal übertragen?
+    Antwort:
+    1. Der PC-Druckerport müßte auf Eingabe programmiert werden, das geht
+       nicht mit jedem   und
+    2. Der CPC hat nur einen 7-Bit Druckerport
+
+
+    Richtung PC->CPC
+    ----------------
+
+    Ich habe mir gedacht, daß es auch möglich sein müßte, Daten in die
+    andere Richtung zu verschicken. Leider hat der CPC am Druckerport
+    nur ein einziges Eingangssignal, nämlich das BUSY-Signal. Es würde
+    also nichts bringen, einen besseren Adapter für diese Richtung bauen
+    zu wollen. Also kann man auch gleich den Adapter nehmen, den man schon
+    hat, und ein geschicktes Protokoll entwickeln.
+    Immerhin funktioniert eine serielle Schnittstelle auch nur mit einer
+    Datenleitung für jede Richtung.
+    Doch: Bei seriellen Schnittstellen wird die Synchronisation
+    normalerweise mit einem Quarz erreicht. Es muß auf beiden Seiten exakt
+    dieselbe Übertragungsrate eingestellt sein (z.B. 1200 Baud).
+    Softwaremäßig ist das schlecht zu realisieren.
+    Was tun?
+    Die Idee ist, den Geschwindigkeitsvorteil des PC gegenüber dem CPC
+    auszunutzen. Jedes Byte wird in 8 Bit zerlegt und seriell übertragen,
+    indem der PC den Zustand der BUSY-Leitung richtig setzt.
+    Während dieser 8 Bit gibt der CPC die Geschwindigkeit vor und der
+    PC muß sich danach richten. Der CPC schreibt die Bit-Anforderung mit
+    einem Assembler-Befehl. Der PC muß jetzt schnell reagieren, und
+    die BUSY-Leitung entsprechend des nächsten Bits setzen, denn schon
+    mit dem übernächsten Assembler-Befehl wird der CPC dieses lesen wollen.
+    Damit nicht immer die Interrupts ausgeschaltet bleiben müssen,
+    erfolgt zuvor für jedes Byte ein "Verbindungsaufbau". Der CPC sagt
+    "Schick mir mal was rüber!" und der PC antwortet "Na gut, ich warte
+    jetzt, bis Du was haben willst.", indem er das BUSY-Signal wechselt.
+    Die ganze Geschichte ist durch Timer abgesichert, damit kein Computer
+    hängt, weil er auf irgendein Signal wartet, was dummerweise nicht
+    kommt. Sie können die Programme also immer durch ESC bzw CTRL-BREAK
+    abbrechen.
+
+
+
+
+
+  7.6.3  CPCTRANS
+  ---------------
+
+    Eine noch nicht erwähnte Option ist "/d 0" und "/d 1". Bei 1
+    wird der Double-Step Modus gesetzt, d.h. 80-Spur-Laufwerke
+    springen immer 2 Spuren weiter, wenn sie 40-Spur Disketten
+    bearbeiten.  Die Option sollte unnötig sein, da CPCTRANS bei
+    5.25" 360KB Formaten auf 80 Spur-Laufwerken automatisch
+    Double-Step einschaltet.
+
+    Normalerweise ist es ganz einfach, mit dem BIOS Sektoren zu
+    lesen und zu schreiben. Leider ist das BIOS aber nicht in der Lage,
+    B-Seiten von Disketten mit Kopfseite=0 zu verarbeiten.
+    Deshalb mußte ich die FDC-Routinen selber programmieren,
+    wobei der Floppy-Teil des MINIX-Source-Codes als Vorlage diente.
+    Leider enthält der MINIX-Code einige Fehler, und das Timing
+    wurde an den kritischen Stellen durch simple Warteschleifen realisiert,
+    die vermutlich für einen 8086 Prozessor ausreichten.
+
+
+
+
+7.7  Aufbau einiger CPCEMU-Dateien
+==================================
+
+
+  7.7.1  Disketten-Abbilder
+  -------------------------
+
+    Disketten-Abbilder bestehen aus einem 0x100-Byte langen
+    Disketten-Informationsblock und für jede Spur aus einem
+    0x100-Byte langen Spur-Informationsblock, an den sich die
+    Daten der Spur (zu jedem Sektor) anschließen.
+    Das neue erweiterte Disketten-Format ist hauptsächlich für
+    kopiergeschützte Disketten gedacht. Änderungen für das
+    erweiterten Format habe ich mit *E* gekennzeichnet
+    (aus unserem "Extended DISK Format Proposal, Rev.5").
+
+
+
+    Der Disketten-Informationsblock
+    -------------------------------
+    Byte (Hex):  Bedeutung:
+    00 - 21      "MV - CPCEMU Disk-File\r\nDisk-Info\r\n"
+                 (als Kennung nur "MV - CPC" erforderlich)
+            *E*  "EXTENDED CPC DSK File\r\n\Disk-Info\r\n"
+            *E*  (als Kennung nur "EXTENDED" erforderlich)
+    22 - 2F      unbenutzt (0)
+            *E*  DSK-Ersteller (Name des Utilities) (keine abschließende \0 !)
+    30           Anzahl Spuren (40, 42, vielleicht 80)
+    31           Anzahl Köpfe (1 oder 2)
+    32 - 33      Spurgröße (einschließlich 0x100-Bytes Spur-Info)
+                 Bei 9 Sektoren * 0x200 Bytes + 0x100 Byte Spur-Info
+                 also 0x1300.
+            *E*  unbenutzt (0)
+    34 - FF      unbenutzt (0)
+            *E*  High-Bytes der Spurgrößen für alle Spuren
+                 (genauso berechnet wie 32-33 beim normalen Format).
+                 Für einseitige Formate enthält die Spurtabelle nur die
+                 Spurgrößen einer Seite, ansonsten alternierend für zwei
+                 Seiten.
+                 Spurgröße=0 bedeutet, der Track ist unformatiert.
+                 Spurgröße wird berechnet aus Tabelleneintrag * 256.
+                 Beachten Sie, daß die 256-Bytes der SPur-Info mit
+                 eingeschlossen sind.
+
+
+    Der Spur-Informationsblock (für jede Spur)
+    ------------------------------------------
+    Byte (Hex):  Bedeutung:
+    00 - 0C      Track-Info\r\n
+    0D - 0F      unbenutzt (0)
+    10           Spur-Nummer (0 bis Spuranzahl-1)
+    11           Kopf-Nummer (0)
+    12 - 13      unbenutzt (0)
+    Format-Spur-Parameter:
+    14           BPS (Bytes pro Sektor) (2 für 0x200 Bytes)
+    15           SPT (Sektoren pro Spur) (9, max. 18 möglich)
+    16           GAP#3 Format (Lücke beim Formatieren: 0x4E)
+    17           Filling-Byte (Füllbyte beim Formatieren: 0xE5)
+    Sektor-Information (jeweils für jeden Sektoren):
+    18+i         Spurnummer     \
+    19+i         Kopfnummer      | Sektor-ID-Informationen
+    1A+i         Sektornummer    |
+    1B+i         BPS            /
+    1C+i         Status 1 Fehlercode (0)
+    1D+i         Status 2 Fehlercode (0)
+    1E+i,1F+i    unbenutzt (0)
+             *E* Sektorlänge in Bytes (Little-Endian-Notation).
+                 Dies ermöglicht verschieden große Sektoren auf einer Spur.
+                 Die Länge wird berechnet aus (0x0080 << wirkliche_BPS).
+
+
+    Anmerkungen:
+    In der Reihenfolge der Sektor-ID's müssen nach der Spur-Info
+    die Sektordaten kommen. Es dürfen keine Spuren, Sektoren
+    ausgelassen werden.
+    Bei doppelseitigen Formaten alternieren die Spuren, z.B.
+    Spur 0 Kopf 0, Spur 0 Kopf 1, Spur 1 ...
+    CPCTRANS dient zum Kopieren von CPC-Disketten in dieses Format.
+
+
+  7.7.2  Snapshot-Dateien
+  -----------------------
+
+    Snapshot-Dateien bestehen aus einem 0x100-Byte Header mit
+    angehängtem Speicherauszug.
+
+    Der Snapshot Header:
+    Byte (Hex):   Bedeutung:
+    00 - 07       'MV - SNA' (als Kennung)
+    08 - 0F       unbenutzt (0)
+    10            Snapshot Version (2, früher 1)
+    11 - 1A       Z80-Register  AF, BC, DE, HL, R, I
+    1B - 1C       Z80-Flags  IFF0, IFF1 (0=disabled, 1=enabled)
+    1D - 24       Z80-Register IX, IY, SP, PC
+    25            Z80 Interrupt Modus IMD (0 - 2)
+    26 - 2D       Z80-Register  AF', BC', DE', HL'
+    2E            Gate Array: Ink-Nummer-Register
+    2F - 3F       Gate Array: Ink-Wert-Register (0, 1, ..., 15, 16)
+    40            Gate Array: Multi-Konfigurations-Register
+    41            Gate Array: RAM-Konfigurations-Register
+    42            CRTC: Adreß-Register
+    43 - 54       CRTC: Daten-Register (0, 1, ..., 17)
+    55            Upper ROM Nummer
+    56 - 59       PIO: Port A, Port B, Port C, Port CTRL
+    5A            PSG: Adreß-Register
+    5B - 6A       PSG: Daten-Register (0, 1, ..., 15)
+    6B - 6C       Speicherauszug-Größe (64K oder 128K)
+    (die folgenden Parameter existieren erst ab Version 2.0 :)
+    6D            CPC Typ, auf dem der Speicherauszug generiert wurde
+                    (0=CPC 464, 1=CPC 664, 2=CPC 6128, 3 = unbekannt)
+    6E            Interrupt-Nummer (0..5), der zuletzt aufgetretene
+                    Interrupt während eines Bildaufbauzyklus.
+    6F - 74       6 Multi-Modes, d.h. Bildschirmmodi (0..2) während der
+                    Interrupts 0..5.
+    75 - FF       unbenutzt (0), evtl. später für Emulator-Konfiguration
+
+
+
+  7.7.3  AMSDOS-Header
+  --------------------
+
+    Byte (Hex):   Bedeutung:
+    00            User (0 , mögliche Werte 0-15)
+    01 - 0F       Dateiname+Endung (evtl. mit Nullen aufgefüllt)
+    10            Blocknummer (0)
+    11            Letzter-Block-Flag (0)
+    12            Datei-Typ (0=BASIC, 1=geschütztes BASIC, 2=Binär,...)
+    13 - 14       Blocklänge (0)
+    15 - 16       Ladeadresse (0-FFFF)
+    17            Erster-Block-Flag (0)
+    18 - 19       Logische Länge (0-FFFF)
+    1A - 1B       Einsprungadresse (0-FFFF)
+    1C - 3F       Frei für den Benutzer (0)
+    40 - 42       wirkliche Dateilänge (1-FFFFFF)
+    43 - 44       Prüfsumme über Bytes 00-42
+    45 - 7F       unbenutzt (zufällige Werte aus dem Sektorpuffer)
+
+    Anmerkungen:
+    Der Header wird jeder nicht-ASCII-Datei vorangestellt.
+    Er wird anhand der Prüfsumme erkannt.
+    Bytes 00 - 3F stammen aus der "Kassettenzeit", in der Dateien
+    in Blöcke aufgeteilt wurden.
+    Unbedingt notwendig sind die Bytes 12, 15-16, 1A-1B, 40-42, 43-44 .
+
+
+
+  7.7.4  Poke-Datenbank:
+  ----------------------
+
+  Ein Eintrag (ein Poke, eine Zeile) besteht aus 7 Teilen, jeder Teil in
+  Anführungsstrichen eingeschlossen und mittels Komma abgetrennt.
+  1. Folgenummer (1 Zeichen 0-F):
+     Der erste Eintrag besitzt die Nummer 0 und kann ausgewählt werden.
+     Falls ein Programm mehrere Pokes gleichzeitig benötigt, müssen die
+     Folgeeinträge mit 1,2,... numeriert werden.
+  2. Programmname (bis 20 Zeichen)
+  3. Beschreibung (bis 20 Zeichen)
+  4. Typ (1 Zeichen):
+     Für was für eine Programmversion der Poke ist ('t'=Tape, 'd'=disk,
+     'a'=all), wird im Moment noch ignoriert.
+  5. Adresse des Pokes (4 Zeichen, hexadezimal):
+     Die Speicherstelle, die geändert werden soll.
+  6. Byte für den Poke (2 Zeichen, hexadezimal oder '??'):
+     Bei '??' soll der Benutzer einen Wert eingeben, z.B. gewünschte
+     Anzahl der Leben.
+  7. Altes Byte (2 Zeichen, hexadezimal oder '??'):
+     Dies ermöglicht festzustellen, ob der Poke korrekt eingesetzt werden
+     kann. Falls das Byte an der Adresse damit nicht übereinstimmt, wird
+     eine Warnung ausgegeben. Bei '??' findet keine Überprüfung statt.
+
+  Beispiel:
+    "0","Devils Crown","inf oxygen","t","863b","00","??"
+    "1","","","t","863c","00","??"
+    "2","","","t","863d","00","??"
+
+    Der "unendliche-Sauerstoff"-Poke für das Programm "Devils Crown"
+    besteht aus drei Teilen. Alte Werte sind nicht bekannt, deshalb ist
+    altes Byte='??'.  Name und Beschreibung brauchen in Folgeeinträgen
+    nicht wiederholt zu werden.
+
+
+
+
+
+7.8  Interne History
+====================
+
+
+  Z80EMU (nur ein Z80 mit kaum CPC)
+  ---------------------------------
+
+  - v1.0 (1991)
+    erste Version in Pascal (nur eine Z80-Emulation)
+  - v1.2 (12.8.1992 - 16.8.1992)
+    erste Version in C (mit TPTC umgewandelt). Z80-Probleme: P-Flag bei
+    ADD HL..., DAA, ldir; Z-Flag bei BIT... Z,S-Flags bei Rotate; ROMs
+    möglich
+  - v1.3 (18.8.1992)
+    Port-Adressierung im Lo-Byte war falsch. Neues Speichermanagement
+    (128 KB RAM, 32 KB ROM)
+  - v2.0 (18.8.1992 - 22.8.1992)
+    Implementierung der COCPU-Technik, um Fehler zu finden (mit separatem
+    Speicher für die COCPU). Z80-Probleme: H-Flag gesetzt nach AND... ;
+    CPI... setzt N-Flag. Bildschirmfarben Farben Blau und Gelb (vorher
+    schwarzweiß)
+  - v2.1 (25.8.1992 - 27.8.1992)
+    Alle Pens, Farben des CPCs in allen Modi; nur auf den sichtbaren
+    Bildschirm wird geschrieben. COCPU-Fehler: Alle (ix+zz) mit negativer
+    Distanz waren falsch! Vergessen, "signed char" zu nehmen.
+  - v2.2 (30.8.1992 - 3.9.1992)
+    Neue Keyboard-Routine, Farbänderung ohne Flackern (Warten auf HSYNC).
+    Einführung eines "Not-ROM" mit COPYMATE.
+  - v2.3 (15.9.1992 - 19.9.1992)
+    FDC-Emulation zum Laden von Sektoren. COCPU-Fehler: LD XH... war LD H...
+  - v2.3b (19.9.1992)
+    Screen-Update nur auf Blöcken 0..3 (nicht 4..7); Port FCxx gleich wie
+    FBxx (für CP/M Plus). Da wußte ich noch nicht, daß OUTI... das
+    B-Register pre-dekrementiert.
+  - v2.4 test (25.10.1992)
+    Nur R-Register-Emulation, falls gewünscht (per "DEFINE"); Screen-Update
+    jetzt jeden n-ten Interrupt und nicht für jedes Byte einzeln, was in den
+    Speicher geschrieben wird. (Noch sehr langsam, da in C). Neue
+    Speicherverwaltung mit Blöcken nur ab Segmentstart.
+  - v2.5 test (31.10.1992)
+    Geänderte Speicherzuweisung. Endlich Hardware-Scrolling und verschiedene
+    Bildschirmgrößen möglich.
+  - v2.6 test (5.11.1992)
+    Neue Keyboard-Routine von Arnt Gulbrandsen, endlich alle Tasten
+    erreichbar; Screen-Update in Assembler.
+  - v2.7 test
+    Versucht, die schnelle Emulation von Jürgen Weber einzubinden, klappt
+    noch nicht.
+  - v2.8
+    Verbesserter Screen-Update: Nur Bereiche, die sich verändert haben,
+    werden auf den Bildschirm gebracht.
+  - v2.9
+    Timer-Handler mit 300 Interrupts. Fast-Emulation läuft, wenn kein ROM
+    (Banking) benötigt wird.
+
+  CPCEMU (endlich ein CPC)
+  ------------------------
+  - v0.2 (23.12.1992), Nachfolger von Z80EMU v2.9
+    Nach nahezu 4 Stunden mit dem Turbo-Debugger endlich den Grund gefunden,
+    warum sich die fast-Emulation aufhängte: ES anstatt DS gepushed.
+  - v0.3 (28.12.1992 - 29.12.1992)
+    N-Flag bei INI,OUTI setzen. CPI im fast-Z80 setzte falsche Flags. RL(HL)
+    benutzte Read-Segment(DS) anstatt Write-Segment(ES). LD A,R produziert
+    jetzt Zufallszahlen; Alle Kassettenroutinen bis auf CASSETTE IN CHAR.
+  - v0.4 (1.1.1993)
+    IN A,(n): A nach b8..b15 (anstatt B); RAM-Konfiguration 0xc3: 0,3,2,7
+    (für CP/M Plus). KC-Compact (ein CPC-Kompatibler aus der ehem.DDR)
+    benutzt Port EE00 - EE3D, nur wofür?
+  - v0.5 (28.1.1993 - 8.2.1993)
+    INIR,... R-Register-Erhöhung abhängig von B, nicht von BC. Endlich
+    CASSETTE IN CHAR (falscher Patch beim CPC 6128 eingetragen).
+  - v0.6 (23.3.1993 - 24.5.1993)
+    Ein Amerikaner hat Jürgen darauf aufmerksam gemacht, daß die OUTI-
+    Befehle das B-Register pre-dekrementieren! C-Teile jetzt auch im
+    386er-Code (mit Borland C++ v3.1) Disetten-Abbilder jetzt mit Endung
+    ".DSK". CPCREAD.PAS korrigiert (vergessen, Kopfseite mit 0 zu
+    initialisieren) und in CPCREAD.C umgewandelt. PIO-8255-PORT-Adressierung
+    flexibilisiert (kann auch lesen, wenn Port auf Ausgabe geschaltet ist...)
+  - v0.7 (26.7.1993 - 29.8.1993) (inoffiziell)
+    Source völlig überarbeitet, modularisiert. Konfigurationsdatei
+    eingeführt, jetzt mehrere ROMs möglich. Änderung des Firmennamens von
+    Schneider auf Amstrad. (Können Sie jetzt selber einstellen.) Fehler im
+    RAM-Banking beseitigt. Neue Dokumentation in Deutsch.
+  - v0.8 (30.8.1993 - 9.9.1993)
+    Slow-Emulation: Parity-Befehle durch Tabelle nicht nur für die Parität
+    beschleunigt. Z80: ED xx mit illegalem xx wird ignoriert. Neue
+    Dokumentation jetzt auch in Englisch.
+  - v0.8a (10.9.1993 - 15.9.1993)
+    Fataler Fehler in der Fast-Emulation: Wenn ein DD CB xx - Befehl
+    ausgeführt wurde und gerade ein Interrupt auftrat, wurde der Befehl
+    ignoriert!
+  - v0.8b (16.9.1993 - 21.9.1993)
+    "real"-VSYNC eingebaut, falls "VSYNC_CT" = 0. PIO Port A Problem
+    korrigiert: OUT &F400,xx mit Port A im Eingabemodus wurde ignoriert.
+    Neue Joystickroutine von Martin Zacho.
+  - v0.8c (22.9.1993 - 13.12.1993)
+    Dokumentation mit "ispell" überprüft. Emulation startete nicht, falls
+    "USE_JOYSTICK=1" und kein Joystick angeschlossen war (PUSH AX an
+    falscher Stelle). Slow-Emulation: DAA korrigiert (Klammern fehlten seit
+    v0.8). Falscher Patch für CPC 664 in der Interrupt-Routine. Dieser Patch
+    ersetzte EI durch NOP, um das EI-Problem zu umgehen (Interrupts erst
+    einen Befehl später erlauben). Jetzt für alle CPCs.
+  - v0.8d (14.12.1993 - 29.12.1993)
+    FDC-Emulation für doppelseitige Formate umgeschrieben. CPCTRANS ersetzt
+    altes CPCREAD und erlaubt Lesen von VORTEX-Disketten mit dem Patch
+    720KB.COM. Außerdem können Disketten-Abbilder jetzt auf Diskette
+    zurückgeschrieben werden. Neues Datei-Auswahl bei F3; einige Port-
+    Adressen Aliases eingeführt, z.B. &7000 - &7f00, um das Gate Array
+    anzusprechen, &0c00,&1c00,&2c00,&3c00,&bc00 für den CRTC. R-Register
+    Emulation eingeschaltet.
+  - v0.9 alpha (30.12.1993 - 20.1.1994)
+    EMS Speichernutzung möglich durch spezielle EMS/UMB-Konfiguration.
+    Konfigurationsdatei um Binärzahlen erweitert. RAM-Banking Adressierung
+    korrigiert: Der Emulator akzeptierte &d0-&ff als &c0-&c7. Jetzt bis zu
+    576 KB RAM mit EMS.
+  - v0.9b (21.1.1994 - 31.1.1994)
+    EMS-Benutzung vereinfacht durch erweitertes EMS (oder LIM EMS 4.0) mit
+    mehr als 4 physikalischen EMS Seiten. Dateiauswahl jetzt auch bei 'l'
+    (Debug Menü), RUN" .
+  - v0.9c (1.2.1994 - 29.4.1994)
+    Bißchen schrecklicher PC-Lautsprecher Sound (Ausschalten mit F4).
+    Dateiauswahl auch bei 'v'; korrigierte englische Dokumentation;
+    Soundblaster-Sound (noch verbesserungswürdig); neues CPCTRANS mit
+    Kommandozeilen-Parameter und direktem FDC-Zugriff; paralleler Adapter
+    getestet und die Software verbessert. Fast-Z80: inc/dec (hl), (ix+n)
+    für RAM unter ROM korrigiert. Jetzt mit Bild hoch/runter übergroße
+    Bildschirme verschieben; Teil von Overscan-Bildschirmen wird angezeigt.
+    Jetzt möglich: 64K-'Snapshots'.
+  - v0.9d (30.4.1994 - 12.5.1994)
+    Interrupts während DI werden nicht mehr vergessen, und sie werden nicht
+    mehr direkt nach einem EI-Befehl erlaubt. Neue Farb-Funktionen: ohne
+    Schnee unter OS/2. Fast-Z80: beschleunigtes Code-Holen.
+
+  - v1.0 (13.5.1994 - 20.5.1994)
+    Verbesserter Screen-Part: Jetzt auch andere Zeichengrößen von 1 bis 8
+    möglich. Dateiauswahl auch bei SAVE" , Schnellauswahl durch Drücken von
+    Anfangsbuchstaben. Verbessertes CPCTRANS mit Verify-Option. Neues
+    Setup-Menü, wenn Sie F7 drücken. Darin können Sie z.B. Farbflimmern
+    unterdrücken.
+
+  - v1.0a (21.5.1994 - 9.6.1994)
+    Setup-Menü verbessert: jetzt neben den Cursor-Tasten auch direkte
+    Eingaben möglich. Nahezu deutsche Tastenbelegung, einfache
+    Verzögerungsoption (delay). Kein "Müll" mehr bei verkleinertem
+    Bildschirm (d.h. die Teile vom größeren Bildschirm werden korrekt
+    gelöscht). Fast-Z80-Teil verbessert: schnellere RRA,RLA, ..., schnellere
+    CP xx Befehle. Weitere illegale Befehle eingefügt (ED xx). Außerdem
+    fehlten die undokumentierten Befehle LD D,XH und LD YL,YH (im
+    CoZ80-Modus aufgefallen)! CPDR,CPIR mit BC=0 korrigert (0 heißt nämlich
+    auf einem Z80 65536, aber es ist 0 bei dem 80x86-REPE-Präfix!).
+    DAA-Flags korrigiert. Neue Software für den parallelen Adapter: Jetzt
+    auch Senden zum CPC möglich. Dank an Bernd Schmidt, der anmerkte, daß
+    ein Interrupt das R-Register um 1 erhöht. Außerdem konnte mit seiner
+    Hilfe die Emulation des PIO-Port-C Registers verbessert werden.
+
+  - v1.1a (10.6.1994 - 16.8.1994)
+    Eine neue Ära von CPCEMU hat begonnen: Amstrad hat die ROMs freigegeben!
+    Ein guter Anlaß, die Dokumentation umzuschreiben... Änderungen an der
+    Konfigurationsdatei: ROM_BLOCKS -> ROM_BLOCK, DISC_BYPASS ->
+    DISABLE_ADOS, keine Leerzeichen mehr vor und nach '=' nötig. Änderungen
+    am Sound-Teil, Grafik-Teil: vertikale Größe durch VGA-CRTC.
+    Joystick-Kalibrierung jetzt im Setup-Menü, TAPE-Routinen beim Speichern
+    verbessert. FDC-Teil verbessert: jetzt läuft auch COPYMATE. Wechseln von
+    Nicht-DATA-Disketten ohne "Read Error" möglich (es wurde immer Spur 0
+    gesucht). Eine weitere Verzögerung in CPCTRANS, ich hoffe, Sie müssen
+    jetzt nicht mehr die Turbo-Taste betätigen; Formatieren von Disketten-
+    Abbildern. Nochmal PIO-Port-C korrigiert: er wird nach OUT &F700,n
+    gelöscht. Größere Änderungen an der Konfigurations-Datei: Jetzt mit
+    bedingter Konfiguration (#IFCPC, #ENDIF). Einige Schlüsselwörter
+    verändert (VSYNC_CT -> /, DISC_PATH -> /, SNAP_PATH -> SNAPSHOT, DRV_A ->
+    DRIVE_A, DRV_B -> DRIVE_B).
+    Laden von Programmen aus ZIP-Archiven. Sie brauchen PKUNZIP dazu.
+
+  - v1.1b (17.8.1994 - 2.9.1994)
+    Multi-Modes eingeführt, d.h. verschiedene Bildschirmmodi gleichzeitig.
+    Dazu wird der Bildschirmaufbau in bis zu 6 Teile zerlegt, es erfolgt also
+    eine teilweise Auffrischung bei jedem Interrupt. Klappt noch nicht immer.
+    Jetzt möglich: 128K Snapshots, zusätzlich für Multi-Modes erweitert.
+    CPCPARA verbessert: jetzt können Sie Binärdateien mit Header
+    kopieren. Vollkommen neugeschriebene, hoffentlich besser verständliche
+    Dokumentation. Erkennung des CPC 6128 Plus eingebaut. Noch mehr
+    Port-Aliases eingebaut.
+
+  - v1.2 (3.9.1994 - )
+    Diese Version wurde veröffentlicht. Es wurden hauptsächlich ein paar
+    Änderungen an dem Hilfesystem vorgenommen.
+
+  - v1.2a (27.9.1994 - )        (war verfügbar als UPD12A.ZIP)
+    Datei-Auswahl: Nur die verfügbaren Laufwerke werde angezeigt.
+    Und: Mit dem Treiber ANSI.SYS war der Hintergrund von Texten
+    manchmal schwarz.
+    TMP_PATH: Ein Laufwerk ohne Pfad angeben.
+    DOS-Shell (F7): CPCEMU wird vorher ins XMS, EMS oder auf Festplatte
+    ausgelagert, somit haben Sie viel Speicher im DOS-Shell. (Diese
+    Neuerung wurde vom Public Domain Program SWAP300.ZIP von Marty Del
+    Vecchio übernommen.)
+    Bildschirm-Auffrischung konnte falsch sein, wenn die Bildschirmbreite
+    nicht durch 4 teilbar war.
+    Eine andere CPCEMU-Version für noch höhere Geschwindigkeit: C2.EXE.
+    Diese Version benutzt eine andere Speicherverwaltung mit zwei
+    64KB EMS-Fenstern für Lesen bzw. Schreiben. Aber es funktioniert
+    nur mit EMS.
+    Die ROMs sind auch (c) von Locomotive Software, nicht nur von Amstrad.
+  - v1.2b (  )
+    Auf Soundblaster Pro Karten wurde kein Stereo-Sound ausgegeben, obwohl
+    es angezeigt wurde. Falls keine Soundblaster-Karte gefunden wurde,
+    gab es überhaupt keinen Sound, bis USE_SB=0 geändert wurde.
+    Schneller-Z80: Einige Wort-Zugriffe in Byte-Zugriffe umgeändert.
+    Ist zwar ein bischen langsamer, aber der Computer hängt sich nicht bei
+    jedem Zugriff an 0xffff auf.
+    Schneller-Z80: Problem bei EI HALT DI korrigiert: Bei einem Interrupt
+    wurde die Adresse von HALT 'gepushed' anstatt der von DI.
+    Englische Dokumentation korrigiert.
+    Verbessertes CPCPARA und PCPARA v1.1: Adapter-Test, wesentlich höhere
+    Geschwindigkeit CPC->PC: Etwa 1600 Bytes pro Sekunde, von Diskette
+    lesend! (486/66), Statistik. Jetzt kannst Du 16KB in 10 Sekunden
+    übertragen! Dank an Klaus Weber, der anmerkte, das es zu langsam war.
+    In PCPARA wurde nach jedem empfangenen Halbbyte mittels DELAY(1)
+    eine Millisekunde gewartet. Dies ist überflüssig.
+
+  - v1.2c (28.2.1995 - )        (war verfügbar als UPD12C.ZIP)
+    CPCEMU umgeschrieben von C in C++. Dies erlaubt Inline-Funktionen
+    und bessere Schnittstellen, um den Überblick behalten zu können.
+
+  - v1.2d (16.3.1995 - )        (nur für Leser der 'mailing list')
+    Schneller-Z80: Interne Änderungen, die unsichtbar für den Benutzer
+    bleiben, außer einer kleinen Geschwindigkeitssteigerung. Alle Variablen
+    werden jetzt im DATA-Segment anstatt im CODE-Segment gehalten.
+    Endlich der unbedingt notwendige Modus für schnelle Computer eingeführt:
+    'Realtime-CPC' (Auswählbar im Setup-Menüoder mit REALTIME=1).
+
+  - v1.3 (16.4.1995 - )
+    Poke-Datenbank zum einfachen 'Poken', französische Dokumentation,
+    FDC-Format-Befehl (Re-formatieren von Disketten-Abbildern derselben
+    Größe), neues Menüsystem mit Mausunterstützung (MOUSE=1),
+    Disketten-Abbilder mit read-only DOS Attribut einlegen (als read-only),
+    Debug-Menü: Suchfunktion ('find') eingebaut.
+
+  - v1.3a (30.4.1995 - )        (war verfügbar als UPD13A.ZIP)
+    Mit Version v1.3 lief Boulder Dash nicht mehr, obwohl es mit v1.2 noch
+    funktionierte. Der Interrupt Modus 2 des Z80 wurde falsch simuliert
+    (PUSH/POP vergessen). Auch in der langsamen Z80-Emulation funktionierte
+    es wegen eines ähnliche Fehlers nicht.
+    CPCTRANS: Option -f 6 erlaubt.
+
+  - v1.3b (20.5.1995 - )        (ist verfügbar als UPD13B.ZIP)
+    Einige Benutzer beschwerten sich, daß der Soundblaster-Sound seit
+    Version 1.3 nicht mehr funktionierte.
+
+  - v1.4a0 (21.3.1996 (v1.3c); veröffentlicht in der c't 6/97)
+    GUS-Soundunterstützung von Ulrich Doewich; On-Line-Hilfe in Deutsch,
+    Englisch, Französisch und Spanisch; komplette französische Dokumentation;
+    Unterstützung für 2 Joysticks; VESA-Videomodes für hohe Auflösungen;
+    Setup-Menü und Konfigurationsdatei überarbeitet;
+    Konfigurationen laden und speichern vom Setup-Menü aus;
+    verbesserte FDC-Routinen für Fremdformate; Erweitertes Disketten-Format;
+    Benutzerdefinierte Farben und Tasten;
+    CPCTRANS überarbeitet; neues SNA2GIF (v1.1);
+    Schnelle Z80-Emulation: manchmal wurde nach einem Reset der Bildschirm
+    nicht komplett gelöscht (Problem bei HALT);
+
+  - v1.4a1 (4.4.1996)
+
+  - v1.4a2 (5.7.1996)
+
+
+  - v1.5b0 (8.6.1998; veröffentlicht in der c't 12/98)
+    perfekter Soundblaster-Sound von Ulrich Doewich (dagitaler Sound mit
+    Geräuschen);
+    teilweise spanische Dokumentation dank Ismael Salvador Igual;
+    Autostart von BASIC-Programmen aus Disketten-Abbildern;
+    4DOS-Beschreibungen bei der Datei-Auswahl;
+    die Online-Hilfe erlaubt jetzt Themen mit Leerzeichen (und Sonderzeichen);
+    Pfade in Konfigurationen werden jetzt relativ abgespeichert;
+    Datenrate bei CPCTRANS v2.3g setzen;
+    SNA2GIF v1.2: benutzerdefinierbare Farbpalette, bessere Autoskalierung;
+    CPCPARA v1.2: schnelles Senden abschaltbar (z.B. für Vortex);
+    Poke-Datenbank erweitert;
+    erlaubt die Benutzung der VESA-Videomodi, auch wenn sie nicht vom
+    VESA-BIOS angezeigt werden (wird für einige Noname S3 Virge Karten
+    mit Standard-S3-BIOS benötigt);
+    Die Batchdateien CPCxxx.BAT benutzen eine Konfigurationsdatei unter %TMP
+    (dadurch kann CPCEMU auf einer CD-ROM aufgerufen werden und trotzdem
+    die Konfiguration modifizieren);
+
+  - v1.5b1
+    Vollständige spanische Dokumentation v1.5 dank Gerardo Briseño;
+    Vollständige Französische Dokumentation v1.5 dank Jean-Pierre MARQUET;
+    Problem mit dem Joystick behoben (er funktionierte mit v1.5b0 nicht);
+    Dateiauswahl: Jetzt bis zu 1500 Verzeichnis-Einträge (vorher 500);
+    direkte Druckerport-Ansteuerung bei PRINTER="";
+    vorzeitiges VSYNC-Löschen wieder beseitigt (Platoon reagierte bei v1.5b0
+    auf keine Eingabe);
+    Mit EMS konnten Sie keinen 128K-Schnappschuß laden, der eine
+    RAM-Konfiguration <> &C0 hatte (z.B. &C2 in CP/M Plus);
+    CPCPARA v1.2: das Flag, um schnelles Senden auszuschalten, hatte
+    'negative Logik';
+
+  - v1.6
+    siehe zunächst noch "readme_d.txt"
+
+
+  CPCEMU wurde in C++ und Assembler geschrieben. Zum Kompilieren wurden
+  Borland C 3.1 mit 386er Optimierung und TASM benutzt. Zur Fehlersuche
+  habe ich den Turbo Debugger benutzt.
+  Die Farben wurden mit dem Programm VGAMETER von J. Stephen Shattuck, Jr.
+  ausgewählt, indem sie mit denen eines CPCs verglichen wurden, der an
+  einen Scart-Fernseher angeschlossen war.
+
+
+
+------------------------------------------------------------------------
+
+
+
+(Ab hier dürfen Sie wieder gefahrlos weiterlesen.)
+
+
+
+Anhang
+******
+
+
+
+A.1  Glossar
+************
+
+Hier werden einige Computer-Fachbegriffe erläutert. Ich erhebe keinen
+Anspruch auf Vollständigkeit oder präzise Definitionen. Die meisten
+Begriffe sind im Blickwinkel des CPC erklärt.
+Referenzen habe ich mit "»" markiert.
+
+
+386/33 (AT 386/33)
+  Kurzbezeichnung für einen »PC AT mit 80386 Prozessor, der mit 33 MHz
+  getaktet wird. Wegen der "hohen" »Taktfrequenz kann man davon
+  ausgehen, daß es sich um einen 386DX mit echtem 32-Bit Datenbus handelt
+  und nicht um die Sparversion 386SX mit einem 16-Bit Datenbus.
+
+AMSDOS (Amstrad DOS)
+  Von »Amstrad entwickeltes »DOS, speziell für die »CPC-Computer.
+
+Amstrad
+  Englischer Computerhersteller, der die »CPC-Computer entwickelt hat.
+
+Archiv
+  Archive sind Sammlungen von »Dateien.
+  Auch: Eine Datei, in der mehrere andere Dateien enthalten sind.
+  In »ZIP-Archiven werden die einzelnen Dateien vorher komprimiert (gepackt).
+
+ASCII (Abkürzung für: American Standard Code of Information Interchange)
+  Auf einem Computer werden alle Buchstaben, Ziffern und Sonderzeichen
+  intern durch Zahlen repräsentiert. Die meisten Computer benutzen ASCII,
+  bei dem der Buchstabe 'A' z.B. durch die Zahl 65 repräsentiert wird.
+  »PC und »CPC benutzen auch ASCII. Im »Locomotive-BASIC läßt sich ein
+  BASIC-Programm durch den Befehl SAVE"<Dateiname>",A in ASCII-Form
+  abspeichern.
+
+Basis-Adresse
+  Diese müssen Sie bei vielen Programmen im »Setup festlegen, wenn Sie
+  eine Soundkarte haben. CPCEMU findet diese Einstellung über die
+  »Umgebungsvariable.
+
+BASIC (Abkürzung für: beginners all purpose symbolic instruction code)
+  Weitverbreitete und sehr einfach zu lernende Programmiersprache für
+  Heim- und Personalcomputer. Früher wurde zu jedem Computer ein
+  eigenes BASIC ausgeliefert, es gab also viele BASIC-Dialekte.
+  Moderne BASIC-Dialekte wurden durch Elemente strukturierte Programmierung
+  erweitert, so daß nicht mehr unbedingt "Spaghetticode" programmiert
+  werden muß. Auch die »CPCs wurden mit einem BASIC ausgeliefert, dem
+  sogenannten Locomotive-BASIC von der gleichnamigen Firma.
+
+BASIC-Datei
+  Siehe »Datei.
+
+Batch-Datei (Stapel-Datei)
+  Eine Batch-Datei enthält Befehle, die Sie normalerweise über die
+  Tastatur eingeben. Rufen Sie eine solche Datei auf, werden die
+  Befehle automatisch ausgeführt, als hätten Sie sie der Reihe nach
+  eingegeben.
+
+BBS
+
+Bildschirmmodus, -modi
+
+Binärdatei
+  Siehe »Datei.
+
+BLASTER-Umgebungsvariable
+  Siehe »Umgebungsvariable.
+
+C64
+  Ein von der Firma Commodore entwickelter Heimcomputer mit 64KB »RAM,
+  der sehr populär war. Vor allem durch das riesige Softwareangebot war
+  er lange Zeit der Computer überhaupt. Später wurde er als Spielcomputer
+  durch den Commodore AMIGA abgelöst, konnte sich aber trotz überholter
+  Technik noch lange behaupten.
+
+CPC (Abkürzung für: Colour Personal Computer)
+  Ein von der Firma »Amstrad entwickelter Personalcomputer, den es in
+  mehreren Modellen gab. Lesen Sie noch einmal die Einleitung.
+
+CPC-Druckerport
+  Die Centronics-Schnittstelle zum Anschluß eines Druckers an den »CPC.
+  Leider haben die Entwickler des CPC hier zu viel gespart und die
+  Schnittstelle nur mit 7 Datenbits ausgerüstet. Durch legen einer
+  Drahtbrücke konnte sie aber leicht auf 8 Bit erweitert werden. Dazu
+  wurde der Kassettenport mißbraucht, der beim Ausdrucken normalerweise
+  nicht benötigt wird.
+
+CPC-Firmware-Manual
+  Ein Buch über den »CPC, wo vor allem die Betriebssystem-Einsprünge
+  des »CPC erklärt werden.
+
+CPC-Newsgruppe
+  Eine Newsgruppe speziell für den »CPC. Sie heißt comp.os.amstrad.8bit
+  und existiert seit August 1994.
+
+CP/M Plus (Abkürzung für: control program for microcomputers)
+  Betriebssystem der Firma Digital Research hauptsächlich für 8-Bit
+  Mikrocomputer. Vor MS-DOS war es recht weit verbreitet.
+  CP/M Plus (CP/M 3.0) war der Nachfolger von CP/M 2.2 und wurde mit dem
+  »CPC 6128 ausgeliefert.
+
+CTRL/SHIFT/ESC (control/shift/escape)
+  "Dreifingergriff" auf dem »CPC, um einen Reset auszulösen. Er entspricht
+  der Resetkombination CTRL/ALT/Entf. auf einem PC. Manche Programme
+  blockieren jedoch diesen Reset, so daß Sie entweder den Computer
+  ausschalten oder den Resetknopf drücken müssen. Die CPCs hatten keinen
+  Resetknopf, man konnte sich aber leicht einen bauen. In CPCEMU ist die
+  Funktionstaste F8 der Resetknopf.
+
+Cursor (deutsch: Blinker)
+  Zeichen auf dem Bildschirm, das die aktuelle Schreibposition anzeigt.
+  Es gibt auch Cursortasten, mit denen man dieses Zeichen steuern kann.
+
+D-Sub
+  Eine spezielle Form von Steckverbindern
+
+Datei (englisch: file)
+  Sammlung von zusammengehörigen Daten. Auf dem »CPC gibt es Dateien
+  verschiedenen Typs, z.B. die BASIC-Dateien mit BASIC-Programmen und
+  normalerweise der Endung .BAS, ASCII-Dateien mit beliebigem Text
+  und Binärdateien mit beliebigen Bytes und normalerweise der Endung .BIN.
+  Binärdateien können Maschinenprogramme oder andere Daten enthalten.
+
+Dk'tronics
+  Englische Firma, die Hardware-Erweiterungen für den »CPC herausgebracht
+  hat, unter anderem auch Speichererweiterungen.
+
+DMA (Abkürzung für: Direct Memory Access)
+  Direkter Zugriff auf den Arbeitsspeicher unter Umgehung des Prozessors.
+  Wird z.B. bei Diskettenlaufwerken eingesetzt, aus Sparsamkeitsgründen
+  beim »CPC aber nicht.
+  Auch die Soundblaster-Karte kann einen DMA-Kanal benutzen, durch den sie
+  die digitalen Sounddaten bekommt.
+
+DOS (Abkürzung für: disk operating system)
+  Diskettenorientiertes Betriebssystem. Z.B. AMSDOS, DRDOS, MS-DOS.
+  Heute wird DOS als Synonym für MS-DOS verwendet.
+
+DOS-Suchpfad
+  Der Pfad durch die Unterverzeichnisse, den »DOS benutzt, um eine Datei
+  zu finden. Er wird durch die »Umgebungsvariable PATH festgelegt.
+
+DRDOS
+  MS-DOS-kompatibles »DOS der Firma Digital Research.
+
+Email (Abkürzung für: Electronic Mail)
+  Die Benutzung eines Computers als Briefkasten.
+
+EMM (Abkürzung für: Expanded Memory Manager)
+  Ähnlich wie »EMS.
+
+EMS (Abkürzung für: Expanded Memory System)
+  Speichererweiterung für den »PC, um die 640KB-Speichergrenze zu umgehen.
+  Durch Banking werden in einem sogenannten EMS-Speicherfenster andere
+  Speicherseiten eingeblendet.
+  EMS wurde von den 3 Firmen Lotus Intel Microsoft entwickelt, deshalb
+  heißt es auch LIM-EMS.
+  Es gibt Hardware-, emuliertes und simuliertes EMS.
+  Spezielle Speicherkarten stellen Hardware-EMS zur Verfügung. Es wurde
+  hauptsächlich bei PC XT eingesetzt. Emuliertes EMS gibt es auf PC AT
+  mit mindestens 80386 Prozessor, da der Paging-Mechanismus für das Banking
+  benutzt wird. Diese Form bietet EMM386.EXE und sollte bei CPCEMU
+  eingesetzt werden.
+  Bei simuliertem EMS werden die Speicherseiten kopiert, was für CPCEMU
+  zu langsam ist.
+
+Emulator
+  Das System, welches ein anderes »emuliert.
+
+Emulieren
+  Nachbildung eines Systems (aus Hard- und/oder Software) durch ein anderes.
+  Das nachbildende System führt mit den gleichen Daten die gleichen
+  Funktionen aus und kommt zu den gleichen Ergebnissen.
+  CPCEMU emuliert einen »CPC auf einem »PC.
+
+Formatdefinitionen
+  Definitionen von Disketten-Formaten.
+
+FTP (Abkürzung für: File Transfer Protocol)
+  Ein Protokoll, mit dem man Dateien über Rechnernetze kopieren kann.
+  Auch das Programm, das dieses Protokoll benutzt, heißt FTP.
+
+Hardware
+  Die Teile eines Computers, die "anfaßbar" sind, also z.B. angeschlossene
+  Geräte wie Drucker, Monitor; intern der Prozessor und andere
+  »Hardwarebausteine.
+
+Hardwarebausteine
+  Bausteine, Chips im Innern des Computers, z.b. Prozessor, Speicherchips,
+  Diskettencontroller, Ein-/Ausgabebausteine, ...
+  Im CPC gibt es neben dem Z80-Prozessor das Gate-Array, den CRTC 6845
+  zur Bildschirmadressierung, den PIO 8255 zur Ein-/Ausgabe, den
+  Soundchip PSG AY 3-8912, den Diskettencontroller FDC 765, ...
+
+Hardware-Scrolling
+  Verschieben des Bildschirminhalts, bei dem nicht der Speicherinhalt vom
+  Prozessor kopiert werden muß, sondern wo ein Hardwarebaustein
+  mithilft, so daß nur der Bildschirmstart verändert werden braucht.
+
+Initialisieren
+  Vorbelegen von Speicherzellen mit bestimmten Werten, damit z.B.
+  Variablen einen definierten Inhalt haben.
+
+Internet
+  Ein Internet ist ein aus mehreren Teilnetzen bestehendes Rechnernetz.
+  Hier ist *das* Internet gemeint, ein weltweites Netzwerk zur Kommunikation.
+
+Interrupt (Unterbrechung)
+  Falls der Prozessor ein Signal mit höherer Priorität bekommt, bricht
+  er das laufende Programm ab und führt ein spezielles Interrupt-Programm
+  aus. Nachdem dieses beendet ist, macht er mit dem unterbrochenen
+  Programm weiter. Auf dem PC gibt es verschiedene Interrupt-Signale.
+  diese werden ausgelöst, wenn z.B. eine Taste gedrückt wurde, ein
+  Timer abgelaufen ist, Daten von der seriellen Schnittstelle empfangen
+  werden (z.B. wenn die Maus bewegt wird), die Soundkarte mit dem
+  Abspielen eines digitalen Klanges fertig ist und neue Daten braucht, ...
+  Der Z80 im »CPC wird 300 mal pro Sekunde unterbrochen.
+
+Interrupt-Nummer IRQ (IRQ=Abkürzung für: Interrupt Request)
+  Auf dem PC haben verschiedene »Interrupts verschiedene Nummern.
+  Der Tastaturinterrupt hat z.B. die Nummer 9, der Timer-Interrupt die
+  Nummer 8. Wenn Sie eine Taste drücken, stellt die Tastatur eine
+  Interrupt-Anforderung (IRQ), damit der Prozessor die Tastennummer
+  abholt.
+
+Jumper-Box
+  Eine Adapter-Box zum Stecken beliebiger Verbindungen mittels Drahtbrücken
+  zwischen zwei Anschlüssen. Die Drahtbrücken müssen festgelötet werden.
+  Siehe auch »Wiring-Box.
+
+Keyboard-Handler
+  Dieses Programm wird aufgerufen, wenn Sie eine Taste drücken und
+  ein »Interrupt generiert wurde.
+
+Kommandozeilen-Parameter
+  Parameter, die Sie in der Kommandozeile zusammen mit dem Dateinamen
+  angeben.
+
+Konfiguration
+  Hier: Ein Programm an seine Bedürfnisse anpassen.
+  Wie im »Setup können Sie dies auch in der Konfigurations-Datei tun.
+
+LIM-Standard (Abkürzung für: Lotus Intel Microsoft)
+  Die von Lotus Intel Microsoft entwickelte Speichererweiterung mit
+  der Abkürzung »EMS.
+
+Locomotive
+  Englische Firma, die das »BASIC der »CPCs entwickelt hat.
+
+Mailing-List
+  Ein Service von mir, bei dem ich Ihre E-Mail-Adresse in einer Liste
+  aufnehme, so daß ich Sie über Neuigkeiten informieren kann. Ich
+  verschicke dann die Neuigkeit an alle Teilnehmer, die auf der
+  Liste stehen.
+
+Microchannel
+  Spezielle Bus-Architektur.
+
+MS-DOS (Abkürzung für: Microsoft Disk Operating System)
+  Ein Betriebssystem, das von der amerikanischen Firma Microsoft für
+  16-Bit-Prozessoren (8086) entwickelt wurde. Es ist das erfolgreichste
+  Betriebssystem für den PC und wird auch immer noch auf den 32-Bit-
+  Prozessoren 80386 und 80486 eingesetzt.
+
+Multi-Modes
+  Programmiertechnik, bei der der Bildschirmmodus während des Bildaufbaus
+  geändert wird. Auf dem »CPC entstehen Zonen, in denen man in manchen
+  Bereichen hohe Auflösung mit wenigen Farben und in anderen Bereichen
+  niedrige Auflösung mit vielen Farben hat.
+
+Multiface II (Abkürzung für: Multipurpose Interface)
+  Eine Hardwareerweiterung für den CPC, die es erlaubt, Programme zu
+  jeder Zeit anzuhalten, zu analysieren und abzuspeichern.
+  Es wurde von der englischen Firma Romantic Robot entwickelt.
+
+OS (Abkürzung für: Operating System, deutsch: Betriebssystem)
+  Ein Programm, was man braucht, um einen Computer zu benutzen.
+  Es bietet grundlegende Funktionen für Anwendungsprogramme. Neue
+  Betriebssysteme erlegigen z.B. so komplizierte Aufgaben wie
+  Scheduling (Rechenzeit-Zuteilung) in Multitasking-Systemen, ...
+
+OS/2 DOS-Box
+  Ein Fenster unter dem 32-Bit Betriebssystem OS/2 von IBM, in dem Sie
+  »DOS-Programme starten können. Die sogenannte DOS-Kompatibilitäts-Box.
+
+Overscan
+  Der Rahmen um die beschreibbare Fläche auf dem Bildschirm.
+  Auf dem PC ist er ziemlich schmal, es läßt sich aber die Randfarbe
+  ändern, z.B. in CPCEMU durch 'BORDER 10'. Auf dem CPC ist der Rahmen
+  ziemlich breit, so daß man nach Möglichkeiten untersucht hat, auch
+  diesen Rand zu benutzen. Durch einen Programmiertrick ist es möglich,
+  den gesamten Bildschirm zu beschreiben. Auch diese Programmiertechnik
+  wird meistens mit Overscan bezeichnet.
+
+Parameter
+  Variable mit einer festen Bedeutung, die über den Programmablauf
+  entscheidet.
+
+PC (Abkürzung für: Personal Computer)
+  Computer mit einem Mikroprozessor als Prozessor. Meistens als Synonym
+  für den IBM-PC mit 8086 oder 8088 Prozessor.
+  PC AT (advanced technology) sind Computer mit 80286, 80386 oder 80486
+  als Prozessor.
+
+PEEKs und POKEs:
+  »BASIC-Befehle, um Speicherstellen auszulesen 'PEEK(<Adresse>)' oder
+  zu verändern 'POKE <Adresse>,<Wert>'. Programme mit vielen PEEKs
+  und POKEs sind kaum zu verstehen, sind aber manchmal notwendig,
+  um die Beschränkungen des BASIC zu durchbrechen, besonders wenn
+  das BASIC nicht so umfangreich ist.
+
+PKUNZIP
+  Programm der Firma PK-Software zum Entpacken von »ZIP-Dateien.
+
+RAM (Abkürzung für: Random Access Memory, also Schreib- ,Lesespeicher)
+  Speicherbaustein. Arbeitsspeicher des Computers.
+  Die CPC-Computer haben 64KB RAM (Kilo-Bytes) oder 128 KB. Durch
+  Hardwareerweiterungen anderer Firmen konnten sie auf bis zu 576 KB RAM
+  erweitert werden.
+
+ROM (Abkürzung für: read-only-memory, deutsch: Nur-Lese-Speicher)
+  Speicherbaustein. Speicher, der vom Prozessor nur gelesen aber nicht
+  verändert werden kann. Nach dem Einschalten eines Computers sofort
+  vorhanden. Die »CPC-Computer haben z.B. 16KB ROM für das »OS,
+  16KB für das »BASIC und 16KB für das »AMSDOS.
+
+ROM-Abbild
+  Datei, in denen sich der Inhalt eines »ROM befindet. Wenn Sie ein
+  ROM auslesen und in einer Datei abspeichern, dann haben Sie ein
+  ROM-Abbild.
+
+RS-232
+  Serielle »Schnittstelle zum Anschluß von Bildschirmen und Druckern an den
+  Computer (RS 232 C).
+
+Schneider
+  Deutscher Unterhaltungselektronik-Hersteller, der die CPCs in Deutschland
+  vertrieben hat.
+
+Schnittstelle (englisch: Interface)
+  Anschlußstelle eines Computers zu einem Gerät oder eines Programme zu
+  einem anderen Programm. Es gibt also Hard- und Software-Schnittstellen.
+  Die sogenannte Centronics-Schnittstelle ist eine parallele Schnittstelle,
+  bei der die Bytes parallel, d.h. nebeneinander übertragen werden.
+  Bei einer seriellen Schnittstelle müssen die Bytes Bit für Bit nacheinander
+  übertragen werden.
+
+Setup (deutsch "aufsetzen")
+  Darin werden verschiedene Festlegungen gemacht, die den Programmablauf
+  beeinflussen, z.B. Angabe der Soundkarte, ob Sie einen Joystick benutzen
+  wollen, ...
+
+SIMTEL
+  Ein großes Software-Archiv in den USA.
+  Das SimTel-Software Archiv wird von "Coast to Coast Telecommunications,
+  Inc. (CCT)" auf einem ihrer Rechner im Internet als "SimTel.Coast.NET"
+  unterhalten. Dieses Archiv wird regelmäßig zu anderen Orten kopiert
+  (mirrored). Eine Kopie (mirror=engl. Spiegel) befindet sich in der
+  "Oakland University", im Internet als "OAK.Oakland.Edu". Natürlich gibt
+  es auch in Deutschland SimTel-"mirrors", z.B. "ftp.uni-paderborn.de".
+
+Snapshots (deutsch: Schnappschuß)
+  Ein Speicherauszug erweitert um Zustände der »Hardwarebausteine.
+  Er enthält eine komplette momentane Zustandsbeschreibung des Computers.
+  Wenn der Snapshot geladen wird, wird der Computer in genau diesen
+  Zustand zurückversetzt und macht dort weiter, wo der Snapshot
+  erstellt wurde. Somit ist es ähnlich einem richtigen Schnappschuß,
+  nur vom Innern des Computers.
+
+Software
+  Die Programme bei einem Computersystem.
+
+Soundblaster
+  Die Soundkarte der Firma Creative Labs.
+
+Spectrum
+  Der Sinclair Spectrum ist ein Homecomputer, der von der Firma Sinclair
+  entworfen wurde.
+
+Taktfrequenz
+  Takt, mit dem der Prozessor versorgt wird. Er bestimmt wesentlich die
+  Geschwindigkeit des Prozessors. Heutige 486DX2/66 Prozessoren werden
+  z.B. intern mit 66 MHz getaktet.
+  Der Z80A im »CPC wird mit 4 MHz getaktet, wovon effektiv 3.3 MHz
+  übrigbleiben, weil er immer regelmäßig auf die Bildschirmauffrischung
+  warten muß.
+
+Turbo-Pascal Compiler
+  Pascal ist eine höhere Programmiersprache, die strukturiertes
+  Programmieren fördert und heute an vielen Schulen eingesetzt wird.
+  Wenn man von Pascal redet, meint man meistens Turbo-Pascal, obwohl
+  dieses nur ein erweitertes Pascal der Firma Borland ist. Der Turbo-Pascal
+  Compiler ist besonders schnell, da er die Übersetzung in
+  Maschinensprache in einem Durchgang erledigt.
+
+Umgebungsvariable
+
+Utility
+  Nützliches Hilfsprogramm.
+
+VGA (Abkürzung für: Video Graphics Array)
+  Grafikstandard auf dem PC. Nachfolger von CGA (Colour Graphics
+  Adapter), MCGA (Multi Colour Graphics Adapter) und EGA (Enhanced
+  Graphics Adapter). Wurde zu SVGA (Super-VGA) mit noch höheren Auflösungen
+  erweitert.
+
+VGA-BIOS (Abkürzung für: VGA Basic Input Output Operating System)
+  Das Betriebssystem für die »VGA-Grafikkarte
+
+Windows (deutsch: "Fensters"?)
+  Ein Betriebssystem-Aufsatz für »DOS.
+
+Wiring-Box (deutsch: Kabelbox)
+  Ein Adapter mit zwei Steckern, zwischen denen mittels Drahtbrücken
+  verschiedene Verbindungen hergestellt werden können.
+  Im Gegensatz zur Wiring-Box müssen bei einer »Jumper-Box die
+  Drahtbrücken festgelötet werden.
+
+Z80
+  Ein von der Firma Zilog entwickelter 8-Bit Prozessor. Ist ein Ableger
+  von Intels 8080 und war sehr weit verbreitet.
+  Im »CPC ist der Z80A eingebaut, der mit einer »Taktfrequenz von 4 MHz
+  arbeitet.
+
+Z80-Befehle
+  Maschinenbefehle, die der »Z80 (-Prozessor) versteht. Eigentlich sind das
+  nur Zahlenfolgen, um sich die Befehle besser merken zu können, wurden
+  sogenannte Mnemonics eingeführt, die von einem Assembler in
+  Binärcode übersetzt werden. Der Befehl "LD A,B" lädt z.B. Register A
+  mit dem Inhalt von Register B und wird mit dem Code 0x78 übersetzt.
+
+Zahlendarstellung (bei Stellenwertsystemen)
+  Je nach gewählter Basis gibt es verschiedene Darstellungen für eine Zahl.
+  Am bekanntesten ist die dezimale Zahlendarstellung mit der Basis 10
+  und den Ziffern 0..9.
+  Computer verwenden die binäre Darstellung (Basis 2) mit den Ziffern 0
+  und 1. Bei Programmieren beliebt ist die hexadezimale Darstellung
+  zur Basis 16, weil 16 eine Potenz von 2 ist (2 hoch 4). Die Darstellungen
+  lassen sich dann ganz einfach ineinander umrechnen. Außerdem
+  benötigen ein Byte nur 2 Ziffern, wenn man es hexadezimal aufschreibt
+  (0..9,A..F).
+
+ZIP
+  Ein spezielles Verfahren zum Komprimieren (Packen) von Dateien.
+  Die »Archive haben dann die Endung ZIP.
+
+
+
+
+
+A.2  Literaturverzeichnis
+*************************
+
+
+Unentbehrlich für jeden CPC-Anfänger ist das CPC-Benutzerhandbuch:
+- Spital Ivor und Perry, Roland und Poel, William und Lawson,Cliff:
+    CPC 6128 Benutzerhandbuch, Schneider Computer Division 1985,
+    Originalausgabe (c) 1985 (in meinem Exemplar steht übrigens 1895)
+    by AMSOFT, AMSTRAD Consumer Electronics plc and Locomotive
+    Software Ltd.
+
+Ein hervorragend kommentiertes ROM-Listing und einleitende Kapitel,
+die besonders die Softwareseite des CPC berücksichtigen, bietet:
+- Janneck, Jörn W. und Mossakowski,Till: ROM-Listing CPC 464/664/6128,
+    Markt & Technik Verlag 1986
+
+Lieblos zusammengeschustert und dürftig kommentiert dagegen, mit
+Schwerpunkt Hardware ist:
+- Brückmann, Englisch, Gertis: CPC 464 Intern mit kommentiertem
+    ROM-Listing, Data Becker 1985
+
+Gut zum C lernen, mit vielen Übungsaufgaben, ist:
+- Kellay, Al and Pohl, Ira: A Book on C, Second Edition, 1990 by
+    Benjamin/Cummings Publishing Company, Inc.
+
+Das C++ Standardwerk:
+- Stroustrup, Bjarne: Die C++ Programmiersprache, 2. Auflage,
+  Addison-Wesley, 1992
+
+Ein schönes C++ Buch:
+- Eckel, Bruce: C++ Inside & Out, 1993 by Osborne McGraw-Hill
+
+Tips, wie man ein verständliches und gutes Handbuch schreibt, bietet:
+- Boedicker, Dagmar: Handbuch-Knigge, Software Handbücher schreiben
+    und beurteilen. Wissenschaftsverlag 1990
+
+
+
+
+
+A.3  Index (Stichwortverzeichnis)
+*********************************
+
+Die Zahlen hinter den Stichworten geben das Kapitel an, wo das Stichwort
+erklärt wird oder vorkommt.
+
+(noch nicht vollständig)
+
+#ENDIF 4.2
+#IFCPC 4.2
+22DISK 5.1.2
+Adapter, parallel 5.2
+AMSDOS_DI 4.2
+AMSDOS_SPDUP 4.2
+BLASTER-Umgebung 2.3.2
+BREAK_MASK 4.2
+COLOUR 4.2
+CPC 1.3
+CPC-Newsgruppe 6.2
+CPCEMU.CFG 4.2
+CPCPARA.BAS 5.2
+CPCREC.BAS 5.2
+CPCTRANS.EXE 5.1.1
+Debug-Menü 7.3
+DELAY  4.2
+Diskette 3.2.1
+Disketten-Abbilder 3.2.1
+DRIVE_A 4.2
+DRIVE_B 4.2
+EMS_EI 4.2
+EMS-Speicher 2.3.1
+Funktionstasten 3.1
+INT_FREQ 4.2
+INT_RESUME 4.2
+JOY_CALIBRATE 4.2
+Kassette 3.2.2
+KBD_LANGUAGE 4.2
+Konfigurationsdatei 4.2
+Menüs 3.2.1
+Multi-Mode 4.1
+MULTIMODE 4.2
+PCPARA.EXE 5.2
+PIO_PORT_B 4.2
+PRINTER 4.2
+RAM_SIZE 4.2
+ROM_BLOCK 4.2
+ROM_PATH 4.2
+SBLASTER 4.2
+SB_DELAY 4.2
+Setup-Menü 4.1
+SHOW_CONFIG 4.2
+SNAPSHOT 4.2
+Snapshot 3.2.3
+SOUND 4.2
+Soundblaster 2.3.2
+TAPE_BYPASS 4.2
+TAPE_PATH 4.2
+Tastatur 3.1
+TMP_PATH 4.2
+VSYNC-Bit 4.1
+
+
+------------------------------------------------------------------------------
+logout
+------

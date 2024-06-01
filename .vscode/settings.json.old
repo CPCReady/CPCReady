@@ -1,0 +1,22 @@
+{
+    "workbench.colorCustomizations": {
+      "terminal.foreground": "#d9ff00",
+      "terminal.background": "#000080",
+  },
+  "terminal.integrated.env.osx": {
+    "HOMEBREW_PREFIX": "/Users/destroyer/Github/CPCReady/CPCReady"
+  },
+  "terminal.integrated.profiles.osx": {
+    "amstrad": {
+        "path": "console-amstrad",
+        "args": [
+            "${workspaceFolder}/test/prueba"
+        ],
+        "icon": "terminal-bash"
+    }
+},
+"terminal.integrated.defaultProfile.osx": "amstrad",
+"workbench.iconTheme": "material-icon-theme",
+"terminal.integrated.fontSize": 13,
+
+}
