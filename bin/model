@@ -88,8 +88,8 @@ case $1 in
         ;;
 esac
 
-configuration "$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" CPC_TYPE $MODEL
-configuration "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" MODEL $1
+cpc-config "$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" CPC_TYPE $MODEL
+cpc-config "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" MODEL $1
 
 clear
 model_cpc $1

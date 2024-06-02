@@ -67,11 +67,11 @@ case $1 in
 esac
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    CPCEMU="$HOMEBREW_PREFIX/share/CPCReady/cpcemu/cpcemu"
-    RVM="$HOMEBREW_PREFIX/share/CPCReady/RetroVirtualMachine"
+    CPCEMU="$HOMEBREW_PREFIX/share/cpcemu/cpcemu"
+    RVM="$HOMEBREW_PREFIX/share/RetroVirtualMachine"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-    CPCEMU="$HOMEBREW_PREFIX/share/CPCReady/CPCemuMacOS.app/Contents/MacOS/CPCemuMacOS"
-    RVM="$HOMEBREW_PREFIX/share/CPCReady/rvm.app/Contents/MacOS/rvm"
+    CPCEMU="$HOMEBREW_PREFIX/share/CPCemuMacOS.app/Contents/MacOS/CPCemuMacOS"
+    RVM="$HOMEBREW_PREFIX/share/RetroVirtualMachine2.app/Contents/MacOS/RetroVirtualMachine2"
 else
     PRINT ERROR "$OSTYPE Operating system NOT supported."
 fi

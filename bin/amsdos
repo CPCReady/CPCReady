@@ -52,6 +52,8 @@ result=$?
 cd $1
 
 if [ ! -f "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" ]; then
+pwd
+echo $PATH_CONFIG_PROJECT/$CONFIG_CPCREADY
     PRINT ERROR_NO_EXIT "There is no CPCReady project. Cannot use Amstrad console."
     echo
     read -n 1 -r -s -p $'Press enter to continue...\n'
@@ -66,4 +68,4 @@ else
     fi
 fi
 
- amstrad
+ amsdospy

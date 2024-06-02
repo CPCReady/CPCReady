@@ -70,7 +70,7 @@ fi
 
 echo
 create_dsk "$OUT_DISC/$1"
-configuration "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" DISC $1
+cpc-config "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" DISC $1
 
 
 

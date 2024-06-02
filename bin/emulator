@@ -72,7 +72,7 @@ fi
 
 # Comprobamos Emuladores soportados
 evaluaEmulator $1
-configuration "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" EMULATOR $1
+cpc-config "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" EMULATOR $1
 echo
 PRINT "OK" "Changed Emulator $1"
 

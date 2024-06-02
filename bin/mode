@@ -73,6 +73,6 @@ fi
 # Comprobamos que el modo de pantalla sea correcto
 evaluaMode "$1"
 
-configuration "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" MODE $1
+cpc-config "$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" MODE $1
 clear
 PRINT "OK" "Changed Screen Mode $1"

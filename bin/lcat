@@ -76,6 +76,6 @@ fi
 if [[ "$EMULATOR" == "m4" ]]; then
     ## chequeamos nomenclatura
     check_83_files_path $OUT
-    dir "$OUT"
+    cat2cpc "$OUT"
     exit 0
 fi
