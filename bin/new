@@ -155,18 +155,18 @@ case $cpc_model in
         ;;
 esac
 
-configuration "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" CPC_TYPE $MODEL
-configuration "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" MODEL $cpc_model
+cpc-config "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" CPC_TYPE $MODEL
+cpc-config "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" MODEL $cpc_model
 PRINT OK "Configurate CPC Model $cpc_model"
 
-configuration "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" PRINTER "$PWD/$project_name/$PATH_CONFIG_PROJECT/PRN"
-configuration "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" M4_SD_PATH "$PWD/$project_name/$OUT"
+cpc-config "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" PRINTER "$PWD/$project_name/$PATH_CONFIG_PROJECT/PRN"
+cpc-config "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" M4_SD_PATH "$PWD/$project_name/$OUT"
 PRINT OK "Configurate M4 Board Directory $OUT"
 
-configuration "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" TAPE_PATH "$PWD/$project_name/$OUT_TAPE"
-configuration "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" DRIVE_A "$PWD/$project_name/$OUT_DISC"
-configuration "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" DRIVE_B "$PWD/$project_name/$OUT_DISC"
-configuration "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" DISC "$project_name.dsk"
+cpc-config "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" TAPE_PATH "$PWD/$project_name/$OUT_TAPE"
+cpc-config "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" DRIVE_A "$PWD/$project_name/$OUT_DISC"
+cpc-config "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCEMU" DRIVE_B "$PWD/$project_name/$OUT_DISC"
+cpc-config "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" DISC "$project_name.dsk"
 PRINT OK "Configurate DISC Directory $OUT_DISC"
 
 # creamos vscode para cambios de color de la terminal.
@@ -182,8 +182,8 @@ if [ "$AMSTRAD_COLORS" = "S" ]; then
     PRINT "OK" "Apply colors to the Vscode terminal."
 fi
 
-configuration "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" MODE 1
-configuration "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" EMULATOR $TEST
+cpc-config "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" MODE 1
+cpc-config "$PWD/$project_name/$PATH_CONFIG_PROJECT/$CONFIG_CPCREADY" EMULATOR $TEST
 
 PRINT OK "Configure test execution with $TEST"
 

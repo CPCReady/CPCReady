@@ -32,9 +32,9 @@
 PATH_VERSION_FILE="$HOMEBREW_PREFIX/share/VERSION"
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-   TEMPLATE_CPCEMU="$HOMEBREW_PREFIX/share/CPCReady/cpcemu/cpcemu0.cfg"
+   TEMPLATE_CPCEMU="$HOMEBREW_PREFIX/share/cpcemu/cpcemu0.cfg"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-   TEMPLATE_CPCEMU="$HOMEBREW_PREFIX/share/CPCReady/CPCemuMacOS.app/Contents/Resources/cpcemu0.cfg"
+   TEMPLATE_CPCEMU="$HOMEBREW_PREFIX/share/CPCemuMacOS.app/Contents/Resources/cpcemu0.cfg"
 else
    PRINT ERROR "$OSTYPE Operating system NOT supported."
 fi
