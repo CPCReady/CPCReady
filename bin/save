@@ -102,8 +102,6 @@ if [ -z "$1" ]; then
             if [[ "$EMULATOR" == "rvm" ]]; then
                 add_ascii_dsk "$PATH_DISC" "$OUT/$file"
             fi
-            ## add amsdos header
-            ## amsdos "$OUT/$file" >/dev/null 2>&1; PRINT "OK" "Added amsdos header to the file." || PRINT "ERROR" "There was an error adding the amsdos header to the file."
         fi
     done
     exit 0
@@ -121,9 +119,6 @@ else
     if [[ "$EMULATOR" == "rvm" ]]; then
         add_ascii_dsk "$PATH_DISC" "$OUT/$file"
     fi
-
-    ## add amsdos header
-    ## amsdos "$OUT/$file" >/dev/null 2>&1; PRINT "OK" "Added amsdos header to the file." || PRINT "ERROR" "There was an error adding the amsdos header to the file."
 fi
 
 
