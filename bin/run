@@ -42,7 +42,8 @@ function show_help {
     echo "  -h, --help     Show this help message."
     echo "  -v, --version  Show version this software."
     echo "Option:"
-    echo "  [parameter]  --emulator [M4, RVM]"
+    echo "  [parameter]  File Name. If there is no parameter, "
+    echo "               it uses DISC.BAS by default."
 }
 
 ## Chequeamos si existe el archivo de variables.
