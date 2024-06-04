@@ -191,9 +191,9 @@ if which amstrad >/dev/null; then
     PRINT OK "Activate Amstrad console for Visual Studio Code."
 else
     if [[ "$OSTYPE" == "linux-gnu" ]]; then
-        jq 'del(.["terminal.integrated.defaultProfile.linux", "terminal.integrated.profiles.linux"])' settings.json > temp.json && mv temp.json settings.json
+        jq 'del(.["terminal.integrated.defaultProfile.linux", "terminal.integrated.profiles.linux"])' $project_name/.vscode/settings.json > $project_name/.vscode/temp.json && mv $project_name/.vscode/temp.json $project_name/.vscode/settings.json
     elif [[ "$OSTYPE" == "darwin"* ]]; then
-        jq 'del(.["terminal.integrated.defaultProfile.linux", "terminal.integrated.profiles.linux"])' settings.json > temp.json && mv temp.json settings.json
+        jq 'del(.["terminal.integrated.defaultProfile.linux", "terminal.integrated.profiles.linux"])' $project_name/.vscode/settings.json > $project_name/.vscode/temp.json && mv $project_name/.vscode/temp.json $project_name/.vscode/settings.json
     else
         PRINT ERROR "$OSTYPE Operating system NOT supported."
     fi    
