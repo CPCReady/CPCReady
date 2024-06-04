@@ -27,6 +27,7 @@
 ##------------------------------------------------------------------------------
 
 ## Bash Include files
+HOMEBREW_PREFIX=$(brew --prefix)
 source $HOMEBREW_PREFIX/lib/cpcLib.sh
 
 ## Function to display help message

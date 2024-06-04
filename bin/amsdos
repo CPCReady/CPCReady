@@ -28,9 +28,9 @@
 
 ## Bash Include files
 
+HOMEBREW_PREFIX=$(brew --prefix)
 source $HOMEBREW_PREFIX/lib/cpcLib.sh
-pwd
-exit
+
 # # Obtener la versión de Python 3
 # PYTHON_VERSION=$(python3 --version 2>&1)
 
